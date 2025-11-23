@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "releaseDate": "2025-01-23",
+  "minOxLibVersion": "3.0.0",
+  "changes": [
+    "Initial release",
+    "Complete ox_lib UI wrapper",
+    "9 UI components included",
+    "Extensive customization options",
+    "Modern and responsive design"
+  ]
+}
