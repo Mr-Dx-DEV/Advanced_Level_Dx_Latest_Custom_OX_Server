@@ -121,22 +121,37 @@ return {
         weight = 160,
     },
 
-    ['phone'] = {
-        label = 'Phone',
+    -- ['phone'] = {
+    --     label = 'Phone',
+    --     weight = 190,
+    --     stack = false,
+    --     consume = 0,
+    --     client = {
+    --         add = function(total)
+    --             if total > 0 then
+    --                 pcall(function() return exports.npwd:setPhoneDisabled(false) end)
+    --             end
+    --         end,
+
+    --         remove = function(total)
+    --             if total < 1 then
+    --                 pcall(function() return exports.npwd:setPhoneDisabled(true) end)
+    --             end
+    --         end
+    --     }
+    -- },
+    ["phone"] = {
+        label = "Phone",
         weight = 190,
         stack = false,
         consume = 0,
         client = {
-            add = function(total)
-                if total > 0 then
-                    pcall(function() return exports.npwd:setPhoneDisabled(false) end)
-                end
+            export = "lb-phone.UsePhoneItem",
+            remove = function()
+                TriggerEvent("lb-phone:itemRemoved")
             end,
-
-            remove = function(total)
-                if total < 1 then
-                    pcall(function() return exports.npwd:setPhoneDisabled(true) end)
-                end
+            add = function()
+                TriggerEvent("lb-phone:itemAdded")
             end
         }
     },

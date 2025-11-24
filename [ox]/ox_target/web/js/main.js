@@ -10,14 +10,30 @@ window.addEventListener("message", (event) => {
   switch (event.data.event) {
     case "visible": {
       body.style.visibility = event.data.state ? "visible" : "hidden";
+      eye.style.transform = 'translateY(0px)';
+      document.querySelectorAll('.iconClass').forEach(el => el.classList.remove('fa-check'));
+      eye.style.color = 'white';
+      document.querySelector('.center').textContent = '';
+      document.querySelectorAll('.iconClass').forEach(el => el.classList.add('fa-question'));
       return eye.classList.remove("eye-hover");
     }
 
     case "leftTarget": {
+      document.querySelector('.center').textContent = '';
+      eye.style.transform = 'translateY(0px)';
+      document.querySelectorAll('.iconClass').forEach(el => el.classList.remove('fa-check'));
+      eye.style.color = 'white';
+      document.querySelectorAll('.iconClass').forEach(el => el.classList.add('fa-question'));
       return eye.classList.remove("eye-hover");
     }
 
     case "setTarget": {
+      document.querySelector('.center').textContent = '';
+      eye.style.fill = '#cfd2da';
+      eye.style.transform = 'translateY(30px)';
+      eye.style.color = 'rgb(0,247,181)';
+      document.querySelectorAll('.iconClass').forEach(el => el.classList.remove('fa-question'));
+      document.querySelectorAll('.iconClass').forEach(el => el.classList.add('fa-check'));
       eye.classList.add("eye-hover");
 
       if (event.data.options) {
