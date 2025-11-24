@@ -1,0 +1,1 @@
+Today's code for the free script is 'IZZIZZI'
