@@ -5,7 +5,7 @@ lua54 'yes'
 
 client_script 'client/*.lua'
 server_scripts {
-    '@qb-apartments/config.lua', -- if you dont use qb-apartments, you can remove this part
+   -- '@qb-apartments/config.lua', -- if you dont use qb-apartments, you can remove this part
     '@oxmysql/lib/MySQL.lua',
     'shared/sv_cfg.lua',
     'server.lua'

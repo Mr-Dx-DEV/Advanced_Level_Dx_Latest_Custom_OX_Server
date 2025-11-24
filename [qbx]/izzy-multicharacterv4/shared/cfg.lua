@@ -9,9 +9,9 @@ cfg = {
     useOwnSpawnSelector = true, -- if you dont change to true, use automatticly
 
     manualShutdown = true,
-    housing = 'none', -- none / qb-houses / ps-housing
+    housing = 'ps-housing', -- none / qb-houses / ps-housing
 
-    defaultFreeSlotAmount = 1,
+    defaultFreeSlotAmount = 2,
     maxSlotAmount = 5,
     canDeleteCharacter = true,
 
