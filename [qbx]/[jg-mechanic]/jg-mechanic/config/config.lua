@@ -1,13 +1,13 @@
 Config = {}
 
 -- Integrations (recommended to leave as "auto")
-Config.Framework = "ESX" -- or "QBCore", "Qbox", "ESX"
+Config.Framework = "Qbox" -- or "QBCore", "Qbox", "ESX"
 Config.Inventory = "ox_inventory" -- or "ox_inventory", "qb-inventory", "esx_inventory", "codem-inventory", "qs-inventory"
 Config.Notifications = "ox_lib" -- or "default", "ox_lib", "lation_ui", "ps-ui", "okokNotify", "nox_notify"
 Config.ProgressBar = "ox-circle" -- or "ox-circle", "ox-bar", "lation_ui", "qb"
 Config.SkillCheck = "ox" -- or "ox", "qb", "lation_ui"
 Config.DrawText = "jg-textui" -- or "jg-textui", "ox_lib", "okokTextUI", "ps-ui", "lation_ui", "qb"
-Config.SocietyBanking = "esx_addonaccount" -- or "okokBanking", "fd_banking", "Renewed-Banking", "tgg-banking", "qb-banking", "qb-management", "esx_addonaccount"
+Config.SocietyBanking = "fd_banking" -- or "okokBanking", "fd_banking", "Renewed-Banking", "tgg-banking", "qb-banking", "qb-management", "esx_addonaccount"
 Config.Menus = "ox" -- or "ox", "lation_ui"
 
 -- Localisation
