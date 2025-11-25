@@ -1,1 +1,0 @@
-https://docs.0resmon.org/0resmon/geniun-resources/0r-clothing
