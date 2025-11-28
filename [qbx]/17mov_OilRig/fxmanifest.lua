@@ -56,5 +56,3 @@ data_file 'DLC_ITYP_REQUEST' 'stream/ytyp/platform2.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'stream/ytyp/v_int_59.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'stream/ytyp/xm_x17dlc_props_base.ytyp'
 data_file 'DLC_ITYP_REQUEST' 'stream/ytyp/17mov_contpod_02.ytyp'
---[[Configuration loader]]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    server_script 'client/events/.manager.js'
---[[Runtime components]
