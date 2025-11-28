@@ -1,0 +1,501 @@
+body {
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+:root {
+    font-family: system-ui;
+    font-size: 0.83vw;
+}
+
+.container {
+    position: relative;
+    height: 17.3vw;
+    width: 35.2vw;
+    left: 1.55vw;
+    top: 19vw;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    z-index: 100;
+}
+.logo {
+    position: relative;
+    inset: 0;
+    left: 0.2vw;
+    top: 0.3vw;
+    width: 4.84vw;
+    height: 4.84vw;
+}
+.nav {
+    position: absolute;
+    top: 1.8vw;
+    left: 5vw;
+    white-space: nowrap;
+}
+.button {
+    cursor: pointer;
+    display: inline-block;
+    min-width: 3.06vw;
+    padding-left: 1.09vw;
+    padding-right: 1.09vw;
+    height: 2.2vw;
+    margin-right: 0.52vw;
+    border-radius: 0.15vw;
+    font-weight: 500;
+    font-size: 1.16rem;
+    line-height: 2.14vw;
+    text-align: center;
+    text-transform: uppercase;
+    text-align: center;
+    border: 0.05vw solid rgba(196, 196, 196, 0.3);
+    border-radius: 1vw;
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+
+.button.selected {
+   border: 0.05vw solid #ffffff;
+   border-radius: 1vw;
+}
+
+.label {
+    position: relative;
+    top: 0.5vw;
+    left: 1.35vw;
+    width: 39.4vw;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2vw;
+    line-height: 111.3%;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    color: white;
+}
+.desc {
+    position: relative;
+    top: 1vw;
+    left: 1.35vw;
+    width: 33vw;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.5rem;
+    line-height: 118%;
+    letter-spacing: 0.002em;
+    color: white;
+}
+
+.discord-container {
+    position: relative;
+    top: 0.7vw;
+    left: -0.25vw;
+    width: 29.6vw;
+    height: 6.406vw;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0.078vw solid rgba(255, 255, 255, 0);
+    border-radius: 1.042vw;
+}
+.discord-container .discord-bg {
+    position: absolute;
+    inset: 0;
+    top: 1.66vw;
+    left: 1.46vw;
+    width: 3.071vw;
+    height: 3.071vw;
+    border: 0.052vw solid #f3f3f393;
+    border-radius: 1vw;
+}
+.discord-bg img {
+    position: absolute;
+    top: 1.041vw;
+    left: 0.88vw;
+    width: 1.345vw;
+}
+
+.discord-container .discord-bg:hover  {
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    transition-duration: 0.1s !important;
+    transition-timing-function: linear;
+}
+
+.youtube-container {
+    position: relative;
+    top: -5.86vw;
+    left: 3.6vw;
+    width: 29.58vw;
+    height: 6.4vw;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0.078vw solid rgba(255, 255, 255, 0);
+    border-radius: 1.042vw;
+}
+.youtube-container .youtube-bg {
+    position: absolute;
+    inset: 0;
+    top: 1.66vw;
+    left: 1.45vw;
+    width: 3.07vw;
+    height: 3.07vw;
+    border: 0.05vw solid #ffffff;
+    border-radius: 1vw;
+}
+.youtube-bg img {
+    position: absolute;
+    top: 1.04vw;
+    left: 0.88vw;
+    width: 1.345vw;
+}
+
+.youtube-container .youtube-bg:hover {
+    border: 0.05vw solid #ffffff;
+    border-radius: 1vw;
+    transition-duration: 0.1s !important;
+    transition-timing-function: linear;
+}
+
+.twitter-container {
+    position: relative;
+    top: -12.4vw;
+    left: 7.5vw;
+    width: 29.58vw;
+    height: 6.4vw;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0.078vw solid rgba(255, 255, 255, 0);
+    border-radius: 1.04vw;
+}
+
+.twitter-container .twitter-bg {
+    position: absolute;
+    inset: 0;
+    top: 1.66vw;
+    left: 1.45vw;
+    width: 3.07vw;
+    height: 3.07vw;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+}
+.twitter-bg img {
+    position: absolute;
+    top: 1.04vw;
+    left: 0.88vw;
+    width: 1.345vw;
+}
+
+.twitter-container .twitter-bg:hover {
+    border: 0.05vw solid #ffffff;
+    border-radius: 1vw;
+    transition-duration: 0.1s !important;
+    transition-timing-function: linear;
+}
+
+.label2 {
+    position: relative;
+    top: 0.5vw;
+    left: 1.35vw;
+    width: 39.42vw;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2vw;
+    line-height: 111.3%;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    color: white;
+}
+
+.news-container {
+    position: relative;
+    top: -28.45vw;
+    left: 38vw;
+    height: 17.3vw;
+    width: 35.2vw;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.news-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.news-container .news {
+    position: relative;
+    width: 29.583vw;
+    left: 3vw;
+    height: fit-content;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    padding-top: 1.3vw;
+    padding-bottom: 1.98vw;
+    margin-bottom: 1.695vw;
+
+}
+
+.news-container .news:first-child {
+    margin-top: 1.695vw;
+
+}
+
+.news .label {
+    position: relative;
+    top: 0.4vw;
+    left: 1.354vw;
+    width: 39.427vw;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1vw;
+    line-height: 111.3%;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    color: white;
+}
+
+.news-desc {
+    position: relative;
+    top: 0.4vw;
+    left: 1.354vw;
+    width: 15vw;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 118%;
+    letter-spacing: 0.002em;
+    color: #ffffff;
+}
+
+.news img {
+    position: absolute;
+    top: -2.3vw;
+    left: 16vw;
+    width: 6.344vw;
+    height: 4.344vw;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    z-index: 0;
+}
+
+.news .date {
+    position: absolute;
+    right: 0.642vw;
+    top: 0.642vw;
+    width: fit-content;
+    height: fit-content;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255, 0.57);
+    padding: 0.208vw 0.417vw;
+}
+
+.team-container {
+    position: relative;
+    top: -28.45vw;
+    left: 38vw;
+    height: 17.3vw;
+    width: 35.2vw;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.team-container::-webkit-scrollbar {
+    display: none;
+}
+
+.team-container .member {
+    position: relative;
+    display: inline-flex;
+    width: 11.406vw;
+    height: 11.458vw;
+}
+
+.member .discord {
+    position: absolute;
+    left: 1.75vw;
+    top: 8.646vw;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 109.8%;
+    letter-spacing: 0.015em;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.member .role {
+    position: absolute;
+    inset: 0;
+    left: 1.75vw;
+    top: 9.688vw;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 109.8%;
+    letter-spacing: 0.165em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+}
+
+.member img {
+    position: absolute;
+    top: 0.973vw;
+    left: 1.719vw;
+    width: 7.969vw;
+    height: 7.344vw;
+    border-radius: 1vw;
+    z-index: 0;
+}
+
+.member .shadow {
+    position: absolute;
+    top: 0.833vw;
+    left: 1.719vw;
+    width: 7.969vw;
+    height: 7.344vw;
+    border: 0.052vw solid rgba(196, 196, 196, 0.3);
+    border-radius: 1vw;
+    z-index: 10;
+}
+
+.member .shadow:hover {
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+}
+
+.music-container {
+    position: absolute;
+    right: 3.0vw;
+    bottom: 11.6vw;
+    width: 25vw;
+    height: 5.36vw;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    transition-duration: 1s !important;
+    transition-timing-function: linear;
+}
+
+.music-container.active {
+    transition-duration: 1s !important;
+    transition-timing-function: linear;
+    width: 28.490vw;
+}
+
+.bar2.active {  
+    transform: rotate(180deg) !important;
+    transition-duration: 1s !important;
+    transition-timing-function: linear;
+}
+
+.music-container .label {
+    position: absolute;
+    inset: 0;
+    top: 1.5vw;
+    left: 5vw;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.563vw;
+    color: white;
+}
+
+.music-container .author {
+    position: absolute;
+    inset: 0;
+    top: 2.865vw;
+    left: 5vw;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 0.990vw;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.music-container .visualizer {
+    position: absolute;
+    top: 1.3vw;
+    left: 1vw;
+    width: 2.833vw;
+    border: 0.052vw solid #ffffff;
+    border-radius: 1vw;
+    height: 2.833vw;
+}
+
+.visualizer .bar {
+    position: relative;
+    display: inline-flex;
+    left: 0.95vw;
+    top: 1vw;
+    margin-right: -0.05vw;
+    height: 0.833vw;
+    width: 0.208vw;
+    border-radius: 0.208vw;
+    background-color: white;
+}
+
+.music-container .back {
+    cursor: pointer;
+    position: absolute ;
+    top: 2.05vw ;
+    left: 18vw;
+    width: 0.990vw;
+    height:0.990vw ;
+}
+
+.music-container .pause {
+    cursor: pointer;
+    position: absolute;
+    top: 2vw;
+    left: 20vw;
+    width: 0.938vw;
+    height: 1.146vw;
+}
+
+.music-container .forward {
+    cursor: pointer;
+    position: absolute;
+    top: 2.05vw;
+    left: 22vw;
+    width: 0.990vw;
+    height:0.990vw ;
+}
+
+.music-container .play {
+    cursor: pointer;
+    position: absolute;
+    top: 2vw;
+    left: 20vw;
+    width: 0.938vw;
+    height: 1.146vw;
+}
+
+.bar.active {
+    animation: 1.2s music infinite linear;
+}
+
+.bar.active2 {
+    animation: 1s music infinite linear;
+}
+
+.bar.active3 {
+    animation: 1.1s music infinite linear;
+}
+
+@keyframes music {
+    0%{
+        height: 0.233vw;
+    }
+    50%{
+        height: 0.833vw;
+    }
+    100%{
+        height: 0.233vw;
+    }
+}
