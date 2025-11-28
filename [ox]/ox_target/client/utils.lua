@@ -37,7 +37,8 @@ local drawZoneSprites = GetConvarInt('ox_target:drawSprite', 24)
 local SetDrawOrigin = SetDrawOrigin
 local DrawSprite = DrawSprite
 local ClearDrawOrigin = ClearDrawOrigin
-local hover = Config["Target-Settings"]["Defaults"]["Sprite-Hover-Color"]
+local colour = vector(155, 155, 155, 175)
+local hover = vector(98, 135, 236, 255)
 local currentZones = {}
 local previousZones = {}
 local drawZones = {}
@@ -107,7 +108,7 @@ function utils.drawZoneSprites(dict, texture)
 
     for i = 1, drawN do
         local zone = drawZones[i]
-        local spriteColour = zone.colour or Config["Target-Settings"]["Defaults"]["Sprite-Default-Color"]
+        local spriteColour = zone.colour or colour
 
         if zone.drawSprite ~= false then
             SetDrawOrigin(zone.coords.x, zone.coords.y, zone.coords.z)
@@ -199,8 +200,6 @@ SetTimeout(0, function()
         require 'client.framework.esx'
     elseif utils.hasExport('qbx_core.HasGroup') then
         require 'client.framework.qbx'
-    elseif utils.hasExport('qb-core.GetCoreObject') then
-        require 'client.framework.qb'
     elseif utils.hasExport('ND_Core.getPlayer') then
         require 'client.framework.nd'
     end

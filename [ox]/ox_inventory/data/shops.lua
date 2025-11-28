@@ -107,9 +107,18 @@ return {
 	PoliceArmoury = {
 		name = 'Police Armoury',
 		groups = shared.police,
-		blip = {
-			id = 110, colour = 84, scale = 0.8
-		}, inventory = {
+		-- blip = {
+		-- 	id = 110, colour = 84, scale = 0.8
+		-- }, 
+		inventory = {
+			{ name = 'mdt', price = 5, },
+			{ name = 'dispatch', price = 5, },
+			{ name = 'bodycam', price = 5, },
+			{ name = 'tracker', price = 5, },
+
+
+
+
 			{ name = 'ammo-9', price = 5, },
 			{ name = 'ammo-rifle', price = 5, },
 			{ name = 'WEAPON_FLASHLIGHT', price = 200 },
@@ -117,11 +126,235 @@ return {
 			{ name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, license = 'weapon' },
 			{ name = 'WEAPON_CARBINERIFLE', price = 1000, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
 			{ name = 'WEAPON_STUNGUN', price = 500, metadata = { registered = true, serial = 'POL'} }
-		}, locations = {
-			vec3(451.51, -979.44, 30.68)
-		}, targets = {
-			{ loc = vec3(453.21, -980.03, 30.68), length = 0.5, width = 3.0, heading = 270.0, minZ = 30.5, maxZ = 32.0, distance = 6 }
+		}, 
+		locations = {
+			vector3(-608.85, -411.8, 35.17),    -- NTeam
+			vector3(461.96, -1000.03, 21.51),
+			vector3(607.97, -20.68, 76.63), -- Vinewood PD
+			vector3(1821.086, 3667.164, 30.315), -- BCSO Sandy
+			vector3(-446.8, 6016.74, 37.0), -- BCSO Paleto
+			vector3(2807.29, 4729.82, 47.89), -- Highway Patrol
+			vector3(386.97, 799.72, 187.46), -- Game Warden
+			vector3(837.317, -1287.456, 28.245), -- Popular Secret Service
+			vector3(78.69, -362.28, 41.33), -- HQ
+
+			vector3(-1306.128, -565.326, 41.188),
+			vector3(2523.732, -340.859, 101.893),
+			---vector3(1551.286, 841.462, 77.656),
+			vector3(-3053.903, 625.871, 7.493),
+			vector3(-3161.31, 1375.33, 20.85),
+			vector3(1820.796, 3666.704, 30.315),
+			vector3(-448.473, 6004.804, 32.096),
+			vector3(382.288, -1601.327, 25.362),
+			vector3(-822.11, -716.69, 22.96),
+			vector3(1843.0, 2574.532, 46.014),
+			vector3(454.15, -980.105, 30.689),
+			vector3(-1238.325, -2813.628, 14.3),
+			vector3(-819.997, 5399.011, 35.865),
+			vector3(1640.877, 4852.339, 42.613),
+			vector3(1766.293, 2583.85, 46.001),
+			vector3(-595.024, -100.184, 33.677),
+			
+			-- vector3(153.08, -757.41, 45.75), -- FBI
+			-- vector3(-1070.35, -816.46, 15.64), -- Vesp
+			-- vector3(-822.11, -717.56, 22.96), -- US Marshalls
+			-- vector3(438.22, -1116.37, 30.06), -- Training Center
+			-- vector3(-1238.59, -2813.7, 14.3), -- DHS Airport
+			-- vector3(1696.53, 4876.39, 42.3), -- Game Warden Grapeseed
+			-- vector3(479.25, -996.3, 30.69), -- MRPD DHS
+			-- vector3(365.58, -1609.6, 29.29), -- Davis Street
+			
+			-- vector3(1841.63, 2573.82, 46.01), -- Prison
+			-- vector3(-3053.903, 625.871, 7.493),    ---sahp
+			
+			-- vector3(1820.796, 3666.704, 30.315),
+			-- vector3(-448.473, 6004.804, 32.096),
+			-- vector3(382.288, -1601.327, 25.362),
+			-- vector3(-822.11, -716.69, 22.96),
+			-- vector3(1843.0, 2574.532, 46.014),
+			-- vector3(454.15, -980.105, 30.689),
+			-- vector3(-1238.325, -2813.628, 14.3),
+			-- vector3(-819.997, 5399.011, 35.865),
+			-- vector3(1640.877, 4852.339, 42.613),
+
+
+
+			
+		},
+		targets = {
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-608.85, -411.8, 35.01),
+				heading = 270.84
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(461.96, -1000.03, 21.51),
+				heading = 357.03
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(1640.877, 4852.339, 41.613),
+				heading = 340.617
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-819.997, 5399.011, 34.865),
+				heading = 278.491
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(78.69, -362.28, 41.33),
+				heading = 161.54
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(2807.33, 4729.84, 47.89),
+				heading = 198.9
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-1238.325, -2813.628, 13.3),
+				heading = 215.241
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(454.15, -980.105, 29.689),
+				heading = 85.069
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(1843.0, 2574.532, 45.014),
+				heading = 182.37
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-822.11, -716.69, 21.96),
+				heading = 115.127
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(382.288, -1601.327, 26.362),
+				heading = 141.871
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-448.473, 6004.804, 31.096),
+				heading = 48.073
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(1820.796, 3666.704, 29.315),
+				heading = 305.112
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-3053.903, 625.871, 6.493),
+				heading = 31.639
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(1766.293, 2583.85, 46.001),
+				heading = 183.561
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-595.024, -100.184, 33.677),
+				heading = 208.163
+			},
+
+
+			
+
+
+
+
+
+			
+			--[[ { 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(1551.286, 841.462, 77.656),
+				heading = 342.952
+			}, ]]
+
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(-1306.128, -565.326, 41.188),
+				heading = 344.868
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(2523.732, -340.859, 101.893),
+				heading = 150.549
+			},
+
+			{ 
+				loc = vec3(482.363, -995.165, 30.69 - 1), 
+				length = 0.5, 
+				width = 3.0, 
+				heading = 177.56, 
+				minZ = 30.45, 
+				maxZ = 32.50, 
+				distance = 6 
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(607.97, -20.68, 75.63),
+				heading = 354.35
+			},
+			{
+				ped = `u_m_m_doa_01`, -- Sandy Shores BCSO
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(1821.086, 3667.164, 30.315),
+				heading = 115.213
+			},
+			{
+				ped = `u_m_m_doa_01`, -- Paleto BCSO
+				scenario = 'WORLD_HUMAN_CLIPBOARD',
+				loc = vec3(-446.8, 6016.74, 36.0),
+				heading = 150.0
+			},
+			{
+				ped = `u_m_m_doa_01`, -- Game Warden
+				scenario = 'WORLD_HUMAN_STAND_IMPATIENT',
+				loc = vec3(1553.86, 839.99, 76.66),
+				heading = 148.71
+			},
+			{
+				ped = `u_m_m_doa_01`, -- Game Warden
+				scenario = 'WORLD_HUMAN_STAND_IMPATIENT',
+				loc = vec3(386.97, 799.72, 186.46),
+				heading = 60.0
+			},
+			{
+				ped = `u_m_m_doa_01`, -- Game Warden
+				scenario = 'WORLD_HUMAN_STAND_IMPATIENT',
+				loc = vec3(836.76, -1287.34, 27.24),
+				heading = 278.12
+			},
+			-- Add more ped targets as needed for other locations
 		}
+		
 	},
 
 	Medicine = {
@@ -129,9 +362,10 @@ return {
 		groups = {
 			['ambulance'] = 0
 		},
-		blip = {
-			id = 403, colour = 69, scale = 0.8
-		}, inventory = {
+		-- blip = {
+		-- 	id = 403, colour = 69, scale = 0.8
+		-- }, 
+		inventory = {
 			{ name = 'medikit', price = 26 },
 			{ name = 'bandage', price = 5 }
 		}, locations = {
@@ -144,14 +378,29 @@ return {
 	BlackMarketArms = {
 		name = 'Black Market (Arms)',
 		inventory = {
+			{ name = 'contracts_tablet', price = 2600 },
+			--{ name = 'contracts_tablet', price = 2000, metadata = { registered = false	}, currency = 'black_money' },
 			{ name = 'WEAPON_DAGGER', price = 5000, metadata = { registered = false	}, currency = 'black_money' },
 			{ name = 'WEAPON_CERAMICPISTOL', price = 50000, metadata = { registered = false }, currency = 'black_money' },
 			{ name = 'at_suppressor_light', price = 50000, currency = 'black_money' },
 			{ name = 'ammo-rifle', price = 1000, currency = 'black_money' },
 			{ name = 'ammo-rifle2', price = 1000, currency = 'black_money' }
 		}, locations = {
-			vec3(309.09, -913.75, 56.46)
+			vec3(309.38, -913.91, 56.01),
+			vec3(3310.69, 5176.52, 19.01)
 		}, targets = {
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(309.38, -913.91, 56.01),
+				heading = 95.03
+			},
+			{ 
+				ped = `u_m_m_doa_01`,
+				scenario = 'WORLD_HUMAN_AA_COFFEE',
+				loc = vec3(3310.69, 5176.52, 19.01),
+				heading = 237.94
+			}
 
 		}
 	},

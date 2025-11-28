@@ -210,21 +210,4 @@ function Utils.nearbyMarker(point)
     end
 end
 
-function Utils.blurIn()
-    if IsScreenblurFadeRunning() then
-        DisableScreenblurFade()
-    end
-
-    TriggerScreenblurFadeIn(100)
-end
-
-function Utils.blurOut()
-    if IsScreenblurFadeRunning() then
-        DisableScreenblurFade()
-    end
-
-    TriggerScreenblurFadeOut(250)
-end
-
-
 return Utils

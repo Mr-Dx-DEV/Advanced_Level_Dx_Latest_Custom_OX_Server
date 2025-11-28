@@ -1,4 +1,8 @@
 {
+    "ui_title_main_inventory": "Pockets",
+  "ui_title_secondary_inventory": "Ground",
+  "ui_title_hotslots": "Hotslots",
+  "ui_description_hotslots": "Press the corresponding number on your keyboard to use a slot.",
   "ui_use": "Use",
   "ui_give": "Give",
   "ui_close": "Close",
