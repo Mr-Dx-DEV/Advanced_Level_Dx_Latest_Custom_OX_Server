@@ -41,7 +41,9 @@ end
 
 local registeredShops = {}
 AddEventHandler('wasabi_bridge:registerShop', function(data)
-    if source ~= '' or not GetInvokingResource() then return end
+    local invokingResource = GetInvokingResource()
+    if not invokingResource then return end
+    if invokingResource:sub(1, 7) ~= 'wasabi_' then return end
     registeredShops[data.identifier] = ConvertShopData(data)
 end)
 

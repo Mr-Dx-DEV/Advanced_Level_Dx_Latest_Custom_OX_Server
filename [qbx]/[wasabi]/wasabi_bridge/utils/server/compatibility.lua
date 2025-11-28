@@ -1,77 +1,42 @@
-local L0_1, L1_1
-function L0_1(A0_2, A1_2)
-  local L2_2, L3_2, L4_2, L5_2
-  L2_2 = WSB
-  L2_2 = L2_2.getPlayer
-  L3_2 = A0_2
-  L2_2 = L2_2(L3_2)
-  if not L2_2 then
-    L3_2 = false
-    return L3_2
+-- Get the slot number of an item in player's inventory
+function GetItemSlot(source, itemName)
+  local player = WSB.getPlayer(source)
+  
+  if not player then
+      return false
   end
-  L3_2 = nil
-  L4_2 = L2_2.Functions
-  if L4_2 then
-    L4_2 = L2_2.Functions
-    L4_2 = L4_2.GetItemByName
-    if L4_2 then
-      L4_2 = L2_2.Functions
-      L4_2 = L4_2.GetItemByName
-      L5_2 = A1_2
-      L4_2 = L4_2(L5_2)
-      L3_2 = L4_2
+  
+  local item = nil
+  
+  -- QBCore framework
+  if player.Functions and player.Functions.GetItemByName then
+      item = player.Functions.GetItemByName(itemName)
+  -- ESX framework
+  elseif player.getInventoryItem then
+      item = player.getInventoryItem(itemName)
   end
-  else
-    L4_2 = L2_2.getInventoryItem
-    if L4_2 then
-      L4_2 = L2_2.getInventoryItem
-      L5_2 = A1_2
-      L4_2 = L4_2(L5_2)
-      L3_2 = L4_2
-    end
+  
+  if item and item.slot then
+      return item.slot
   end
-  if L3_2 then
-    L4_2 = L3_2.slot
-    if L4_2 then
-      goto lbl_36
-    end
-  end
-  L4_2 = false
-  ::lbl_36::
-  return L4_2
+  
+  return false
 end
-GetItemSlot = L0_1
-function L0_1(A0_2, A1_2)
-  local L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2
-  L2_2 = {}
-  if not A0_2 then
-    return L2_2
+
+-- Get all slot numbers where an item exists in inventory
+function GetSlotsByItem(inventory, itemName)
+  local slots = {}
+  
+  if not inventory then
+      return slots
   end
-  L3_2 = pairs
-  L4_2 = A0_2
-  L3_2, L4_2, L5_2, L6_2 = L3_2(L4_2)
-  for L7_2, L8_2 in L3_2, L4_2, L5_2, L6_2 do
-    L9_2 = L8_2.name
-    L10_2 = L9_2
-    L9_2 = L9_2.lower
-    L9_2 = L9_2(L10_2)
-    L11_2 = A1_2
-    L10_2 = A1_2.lower
-    L10_2 = L10_2(L11_2)
-    if L9_2 == L10_2 then
-      L9_2 = #L2_2
-      L9_2 = L9_2 + 1
-      L10_2 = tonumber
-      L11_2 = L8_2.slot
-      L10_2 = L10_2(L11_2)
-      if not L10_2 then
-        L10_2 = tonumber
-        L11_2 = L7_2
-        L10_2 = L10_2(L11_2)
+  
+  for slotKey, itemData in pairs(inventory) do
+      if itemData.name:lower() == itemName:lower() then
+          local slotNumber = tonumber(itemData.slot) or tonumber(slotKey)
+          slots[#slots + 1] = slotNumber
       end
-      L2_2[L9_2] = L10_2
-    end
   end
-  return L2_2
+  
+  return slots
 end
-GetSlotsByItem = L0_1

@@ -35,9 +35,9 @@ function WSB.getPlayers()
 end
 
 function WSB.getAllJobs()
-    local jobs = ESX and ESX.Jobs or nil
+    local jobs = ESX.GetJobs()
     local returnTb = {}
-    if not jobs or #jobs < 1 then return end
+    if not jobs or not next(jobs) then return end
     for k, v in pairs(jobs) do
         returnTb[k] = { label = v.label }
         for a, b in pairs(v.grades) do
@@ -53,31 +53,36 @@ function WSB.getAllJobs()
     return returnTb
 end
 
+function WSB.awaitClientCallback(name, source, ...)
+    local results = { Callback.awaitResponse(name, source, ...) }
+    return table.unpack(results)
+end
+
 function WSB.registerCallback(name, fn)
-    Callback.register(name, function(source, ...)
-         local responded = false
-         local response = nil
-         
-         local cb = function(...)
-             responded = true
-             response = {...}
-         end
-         
-         local ok, ret = pcall(function(...) 
-             return table.pack(fn(source, cb, ...)) 
-         end, ...)
- 
-         if responded then
-             return table.unpack(response)
-         elseif ret ~= nil then
-             return table.unpack(ret, 1, ret.n)
-         end
- 
-         if not ok then
-             print(("[wsb] callback %s threw an error: %s"):format(name, ret))
-         end
-     end)
- end
+   Callback.register(name, function(source, ...)
+        local responded = false
+        local response = nil
+        
+        local cb = function(...)
+            responded = true
+            response = {...}
+        end
+        
+        local ok, ret = pcall(function(...) 
+            return table.pack(fn(source, cb, ...)) 
+        end, ...)
+
+        if responded then
+            return table.unpack(response)
+        elseif ret ~= nil then
+            return table.unpack(ret, 1, ret.n)
+        end
+
+        if not ok then
+            print(("[wsb] callback %s threw an error: %s"):format(name, ret))
+        end
+    end)
+end
 
 function WSB.kickPlayer(source, reason)
     local player = WSB.getPlayer(source)

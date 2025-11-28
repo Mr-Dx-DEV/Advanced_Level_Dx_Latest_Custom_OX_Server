@@ -1,101 +1,62 @@
-local L0_1, L1_1, L2_1
-L0_1 = exports
-L1_1 = "GetBridgeObject"
-function L2_1()
-  local L0_2, L1_2
-  L0_2 = WSB
-  return L0_2
+-- Export bridge object for other resources
+exports("GetBridgeObject", function()
+  return WSB
+end)
+
+-- Get bridge version from resource metadata (with dots removed)
+function WSB.getVersion()
+  local version = GetResourceMetadata(GetCurrentResourceName(), "version", 0)
+  version = version:gsub("%.", "")
+  return version
 end
-L0_1(L1_1, L2_1)
-L0_1 = WSB
-function L1_1()
-  local L0_2, L1_2, L2_2, L3_2, L4_2
-  L0_2 = GetResourceMetadata
-  L1_2 = GetCurrentResourceName
-  L1_2 = L1_2()
-  L2_2 = "version"
-  L3_2 = 0
-  L0_2 = L0_2(L1_2, L2_2, L3_2)
-  L2_2 = L0_2
-  L1_2 = L0_2.gsub
-  L3_2 = "%."
-  L4_2 = ""
-  L1_2 = L1_2(L2_2, L3_2, L4_2)
-  L0_2 = L1_2
-  return L0_2
-end
-L0_1.getVersion = L1_1
-L0_1 = WSB
-function L1_1(A0_2)
-  local L1_2, L2_2, L3_2, L4_2
-  if A0_2 then
-    L1_2 = string
-    L1_2 = L1_2.gsub
-    L2_2 = A0_2
-    L3_2 = "^%s*(.-)%s*$"
-    L4_2 = "%1"
-    L1_2 = L1_2(L2_2, L3_2, L4_2)
-    return L1_2
+
+-- Trim whitespace from start and end of string
+function WSB.trim(text)
+  if text then
+      return string.gsub(text, "^%s*(.-)%s*$", "%1")
   else
-    L1_2 = nil
-    return L1_2
+      return nil
   end
 end
-L0_1.trim = L1_1
-function L0_1(A0_2, A1_2)
-  local L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2
-  if not A1_2 then
-    L2_2 = WSB
-    A1_2 = L2_2.inventorySystem
+
+-- Convert shop data based on inventory system
+function ConvertShopData(shopData, inventorySystem)
+  if not inventorySystem then
+      inventorySystem = WSB.inventorySystem
   end
-  if "codem-inventory" == A1_2 then
-    L2_2 = {}
-    L3_2 = ipairs
-    L4_2 = A0_2.inventory
-    L3_2, L4_2, L5_2, L6_2 = L3_2(L4_2)
-    for L7_2, L8_2 in L3_2, L4_2, L5_2, L6_2 do
-      L9_2 = #L2_2
-      L9_2 = L9_2 + 1
-      L10_2 = {}
-      L11_2 = L8_2.name
-      L10_2.name = L11_2
-      L11_2 = L8_2.price
-      L10_2.price = L11_2
-      L2_2[L9_2] = L10_2
-    end
-    return L2_2
+  
+  -- Handle codem-inventory format (simple array)
+  if inventorySystem == "codem-inventory" then
+      local items = {}
+      for _, item in ipairs(shopData.inventory) do
+          items[#items + 1] = {
+              name = item.name,
+              price = item.price
+          }
+      end
+      return items
   end
-  L2_2 = 0
-  L3_2 = {}
-  L4_2 = A0_2.name
-  L3_2.label = L4_2
-  L4_2 = {}
-  L3_2.items = L4_2
-  L4_2 = ipairs
-  L5_2 = A0_2.inventory
-  L4_2, L5_2, L6_2, L7_2 = L4_2(L5_2)
-  for L8_2, L9_2 in L4_2, L5_2, L6_2, L7_2 do
-    L10_2 = L3_2.items
-    L11_2 = L3_2.items
-    L11_2 = #L11_2
-    L11_2 = L11_2 + 1
-    L12_2 = {}
-    L13_2 = L9_2.name
-    L12_2.name = L13_2
-    L13_2 = L9_2.price
-    L12_2.price = L13_2
-    L13_2 = L2_2 + 1
-    L12_2.slot = L13_2
-    L12_2.amount = 500
-    L13_2 = {}
-    L12_2.info = L13_2
-    L10_2[L11_2] = L12_2
-    L2_2 = L2_2 + 1
+  
+  -- Handle other inventory systems (complex format)
+  local slotCounter = 0
+  local shopStructure = {
+      label = shopData.name,
+      items = {}
+  }
+  
+  for _, item in ipairs(shopData.inventory) do
+      shopStructure.items[#shopStructure.items + 1] = {
+          name = item.name,
+          price = item.price,
+          slot = slotCounter + 1,
+          amount = 500,
+          info = {}
+      }
+      slotCounter = slotCounter + 1
   end
-  return L3_2
+  
+  return shopStructure
 end
-ConvertShopData = L0_1
-L0_1 = RegisterNetEvent
-L1_1 = "wasabi_bridge:debugPrint"
-L2_1 = print
-L0_1(L1_1, L2_1)
+
+-- Register debug print event
+RegisterNetEvent("wasabi_bridge:debugPrint", print)

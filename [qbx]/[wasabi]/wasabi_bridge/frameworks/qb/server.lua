@@ -77,6 +77,11 @@ function WSB.getAllJobs()
     return returnTb
 end
 
+function WSB.awaitClientCallback(name, source, ...)
+    local results = { Callback.awaitResponse(name, source, ...) }
+    return table.unpack(results)
+end
+
 function WSB.registerCallback(name, fn)
    Callback.register(name, function(source, ...)
         local responded = false

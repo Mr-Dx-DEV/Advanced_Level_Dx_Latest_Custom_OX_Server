@@ -10,7 +10,9 @@ WSB.inventory = {}
 
 local registeredShops = {}
 AddEventHandler('wasabi_bridge:registerShop', function(data)
-    if source ~= '' or not GetInvokingResource() then return end
+    local invokingResource = GetInvokingResource()
+    if not invokingResource then return end
+    if invokingResource:sub(1, 7) ~= 'wasabi_' then return end
     exports["tgiann-inventory"]:RegisterShop(data.identifier, data.inventory)
     registeredShops[data.identifier] = true
 end)

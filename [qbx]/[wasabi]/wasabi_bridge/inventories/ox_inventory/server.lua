@@ -38,15 +38,18 @@ function WSB.inventory.clearInventory(source, identifier, keepItems)
 end
 
 AddEventHandler('wasabi_bridge:registerStash', function(data)
-    if source ~= '' or not GetInvokingResource() then return end
+    local invokingResource = GetInvokingResource()
+    if not invokingResource then return end
+    if invokingResource:sub(1, 7) ~= 'wasabi_' then return end
     if registeredStashes[data.name] then return end
     exports.ox_inventory:RegisterStash(data.name, data.name, data.slots, data.maxWeight, data.unique or false, nil, nil)
     registeredStashes[data.name] = true
 end)
 
 AddEventHandler('wasabi_bridge:registerShop', function(data)
-    if source ~= '' or not GetInvokingResource() then return end
-    
+    local invokingResource = GetInvokingResource()
+    if not invokingResource then return end
+    if invokingResource:sub(1, 7) ~= 'wasabi_' then return end
     exports.ox_inventory:RegisterShop(data.identifier, {
         name = data.name,
         groups = data.groups,

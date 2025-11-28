@@ -64,6 +64,32 @@ function WSB.awaitServerCallback(name, ...)
     return table.unpack(results)
 end
 
+function WSB.registerCallback(name, fn)
+    Callback.register(name, function(source, ...)
+         local responded = false
+         local response = nil
+         
+         local cb = function(...)
+             responded = true
+             response = {...}
+         end
+         
+         local ok, ret = pcall(function(...) 
+             return table.pack(fn(source, cb, ...)) 
+         end, ...)
+ 
+         if responded then
+             return table.unpack(response)
+         elseif ret ~= nil then
+             return table.unpack(ret, 1, ret.n)
+         end
+ 
+         if not ok then
+             print(("[wsb] callback %s threw an error: %s"):format(name, ret))
+         end
+     end)
+ end
+
 -- function WSB.awaitServerCallback(name, ...)
 --     local args = { ... }
 --     local promise = promise.new() 

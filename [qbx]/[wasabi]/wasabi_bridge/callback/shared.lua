@@ -1,112 +1,72 @@
-local L0_1, L1_1, L2_1, L3_1, L4_1
-L0_1 = {}
-L1_1 = AddEventHandler
-L2_1 = "onResourceStop"
-function L3_1(A0_2)
-  local L1_2, L2_2, L3_2, L4_2, L5_2, L6_2, L7_2
-  L1_2 = GetInvokingResource
-  L1_2 = L1_2()
-  if L1_2 == A0_2 then
-    return
-  end
-  L1_2 = pairs
-  L2_2 = L0_1
-  L1_2, L2_2, L3_2, L4_2 = L1_2(L2_2)
-  for L5_2, L6_2 in L1_2, L2_2, L3_2, L4_2 do
-    if L6_2 == A0_2 then
-      L7_2 = L0_1
-      L7_2[L5_2] = nil
+-- Shared callback validation and ownership tracking
+local callbackRegistry = {}
+local callbackEventFormat = "__wsb_cb_%s"
+
+-- Clean up callbacks when a resource stops
+AddEventHandler("onResourceStop", function(resourceName)
+    local invokingResource = GetInvokingResource()
+    if invokingResource == resourceName then
+        return
     end
-  end
-end
-L1_1(L2_1, L3_1)
-function L1_1(A0_2, A1_2)
-  local L2_2, L3_2, L4_2, L5_2, L6_2, L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2
-  L2_2 = GetInvokingResource
-  L2_2 = L2_2()
-  if not L2_2 then
-    L2_2 = "wasabi_bridge"
-  end
-  L3_2 = L0_1
-  L3_2 = L3_2[A0_2]
-  if L3_2 then
-    if not A1_2 then
-      L3_2[A0_2] = nil
-      return
+
+    for callbackName, ownerResource in pairs(callbackRegistry) do
+        if ownerResource == resourceName then
+            callbackRegistry[callbackName] = nil
+        end
     end
-    if L3_2 == L2_2 then
-      return
-    end
-    L4_2 = "^1resource '%s' attempted to overwrite callback '%s' owned by resource '%s'^0"
-    L5_2 = L4_2
-    L4_2 = L4_2.format
-    L6_2 = L2_2
-    L7_2 = A0_2
-    L8_2 = L3_2
-    L4_2 = L4_2(L5_2, L6_2, L7_2, L8_2)
-    L5_2 = print
-    L6_2 = [[
+end)
+
+-- Print formatted error with stack trace
+function PrintError(errorMsg)
+    print(([[
 ^1SCRIPT ERROR: %s^0
-%s]]
-    L7_2 = L6_2
-    L6_2 = L6_2.format
-    L8_2 = L4_2
-    L9_2 = Citizen
-    L9_2 = L9_2.InvokeNative
-    L10_2 = 3607903178
-    L11_2 = nil
-    L12_2 = 0
-    L13_2 = Citizen
-    L13_2 = L13_2.ResultAsString
-    L13_2 = L13_2()
-    L9_2 = L9_2(L10_2, L11_2, L12_2, L13_2)
-    if not L9_2 then
-      L9_2 = ""
+%s]]):format(errorMsg, Citizen.InvokeNative(0xD70AACA7, nil, 0, Citizen.ResultAsString()) or ""))
+end
+
+-- Set or validate callback ownership (Global function used by client.lua and server.lua)
+function SetValidCallback(callbackName, shouldRegister)
+    local resourceName = GetInvokingResource() or "wasabi_bridge"
+    local existingOwner = callbackRegistry[callbackName]
+
+    if existingOwner then
+        if not shouldRegister then
+            callbackRegistry[callbackName] = nil
+            return
+        end
+
+        if existingOwner == resourceName then
+            return
+        end
+
+        local errorMsg = ("resource '%s' attempted to overwrite callback '%s' owned by resource '%s'"):format(
+            resourceName,
+            callbackName,
+            existingOwner
+        )
+
+        return PrintError(errorMsg)
     end
-    L6_2, L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2 = L6_2(L7_2, L8_2, L9_2)
-    return L5_2(L6_2, L7_2, L8_2, L9_2, L10_2, L11_2, L12_2, L13_2)
-  end
-  L4_2 = L0_1
-  L4_2[A0_2] = L2_2
+
+    callbackRegistry[callbackName] = resourceName
 end
-SetValidCallback = L1_1
-function L1_1(A0_2)
-  local L1_2
-  L1_2 = L0_1
-  L1_2 = L1_2[A0_2]
-  L1_2 = "wasabi_bridge" == L1_2
-  return L1_2
+
+-- Check if callback is valid (owned by wasabi_bridge)
+function IsCallbackValid(callbackName)
+    return callbackRegistry[callbackName] == "wasabi_bridge"
 end
-IsCallbackValid = L1_1
-L1_1 = "__wsb_cb_%s"
-L2_1 = RegisterNetEvent
-L3_1 = "wasabi_bridge:validateCallback"
-function L4_1(A0_2, A1_2, A2_2)
-  local L3_2, L4_2, L5_2, L6_2, L7_2, L8_2
-  L3_2 = L0_1
-  L3_2 = L3_2[A0_2]
-  if L3_2 then
-    return
-  end
-  L3_2 = L1_1
-  L4_2 = L3_2
-  L3_2 = L3_2.format
-  L5_2 = A1_2
-  L3_2 = L3_2(L4_2, L5_2)
-  L4_2 = GetGameName
-  L4_2 = L4_2()
-  if "fxserver" == L4_2 then
-    L4_2 = TriggerClientEvent
-    L5_2 = L3_2
-    L6_2 = source
-    L7_2 = A2_2
-    L8_2 = "cb_invalid"
-    return L4_2(L5_2, L6_2, L7_2, L8_2)
-  end
-  L4_2 = TriggerServerEvent
-  L5_2 = L3_2
-  L6_2 = A2_2
-  L7_2 = "cb_invalid"
-  L4_2(L5_2, L6_2, L7_2)
-end
-L2_1(L3_1, L4_1)
+
+-- Handle callback validation requests from client or server
+RegisterNetEvent("wasabi_bridge:validateCallback", function(callbackName, bridgeName, callbackId)
+    if callbackRegistry[callbackName] then
+        return
+    end
+
+    local responseEvent = callbackEventFormat:format(bridgeName)
+    local gameName = GetGameName()
+
+    if gameName == "fxserver" then
+        TriggerClientEvent(responseEvent, source, callbackId, "cb_invalid")
+    else
+        TriggerServerEvent(responseEvent, callbackId, "cb_invalid")
+    end
+end)
