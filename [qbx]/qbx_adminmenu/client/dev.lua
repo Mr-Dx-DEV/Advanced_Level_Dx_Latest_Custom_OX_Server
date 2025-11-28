@@ -1,6 +1,25 @@
 local showCoords = false
 local vehicleDev = false
 local vehicleTypes = {'Compacts', 'Sedans', 'SUVs', 'Coupes', 'Muscle', 'Sports Classics', 'Sports', 'Super', 'Motorcycles', 'Off-road', 'Industrial', 'Utility', 'Vans', 'Cycles', 'Boats', 'Helicopters', 'Planes', 'Service', 'Emergency', 'Military', 'Commercial', 'Trains', 'Open Wheel'}
+function CopyToClipboard(format)
+    local coords = GetEntityCoords(cache.ped)
+    local heading = GetEntityHeading(cache.ped)
+    local text = ''
+
+    if format == 'coords2' then
+        text = string.format('vector2(%.2f, %.2f)', coords.x, coords.y)
+    elseif format == 'coords3' then
+        text = string.format('vector3(%.2f, %.2f, %.2f)', coords.x, coords.y, coords.z)
+    elseif format == 'coords4' then
+        text = string.format('vector4(%.2f, %.2f, %.2f, %.2f)', coords.x, coords.y, coords.z, heading)
+    elseif format == 'heading' then
+        text = string.format('%.2f', heading)
+    end
+
+    lib.setClipboard(text)
+    exports.qbx_core:Notify('Copied: ' .. text, 'success', 3000)
+end
+
 local options = {
     function() CopyToClipboard('coords2') lib.showMenu('qbx_adminmenu_dev_menu', MenuIndexes.qbx_adminmenu_dev_menu) end,
     function() CopyToClipboard('coords3') lib.showMenu('qbx_adminmenu_dev_menu', MenuIndexes.qbx_adminmenu_dev_menu) end,

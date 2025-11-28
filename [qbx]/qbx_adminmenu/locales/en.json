@@ -22,6 +22,8 @@
     "desc6": "Manage pending reports"
   },
   "admin_options": {
+    "label0": "Dev Mode (F1-F6)",
+    "desc0": "Toggle developer mode with quick keybinds",
     "label1": "Noclip",
     "desc1": "Go through walls as if you are a ghost 👻",
     "label2": "Revive",

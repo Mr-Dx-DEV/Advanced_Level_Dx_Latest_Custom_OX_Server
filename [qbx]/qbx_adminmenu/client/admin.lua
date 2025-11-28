@@ -185,6 +185,7 @@ local function toggleNoClipMode(forceMode)
 end
 
 local options = {
+    function() ExecuteCommand('devmode') end,
     function() toggleNoClipMode() end,
     function() TriggerEvent('qbx_medical:client:playerRevived') end,
     function()
@@ -257,6 +258,7 @@ lib.registerMenu({
         MenuIndexes.qbx_adminmenu_admin_menu = selected
     end,
     options = {
+        {label = locale('admin_options.label0'), description = locale('admin_options.desc0'), icon = 'fas fa-bolt', close = false},
         {label = locale('admin_options.label1'), description = locale('admin_options.desc1'), icon = 'fab fa-fly', close = false},
         {label = locale('admin_options.label2'), description = locale('admin_options.desc2'), icon = 'fas fa-hospital', close = false},
         {label = locale('admin_options.label3'), description = locale('admin_options.desc3'), icon = 'fas fa-ghost', close = false},

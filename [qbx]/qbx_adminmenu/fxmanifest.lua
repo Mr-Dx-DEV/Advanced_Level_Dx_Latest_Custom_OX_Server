@@ -21,8 +21,13 @@ client_scripts {
     'client/*.lua',
 }
 
+ui_page 'nui/index.html'
+
 files {
     'locales/*.json',
+    'nui/index.html',
+    'nui/style.css',
+    'nui/script.js',
 }
 
 lua54 'yes'
