@@ -1,0 +1,600 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background: #000;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+#youtube-player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    z-index: 2;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.server-name h1 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.server-name p {
+    font-size: 14px;
+    color: #ff5a00;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.navigation {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    margin: 0 auto;
+}
+
+.nav-button {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    right: 90px;
+}
+
+.nav-button i {
+    margin-right: 5px;
+    color: #ff5a00;
+}
+
+.nav-button:hover,
+.nav-button.active {
+    background: rgba(255, 90, 0, 0.2);
+    border-color: rgba(255, 90, 0, 0.5);
+}
+
+.toggle-controls {
+    position: relative;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    overflow: visible;
+    padding: 0;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.section {
+    display: none;
+    padding: 20px 0;
+    height: 100%;
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(20px);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    max-width: 800px;
+}
+
+.section.active {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+}
+
+.updates-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.update-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 3px solid #ff5a00;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.update-card:hover {
+    transform: translateY(-5px);
+}
+
+.update-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.update-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.update-date {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.update-subtitle {
+    font-size: 16px;
+    color: #ff5a00;
+    margin-bottom: 10px;
+}
+
+.update-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ddd;
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.team-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    width: 250px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-member-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.team-member-info {
+    padding: 15px;
+}
+
+.team-member-role {
+    font-size: 14px;
+    color: #ff5a00;
+    margin-bottom: 5px;
+}
+
+.team-member-name {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.rules-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rule-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    width: calc(33.33% - 14px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.rule-card:hover {
+    transform: translateY(-5px);
+}
+
+.rule-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+    border-bottom: 1px solid #ff5a00;
+    padding-bottom: 10px;
+}
+
+.rule-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ddd;
+}
+
+.keyboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.key-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(33.33% - 14px);
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.key-card:hover {
+    transform: translateY(-5px);
+}
+
+.key {
+    background: #ff5a00;
+    color: #000;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 15px;
+    min-width: 40px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.key-description {
+    font-size: 14px;
+    color: #ddd;
+}
+
+.key-title {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.footer {
+    position: relative;
+    z-index: 2;
+    padding: 0 30px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    margin-right: 0;
+    z-index: 1000;
+}
+
+.social-link {
+    width: 34px;
+    height: 34px;
+    border-radius: 32%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+}
+
+.discord:hover { background: #7289DA; }
+.youtube:hover { background: #FF0000; }
+.tiktok:hover {
+    background: #000;
+    border: 1px solid #00f2ea;
+}
+
+.compact-music-player {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    border-radius: 8px;
+    padding: 15px;
+    width: 350px;
+}
+
+.player-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-title {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.artist {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.time-display {
+    font-size: 14px;
+    color: #eee;
+}
+
+.player-progress {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1.5px;
+    position: relative;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.progress-indicator {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background: #ff5a00;
+    border-radius: 1.5px;
+}
+
+.progress-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ff5a00;
+    border-radius: 50%;
+    left: 10%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    z-index: 2;
+}
+
+.progress-dot:hover,
+.progress-dot.active {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 8px rgba(255, 90, 0, 0.8);
+}
+
+.player-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+#volume-icon {
+    color: #ff5a00;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.volume-progress {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1.5px;
+    position: relative;
+    width: 70px;
+    cursor: pointer;
+}
+
+.volume-indicator {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background: #ff5a00;
+    border-radius: 1.5px;
+}
+
+.volume-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ff5a00;
+    border-radius: 50%;
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    z-index: 2;
+}
+
+.volume-dot:hover,
+.volume-dot.active {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 8px rgba(255, 90, 0, 0.8);
+}
+
+.playback-controls {
+    display: flex;
+    align-items: center;
+}
+
+#previous,
+#play-pause,
+#next {
+    background: none;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+#play-pause {
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 90, 0, 0.7);
+    border-radius: 6px;
+    color: #12181e;
+    font-size: 14px;
+}
+
+#previous,
+#next {
+    font-size: 14px;
+    color: #eee;
+}
+
+#previous:hover,
+#next:hover {
+    color: #ff5a00;
+}
+
+#play-pause:hover {
+    background: #ff5a00;
+}
+
+.close-view {
+    position: absolute;
+    right: 20px;
+    top: -23px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.7);
+    width: 38px;
+    height: 38px;
+    border-radius: 19%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.section.active ~ .toggle-controls .close-view {
+    display: flex;
+}
+
+.close-view:hover {
+    background: rgba(255, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.close-view i {
+    color: #fff;
+    font-size: 20px;
+}
+
+.toggle-view {
+    position: absolute;
+    right: 95px;
+    top: 26px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.7);
+    width: 38px;
+    height: 38px;
+    border-radius: 20%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.toggle-view:hover {
+    background: rgba(255, 89, 0, 0.411);
+    transform: scale(1.1);
+}
+
+.toggle-view i {
+    color: #fff;
+    font-size: 20px;
+}

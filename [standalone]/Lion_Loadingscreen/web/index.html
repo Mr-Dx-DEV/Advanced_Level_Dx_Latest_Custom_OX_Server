@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion Fivem Server</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="video-background">
+            <iframe id="youtube-player" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src="" loading="lazy"></iframe>
+        </div>
+        <div class="overlay"></div>
+        <div class="header">
+            <div class="logo">
+                <img src="img/lionstore.png" alt="Lion Scripts Logo">
+                <div class="server-name">
+                    <h1>LionWorkshop</h1>
+                    <p>LionWorkshop</p>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="nav-button" data-target="updates" aria-label="Güncellemeler"><i class="fas fa-newspaper"></i> Updates</button>
+                <button class="nav-button" data-target="team" aria-label="Takım"><i class="fas fa-users"></i> Team</button>
+                <button class="nav-button" data-target="rules" aria-label="Kurallar"><i class="fas fa-scroll"></i> Rules</button>
+                <button class="nav-button" data-target="keyboard" aria-label="Klavye Kısayolları"><i class="fas fa-keyboard"></i> Keyboard</button>
+            </div>
+            <div class="toggle-view" aria-label="Görünümü Değiştir"><i class="fas fa-eye"></i></div>
+            <div class="toggle-controls">
+                <div class="close-view" aria-label="Kapat"><i class="fas fa-times"></i></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section" id="updates-section">
+                <div class="updates-container"></div>
+            </div>
+            <div class="section" id="team-section">
+                <div class="team-container"></div>
+            </div>
+            <div class="section" id="rules-section">
+                <div class="rules-container"></div>
+            </div>
+            <div class="section" id="keyboard-section">
+                <div class="keyboard-container"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="controls">
+                <div class="compact-music-player">
+                    <div class="player-top">
+                        <div class="music-info">
+                            <p class="song-title">Muscle Up</p>
+                            <p class="artist">Skxn</p>
+                        </div>
+                        <div class="time-display">
+                            <span id="duration">00:04</span>
+                        </div>
+                    </div>
+                    <div class="player-progress">
+                        <div class="progress-indicator"></div>
+                        <div class="progress-dot"></div>
+                    </div>
+                    <div class="player-controls">
+                        <div class="volume-control">
+                            <i class="fas fa-volume-up" id="volume-icon" aria-label="Ses Kontrolü"></i>
+                            <div class="volume-progress">
+                                <div class="volume-indicator"></div>
+                                <div class="volume-dot"></div>
+                            </div>
+                        </div>
+                        <div class="playback-controls">
+                            <button id="previous" aria-label="Önceki Şarkı"><i class="fas fa-backward"></i></button>
+                            <button id="play-pause" aria-label="Oynat/Duraklat"><i class="fas fa-pause"></i></button>
+                            <button id="next" aria-label="Sonraki Şarkı"><i class="fas fa-forward"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://discord.gg/lionworkshop" class="social-link discord" target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@zdevstore" class="social-link youtube" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://tiktok.com/@lionworkshop" class="social-link tiktok" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="music-player" preload="auto"></audio>
+    <script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91c2c4b3f9e3d101',t:'MTc0MTI3MzcwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

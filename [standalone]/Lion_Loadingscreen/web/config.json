@@ -1,0 +1,86 @@
+{
+  "youtubeVideoId": "MsDD0x0RMhI",
+  "music": {
+    "song1": {
+      "title": "BABY - BAND4BAND",
+      "artist": "Central Cee",
+      "path": "music/song1.mp3"
+    },
+    "song2": {
+      "title": "MyNeck MyBack",
+      "artist": "Aykut Closer",
+      "path": "music/song2.mp3"
+    },
+    "song3": {
+      "title": "Up In",
+      "artist": "Aykut Closer",
+      "path": "music/song3.mp3"
+    }
+  },
+  "updates": [
+    {
+      "title": "Update v1.1",
+      "subtitle": "Update v1.1",
+      "date": "12.07.2024",
+      "content": "New vehicles have been added to our fleet, providing a more diverse and exciting driving experience. Among the new models are high-performance sports cars, SUVs, and normal vehicles."
+    },
+    {
+      "title": "Update v1.2",
+      "subtitle": "Update v1.2",
+      "date": "15.06.2024",
+      "content": "New vehicles have been added to our fleet, providing a more diverse and exciting driving experience. Among the new models are high-performance sports cars, SUVs, and normal vehicles."
+    },
+    {
+      "title": "Update v1.3",
+      "subtitle": "Update v1.3",
+      "date": "03.05.2024",
+      "content": "New vehicles have been added to our fleet, providing a more diverse and exciting driving experience. Among the new models are high-performance sports cars, SUVs, and normal vehicles."
+    }
+  ],
+  "team": [
+    {
+      "name": "Yusufcum",
+      "role": "Project Leader",
+      "image": "img/lionstore.png"
+    },
+    {
+      "name": "GhestLua",
+      "role": "Owner",
+      "image": "img/lionstore.png"
+    }
+  ],
+  "rules": [
+    {
+      "title": "Respect Staff",
+      "content": "Always show respect to the server staff. They are here to help and ensure a smooth gaming experience for everyone."
+    },
+    {
+      "title": "No Harassment",
+      "content": "Harassment of any kind, including bullying, discrimination, or hate speech, will not be tolerated and will result in a ban."
+    },
+    {
+      "title": "Ask for Help",
+      "content": "If you need assistance or have any questions, do not hesitate to ask the staff. We are here to support you."
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "F1",
+      "title": "Phone",
+      "description": "This key opens your phone."
+    },
+    {
+      "key": "F2",
+      "title": "Open Inventory",
+      "description": "This key opens your inventory."
+    },
+    {
+      "key": "F3",
+      "title": "Radial Menu",
+      "description": "This key opens your radial menu."
+    }
+  ],
+  "discord": "https://discord.gg/lionworkshop",
+  "youtube": "https://www.youtube.com/@zdevstore",
+  "tiktok": "https://tiktok.com/@lionworkshop"
+}
