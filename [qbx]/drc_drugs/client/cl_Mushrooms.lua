@@ -3,11 +3,30 @@ local MushroomsPlants = {}
 local TSE = TriggerServerEvent
 local inside = false
 
-local MushroomsField = CircleZone:Create(Config.MushroomsField.coords, Config.MushroomsField.radius,
-	{ name = Config.MushroomsField.name,
-		debugPoly = Config.MushroomsField.debugPoly, useZ = true
-	}
-)
+local MushroomsField = lib.zones.sphere({
+	coords = Config.MushroomsField.coords,
+	radius = Config.MushroomsField.radius,
+	debug = Config.MushroomsField.debugPoly,
+	onEnter = function()
+		inside = true
+		while spawnedMushroomsLeaf < 10 do
+			Wait(0)
+			local MushroomsCoords = GenerateMushroomsLeafCoords()
+			RequestModel(Config.MushroomsField.prop)
+			while not HasModelLoaded(Config.MushroomsField.prop) do
+				Wait(0)
+			end
+			local obj = CreateObject(Config.MushroomsField.prop, MushroomsCoords.x, MushroomsCoords.y, MushroomsCoords.z, true, true, false)
+			PlaceObjectOnGroundProperly(obj)
+			FreezeEntityPosition(obj, true)
+			table.insert(MushroomsPlants, obj)
+			spawnedMushroomsLeaf = spawnedMushroomsLeaf + 1
+		end
+	end,
+	onExit = function()
+		inside = false
+	end
+})
 
 AddEventHandler('onResourceStop', function(resource)
 	if resource == GetCurrentResourceName() then
@@ -18,71 +37,22 @@ AddEventHandler('onResourceStop', function(resource)
 	end
 end)
 
-MushroomsField:onPlayerInOut(function(isInside)
-	if isInside then
-		while spawnedMushroomsLeaf < 10 do
-			Wait(0)
-			local MushroomsCoords = GenerateMushroomsLeafCoords()
-			RequestModel(Config.MushroomsField.prop)
-			while not HasModelLoaded(Config.MushroomsField.prop) do
-				Wait(0)
-			end
-			local obj = CreateObject(Config.MushroomsField.prop, MushroomsCoords.x, MushroomsCoords.y, MushroomsCoords.z, true,
-				true, false)
-			PlaceObjectOnGroundProperly(obj)
-			FreezeEntityPosition(obj, true)
-			table.insert(MushroomsPlants, obj)
-			spawnedMushroomsLeaf = spawnedMushroomsLeaf + 1
-		end
-	end
-end)
+-- Mushroom field plant spawning handled by zone's onEnter function
 
-MushroomsField:onPlayerInOut(function(isInside)
-	if isInside then
-		inside = true
-	else
-		inside = false
-	end
-end)
-
-if Config.Target == "qtarget" then
-	exports.qtarget:AddTargetModel(Config.MushroomsField.prop, {
-		options = {
-			{
-				action = function(entity)
-					PickUpMushroom(entity)
-				end,
-				icon = "fas fa-leaf",
-				label = locale("pickup"),
-				canInteract = function()
-					if inside then
-						return true
-					end
-				end
-			},
-		},
+exports.ox_target:addModel(Config.MushroomsField.prop, {
+	{
+		name = 'pickup_mushroom',
+		icon = "fas fa-leaf",
+		label = locale("pickup"),
+		onSelect = function(data)
+			PickUpMushroom(data.entity)
+		end,
+		canInteract = function()
+			return inside
+		end,
 		distance = 3
-	})
-elseif Config.Target == "qb-target" then
-	exports['qb-target']:AddTargetModel(Config.MushroomsField.prop, {
-		options = {
-			{
-				type = "client",
-				action = function(entity)
-					PickUpMushroom(entity)
-				end,
-				icon = "fas fa-leaf",
-				label = locale("pickup"),
-				canInteract = function()
-					if inside then
-						return true
-					end
-				end
-			},
-		},
-		distance = 3
-	})
-end
+	}
+})
 
 function GenerateMushroomsLeafCoords()
 	while true do

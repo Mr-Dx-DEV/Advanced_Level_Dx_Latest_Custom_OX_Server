@@ -1,86 +1,52 @@
 local TSE = TriggerServerEvent
 
-if Config.Target == "qtarget" then
-    exports.qtarget:RemoveZone('DealerLocation1')
-    exports.qtarget:AddCircleZone("DealerLocation1", Config.LocateDealer.Location.Coords,
-        Config.LocateDealer.Location.radius,
-        { name = "DealerLocation1", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { event = "drc_drugs:dealers:progress", icon = "fas fa-desktop", label = locale("LocateDealer"),
-                shop = "LocateDealer1",
-            }
-        },
+exports.ox_target:addSphereZone({
+    coords = Config.LocateDealer.Location.Coords,
+    radius = Config.LocateDealer.Location.radius,
+    debug = Config.Debug,
+    options = {
+        {
+            name = 'locate_dealer',
+            icon = "fas fa-desktop",
+            label = locale("LocateDealer"),
+            event = "drc_drugs:dealers:progress",
+            args = { shop = "LocateDealer1" },
             distance = 2.5
         }
-    )
+    }
+})
 
-    exports.qtarget:RemoveZone('GeraldLocation')
-    exports.qtarget:AddCircleZone("GeraldLocation", Config.Gerald.Location.Coords, Config.Madrazo.Location.radius,
-        { name = "GeraldLocation", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { event = "drc_drugs:dealers:menus", icon = "fas fa-cannabis", label = locale("Gerald"),
-                shop = "GeraldShop",
-            }
-        },
+exports.ox_target:addSphereZone({
+    coords = Config.Gerald.Location.Coords,
+    radius = Config.Madrazo.Location.radius,
+    debug = Config.Debug,
+    options = {
+        {
+            name = 'gerald_shop',
+            icon = "fas fa-cannabis",
+            label = locale("Gerald"),
+            event = "drc_drugs:dealers:menus",
+            args = { shop = "GeraldShop" },
             distance = 2.5
         }
-    )
+    }
+})
 
-    exports.qtarget:RemoveZone('MadrazoLocation')
-    exports.qtarget:AddCircleZone("MadrazoLocation", Config.Madrazo.Location.Coords, Config.Madrazo.Location.radius,
-        { name = "MadrazoLocation", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { event = "drc_drugs:dealers:menus", icon = "fas fa-capsules", label = locale("Madrazo"),
-                shop = "MadrazoTrade",
-            }
-        },
+exports.ox_target:addSphereZone({
+    coords = Config.Madrazo.Location.Coords,
+    radius = Config.Madrazo.Location.radius,
+    debug = Config.Debug,
+    options = {
+        {
+            name = 'madrazo_trade',
+            icon = "fas fa-capsules",
+            label = locale("Madrazo"),
+            event = "drc_drugs:dealers:menus",
+            args = { shop = "MadrazoTrade" },
             distance = 2.5
         }
-    )
-
-elseif Config.Target == "qb-target" then
-    exports['qb-target']:RemoveZone('DealerLocation1')
-    exports['qb-target']:AddCircleZone("DealerLocation1", Config.LocateDealer.Location.Coords,
-        Config.LocateDealer.Location.radius,
-        { name = "DealerLocation1", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { type = "client", event = "drc_drugs:dealers:progress", icon = "fas fa-desktop",
-                label = locale("LocateDealer"),
-                shop = "LocateDealer1",
-            }
-        },
-            distance = 2.5
-        }
-    )
-
-    exports['qb-target']:RemoveZone('GeraldLocation')
-    exports['qb-target']:AddCircleZone("GeraldLocation", Config.Gerald.Location.Coords, Config.Madrazo.Location.radius,
-        { name = "GeraldLocation", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { type = "client", event = "drc_drugs:dealers:menus", icon = "fas fa-cannabis",
-                label = locale("Gerald"),
-                shop = "GeraldShop",
-            }
-        },
-            distance = 2.5
-        }
-    )
-
-    exports['qb-target']:RemoveZone('MadrazoLocation')
-    exports['qb-target']:AddCircleZone("MadrazoLocation", Config.Madrazo.Location.Coords, Config.Madrazo.Location.radius
-        ,
-        { name = "MadrazoLocation", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { type = "client", event = "drc_drugs:dealers:menus", icon = "fas fa-capsules",
-                label = locale("Madrazo"),
-                shop = "MadrazoTrade",
-            }
-        },
-            distance = 2.5
-        }
-    )
-
-end
+    }
+})
 
 RegisterNetEvent("drc_drugs:dealers:menus")
 AddEventHandler("drc_drugs:dealers:menus", function(data)
@@ -440,32 +406,16 @@ CreateThread(function()
 
                 local Dealer = CreatePed(4, v.model, v.coords, false, true)
                 DealerPed = Dealer
-                if Config.Target == "qtarget" then
-                    exports.qtarget:AddTargetEntity(Dealer, {
-                        options = {
-                            {
-                                event = "drc_drugs:dealers:menus",
-                                icon = "fas fa-store",
-                                label = locale("shop"),
-                                shop = "DealerShop"
-                            },
-                        },
+                exports.ox_target:addLocalEntity(Dealer, {
+                    {
+                        name = 'dealer_shop',
+                        icon = "fas fa-store",
+                        label = locale("shop"),
+                        event = "drc_drugs:dealers:menus",
+                        args = { shop = "DealerShop" },
                         distance = 2
-                    })
-                elseif Config.Target == "qb-target" then
-                    exports['qb-target']:AddTargetEntity(Dealer, {
-                        options = {
-                            {
-                                type = "client",
-                                event = "drc_drugs:dealers:menus",
-                                icon = "fas fa-store",
-                                label = locale("shop"),
-                                shop = "DealerShop"
-                            },
-                        },
-                        distance = 2
-                    })
-                end
+                    }
+                })
                 for i = 0, 255, 51 do
                     Wait(50)
                     SetEntityAlpha(Dealer, i, false)

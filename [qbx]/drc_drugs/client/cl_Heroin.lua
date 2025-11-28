@@ -30,9 +30,29 @@ RegisterNetEvent("drc_drugs:heroin:menu", function(data)
 	end
 end)
 
-local HeroinField = CircleZone:Create(Config.Heroin.Field.coords, Config.Heroin.Field.radius, {
-	name = Config.Heroin.Field.name,
-	debugPoly = Config.Heroin.Field.debugPoly, useZ = true
+local HeroinField = lib.zones.sphere({
+	coords = Config.Heroin.Field.coords,
+	radius = Config.Heroin.Field.radius,
+	debug = Config.Heroin.Field.debugPoly,
+	onEnter = function()
+		inside = true
+		while SpawnedHeroinPlants < 15 do
+			Wait(0)
+			local heroinCoords = GenerateHeroinCoords()
+			RequestModel(Config.Heroin.Field.prop)
+			while not HasModelLoaded(Config.Heroin.Field.prop) do
+				Wait(100)
+			end
+			local obj = CreateObject(Config.Heroin.Field.prop, heroinCoords.x, heroinCoords.y, heroinCoords.z, true, true, false)
+			PlaceObjectOnGroundProperly(obj)
+			FreezeEntityPosition(obj, true)
+			table.insert(HeroinPlants, obj)
+			SpawnedHeroinPlants = SpawnedHeroinPlants + 1
+		end
+	end,
+	onExit = function()
+		inside = false
+	end
 })
 
 function ValidateHeroinCoord(plantCoord)
@@ -127,108 +147,44 @@ function GenerateHeroinCoords()
 	end
 end
 
-HeroinField:onPlayerInOut(function(isInside)
-	if isInside then
-		inside = true
-		while SpawnedHeroinPlants < 15 do
-			Wait(0)
-			local heroinCoords = GenerateHeroinCoords()
-			RequestModel(Config.Heroin.Field.prop)
-			while not HasModelLoaded(Config.Heroin.Field.prop) do
-				Wait(100)
-			end
-			local obj = CreateObject(Config.Heroin.Field.prop, heroinCoords.x, heroinCoords.y, heroinCoords.z, true, true, false)
-			PlaceObjectOnGroundProperly(obj)
-			FreezeEntityPosition(obj, true)
-			table.insert(HeroinPlants, obj)
-			SpawnedHeroinPlants = SpawnedHeroinPlants + 1
-		end
-	else
-		inside = false
-	end
-end)
+-- Heroin field plant spawning handled by zone's onEnter function
 
-HeroinField:onPlayerInOut(function(isInside)
-	if isInside then
-		inside = true
-	else
-		inside = false
-	end
-end)
-
-if Config.Target == "qtarget" then
-	exports.qtarget:AddTargetModel(Config.Heroin.Field.prop, {
-		options = {
-			{
-				action = function(entity)
-					PickUpPoppy(entity)
-				end,
-				icon = "fas fa-leaf",
-				label = locale("pickup"),
-				canInteract = function()
-					if inside then
-						return true
-					end
-				end
-			},
-		},
+exports.ox_target:addModel(Config.Heroin.Field.prop, {
+	{
+		name = 'pickup_poppy',
+		icon = "fas fa-leaf",
+		label = locale("pickup"),
+		onSelect = function(data)
+			PickUpPoppy(data.entity)
+		end,
+		canInteract = function()
+			return inside
+		end,
 		distance = 4
-	})
-elseif Config.Target == "qb-target" then
-	exports['qb-target']:AddTargetModel(Config.Heroin.Field.prop, {
-		options = {
-			{
-				type = "client",
-				action = function(entity)
-					PickUpPoppy(entity)
-				end,
-				icon = "fas fa-leaf",
-				label = locale("pickup"),
-				canInteract = function()
-					if inside then
-						return true
-					end
-				end
-			},
-		},
-		distance = 4
-	})
-end
+	}
+})
 
 AddEventHandler('onResourceStop', function(resource)
 	if resource == GetCurrentResourceName() then
-		if Config.Target == "qtarget" then
-			exports.qtarget:RemoveZone('HeroinProcess')
-		elseif Config.Target == "qb-target" then
-			exports['qb-target']:RemoveZone('HeroinProcess')
-		end
+		exports.ox_target:removeZone('HeroinProcess')
 	end
 end)
 
-if Config.Target == "qtarget" then
-	exports.qtarget:AddCircleZone("HeroinProcess", Config.Heroin.Process.coords, Config.Heroin.Process.radius,
-		{ name = "HeroinProcess", debugPoly = Config.Debug, useZ = true },
-		{ options = {
-			{ event = "drc_drugs:heroin:menu", icon = "fas fa-prescription-bottle", label = locale("HeroinProcess"),
-				menu = "HeroinProcess",
-			}
-		},
+exports.ox_target:addSphereZone({
+	coords = Config.Heroin.Process.coords,
+	radius = Config.Heroin.Process.radius,
+	debug = Config.Debug,
+	options = {
+		{
+			name = 'heroin_process',
+			icon = "fas fa-prescription-bottle",
+			label = locale("HeroinProcess"),
+			event = "drc_drugs:heroin:menu",
+			args = { menu = "HeroinProcess" },
 			distance = 2.5
 		}
-	)
-elseif Config.Target == "qb-target" then
-	exports['qb-target']:AddCircleZone("HeroinProcess", Config.Heroin.Process.coords, Config.Heroin.Process.radius,
-		{ name = "HeroinProcess", debugPoly = Config.Debug, useZ = true },
-		{ options = {
-			{ type = "client", event = "drc_drugs:heroin:menu", icon = "fas fa-prescription-bottle",
-				label = locale("HeroinProcess"),
-				menu = "HeroinProcess",
-			}
-		},
-			distance = 2.5
-		}
-	)
-end
+	}
+})
 
 function PickUpPoppy(target)
 	local nearbyID

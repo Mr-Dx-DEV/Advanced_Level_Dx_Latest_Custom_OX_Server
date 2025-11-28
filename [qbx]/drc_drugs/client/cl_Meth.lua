@@ -8,11 +8,157 @@ end
 local heat = false
 local cooked = false
 
-local MethLab = CircleZone:Create(Config.Meth.Lab.coords, Config.Meth.Lab.radius,
-    { name = Config.Meth.Lab.name,
-        debugPoly = Config.Meth.Lab.DebugPoly,
-        useZ = true
-    })
+local methLabZoneIds = {}
+
+local MethLab = lib.zones.sphere({
+    coords = Config.Meth.Lab.coords,
+    radius = Config.Meth.Lab.radius,
+    debug = Config.Meth.Lab.DebugPoly,
+    onEnter = function()
+        -- Add all meth lab zones
+        methLabZoneIds['MethElectricMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Meth.Electricity.coords,
+            radius = Config.Meth.Electricity.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'meth_electric_on',
+                    icon = "fas fa-car-battery",
+                    label = locale("turnonelt"),
+                    event = "drc_drugs:meth:progress",
+                    args = { menu = "ElectricON" },
+                    distance = 2.5
+                },
+                {
+                    name = 'meth_electric_off',
+                    icon = "fas fa-car-battery",
+                    label = locale("turnoffelt"),
+                    event = "drc_drugs:meth:progress",
+                    args = { menu = "ElectricOFF" },
+                    distance = 2.5
+                }
+            }
+        })
+
+        methLabZoneIds['MethTeleportMenu2'] = exports.ox_target:addSphereZone({
+            coords = Config.Meth.LeaveLab.coords,
+            radius = Config.Meth.LeaveLab.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'meth_leave_lab',
+                    icon = "fas fa-door-open",
+                    label = locale("leave"),
+                    event = "drc_drugs:meth:progress",
+                    args = { menu = "MethDoor2" },
+                    distance = 2.5
+                }
+            }
+        })
+
+        methLabZoneIds['MethPourMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Meth.Pouring.coords,
+            radius = Config.Meth.Pouring.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'meth_pour',
+                    icon = "fas fa-fire-burner",
+                    label = locale("MethCook"),
+                    event = "drc_drugs:meth:menus",
+                    args = { menu = "MethPour" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        methLabZoneIds['MethHeatMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Meth.Heat.coords,
+            radius = Config.Meth.Heat.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'meth_heat',
+                    icon = "fas fa-fire",
+                    label = locale("MethHeat"),
+                    event = "drc_drugs:meth:progress",
+                    args = { menu = "Heat" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        methLabZoneIds['MethCompleteMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Meth.Complete.coords,
+            radius = Config.Meth.Complete.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'meth_complete',
+                    icon = "fas fa-box-open",
+                    label = locale("MethFinish"),
+                    event = "drc_drugs:meth:progress",
+                    args = { menu = "Complete" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        methLabZoneIds['MethPackageMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Meth.Package.coords,
+            radius = Config.Meth.Package.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'meth_package',
+                    icon = "fas fa-box",
+                    label = locale("MethPack"),
+                    event = "drc_drugs:meth:menus",
+                    args = { menu = "MethPackage" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        methLabZoneIds['MethBreakMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Meth.Break.coords,
+            radius = Config.Meth.Break.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'meth_break',
+                    icon = "fas fa-hammer",
+                    label = locale("MethBreak"),
+                    event = "drc_drugs:meth:menus",
+                    args = { menu = "MethBreak" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+    end,
+    onExit = function()
+        -- Remove all meth lab zones
+        for k, v in pairs(methLabZoneIds) do
+            exports.ox_target:removeZone(v)
+        end
+        methLabZoneIds = {}
+    end
+})
 
 RegisterNetEvent("drc_drugs:meth:menus", function(data)
     if data.menu == "MethPour" then
@@ -533,334 +679,58 @@ end)
 
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
-        if Config.Target == "qtarget" then
-            exports.qtarget:RemoveZone('MethHeatMenu')
-            exports.qtarget:RemoveZone('MethCompleteMenu')
-            exports.qtarget:RemoveZone('MethElectricMenu2')
-            exports.qtarget:RemoveZone('MethElectricMenu')
-            exports.qtarget:RemoveZone('MethBreakMenu')
-            exports.qtarget:RemoveZone('MethPackageMenu')
-            exports.qtarget:RemoveZone('MethPourMenu')
-            exports.qtarget:RemoveZone('MethTeleportMenu2')
-            exports.qtarget:RemoveZone('MethTeleportMenu1')
-            exports.qtarget:RemoveZone('MethGet')
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:RemoveZone('MethHeatMenu')
-            exports['qb-target']:RemoveZone('MethCompleteMenu')
-            exports['qb-target']:RemoveZone('MethElectricMenu2')
-            exports['qb-target']:RemoveZone('MethElectricMenu')
-            exports['qb-target']:RemoveZone('MethBreakMenu')
-            exports['qb-target']:RemoveZone('MethPackageMenu')
-            exports['qb-target']:RemoveZone('MethPourMenu')
-            exports['qb-target']:RemoveZone('MethTeleportMenu2')
-            exports['qb-target']:RemoveZone('MethTeleportMenu1')
-            exports['qb-target']:RemoveZone('MethGet')
+        exports.ox_target:removeZone('MethHeatMenu')
+        exports.ox_target:removeZone('MethCompleteMenu')
+        exports.ox_target:removeZone('MethElectricMenu')
+        exports.ox_target:removeZone('MethBreakMenu')
+        exports.ox_target:removeZone('MethPackageMenu')
+        exports.ox_target:removeZone('MethPourMenu')
+        exports.ox_target:removeZone('MethTeleportMenu2')
+        exports.ox_target:removeZone('MethTeleportMenu1')
+        exports.ox_target:removeZone('MethGet')
+        for k, v in pairs(methLabZoneIds) do
+            exports.ox_target:removeZone(v)
         end
     end
 end)
+
+local enterMethLabOptions = {
+    {
+        name = 'meth_enter_lab',
+        icon = "fas fa-door-open",
+        label = locale("enter"),
+        event = "drc_drugs:meth:progress",
+        args = { menu = "MethDoor1" },
+        distance = 2.5
+    }
+}
 
 if Config.Meth.Enterlab.NeedItem then
-    if Config.Target == "qtarget" then
-        exports.qtarget:AddCircleZone("MethTeleportMenu1", Config.Meth.Enterlab.coords, Config.Meth.Enterlab.radius,
-            { name = "MethTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:meth:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "MethDoor1", item = Config.Meth.Enterlab.ItemName }
-            },
-                distance = 2.5
-            }
-        )
-    elseif Config.Target == "qb-target" then
-        exports['qb-target']:AddCircleZone("MethTeleportMenu1", Config.Meth.Enterlab.coords, Config.Meth.Enterlab.radius
-            ,
-            { name = "MethTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "MethDoor1", item = Config.Meth.Enterlab.ItemName }
-            },
-                distance = 2.5
-            }
-        )
-    end
-else
-    if Config.Target == "qtarget" then
-        exports.qtarget:AddCircleZone("MethTeleportMenu1", Config.Meth.Enterlab.coords, Config.Meth.Enterlab.radius,
-            { name = "MethTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:meth:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "MethDoor1" }
-            },
-                distance = 2.5
-            }
-        )
-    elseif Config.Target == "qb-target" then
-        exports['qb-target']:AddCircleZone("MethTeleportMenu1", Config.Meth.Enterlab.coords, Config.Meth.Enterlab.radius
-            ,
-            { name = "MethTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "MethDoor1" }
-            },
-                distance = 2.5
-            }
-        )
-    end
+    enterMethLabOptions[1].item = Config.Meth.Enterlab.ItemName
 end
 
-if Config.Target == "qtarget" then
-    exports.qtarget:AddCircleZone("MethGet", Config.Meth.GetSacid.coords, Config.Meth.GetSacid.radius,
-        { name = "MethGet", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { event = "drc_drugs:meth:progress", icon = "fas fa-fire", label = locale("MethRefuel"), menu = "MethGet" }
-        },
+exports.ox_target:addSphereZone({
+    coords = Config.Meth.Enterlab.coords,
+    radius = Config.Meth.Enterlab.radius,
+    debug = Config.Debug,
+    options = enterMethLabOptions
+})
+
+exports.ox_target:addSphereZone({
+    coords = Config.Meth.GetSacid.coords,
+    radius = Config.Meth.GetSacid.radius,
+    debug = Config.Debug,
+    options = {
+        {
+            name = 'meth_get_acid',
+            icon = "fas fa-fire",
+            label = locale("MethRefuel"),
+            event = "drc_drugs:meth:progress",
+            args = { menu = "MethGet" },
             distance = 2.5
         }
-    )
-elseif Config.Target == "qb-target" then
-    exports['qb-target']:AddCircleZone("MethGet", Config.Meth.GetSacid.coords, Config.Meth.GetSacid.radius,
-        { name = "MethGet", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-fire", label = locale("MethRefuel"),
-                menu = "MethGet" }
-        },
-            distance = 2.5
-        }
-    )
-end
+    }
+})
 
-MethLab:onPlayerInOut(function(isInside)
-    if isInside then
-        if Config.Target == "qtarget" then
-            exports.qtarget:AddCircleZone("MethElectricMenu", Config.Meth.Electricity.coords,
-                Config.Meth.Electricity.radius,
-                { name = "MethElectricMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:meth:progress", icon = "fas fa-car-battery", label = locale("turnonelt"),
-                        menu = "ElectricON" },
-                    { event = "drc_drugs:meth:progress", icon = "fas fa-car-battery", label = locale("turnoffelt"),
-                        menu = "ElectricOFF" }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("MethTeleportMenu2", Config.Meth.LeaveLab.coords, Config.Meth.LeaveLab.radius,
-                { name = "MethTeleportMenu2", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:meth:progress", icon = "fas fa-door-open", label = locale("leave"),
-                        menu = "MethDoor2" }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("MethPourMenu", Config.Meth.Pouring.coords, Config.Meth.Pouring.radius,
-                { name = "MethPourMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:meth:menus", icon = "fas fa-fire-burner", label = locale("MethCook"),
-                        menu = "MethPour",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("MethHeatMenu", Config.Meth.Heat.coords, Config.Meth.Heat.radius,
-                { name = "MethHeatMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:meth:progress", icon = "fas fa-fire", label = locale("MethHeat"), menu = "Heat",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("MethCompleteMenu", Config.Meth.Complete.coords, Config.Meth.Complete.radius,
-                { name = "MethCompleteMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:meth:progress", icon = "fas fa-box-open", label = locale("MethFinish"),
-                        menu = "Complete",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("MethPackageMenu", Config.Meth.Package.coords, Config.Meth.Package.radius,
-                { name = "MethPackageMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:meth:menus", icon = "fas fa-box", label = locale("MethPack"),
-                        menu = "MethPackage",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("MethBreakMenu", Config.Meth.Break.coords, Config.Meth.Break.radius,
-                { name = "MethBreakMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:meth:menus", icon = "fas fa-hammer", label = locale("MethBreak"),
-                        menu = "MethBreak",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:AddCircleZone("MethElectricMenu", Config.Meth.Electricity.coords,
-                Config.Meth.Electricity.radius,
-                { name = "MethElectricMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-car-battery",
-                        label = locale("turnonelt"),
-                        menu = "ElectricON" },
-                    { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-car-battery",
-                        label = locale("turnoffelt"),
-                        menu = "ElectricOFF" }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("MethTeleportMenu2", Config.Meth.LeaveLab.coords,
-                Config.Meth.LeaveLab.radius,
-                { name = "MethTeleportMenu2", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-door-open",
-                        label = locale("leave"), menu = "MethDoor2" }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("MethPourMenu", Config.Meth.Pouring.coords, Config.Meth.Pouring.radius,
-                { name = "MethPourMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:meth:menus", icon = "fas fa-fire-burner",
-                        label = locale("MethCook"), menu = "MethPour",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("MethHeatMenu", Config.Meth.Heat.coords, Config.Meth.Heat.radius,
-                { name = "MethHeatMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-fire",
-                        label = locale("MethHeat"), menu = "Heat",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("MethCompleteMenu", Config.Meth.Complete.coords,
-                Config.Meth.Complete.radius,
-                { name = "MethCompleteMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:meth:progress", icon = "fas fa-box-open",
-                        label = locale("MethFinish"),
-                        menu = "Complete",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("MethPackageMenu", Config.Meth.Package.coords, Config.Meth.Package.radius
-                ,
-                { name = "MethPackageMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:meth:menus", icon = "fas fa-box", label = locale("MethPack"),
-                        menu = "MethPackage",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("MethBreakMenu", Config.Meth.Break.coords, Config.Meth.Break.radius,
-                { name = "MethBreakMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:meth:menus", icon = "fas fa-hammer",
-                        label = locale("MethBreak"),
-                        menu = "MethBreak",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-        end
-    else
-        if Config.Target == "qtarget" then
-            exports.qtarget:RemoveZone('MethElectricMenu')
-            exports.qtarget:RemoveZone('MethBreakMenu')
-            exports.qtarget:RemoveZone('MethPackageMenu')
-            exports.qtarget:RemoveZone('MethPourMenu')
-            exports.qtarget:RemoveZone('MethTeleportMenu2')
-            exports.qtarget:RemoveZone('MethHeatMenu')
-            exports.qtarget:RemoveZone('MethCompleteMenu')
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:RemoveZone('MethElectricMenu')
-            exports['qb-target']:RemoveZone('MethBreakMenu')
-            exports['qb-target']:RemoveZone('MethPackageMenu')
-            exports['qb-target']:RemoveZone('MethPourMenu')
-            exports['qb-target']:RemoveZone('MethTeleportMenu2')
-            exports['qb-target']:RemoveZone('MethHeatMenu')
-            exports['qb-target']:RemoveZone('MethCompleteMenu')
-        end
-    end
-end)
+-- Meth lab zones are handled by MethLab zone's onEnter and onExit functions
 --BOXZONES KONEC--

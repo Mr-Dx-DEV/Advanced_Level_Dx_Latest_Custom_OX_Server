@@ -6,11 +6,120 @@ else
     Electricity = true
 end
 
-local WeedLab = CircleZone:Create(Config.Weed.Lab.coords, Config.Weed.Lab.radius,
-    { name = Config.Weed.Lab.name,
-        debugPoly = Config.Weed.Lab.DebugPoly,
-        useZ = true
-    })
+local weedLabZoneIds = {}
+
+local WeedLab = lib.zones.sphere({
+    coords = Config.Weed.Lab.coords,
+    radius = Config.Weed.Lab.radius,
+    debug = Config.Weed.Lab.DebugPoly,
+    onEnter = function()
+        -- Add all weed lab zones
+        local objects = GetGamePool("CObject")
+        for i = 1, #objects do
+            if Config.Weed.Pickup.Models[GetEntityModel(objects[i])] then
+                exports.ox_target:addLocalEntity(objects[i], {
+                    {
+                        name = 'weed_pickup',
+                        icon = "fas fa-cannabis",
+                        label = locale("pickup"),
+                        onSelect = function(data)
+                            PickWeed(data.entity, "WeedPick")
+                        end,
+                        canInteract = function()
+                            return Electricity
+                        end,
+                        distance = 2
+                    }
+                })
+            end
+        end
+
+        weedLabZoneIds['WeedElectricMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Weed.AC.coords,
+            radius = Config.Weed.AC.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'weed_electric_on',
+                    icon = "fas fa-wind",
+                    label = locale("turnonact"),
+                    event = "drc_drugs:weed:progress",
+                    args = { menu = "ElectricON" },
+                    distance = 2.5
+                },
+                {
+                    name = 'weed_electric_off',
+                    icon = "fas fa-wind",
+                    label = locale("turnoffact"),
+                    event = "drc_drugs:weed:progress",
+                    args = { menu = "ElectricOFF" },
+                    distance = 2.5
+                }
+            }
+        })
+
+        weedLabZoneIds['WeedTeleportMenu2'] = exports.ox_target:addSphereZone({
+            coords = Config.Weed.LeaveLab.coords,
+            radius = Config.Weed.LeaveLab.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'weed_leave_lab',
+                    icon = "fas fa-door-open",
+                    label = locale("leave"),
+                    event = "drc_drugs:weed:progress",
+                    args = { menu = "WeedDoor2" },
+                    distance = 2.5
+                }
+            }
+        })
+
+        weedLabZoneIds['WeedCleanMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Weed.Clean.coords,
+            radius = Config.Weed.Clean.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'weed_clean',
+                    icon = "fas fa-cannabis",
+                    label = locale("WeedClean"),
+                    event = "drc_drugs:weed:menus",
+                    args = { menu = "WeedClean" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        weedLabZoneIds['WeedPackMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Weed.Package.coords,
+            radius = Config.Weed.Package.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'weed_pack',
+                    icon = "fas fa-box-open",
+                    label = locale("WeedPack"),
+                    event = "drc_drugs:weed:menus",
+                    args = { menu = "WeedPack" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+    end,
+    onExit = function()
+        -- Remove all weed lab zones
+        for k, v in pairs(weedLabZoneIds) do
+            exports.ox_target:removeZone(v)
+        end
+        weedLabZoneIds = {}
+    end
+})
 
 
 RegisterNetEvent("drc_drugs:weed:menus", function(data)
@@ -356,252 +465,39 @@ end
 
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
-        if Config.Target == "qtarget" then
-            exports.qtarget:RemoveZone('WeedElectricMenu2')
-            exports.qtarget:RemoveZone('WeedElectricMenu')
-            exports.qtarget:RemoveZone('WeedSodaMenu')
-            exports.qtarget:RemoveZone('WeedFigureMenu')
-            exports.qtarget:RemoveZone('WeedCleanMenu')
-            exports.qtarget:RemoveZone('WeedTeleportMenu2')
-            exports.qtarget:RemoveZone('WeedTeleportMenu1')
-            exports.qtarget:RemoveZone('WeedPackMenu')
-            exports.qtarget:RemoveZone('MethGet')
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:RemoveZone('WeedElectricMenu2')
-            exports['qb-target']:RemoveZone('WeedElectricMenu')
-            exports['qb-target']:RemoveZone('WeedSodaMenu')
-            exports['qb-target']:RemoveZone('WeedFigureMenu')
-            exports['qb-target']:RemoveZone('WeedCleanMenu')
-            exports['qb-target']:RemoveZone('WeedTeleportMenu2')
-            exports['qb-target']:RemoveZone('WeedTeleportMenu1')
-            exports['qb-target']:RemoveZone('WeedPackMenu')
+        exports.ox_target:removeZone('WeedElectricMenu')
+        exports.ox_target:removeZone('WeedCleanMenu')
+        exports.ox_target:removeZone('WeedTeleportMenu2')
+        exports.ox_target:removeZone('WeedTeleportMenu1')
+        exports.ox_target:removeZone('WeedPackMenu')
+        for k, v in pairs(weedLabZoneIds) do
+            exports.ox_target:removeZone(v)
         end
     end
 end)
 
+
+local enterWeedLabOptions = {
+    {
+        name = 'weed_enter_lab',
+        icon = "fas fa-door-open",
+        label = locale("enter"),
+        event = "drc_drugs:weed:progress",
+        args = { menu = "WeedDoor1" },
+        distance = 2.5
+    }
+}
 
 if Config.Weed.Enterlab.NeedItem then
-    if Config.Target == "qtarget" then
-        exports.qtarget:AddCircleZone("WeedTeleportMenu1", Config.Weed.Enterlab.coords, Config.Weed.Enterlab.radius,
-            { name = "WeedTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:weed:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "WeedDoor1",
-                    item = Config.Weed.Enterlab.ItemName
-                }
-            },
-                distance = 2.5
-            }
-        )
-    elseif Config.Target == "qb-target" then
-        exports['qb-target']:AddCircleZone("WeedTeleportMenu1", Config.Weed.Enterlab.coords, Config.Weed.Enterlab.radius
-            ,
-            { name = "WeedTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:weed:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "WeedDoor1",
-                    item = Config.Weed.Enterlab.ItemName
-                }
-            },
-                distance = 2.5
-            }
-        )
-    end
-else
-    if Config.Target == "qtarget" then
-        exports.qtarget:AddCircleZone("WeedTeleportMenu1", Config.Weed.Enterlab.coords, Config.Weed.Enterlab.radius,
-            { name = "WeedTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:weed:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "WeedDoor1"
-                }
-            },
-                distance = 2.5
-            }
-        )
-    elseif Config.Target == "qb-target" then
-        exports['qb-target']:AddCircleZone("WeedTeleportMenu1", Config.Weed.Enterlab.coords, Config.Weed.Enterlab.radius
-            ,
-            { name = "WeedTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:weed:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "WeedDoor1"
-                }
-            },
-                distance = 2.5
-            }
-        )
-    end
+    enterWeedLabOptions[1].item = Config.Weed.Enterlab.ItemName
 end
 
-WeedLab:onPlayerInOut(function(isInside)
-    if isInside then
-        --[[while not IsInteriorReady(GetInteriorAtCoords(Config.Weed.Enterlab.teleport)) do
-            Wait(0)
-        end]]
-        local objects = GetGamePool("CObject")
-        for i = 1, #objects do
-            if Config.Weed.Pickup.Models[GetEntityModel(objects[i])] then
-                if Config.Target == "qtarget" then
-                    exports.qtarget:AddTargetEntity(objects[i], {
-                        options = {
-                            {
-                                action = function(entity)
-                                    PickWeed(entity, "WeedPick")
-                                end,
-                                icon = "fas fa-cannabis",
-                                label = locale("pickup"),
-                                canInteract = function()
-                                    if Electricity then
-                                        return true
-                                    end
-                                end
-                            },
-                        },
-                        distance = 2
-                    })
-                elseif Config.Target == "qb-target" then
-                    exports['qb-target']:AddTargetEntity(objects[i], {
-                        options = {
-                            {
-                                menu = "client",
-                                action = function(entity)
-                                    PickWeed(entity, "WeedPick")
-                                end,
-                                icon = "fas fa-cannabis",
-                                label = locale("pickup"),
-                                canInteract = function()
-                                    if Electricity then
-                                        return true
-                                    end
-                                end
-                            },
-                        },
-                        distance = 2
-                    })
-                end
-            end
-        end
-        if Config.Target == "qtarget" then
-            exports.qtarget:AddCircleZone("WeedElectricMenu", Config.Weed.AC.coords, Config.Weed.AC.radius,
-                { name = "WeedElectricMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:weed:progress", icon = "fas fa-wind", label = locale("turnonact"),
-                        menu = "ElectricON", },
-                    { event = "drc_drugs:weed:progress", icon = "fas fa-wind", label = locale("turnoffact"),
-                        menu = "ElectricOFF", }
-                },
-                    distance = 2.5
-                })
-            exports.qtarget:AddCircleZone("WeedTeleportMenu2", Config.Weed.LeaveLab.coords, Config.Weed.LeaveLab.radius,
-                { name = "WeedTeleportMenu2", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:weed:progress", icon = "fas fa-door-open", label = locale("leave"),
-                        menu = "WeedDoor2",
-                    }
-                },
-                    distance = 2.5
-                })
+exports.ox_target:addSphereZone({
+    coords = Config.Weed.Enterlab.coords,
+    radius = Config.Weed.Enterlab.radius,
+    debug = Config.Debug,
+    options = enterWeedLabOptions
+})
 
-            exports.qtarget:AddCircleZone("WeedCleanMenu", Config.Weed.Clean.coords, Config.Weed.Clean.radius,
-                { name = "WeedCleanMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:weed:menus", icon = "fas fa-cannabis", label = locale("WeedClean"),
-                        menu = "WeedClean",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                })
-            exports.qtarget:AddCircleZone("WeedPackMenu", Config.Weed.Package.coords, Config.Weed.Package.radius,
-                { name = "WeedPackMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:weed:menus", icon = "fas fa-box-open", label = locale("WeedPack"),
-                        menu = "WeedPack",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                })
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:AddCircleZone("WeedElectricMenu", Config.Weed.AC.coords, Config.Weed.AC.radius,
-                { name = "WeedElectricMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:weed:progress", icon = "fas fa-wind",
-                        label = locale("turnonact"),
-                        menu = "ElectricON", },
-                    { type = "client", event = "drc_drugs:weed:progress", icon = "fas fa-wind",
-                        label = locale("turnoffact"),
-                        menu = "ElectricOFF", }
-                },
-                    distance = 2.5
-                })
-            exports['qb-target']:AddCircleZone("WeedTeleportMenu2", Config.Weed.LeaveLab.coords,
-                Config.Weed.LeaveLab.radius,
-                { name = "WeedTeleportMenu2", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:weed:progress", icon = "fas fa-door-open",
-                        label = locale("leave"), menu = "WeedDoor2",
-                    }
-                },
-                    distance = 2.5
-                })
-
-            exports['qb-target']:AddCircleZone("WeedCleanMenu", Config.Weed.Clean.coords, Config.Weed.Clean.radius,
-                { name = "WeedCleanMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:weed:menus", icon = "fas fa-cannabis",
-                        label = locale("WeedClean"),
-                        menu = "WeedClean",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                })
-            exports['qb-target']:AddCircleZone("WeedPackMenu", Config.Weed.Package.coords, Config.Weed.Package.radius,
-                { name = "WeedPackMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:weed:menus", icon = "fas fa-box-open",
-                        label = locale("WeedPack"),
-                        menu = "WeedPack",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                })
-        end
-    else
-        if Config.Target == "qtarget" then
-            exports.qtarget:RemoveZone('WeedPackMenu')
-            exports.qtarget:RemoveZone('WeedElectricMenu')
-            exports.qtarget:RemoveZone('WeedSodaMenu')
-            exports.qtarget:RemoveZone('WeedFigureMenu')
-            exports.qtarget:RemoveZone('WeedCleanMenu')
-            exports.qtarget:RemoveZone('WeedTeleportMenu2')
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:RemoveZone('WeedPackMenu')
-            exports['qb-target']:RemoveZone('WeedElectricMenu')
-            exports['qb-target']:RemoveZone('WeedSodaMenu')
-            exports['qb-target']:RemoveZone('WeedFigureMenu')
-            exports['qb-target']:RemoveZone('WeedCleanMenu')
-            exports['qb-target']:RemoveZone('WeedTeleportMenu2')
-        end
-    end
-end)
+-- Weed lab zones are handled by WeedLab zone's onEnter and onExit functions
 --BOXZONES KONEC--

@@ -14,17 +14,167 @@ end
 
 local FigureCarry = false
 
-local CokeLab = CircleZone:Create(Config.Coke.Lab.coords, Config.Coke.Lab.radius,
-    { name = Config.Coke.Lab.name,
-        debugPoly = Config.Coke.Lab.DebugPoly,
-        useZ = true
-    })
+local cokeLabZoneIds = {}
 
-local CokeField = CircleZone:Create(Config.Coke.Field.coords, Config.Coke.Field.radius,
-    { name = Config.Coke.Field.name,
-        debugPoly = Config.Coke.Field.DebugPoly,
-        useZ = true
-    })
+local CokeLab = lib.zones.sphere({
+    coords = Config.Coke.Lab.coords,
+    radius = Config.Coke.Lab.radius,
+    debug = Config.Coke.Lab.DebugPoly,
+    onEnter = function()
+        inside = true
+        -- Add all the lab zones
+        cokeLabZoneIds['CokeElectricMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Coke.Electricity.coords,
+            radius = Config.Coke.Electricity.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'coke_electric_on',
+                    icon = "fas fa-car-battery",
+                    label = locale("turnonelt"),
+                    event = "drc_drugs:coke:progress",
+                    args = { menu = "ElectricON" },
+                    distance = 2.5
+                },
+                {
+                    name = 'coke_electric_off',
+                    icon = "fas fa-car-battery",
+                    label = locale("turnoffelt"),
+                    event = "drc_drugs:coke:progress",
+                    args = { menu = "ElectricOFF" },
+                    distance = 2.5
+                }
+            }
+        })
+
+        cokeLabZoneIds['CokeProcessMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Coke.LeafProcess.coords,
+            radius = Config.Coke.LeafProcess.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'coke_process',
+                    icon = "fas fa-box-open",
+                    label = locale("CokeProcess"),
+                    event = "drc_drugs:coke:menus",
+                    args = { menu = "CokeProcess" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        cokeLabZoneIds['CokeTeleportMenu2'] = exports.ox_target:addSphereZone({
+            coords = Config.Coke.LeaveLab.coords,
+            radius = Config.Coke.LeaveLab.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'coke_leave_lab',
+                    icon = "fas fa-door-open",
+                    label = locale("leave"),
+                    event = "drc_drugs:coke:progress",
+                    args = { menu = "CokeDoor2" },
+                    distance = 2.5
+                }
+            }
+        })
+
+        cokeLabZoneIds['CokeBoxMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Coke.CokeBox.coords,
+            radius = Config.Coke.CokeBox.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'coke_box',
+                    icon = "fas fa-box-open",
+                    label = locale("CokeBox"),
+                    event = "drc_drugs:coke:menus",
+                    args = { menu = "CokeBox" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        cokeLabZoneIds['CokeFigureMenu'] = exports.ox_target:addSphereZone({
+            coords = Config.Coke.FigurePackage.coords,
+            radius = Config.Coke.FigurePackage.radius,
+            debug = Config.Debug,
+            options = {
+                {
+                    name = 'coke_figure',
+                    icon = "fas fa-box",
+                    label = locale("CokePack"),
+                    event = "drc_drugs:coke:menus",
+                    args = { menu = "CokeFigure" },
+                    canInteract = function()
+                        return Electricity
+                    end,
+                    distance = 2.5
+                }
+            }
+        })
+
+        for k, v in pairs(Config.Coke.SodaTables) do
+            cokeLabZoneIds['CokeSodaMenu' .. k] = exports.ox_target:addSphereZone({
+                coords = v.coords,
+                radius = v.radius,
+                debug = v.debugPoly,
+                options = {
+                    {
+                        name = 'coke_soda_' .. k,
+                        icon = "fas fa-prescription-bottle",
+                        label = locale("CokeClean"),
+                        event = "drc_drugs:coke:menus",
+                        args = { menu = "CokeSoda", headingtotable = v.headingtotable },
+                        canInteract = function()
+                            return Electricity
+                        end,
+                        distance = 2.5
+                    }
+                }
+            })
+        end
+    end,
+    onExit = function()
+        inside = false
+        -- Remove all the lab zones
+        for k, v in pairs(cokeLabZoneIds) do
+            exports.ox_target:removeZone(v)
+        end
+        cokeLabZoneIds = {}
+    end
+})
+
+local CokeField = lib.zones.sphere({
+    coords = Config.Coke.Field.coords,
+    radius = Config.Coke.Field.radius,
+    debug = Config.Coke.Field.DebugPoly,
+    onEnter = function()
+        inside = true
+        while SpawnedCokePlant < 15 do
+            Wait(0)
+            local CokeCoords = GenerateCokePlantCoords()
+            RequestModel(`prop_plant_01a`)
+            while not HasModelLoaded(`prop_plant_01a`) do
+                Wait(100)
+            end
+            local obj = CreateObject(`prop_plant_01a`, CokeCoords.x, CokeCoords.y, CokeCoords.z, true, true, false)
+            PlaceObjectOnGroundProperly(obj)
+            FreezeEntityPosition(obj, true)
+            table.insert(CokePlants, obj)
+            SpawnedCokePlant = SpawnedCokePlant + 1
+        end
+    end,
+    onExit = function()
+        inside = false
+    end
+})
 
 RegisterNetEvent("drc_drugs:coke:menus", function(data)
     if data == "FullFigure" then
@@ -665,70 +815,22 @@ AddEventHandler('onResourceStop', function(resource)
     end
 end)
 
-CokeField:onPlayerInOut(function(isInside)
-    if isInside then
-        while SpawnedCokePlant < 15 do
-            Wait(0)
-            local CokeCoords = GenerateCokePlantCoords()
-            RequestModel(`prop_plant_01a`)
-            while not HasModelLoaded(`prop_plant_01a`) do
-                Wait(100)
-            end
-            local obj = CreateObject(`prop_plant_01a`, CokeCoords.x, CokeCoords.y, CokeCoords.z, true, true, false)
-            PlaceObjectOnGroundProperly(obj)
-            FreezeEntityPosition(obj, true)
-            table.insert(CokePlants, obj)
-            SpawnedCokePlant = SpawnedCokePlant + 1
-        end
-    end
-end)
+-- Coke plant spawning is handled by the CokeField zone's inside function
 
-CokeField:onPlayerInOut(function(isInside)
-    if isInside then
-        inside = true
-    else
-        inside = false
-    end
-end)
-
-if Config.Target == "qtarget" then
-    exports.qtarget:AddTargetModel(`prop_plant_01a`, {
-        options = {
-            {
-                action = function(entity)
-                    PickUpCoke(entity)
-                end,
-                icon = "fas fa-leaf",
-                label = locale("pickup"),
-                canInteract = function()
-                    if inside then
-                        return true
-                    end
-                end
-            },
-        },
+exports.ox_target:addModel(`prop_plant_01a`, {
+    {
+        name = 'pickup_coke',
+        icon = "fas fa-leaf",
+        label = locale("pickup"),
+        onSelect = function(data)
+            PickUpCoke(data.entity)
+        end,
+        canInteract = function(entity, distance, coords, name, bone)
+            return inside
+        end,
         distance = 3
-    })
-elseif Config.Target == "qb-target" then
-    exports['qb-target']:AddTargetModel(`prop_plant_01a`, {
-        options = {
-            {
-                type = "client",
-                action = function(entity)
-                    PickUpCoke(entity)
-                end,
-                icon = "fas fa-leaf",
-                label = locale("pickup"),
-                canInteract = function()
-                    if inside then
-                        return true
-                    end
-                end
-            },
-        },
-        distance = 3
-    })
-end
+    }
+})
 
 function GenerateCokePlantCoords()
     while true do
@@ -797,285 +899,38 @@ end
 
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
-        if Config.Target == "qtarget" then
-            for k, _ in pairs(Config.Coke.SodaTables) do
-                exports.qtarget:RemoveZone('CokeSodaMenu' .. k)
-            end
-            exports.qtarget:RemoveZone('CokeElectricMenu')
-            exports.qtarget:RemoveZone('CokeFigureMenu')
-            exports.qtarget:RemoveZone('CokeBoxMenu')
-            exports.qtarget:RemoveZone('CokeTeleportMenu2')
-            exports.qtarget:RemoveZone('CokeTeleportMenu1')
-            exports.qtarget:RemoveZone('CokeProcessMenu')
-        elseif Config.Target == "qb-target" then
-            for k, _ in pairs(Config.Coke.SodaTables) do
-                exports['qb-target']:RemoveZone('CokeSodaMenu' .. k)
-            end
-            exports['qb-target']:RemoveZone('CokeElectricMenu')
-            exports['qb-target']:RemoveZone('CokeFigureMenu')
-            exports['qb-target']:RemoveZone('CokeBoxMenu')
-            exports['qb-target']:RemoveZone('CokeTeleportMenu2')
-            exports['qb-target']:RemoveZone('CokeTeleportMenu1')
-            exports['qb-target']:RemoveZone('CokeProcessMenu')
+        for k, _ in pairs(Config.Coke.SodaTables) do
+            exports.ox_target:removeZone('CokeSodaMenu' .. k)
         end
+        exports.ox_target:removeZone('CokeElectricMenu')
+        exports.ox_target:removeZone('CokeFigureMenu')
+        exports.ox_target:removeZone('CokeBoxMenu')
+        exports.ox_target:removeZone('CokeTeleportMenu2')
+        exports.ox_target:removeZone('CokeTeleportMenu1')
+        exports.ox_target:removeZone('CokeProcessMenu')
     end
 end)
+local enterLabOptions = {
+    {
+        name = 'coke_enter_lab',
+        icon = "fas fa-door-open",
+        label = locale("enter"),
+        event = "drc_drugs:coke:progress",
+        args = { menu = "CokeDoor1" },
+        distance = 2.5
+    }
+}
+
 if Config.Coke.Enterlab.NeedItem then
-    if Config.Target == "qtarget" then
-        exports.qtarget:AddCircleZone("CokeTeleportMenu1", Config.Coke.Enterlab.coords, Config.Coke.Enterlab.radius,
-            { name = "CokeTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:coke:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "CokeDoor1",
-                    item = Config.Coke.Enterlab.ItemName }
-            },
-                distance = 2.5
-            }
-        )
-    elseif Config.Target == "qb-target" then
-        exports['qb-target']:AddCircleZone("CokeTeleportMenu1", Config.Coke.Enterlab.coords, Config.Coke.Enterlab.radius
-            ,
-            { name = "CokeTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { type = "client", event = "drc_drugs:coke:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "CokeDoor1", item = Config.Coke.Enterlab.ItemName }
-            },
-                distance = 2.5
-            }
-        )
-    end
-else
-    if Config.Target == "qtarget" then
-        exports.qtarget:AddCircleZone("CokeTeleportMenu1", Config.Coke.Enterlab.coords, Config.Coke.Enterlab.radius,
-            { name = "CokeTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { event = "drc_drugs:coke:progress", icon = "fas fa-door-open", label = locale("enter"),
-                    menu = "CokeDoor1" }
-            },
-                distance = 2.5
-            }
-        )
-    elseif Config.Target == "qb-target" then
-        exports['qb-target']:AddCircleZone("CokeTeleportMenu1", Config.Coke.Enterlab.coords,
-            Config.Coke.Enterlab.radius
-            ,
-            { name = "CokeTeleportMenu1", debugPoly = Config.Debug, useZ = true },
-            { options = {
-                { type = "client", event = "drc_drugs:coke:progress", icon = "fas fa-door-open",
-                    label = locale("enter"),
-                    menu = "CokeDoor1" }
-            },
-                distance = 2.5
-            }
-        )
-    end
+    enterLabOptions[1].item = Config.Coke.Enterlab.ItemName
 end
 
-CokeLab:onPlayerInOut(function(isInside)
-    if isInside then
-        if Config.Target == "qtarget" then
-            exports.qtarget:AddCircleZone("CokeElectricMenu", Config.Coke.Electricity.coords,
-                Config.Coke.Electricity.radius,
-                { name = "CokeElectricMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:coke:progress", icon = "fas fa-car-battery", label = locale("turnonelt"),
-                        menu = "ElectricON" },
-                    { event = "drc_drugs:coke:progress", icon = "fas fa-car-battery", label = locale("turnoffelt"),
-                        menu = "ElectricOFF" }
-                },
-                    distance = 2.5
-                }
-            )
+exports.ox_target:addSphereZone({
+    coords = Config.Coke.Enterlab.coords,
+    radius = Config.Coke.Enterlab.radius,
+    debug = Config.Debug,
+    options = enterLabOptions
+})
 
-            exports.qtarget:AddCircleZone("CokeProcessMenu", Config.Coke.LeafProcess.coords,
-                Config.Coke.LeafProcess.radius,
-                { name = "CokeProcessMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:coke:menus", icon = "fas fa-box-open", label = locale("CokeProcess"),
-                        menu = "CokeProcess",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("CokeTeleportMenu2", Config.Coke.LeaveLab.coords, Config.Coke.LeaveLab.radius,
-                { name = "CokeTeleportMenu2", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:coke:progress", icon = "fas fa-door-open", label = locale("leave"),
-                        menu = "CokeDoor2" }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("CokeBoxMenu", Config.Coke.CokeBox.coords, Config.Coke.CokeBox.radius,
-                { name = "CokeBoxMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:coke:menus", icon = "fas fa-box-open", label = locale("CokeBox"),
-                        menu = "CokeBox",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports.qtarget:AddCircleZone("CokeFigureMenu", Config.Coke.FigurePackage.coords,
-                Config.Coke.FigurePackage.radius,
-                { name = "CokeFigureMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { event = "drc_drugs:coke:menus", icon = "fas fa-box", label = locale("CokePack"),
-                        menu = "CokeFigure",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            for k, v in pairs(Config.Coke.SodaTables) do
-                exports.qtarget:AddCircleZone("CokeSodaMenu" .. k, v.coords, v.radius,
-                    { name = "CokeSodaMenu" .. k, debugPoly = v.debugPoly, useZ = true },
-                    { options = {
-                        { event = "drc_drugs:coke:menus", icon = "fas fa-prescription-bottle",
-                            label = locale("CokeClean"), menu = "CokeSoda", headingtotable = v.headingtotable,
-                            canInteract = function()
-                                if Electricity then
-                                    return true
-                                end
-                            end
-                        }
-                    },
-                        distance = 2.5
-                    }
-                )
-
-            end
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:AddCircleZone("CokeElectricMenu", Config.Coke.Electricity.coords,
-                Config.Coke.Electricity.radius,
-                { name = "CokeElectricMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:coke:progress", icon = "fas fa-car-battery",
-                        label = locale("turnonelt"), menu = "ElectricON" },
-                    { type = "client", event = "drc_drugs:coke:progress", icon = "fas fa-car-battery",
-                        label = locale("turnoffelt"), menu = "ElectricOFF" }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("CokeProcessMenu", Config.Coke.LeafProcess.coords,
-                Config.Coke.LeafProcess.radius,
-                { name = "CokeProcessMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:coke:menus", icon = "fas fa-box-open",
-                        label = locale("CokeProcess"), menu = "CokeProcess",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("CokeTeleportMenu2", Config.Coke.LeaveLab.coords,
-                Config.Coke.LeaveLab.radius,
-                { name = "CokeTeleportMenu2", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:coke:progress", icon = "fas fa-door-open",
-                        label = locale("leave"), menu = "CokeDoor2" }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("CokeBoxMenu", Config.Coke.CokeBox.coords, Config.Coke.CokeBox.radius,
-                { name = "CokeBoxMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:coke:menus", icon = "fas fa-box-open",
-                        label = locale("CokeBox"), menu = "CokeBox",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            exports['qb-target']:AddCircleZone("CokeFigureMenu", Config.Coke.FigurePackage.coords,
-                Config.Coke.FigurePackage.radius,
-                { name = "CokeFigureMenu", debugPoly = Config.Debug, useZ = true },
-                { options = {
-                    { type = "client", event = "drc_drugs:coke:menus", icon = "fas fa-box", label = locale("CokePack"),
-                        menu = "CokeFigure",
-                        canInteract = function()
-                            if Electricity then
-                                return true
-                            end
-                        end
-                    }
-                },
-                    distance = 2.5
-                }
-            )
-
-            for k, v in pairs(Config.Coke.SodaTables) do
-                exports['qb-target']:AddCircleZone("CokeSodaMenu" .. k, v.coords, v.radius,
-                    { name = "CokeSodaMenu" .. k, debugPoly = v.debugPoly, useZ = true },
-                    { options = {
-                        { type = "client", event = "drc_drugs:coke:menus", icon = "fas fa-prescription-bottle",
-                            label = locale("CokeClean"), menu = "CokeSoda", headingtotable = v.headingtotable,
-                            canInteract = function()
-                                if Electricity then
-                                    return true
-                                end
-                            end
-                        }
-                    },
-                        distance = 2.5
-                    }
-                )
-            end
-        end
-    else
-        if Config.Target == "qtarget" then
-            exports.qtarget:RemoveZone('CokeElectricMenu')
-            for k, v in pairs(Config.Coke.SodaTables) do
-                exports.qtarget:RemoveZone('CokeSodaMenu' .. k)
-            end
-            exports.qtarget:RemoveZone('CokeFigureMenu')
-            exports.qtarget:RemoveZone('CokeBoxMenu')
-            exports.qtarget:RemoveZone('CokeTeleportMenu2')
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:RemoveZone('CokeElectricMenu')
-            for k, v in pairs(Config.Coke.SodaTables) do
-                exports['qb-target']:RemoveZone('CokeSodaMenu' .. k)
-            end
-            exports['qb-target']:RemoveZone('CokeFigureMenu')
-            exports['qb-target']:RemoveZone('CokeBoxMenu')
-            exports['qb-target']:RemoveZone('CokeTeleportMenu2')
-        end
-    end
-end)
+-- Coke lab zones are handled by CokeLab zone's onEnter and onExit functions
 --BOXZONES KONEC--

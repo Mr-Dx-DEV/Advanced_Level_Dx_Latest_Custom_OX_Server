@@ -2,37 +2,25 @@ local TSE = TriggerServerEvent
 
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
-        if Config.Target == "qtarget" then
-            exports.qtarget:RemoveZone('CrackProcess')
-        elseif Config.Target == "qb-target" then
-            exports['qb-target']:RemoveZone('CrackProcess')
-        end
+        exports.ox_target:removeZone('CrackProcess')
     end
 end)
 
-if Config.Target == "qtarget" then
-    exports.qtarget:AddCircleZone("CrackProcess", Config.Crack.Process.coords, Config.Crack.Process.radius,
-        { name = "CrackProcess", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { event = "drc_drugs:crack:menu", icon = "fas fa-pills", label = locale("MakeCrack"),
-                menu = "CrackProcess",
-            }
-        },
+exports.ox_target:addSphereZone({
+    coords = Config.Crack.Process.coords,
+    radius = Config.Crack.Process.radius,
+    debug = Config.Debug,
+    options = {
+        {
+            name = 'crack_process',
+            icon = "fas fa-pills",
+            label = locale("MakeCrack"),
+            event = "drc_drugs:crack:menu",
+            args = { menu = "CrackProcess" },
             distance = 2.5
         }
-    )
-elseif Config.Target == "qb-target" then
-    exports['qb-target']:AddCircleZone("CrackProcess", Config.Crack.Process.coords, Config.Crack.Process.radius,
-        { name = "CrackProcess", debugPoly = Config.Debug, useZ = true },
-        { options = {
-            { type = "client", event = "drc_drugs:crack:menu", icon = "fas fa-pills", label = locale("MakeCrack"),
-                menu = "CrackProcess",
-            }
-        },
-            distance = 2.5
-        }
-    )
-end
+    }
+})
 
 RegisterNetEvent("drc_drugs:crack:menu", function(data)
     if data.menu == "CrackProcess" then

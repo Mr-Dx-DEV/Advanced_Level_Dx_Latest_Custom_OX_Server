@@ -3,11 +3,30 @@ local PeyotePlants = {}
 local TSE = TriggerServerEvent
 local inside = false
 
-local PeyoteField = CircleZone:Create(Config.PeyoteField.coords, Config.PeyoteField.radius,
-	{ name = Config.PeyoteField.name,
-		debugPoly = Config.PeyoteField.debugPoly, useZ = true
-	}
-)
+local PeyoteField = lib.zones.sphere({
+	coords = Config.PeyoteField.coords,
+	radius = Config.PeyoteField.radius,
+	debug = Config.PeyoteField.debugPoly,
+	onEnter = function()
+		inside = true
+		while spawnedPeyoteLeaf < 15 do
+			Wait(0)
+			local PeyoteCoords = GeneratePeyoteLeafCoords()
+			RequestModel(Config.PeyoteField.prop)
+			while not HasModelLoaded(Config.PeyoteField.prop) do
+				Wait(100)
+			end
+			local obj = CreateObject(Config.PeyoteField.prop, PeyoteCoords.x, PeyoteCoords.y, PeyoteCoords.z, true, true, false)
+			PlaceObjectOnGroundProperly(obj)
+			FreezeEntityPosition(obj, true)
+			table.insert(PeyotePlants, obj)
+			spawnedPeyoteLeaf = spawnedPeyoteLeaf + 1
+		end
+	end,
+	onExit = function()
+		inside = false
+	end
+})
 
 AddEventHandler('onResourceStop', function(resource)
 	if resource == GetCurrentResourceName() then
@@ -18,71 +37,22 @@ AddEventHandler('onResourceStop', function(resource)
 	end
 end)
 
-PeyoteField:onPlayerInOut(function(isInside)
-	if isInside then
-		while spawnedPeyoteLeaf < 15 do
-			Wait(0)
-			local PeyoteCoords = GeneratePeyoteLeafCoords()
-			RequestModel(Config.PeyoteField.prop)
-			while not HasModelLoaded(Config.PeyoteField.prop) do
-				Wait(100)
-			end
-			local obj = CreateObject(Config.PeyoteField.prop, PeyoteCoords.x, PeyoteCoords.y, PeyoteCoords.z, true,
-				true, false)
-			PlaceObjectOnGroundProperly(obj)
-			FreezeEntityPosition(obj, true)
-			table.insert(PeyotePlants, obj)
-			spawnedPeyoteLeaf = spawnedPeyoteLeaf + 1
-		end
-	end
-end)
+-- Peyote field plant spawning handled by zone's onEnter function
 
-PeyoteField:onPlayerInOut(function(isInside)
-	if isInside then
-		inside = true
-	else
-		inside = false
-	end
-end)
-
-if Config.Target == "qtarget" then
-	exports.qtarget:AddTargetModel(Config.PeyoteField.prop, {
-		options = {
-			{
-				action = function(entity)
-					PickUpPeyote(entity)
-				end,
-				icon = "fas fa-leaf",
-				label = locale("pickup"),
-				canInteract = function()
-					if inside then
-						return true
-					end
-				end
-			},
-		},
+exports.ox_target:addModel(Config.PeyoteField.prop, {
+	{
+		name = 'pickup_peyote',
+		icon = "fas fa-leaf",
+		label = locale("pickup"),
+		onSelect = function(data)
+			PickUpPeyote(data.entity)
+		end,
+		canInteract = function()
+			return inside
+		end,
 		distance = 3
-	})
-elseif Config.Target == "qb-target" then
-	exports['qb-target']:AddTargetModel(Config.PeyoteField.prop, {
-		options = {
-			{
-				type = "client",
-				action = function(entity)
-					PickUpPeyote(entity)
-				end,
-				icon = "fas fa-leaf",
-				label = locale("pickup"),
-				canInteract = function()
-					if inside then
-						return true
-					end
-				end
-			},
-		},
-		distance = 3
-	})
-end
+	}
+})
 
 function GeneratePeyoteLeafCoords()
 	while true do

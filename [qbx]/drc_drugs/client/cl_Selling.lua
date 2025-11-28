@@ -11,34 +11,17 @@ local negotiated = false
 local sellingDrug = nil
 local oldprice = nil
 
-if Config.Target == "qtarget" then
-    exports.qtarget:AddTargetModel(Config.PhoneBooths, {
-        options = {
-            {
-                action = function()
-                    Drugs()
-                end,
-                icon = "fas fa-book-skull",
-                label = locale("StartSell")
-            },
-        },
+exports.ox_target:addModel(Config.PhoneBooths, {
+    {
+        name = 'start_drug_selling',
+        icon = "fas fa-book-skull",
+        label = locale("StartSell"),
+        onSelect = function()
+            Drugs()
+        end,
         distance = 2
-    })
-elseif Config.Target == "qb-target" then
-    exports['qb-target']:AddTargetModel(Config.PhoneBooths, {
-        options = {
-            {
-                type = "client",
-                action = function()
-                    Drugs()
-                end,
-                icon = "fas fa-book-skull",
-                label = locale("StartSell")
-            },
-        },
-        distance = 2
-    })
-end
+    }
+})
 
 function Drugs()
     if not Selling then
@@ -264,44 +247,20 @@ StartSelling = function()
                             FreezeEntityPosition(Client, true)
                             lib.hideTextUI()
                             if DoesEntityExist(Client) then
-                                if Config.Target == "qtarget" then
-                                    exports.qtarget:AddTargetEntity(Client, {
-                                        options = {
-                                            {
-                                                action = function()
-                                                    ClientMenu()
-                                                end,
-                                                icon = "fas fa-person",
-                                                label = locale("Client"),
-                                                canInteract = function()
-                                                    if Selling then
-                                                        return true
-                                                    end
-                                                end
-                                            }
-                                        },
+                                exports.ox_target:addLocalEntity(Client, {
+                                    {
+                                        name = 'drug_client',
+                                        icon = "fas fa-person",
+                                        label = locale("Client"),
+                                        onSelect = function()
+                                            ClientMenu()
+                                        end,
+                                        canInteract = function()
+                                            return Selling
+                                        end,
                                         distance = 2
-                                    })
-                                elseif Config.Target == "qb-target" then
-                                    exports['qb-target']:AddTargetEntity(Client, {
-                                        options = {
-                                            {
-                                                type = "client",
-                                                action = function()
-                                                    ClientMenu()
-                                                end,
-                                                icon = "fas fa-person",
-                                                label = locale("Client"),
-                                                canInteract = function()
-                                                    if Selling then
-                                                        return true
-                                                    end
-                                                end
-                                            }
-                                        },
-                                        distance = 2
-                                    })
-                                end
+                                    }
+                                })
                             end
                         end
                     end
