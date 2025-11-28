@@ -1455,7 +1455,9 @@ return {
     },
 
 
-	
+-- COMMENTED OUT: These items require the kartik-mdt resource which is not installed
+-- Uncomment and configure these items if you have the kartik-mdt resource
+--[[
 	['mdt'] = {
     label = 'Mobile Data Terminal',
     weight = 250,
@@ -1513,6 +1515,7 @@ return {
 		export = 'kartik-mdt.useTracker'
 	}
 },
+--]]
 
 
 
