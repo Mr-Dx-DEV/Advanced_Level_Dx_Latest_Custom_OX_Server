@@ -2,7 +2,7 @@ return {
 	General = {
 		name = 'Shop',
 		blip = {
-			id = 59, colour = 69, scale = 0.8
+			id = 59, colour = 69, scale = 0.5
 		},
 		inventory = {
 			{ name = 'burger', price = 10 },
@@ -47,7 +47,7 @@ return {
 	Liquor = {
 		name = 'Liquor Store',
 		blip = {
-			id = 93, colour = 69, scale = 0.8
+			id = 93, colour = 69, scale = 0.5
 		},
 		inventory = {
 			{ name = 'water',  price = 10 },
@@ -79,7 +79,7 @@ return {
 	YouTool = {
 		name = 'YouTool',
 		blip = {
-			id = 402, colour = 69, scale = 0.8
+			id = 402, colour = 69, scale = 0.5
 		},
 		inventory = {
 			{ name = 'lockpick', price = 10 },
@@ -97,7 +97,7 @@ return {
 	Ammunation = {
 		name = 'Ammunation',
 		blip = {
-			id = 110, colour = 69, scale = 0.8
+			id = 110, colour = 69, scale = 0.5
 		},
 		inventory = {
 			{ name = 'ammo-9',        price = 5, },
@@ -133,7 +133,7 @@ return {
 		name = 'Police Armoury',
 		groups = shared.police,
 		-- blip = {
-		-- 	id = 110, colour = 84, scale = 0.8
+		-- 	id = 110, colour = 84, scale = 0.5
 		-- },
 		inventory = {
 			{ name = 'mdt',                 price = 5, },
@@ -388,7 +388,7 @@ return {
 			['ambulance'] = 0
 		},
 		-- blip = {
-		-- 	id = 403, colour = 69, scale = 0.8
+		-- 	id = 403, colour = 69, scale = 0.5
 		-- },
 		inventory = {
 			{ name = 'medikit', price = 26 },
