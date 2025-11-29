@@ -6714,6 +6714,39 @@ return {
 		label = 'Grape Juice',
 		weight = 200,
 	},
+-- OX Inventory Items
+
+['twerks_candy'] = {
+    label = 'Twerks Candy',
+    weight = 100,
+    stack = true,
+    close = true,
+    description = 'A sweet candy treat.'
+},
+
+['snikkel_candy'] = {
+    label = 'Snikkel Candy',
+    weight = 100,
+    stack = true,
+    close = true,
+    description = 'A tasty candy snack.'
+},
+
+['kurkakola'] = {
+    label = 'Kurka Kola',
+    weight = 250,
+    stack = true,
+    close = true,
+    description = 'A refreshing cola drink.'
+},
+
+['tosti'] = {
+    label = 'Tosti',
+    weight = 300,
+    stack = true,
+    close = true,
+    description = 'A warm and delicious toasted sandwich.'
+},
 
 
 
