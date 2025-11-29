@@ -8,7 +8,7 @@ cfg.consoleInfo = true --Print queue information to the server console?
 cfg.stackPrio = true --Combine all rows/roles of prio together or only use the row/role with the highest amount of points?
 
 cfg.discord = {
-    enabled = true, --Setting to false will completely ignore all discord related features.
+    enabled = false, --Setting to false will completely ignore all discord related features.
     requireIdentifier = false, --Require the player to have discord linked to fivem?
     requireInGuild = true, --Require the player to be in your discord server to connect?
     whitelist = false, --Enable a whitelist on your server?
