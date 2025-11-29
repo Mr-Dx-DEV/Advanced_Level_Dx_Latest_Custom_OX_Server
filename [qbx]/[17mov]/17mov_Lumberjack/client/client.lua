@@ -1960,6 +1960,7 @@ function L54_1(A0_2)
             goto lbl_215
           end
         end
+        ::lbl_215::
         if L2_2 then
           L8_2 = LastStation
           if L8_2 == L5_2 then
@@ -1971,7 +1972,6 @@ function L54_1(A0_2)
               end
             end
           end
-          ::lbl_215::
           L8_2 = LastStation
           if L8_2 then
             L8_2 = LastPart
@@ -2199,6 +2199,7 @@ function L54_1(A0_2)
             goto lbl_449
           end
         end
+        ::lbl_449::
         if L2_2 then
           L8_2 = LastStation
           if L8_2 == L5_2 then
@@ -2210,7 +2211,6 @@ function L54_1(A0_2)
               end
             end
           end
-          ::lbl_449::
           L8_2 = LastStation
           if L8_2 then
             L8_2 = LastPart

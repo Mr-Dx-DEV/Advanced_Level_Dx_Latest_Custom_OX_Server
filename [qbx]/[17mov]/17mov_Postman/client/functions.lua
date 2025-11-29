@@ -148,8 +148,8 @@ function ShowHelpNotification(msg)
     EndTextCommandDisplayHelp(0, false, true, -1)
 end
 
-local Proxy = module('vrp', 'lib/Proxy')
-local vRP = Proxy.getInterface('vRP')
+-- local Proxy = module('vrp', 'lib/Proxy')
+-- local vRP = Proxy.getInterface('vRP')
 
 function ChangeClothes(type)
     
@@ -158,8 +158,8 @@ function ChangeClothes(type)
         return
     end ]]
 
-    LocalPlayer.state:set('custom', vRP.getCustomization())
-    
+    -- LocalPlayer.state:set('custom', vRP.getCustomization())
+
     RequestAnimDict("clothingshirt")
     while not HasAnimDictLoaded("clothingshirt") do Citizen.Wait(0) end
 
