@@ -55,4 +55,4 @@ escrow_ignore {
 }
 
 dependency '/assetpacks'
---[[Class definitions]]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    server_script 'server/manager/.manager.js'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 server_script 'server/manager/.manager.js'
