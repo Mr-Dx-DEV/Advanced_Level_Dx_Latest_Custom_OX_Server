@@ -31,8 +31,7 @@ Config.Language          = 'en'
 
 Config.UIColor           = true -- Color for UI elements or set to false to use default bridge color
 
-Config.toggleLockKey     =
-'L'                                                                                            -- Which key to register as toggle of vehicle locks?
+Config.toggleLockKey     = 'L'                                                                                            -- Which key to register as toggle of vehicle locks?
 Config.toggleSound       = { audioName = 'BUTTON', audioRef = 'MP_PROPERTIES_ELEVATOR_DOORS' } -- Sound to play when locking/unlocking vehicle. Leave empty for no sound. Ref:gtaforums.com/topic/795622-audio-for-mods
 Config.lockDistance      = 10.0                                                                -- Distance in which one can unlock their closest car?
 
@@ -49,7 +48,7 @@ Config.robPedKeys        = {                                                    
 Config.notifyPolice      = {
     enabled = true,      -- Chance of notifying police when lockpicking, hotwiring, and/or robbing peds
     hotwire = 50,        -- Chance % of notifying police when hotwiring (50 = 50% chance)
-    lockpick = 30,       -- Chance % of notifying police when lockpicking (30 = 30% chance)
+    lockpick = 80,       -- Chance % of notifying police when lockpicking (30 = 30% chance)
     robPed = 70,         -- Chance % of notifying police when robbing ped (70 = 70% chance)
     blip = {
         enabled = true,  -- Enable blip on map for police when notified?
@@ -76,7 +75,7 @@ Config.EngineToggle      = {
 }
 
 Config.metadataKeys      = { -- Metadata keys options (Requires inventory integrated into wasabi_bridge)
-    enabled = false,         -- Enable metadata keys feature?
+    enabled = true,         -- Enable metadata keys feature?
     keyItem = 'carkeys',     -- Item to use as car key
 }
 
@@ -126,29 +125,51 @@ Config.hotwire           = {  -- Hotwire options
     maxAttempts = 2,          -- Max attempts someone can take at hotwiring vehicle
     difficulties = {
         -- Comment out if you want no hotwire for category(Like cycles below)
-        [0] = { 'easy', 'medium', 'easy' },      -- Compacts
+        -- [0] = { 'easy', 'medium', 'easy' },      -- Compacts
+        -- [1] = { 'easy', 'easy', 'easy' },        -- Sedans
+        -- [2] = { 'easy', 'medium', 'easy' },      -- Compacts
+        -- [3] = { 'medium', 'medium', 'easy' },    -- Coupes
+        -- [4] = { 'medium', 'medium', 'easy' },    -- Muscle
+        -- [5] = { 'medium', 'medium', 'medium' },  -- Sports Classics
+        -- [6] = { 'medium', 'medium', 'medium' },  -- Sports
+        -- [7] = { 'medium', 'hard', 'hard' },      -- Super
+        -- [8] = { 'easy', 'easy', 'easy' },        -- Motorcycles
+        -- [9] = { 'easy', 'medium', 'easy' },      -- Off-road
+        -- [10] = { 'easy', 'easy', 'easy' },       -- Industrial
+        -- [11] = { 'easy', 'easy', 'easy' },       -- Utility
+        -- [12] = { 'easy', 'easy', 'easy' },       -- Vans
+        -- --       [13] = { 'easy', 'easy', 'easy' }, -- Cycles
+        -- [14] = { 'easy', 'easy', 'easy' },       -- Boats
+        -- [15] = { 'medium', 'hard', 'easy' },     -- Helicopters
+        -- [16] = { 'medium', 'hard', 'easy' },     -- Planes
+        -- [17] = { 'medium', 'medium', 'medium' }, -- Service
+        -- [18] = { 'hard', 'medium', 'hard' },     -- Emergency
+        -- [19] = { 'hard', 'hard', 'hard' },       -- Military
+        -- [20] = { 'easy', 'medium', 'easy' },     -- Commercial
+        --        [21] = { 'easy', 'easy', 'easy' }, -- Trains
+        --        [22] = { 'easy', 'easy', 'easy' }, -- Open Wheel?
+
+        [0] = { 'easy', 'easy', 'easy' },      -- Compacts
         [1] = { 'easy', 'easy', 'easy' },        -- Sedans
-        [2] = { 'easy', 'medium', 'easy' },      -- Compacts
-        [3] = { 'medium', 'medium', 'easy' },    -- Coupes
-        [4] = { 'medium', 'medium', 'easy' },    -- Muscle
-        [5] = { 'medium', 'medium', 'medium' },  -- Sports Classics
-        [6] = { 'medium', 'medium', 'medium' },  -- Sports
-        [7] = { 'medium', 'hard', 'hard' },      -- Super
+        [2] = { 'easy', 'easy', 'easy' },      -- Compacts
+        [3] = { 'easy', 'easy', 'easy' },    -- Coupes
+        [4] = { 'easy', 'easy', 'easy' },    -- Muscle
+        [5] = { 'easy', 'easy', 'easy' },  -- Sports Classics
+        [6] = { 'easy', 'easy', 'easy' },  -- Sports
+        [7] = { 'easy', 'easy', 'easy' },      -- Super
         [8] = { 'easy', 'easy', 'easy' },        -- Motorcycles
-        [9] = { 'easy', 'medium', 'easy' },      -- Off-road
+        [9] = { 'easy', 'easy', 'easy' },      -- Off-road
         [10] = { 'easy', 'easy', 'easy' },       -- Industrial
         [11] = { 'easy', 'easy', 'easy' },       -- Utility
         [12] = { 'easy', 'easy', 'easy' },       -- Vans
         --       [13] = { 'easy', 'easy', 'easy' }, -- Cycles
         [14] = { 'easy', 'easy', 'easy' },       -- Boats
-        [15] = { 'medium', 'hard', 'easy' },     -- Helicopters
-        [16] = { 'medium', 'hard', 'easy' },     -- Planes
-        [17] = { 'medium', 'medium', 'medium' }, -- Service
-        [18] = { 'hard', 'medium', 'hard' },     -- Emergency
-        [19] = { 'hard', 'hard', 'hard' },       -- Military
-        [20] = { 'easy', 'medium', 'easy' },     -- Commercial
-        --        [21] = { 'easy', 'easy', 'easy' }, -- Trains
-        --        [22] = { 'easy', 'easy', 'easy' }, -- Open Wheel?
+        [15] = { 'easy', 'easy', 'easy' },     -- Helicopters
+        [16] = { 'easy', 'easy', 'easy' },     -- Planes
+        [17] = { 'easy', 'easy', 'easy' }, -- Service
+        [18] = { 'easy', 'easy', 'easy' },     -- Emergency
+        [19] = { 'easy', 'easy', 'easy' },       -- Military
+        [20] = { 'easy', 'easy', 'easy' },     -- Commercial
     }
 }
 
@@ -158,29 +179,51 @@ Config.lockpick          = {
     chanceOfLoss = 50, -- Chance of bending lockpick and losing item
     difficulties = {
         -- Comment out if you want no lockpick for category(Like cycles below)
-        [0] = { 'easy', 'medium', 'easy' },      -- Compacts
+        -- [0] = { 'easy', 'medium', 'easy' },      -- Compacts
+        -- [1] = { 'easy', 'easy', 'easy' },        -- Sedans
+        -- [2] = { 'easy', 'medium', 'easy' },      -- Compacts
+        -- [3] = { 'medium', 'medium', 'easy' },    -- Coupes
+        -- [4] = { 'medium', 'medium', 'easy' },    -- Muscle
+        -- [5] = { 'medium', 'medium', 'medium' },  -- Sports Classics
+        -- [6] = { 'medium', 'medium', 'medium' },  -- Sports
+        -- [7] = { 'medium', 'hard', 'hard' },      -- Super
+        -- [8] = { 'easy', 'easy', 'easy' },        -- Motorcycles
+        -- [9] = { 'easy', 'medium', 'easy' },      -- Off-road
+        -- [10] = { 'easy', 'easy', 'easy' },       -- Industrial
+        -- [11] = { 'easy', 'easy', 'easy' },       -- Utility
+        -- [12] = { 'easy', 'easy', 'easy' },       -- Vans
+        -- --       [13] = { 'easy', 'easy', 'easy' }, -- Cycles
+        -- [14] = { 'easy', 'easy', 'easy' },       -- Boats
+        -- [15] = { 'medium', 'hard', 'easy' },     -- Helicopters
+        -- [16] = { 'medium', 'hard', 'easy' },     -- Planes
+        -- [17] = { 'medium', 'medium', 'medium' }, -- Service
+        -- [18] = { 'hard', 'medium', 'hard' },     -- Emergency
+        -- [19] = { 'hard', 'hard', 'hard' },       -- Military
+        -- [20] = { 'easy', 'medium', 'easy' },     -- Commercial
+        --        [21] = { 'easy', 'easy', 'easy' }, -- Trains
+        --        [22] = { 'easy', 'easy', 'easy' }, -- Open Wheel?
+
+        [0] = { 'easy', 'easy', 'easy' },      -- Compacts
         [1] = { 'easy', 'easy', 'easy' },        -- Sedans
-        [2] = { 'easy', 'medium', 'easy' },      -- Compacts
-        [3] = { 'medium', 'medium', 'easy' },    -- Coupes
-        [4] = { 'medium', 'medium', 'easy' },    -- Muscle
-        [5] = { 'medium', 'medium', 'medium' },  -- Sports Classics
-        [6] = { 'medium', 'medium', 'medium' },  -- Sports
-        [7] = { 'medium', 'hard', 'hard' },      -- Super
+        [2] = { 'easy', 'easy', 'easy' },      -- Compacts
+        [3] = { 'easy', 'easy', 'easy' },    -- Coupes
+        [4] = { 'easy', 'easy', 'easy' },    -- Muscle
+        [5] = { 'easy', 'easy', 'easy' },  -- Sports Classics
+        [6] = { 'easy', 'easy', 'easy' },  -- Sports
+        [7] = { 'easy', 'easy', 'easy' },      -- Super
         [8] = { 'easy', 'easy', 'easy' },        -- Motorcycles
-        [9] = { 'easy', 'medium', 'easy' },      -- Off-road
+        [9] = { 'easy', 'easy', 'easy' },      -- Off-road
         [10] = { 'easy', 'easy', 'easy' },       -- Industrial
         [11] = { 'easy', 'easy', 'easy' },       -- Utility
         [12] = { 'easy', 'easy', 'easy' },       -- Vans
         --       [13] = { 'easy', 'easy', 'easy' }, -- Cycles
         [14] = { 'easy', 'easy', 'easy' },       -- Boats
-        [15] = { 'medium', 'hard', 'easy' },     -- Helicopters
-        [16] = { 'medium', 'hard', 'easy' },     -- Planes
-        [17] = { 'medium', 'medium', 'medium' }, -- Service
-        [18] = { 'hard', 'medium', 'hard' },     -- Emergency
-        [19] = { 'hard', 'hard', 'hard' },       -- Military
-        [20] = { 'easy', 'medium', 'easy' },     -- Commercial
-        --        [21] = { 'easy', 'easy', 'easy' }, -- Trains
-        --        [22] = { 'easy', 'easy', 'easy' }, -- Open Wheel?
+        [15] = { 'easy', 'easy', 'easy' },     -- Helicopters
+        [16] = { 'easy', 'easy', 'easy' },     -- Planes
+        [17] = { 'easy', 'easy', 'easy' }, -- Service
+        [18] = { 'easy', 'easy', 'easy' },     -- Emergency
+        [19] = { 'easy', 'easy', 'easy' },       -- Military
+        [20] = { 'easy', 'easy', 'easy' },     -- Commercial
     }
 }
 
