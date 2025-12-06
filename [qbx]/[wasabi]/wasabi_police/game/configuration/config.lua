@@ -8,7 +8,7 @@ Config = {}
 -- TO MODIFY NOTIFICATIONS TO YOUR OWN CUSTOM NOTIFICATIONS:-------
 -------------- Navigate to wasabi_bridge/customize/ ---------------
 -------------------------------------------------------------------
-Config.CheckForUpdates = true -- Check for updates? Who would not want to know updates!?
+Config.CheckForUpdates = false -- Check for updates? Who would not want to know updates!?
 
 -- Language Options are
 -- 'en' (English)
@@ -35,7 +35,7 @@ Config.JailUIColor = '#0390fc' -- Can be 'red', 'blue', or a hex '#FF0000'
 Config.jobMenu = 'F6'          -- Default job menu key
 Config.useTarget = true        -- Enable target for police functions (Supports ox_target / qb-target)
 Config.MobileMenu = {          -- THIS WILL USE A REGULAR MENU RATHER THAN A CONTEXT STYLE MENU!
-    enabled = true,           -- Use a mobile menu rather than context? (Use arrow keys to navigate menu rather than mouse)
+    enabled = false,           -- Use a mobile menu rather than context? (Use arrow keys to navigate menu rather than mouse)
     position =
     'bottom-right'             -- Choose where menu is positioned. Options : 'top-left' or 'top-right' or 'bottom-left' or 'bottom-right'
 }
@@ -126,7 +126,7 @@ Config.Jail = {
 -- NOTE: If using qb-prison, you must make one small change to qb-prison.
 -- SEE https://docs.wasabiscripts.com/scripts/wasabi_police/customizations#qb-prison-integration
 
-Config.searchPlayers = false     -- Allow police jobs to search players for items (Must have inventory in bridge or one already supported in cl_customize.lua - or add your own!)
+Config.searchPlayers = true     -- Allow police jobs to search players for items (Must have inventory in bridge or one already supported in cl_customize.lua - or add your own!)
 Config.weaponsAsItems = true     -- (If you're unsure leave as true!)This is typically for older ESX and inventories that still use weapons as weapons and not items
 
 Config.spikeStripsEnabled = true -- Enable functionality of spike strips (Disable if you use difference script for spike strips)
@@ -166,7 +166,7 @@ Config.CCTVCameras = { -- CCTV Cameras
     },
     destoryable = true, -- Can players destroy CCTV Cameras?
     blip = {
-        enabled = true,      -- Enable blips for CCTV Cameras?
+        enabled = false,      -- Enable blips for CCTV Cameras?
         label = 'CCTV Camera', -- Blip label
         sprite = 604,         -- Blip sprite
         color = 5,            -- Blip color
@@ -360,7 +360,7 @@ Config.RadarPosts = {           -- Radar posts for speed detection
 }
 
 Config.GSR = {                 -- Gunshot residue settings
-    enabled = false,           -- Enabled?
+    enabled = true,           -- Enabled?
     cleanInWater = true,       -- Can clean GSR while in water?
     timeToClean = 5 * seconds, -- How long to clean GSR in water if enabled
     autoClean = 600,           -- (IN SECONDS)How long before residue clears itself? Set to false if undesired to auto clean GSR
@@ -374,7 +374,7 @@ Config.tackle = {
 }
 
 Config.seizeCash = {  -- ONLY FOR QBCORE WITHOUT CASH AS ITEM
-    enabled = false,  -- Enabled?
+    enabled = true,  -- Enabled?
     item = 'moneybag' -- Item to add after seizedCash
 }
 
@@ -389,12 +389,12 @@ Config.handcuff = {                             -- Config in regards to cuffing
         difficulty = { 'easy', 'easy', 'easy' } -- Options: 'easy' / 'medium' / 'hard' (Can be stringed along as they are in config)
     },
     cuffItem = {                                -- Have handcuffs as usable item? (ITEM NAME MUST BE IN ITEMS / YOU MUST ADD YOURSELF)
-        enabled = false,                        -- Enable a handcuff usable item?? Must be in items table/database with name defined below
+        enabled = true,                        -- Enable a handcuff usable item?? Must be in items table/database with name defined below
         required = true,                        -- Requires handcuff item to be in inventory when any handcuff function is used
         item = 'handcuffs'                      -- Item name (DONT FORGET to make sure its in your items)
     },
     lockpicking = {                             -- Lockpicking someone else out of handcuffs
-        enabled = false,                        -- Enable handcuffs to be able to be lockpicked off(MUST HAVE LOCKPICK ITEM IN ITEMS)
+        enabled = true,                        -- Enable handcuffs to be able to be lockpicked off(MUST HAVE LOCKPICK ITEM IN ITEMS)
         item = 'bobby_pin',
         breakChance = 50,                       -- Chance of lockpick breaking if failed (Set to 100 for 100% or 0 for never breaking)
         difficulty = { 'easy', 'easy', 'easy' } -- Options: 'easy' / 'medium' / 'hard' (Can be stringed along as they are in config)
@@ -421,9 +421,9 @@ Config.TrackingBracelet = { -- Tracking Bracelet
 }
 
 Config.policeJobs = { -- Police jobs
-    'police',
+    'police'
     --    'sheriff'
-    'reporter'
+    --'reporter'
 }
 
 Config.GPSBlips = {
@@ -517,7 +517,7 @@ Config.Locations = {
         clockInAndOut = {
             enabled = true,                        -- Enable clocking in and out at a set location? (If using ESX you must have a off duty job for each e.x. offpolice for police offsheriff for sheriff AND have grades for each pd grade - QBCORE REQUIRES NOTHING)
             jobLock = 'police',                    -- This must be set to which job will be utilizing (ESX MUST HAVE OFF DUTY JOB / GRADES FOR THIS - ex. offpolice or offsheriff)
-            coords = vec3(464.87, -977.37, 30.69), -- Location of where to go on and off duty(If not using target)
+            coords = vec3(442.77, -982.16, 31.78), -- Location of where to go on and off duty(If not using target)
             label = '[E] - Go On/Off Duty',        -- Text to display(If not using target)
             distance = 3.0,                        -- Distance to display text UI(If not using target)
             target = {

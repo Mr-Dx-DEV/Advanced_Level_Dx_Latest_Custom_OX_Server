@@ -6,7 +6,7 @@ Config = {}
 -------------------------------------------------------
 -- Check for updates? (RECOMMENDED TO LEAVE AS true) --
 -------------------------------------------------------
-Config.CheckForUpdates = true
+Config.CheckForUpdates = false
 
 ----------------------------------------------------------
 --- UI Settings (Only works if using built-in systems) ---
@@ -22,12 +22,12 @@ Config.DefaultColor = '#218988' -- Default color for progress bars, circles, men
 -- Grab wasabi_notify here: https://store.wasabiscripts.com/package/6215100
 Config.Notifications = {
     defaults = {                                    -- Default notification settings
-        position = 'top-right',                     -- position options: 'center', 'top-right', 'top-left', 'right', 'left', 'bottom-right', and 'bottom-left'
+        position = 'right',                     -- position options: 'center', 'top-right', 'top-left', 'right', 'left', 'bottom-right', and 'bottom-left'
         time = 3500,                                -- Time in MS to show notifications by default if not defined
         iconSize = '2.2rem',                        -- Default icon size if shown and not defined. (Default is 1.5rem)
         fontColor = '#e5e5e5',                      -- Color, hex, etc (default: '#b5b3b3')
         backgroundColor = 'rgba(37, 38, 43, 0.60)', -- Background color of notification (default: 'rgba(80, 80, 80, 0.651)')
-        sound = false,                               -- Play a sound when the notification is shown
+        sound = true,                               -- Play a sound when the notification is shown
     },
     styles = {                           -- Notification styles (Feel free to edit and add, but don't remove any default styles completely)
 

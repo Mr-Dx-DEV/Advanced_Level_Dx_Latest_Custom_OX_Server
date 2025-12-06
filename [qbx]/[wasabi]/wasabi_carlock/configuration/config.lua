@@ -7,7 +7,7 @@ Config                   = {}
 -- via dependency "wasabi_bridge" in the "customize" directory!             --
 ------------------------------------------------------------------------------
 
-Config.CheckForUpdates   = true -- Recommended
+Config.CheckForUpdates   = false -- Recommended
 
 -- Language Options are
 -- 'en' (English)
@@ -29,14 +29,14 @@ Config.CheckForUpdates   = true -- Recommended
 -- All locale strings can be found in configuration/locales/
 Config.Language          = 'en'
 
-Config.UIColor           = false -- Color for UI elements or set to false to use default bridge color
+Config.UIColor           = true -- Color for UI elements or set to false to use default bridge color
 
 Config.toggleLockKey     =
-'U'                                                                                            -- Which key to register as toggle of vehicle locks?
+'L'                                                                                            -- Which key to register as toggle of vehicle locks?
 Config.toggleSound       = { audioName = 'BUTTON', audioRef = 'MP_PROPERTIES_ELEVATOR_DOORS' } -- Sound to play when locking/unlocking vehicle. Leave empty for no sound. Ref:gtaforums.com/topic/795622-audio-for-mods
 Config.lockDistance      = 10.0                                                                -- Distance in which one can unlock their closest car?
 
-Config.progressBar       = false                                                               -- If true will use progress bar rather than progress circle.
+Config.progressBar       = true                                                               -- If true will use progress bar rather than progress circle.
 
 Config.lockNPCVehicles   = false                                                               -- Lock all NPC cars?
 

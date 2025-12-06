@@ -4,7 +4,7 @@
 
 Config = {}
 
-Config.checkForUpdates = true -- Check for Updates?
+Config.checkForUpdates = false -- Check for Updates?
 Config.oldESX = false -- Does not apply to qb users (If set to true, won't check if player can carry item)
 
 Config.axe = {
