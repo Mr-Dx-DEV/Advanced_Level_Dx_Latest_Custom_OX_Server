@@ -8,9 +8,9 @@ Config.Dispatch = { enabled = true, script = "cd_dispatch" } -- cd_dispatch, lin
 Config.NotificationType = "ox_lib" -- ESX, ox_lib, qbcore
 Config.Bob74_ipl = true -- Loads lab interiors
 Config.PoliceJobs = { 'police', 'sheriff' }
-Config.Clothing = "custom" -- fivem-appearance, esx_skin, qb-clothing, custom | change in client/cl_Utils.lua | GetSkin = function() | ApplySkin = function()
+Config.Clothing = "fivem-appearance" -- fivem-appearance, esx_skin, qb-clothing, custom | change in client/cl_Utils.lua | GetSkin = function() | ApplySkin = function()
 --PLAYER CONTROL
-Config.Logs = { enabled = true, type = "webhook" } -- use webhook or ox_lib (datadog) Can be changed in server > sv_utils.lua
+Config.Logs = { enabled = false, type = "webhook" } -- use webhook or ox_lib (datadog) Can be changed in server > sv_utils.lua
 Config.DropPlayer = true -- Drop (Kick) Player if tries to cheat!
 Config.AnticheatBan = false -- Change in server/sv_Utils.lua!!! WIll not work by default you need to add your custom trigger to ban player!
 --BLIPS
