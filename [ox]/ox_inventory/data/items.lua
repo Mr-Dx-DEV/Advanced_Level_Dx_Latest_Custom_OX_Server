@@ -1,1559 +1,1159 @@
 return {
-	 ['trowel'] = {
-		label = 'Trowel',
-		description = "Perfect for your garden or for Coca plant",
+
+	-- Place in ox_inventory/data/items.lua
+	['tuna'] = {
+		label = 'Tuna',
+		weight = 650,
+		stack = true,
+		close = false,
+	},
+
+	['salmon'] = {
+		label = 'Salmon',
+		weight = 350,
+		stack = true,
+		close = false,
+	},
+
+	['trout'] = {
+		label = 'Trout',
 		weight = 250,
-		stack = true
-	},
-
-	['coke_leaf'] = {
-		label = 'Coca Leaf',
-		description = "Leaf from amazing plant",
-		weight = 15,
-		stack = true
-	},
-
-	['coke_access'] = {
-		label = 'Access card',
-		description = "Access Card for Coke Lab",
-		weight = 50,
-		stack = true
-	},
-
-	['coke_box'] = {
-		label = 'Box with Coke',
-		description = "Be careful not to spill it on the ground",
-		weight = 2000,
-		stack = true
-	},
-
-	['coke_raw'] = {
-		label = 'Raw Coke',
-		description = "Coke with some dirty particles",
-		weight = 50,
-		stack = true
-	},
-
-	['coke_pure'] = {
-		label = 'Pure Coke',
-		description = "Coke without any dirty particles",
-		weight = 70,
 		stack = true,
-		close = true
+		close = false,
 	},
 
-	['coke_figure'] = {
-		label = 'Action Figure',
-		description = "Action Figure of the cartoon superhero Impotent Rage",
-		weight = 150,
-		stack = true
-	},
-
-	['coke_figureempty'] = {
-		label = 'Action Figure',
-		description = "Action Figure of the cartoon superhero Impotent Rage",
-		weight = 150,
-		stack = true
-	},
-
-	['coke_figurebroken'] = {
-		label = 'Pieces of Action Figure',
-		description = "You can throw this away or try to repair with glue",
-		weight = 100,
-		stack = true
-	},
-
-	['meth_amoniak'] = {
-		label = 'Ammonia',
-		description = "Warning! Dangerous Chemicals!",
-		weight = 1000,
-		stack = true
-	},
-
-	['meth_pipe'] = {
-		label = 'Meth Pipe',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 880,
-		stack = true
-	},
-
-	['crack_pipe'] = {
-		label = 'Crack Pipe',
-		description = "Enjoy your Crack!",
-		weight = 550,
-		stack = true
-	},
-
-	['meth_syringe'] = {
-		label = 'Syringe Meth',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 300,
-		stack = true
-	},
-
-	['heroin_syringe'] = {
-		label = 'Syringe Heroin',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 300,
-		stack = true
-	},
-
-	['syringe'] = {
-		label = 'Syringe',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 300,
-		stack = true
-	},
-
-	['meth_sacid'] = {
-		label = 'Sodium Benzoate Canister',
-		description = "Warning! Dangerous Chemicals!",
-		weight = 5000,
-		stack = true
-	},
-
-	['meth_emptysacid'] = {
-		label = 'Empty Canister',
-		description = "Material: Plastic, Good for Sodium Benzoate",
-		weight = 2000,
-		stack = true
-	},
-
-	['meth_access'] = {
-		label = 'Access card',
-		description = "Access Card for Meth Lab",
-		weight = 100,
-		stack = true,
-		close = true
-	},
-
-	['meth_glass'] = {
-		label = 'Tray with meth',
-		description = "Needs to be smashed with hammer",
-		weight = 1000,
-		stack = true
-	},
-
-	['meth_sharp'] = {
-		label = 'Tray with smashed meth',
-		description = "Can be packed",
-		weight = 1000,
-		stack = true
-	},
-
-	['meth_bag'] = {
-		label = 'Meth bag',
-		description = "Plastic bag with magic stuff!",
-		weight = 1000,
-		stack = true
-	},
-
-	['weed_package'] = {
-		label = 'Weed Bag',
-		description = "Plastic bag with magic stuff!",
-		weight = 500,
-		stack = true
-	},
-
-	['weed_access'] = {
-		label = 'Access card',
-		description = "Access Card for Weed Lab",
-		weight = 100,
-		stack = true
-	},
-
-	['weed_bud'] = {
-		label = 'Weed Bud',
-		description = "Needs to be clean at the table",
-		weight = 40,
-		stack = true
-	},
-
-	['weed_blunt'] = {
-		label = 'Blunt',
-		description = "Enjoy your weed!",
-		weight = 90,
-		stack = true,
-		close = true
-	},
-
-	['weed_wrap'] = {
-		label = 'Blunt wraps',
-		description = "Get Weed Bag and roll blunt!",
-		weight = 75,
-		stack = true,
-		close = true
-	},
-
-	['weed_papers'] = {
-		label = 'Weed papers',
-		description = "Get Weed Bag and roll joint!",
-		weight = 15,
-		stack = true,
-		close = true
-	},
-
-	['weed_joint'] = {
-		label = 'Joint',
-		description = "Enjoy your weed!",
+	['anchovy'] = {
+		label = 'Anchovy',
 		weight = 50,
 		stack = true,
-		close = true
+		close = false,
 	},
 
-	['weed_budclean'] = {
-		label = 'Weed Bud',
-		description = "You can pack this at the table",
-		weight = 35,
-		stack = true
-	},
-
-	['plastic_bag'] = {
-		label = 'Plastic bag',
-		description = "You can pack a lot of stuff here!",
-		weight = 8,
-		stack = true
-	},
-
-	['scissors'] = {
-		label = 'Scissors',
-		description = "To help you with collecting",
-		weight = 40,
-		stack = true
-	},
-
-	['ecstasy1'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
+	['fishbait'] = {
+		label = 'Fish Bait',
+		weight = 50,
 		stack = true,
-		close = true
+		close = false,
 	},
 
-	['ecstasy2'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
+	['fishingrod'] = {
+		label = 'Fishing Rod',
+		weight = 800,
 		stack = true,
-		close = true
+		close = true,
 	},
 
-	['ecstasy3'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
+
+
+
+
+	["giant_gem"] = {
+		label = "Giant Gem",
+		weight = 2500,
+		stack = false,
+		close = false,
+		description = "",
+		client = {
+			image = "giant_gem.png",
+		}
+	},
+
+
+
+	["diamond_earring"] = {
+		label = "Diamond Earring",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "diamond_earring.png",
+		}
 	},
 
-	['ecstasy4'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
+	["ruby_ring"] = {
+		label = "Ruby Ring",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "ruby_ring.png",
+		}
 	},
 
-	['ecstasy5'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
+
+
+	["ruby_earring"] = {
+		label = "Ruby Earring",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "ruby_earring.png",
+		}
 	},
 
-	['lsd1'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
+	["sapphire_ring"] = {
+		label = "Sapphire Ring",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "sapphire_ring.png",
+		}
 	},
 
-	['lsd2'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
+	["sapphire_necklace"] = {
+		label = "Sapphire Necklace",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "sapphire_necklace.png",
+		}
 	},
 
-	['lsd3'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
+	["sapphire_earring"] = {
+		label = "Sapphire Earring",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "sapphire_earring.png",
+		}
 	},
 
-	['lsd4'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
+	["emerald_ring"] = {
+		label = "Emerald Ring",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "emerald_ring.png",
+		}
 	},
 
-	['lsd5'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
+	["emerald_necklace"] = {
+		label = "Emerald Necklace",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "emerald_necklace.png",
+		}
 	},
 
-	['magicmushroom'] = {
-		label = 'Mushroom',
-		description = "Explore a new universe!",
-		weight = 30,
+	["emerald_earring"] = {
+		label = "Emerald Earring",
+		weight = 200,
 		stack = true,
-		close = true
+		close = false,
+		description = "",
+		client = {
+			image = "emerald_earring.png",
+		}
 	},
 
-	['peyote'] = {
-		label = 'Peyote',
-		description = "Explore a new universe!",
-		weight = 30,
-		stack = true,
-		close = true
+
+
+	["box_of_jewelry"] = {
+		label = "Box of jewelry",
+		weight = 2500,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "box_of_jewelry.png",
+		}
 	},
 
-	['xanaxpack'] = {
-		label = 'Pack of Xanax',
-		description = "Needs to be open",
-		weight = 130,
-		stack = true,
-		close = true
+
+	["mxckey"] = {
+		label = "MXC Key",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "mxckey.png",
+		}
+	},
+	["giant_gem_green"] = {
+		label = "Giant Green Gem",
+		weight = 2500,
+		stack = false,
+		close = false,
+		description = "",
+		client = {
+			image = "giant_gem_green.png",
+		}
+	},
+	["gem_necklace"] = {
+		label = "Gem Necklace",
+		weight = 2500,
+		stack = false,
+		close = false,
+		description = "",
+		client = {
+			image = "gem_necklace.png",
+		}
+	},
+	["x_panther_gem"] = {
+		label = "Panther Gem",
+		weight = 2500,
+		stack = false,
+		close = false,
+		description = "",
+		client = {
+			image = "x_panther_gem.png",
+		}
 	},
 
-	['xanaxplate'] = {
-		label = 'Plate of Xanax',
-		description = "Needs to be open",
-		weight = 30,
-		stack = true,
-		close = true
+	["traphousekey"] = {
+		label = "Traphouse Key",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "",
+		client = {
+			image = "traphousekey.png",
+		}
 	},
-
-	['xanaxpill'] = {
-		label = 'Xanax pill',
-		description = "Explore a new universe!",
-		weight = 2,
-		stack = true,
-		close = true
+	["x_document"] = {
+		label = "X Documents",
+		weight = 250,
+		stack = false,
+		close = false,
+		description = "",
+		client = {
+			image = "x_document.png",
+		}
 	},
-
-    ['glue'] = {
-		label = 'Glue',
-		description = "Good for repairing things!",
-		weight = 30,
-		stack = true
+	["x_harddrive"] = {
+		label = "X Harddrive",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_harddrive.png",
+		}
 	},
-
-    ['hammer'] = {
-		label = 'Hammer',
-		description = "Good for smashing things!",
-		weight = 500,
-		stack = true
+	["storekey"] = {
+		label = "Store Key",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "storekey.png",
+		}
 	},
-
-	['poppyplant'] = {
-		label = 'Poppy Plant',
-		description = "Very nice plant!",
-		weight = 30,
-		stack = true
-	},
-	
-	['heroin'] = {
-		label = 'Heroin',
-		description = "Explore a new universe!",
-		weight = 30,
-		stack = true
-	},
-	['crack'] = {
-		label = 'Crack',
-		description = "Explore a new universe!",
-		weight = 30,
-		stack = true
-	},
-	['baking_soda'] = {
-		label = 'Baking Soda',
-		description = "Baking Bad!",
-		weight = 30,
-		stack = true
-	},
-
-    
-
-
-["giant_gem"] = {
-  label = "Giant Gem",
-  weight = 2500,
-  stack = false,
-  close = false,
-  description = "",
-  client = {
-   image = "giant_gem.png",
-  }
-},
-
-
-
-["diamond_earring"] = {
-  label = "Diamond Earring",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "diamond_earring.png",
-  }
-},
-
-["ruby_ring"] = {
-  label = "Ruby Ring",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "ruby_ring.png",
-  }
-},
-
-
-
-["ruby_earring"] = {
-  label = "Ruby Earring",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "ruby_earring.png",
-  }
-},
-
-["sapphire_ring"] = {
-  label = "Sapphire Ring",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "sapphire_ring.png",
-  }
-},
-
-["sapphire_necklace"] = {
-  label = "Sapphire Necklace",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "sapphire_necklace.png",
-  }
-},
-
-["sapphire_earring"] = {
-  label = "Sapphire Earring",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "sapphire_earring.png",
-  }
-},
-
-["emerald_ring"] = {
-  label = "Emerald Ring",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "emerald_ring.png",
-  }
-},
-
-["emerald_necklace"] = {
-  label = "Emerald Necklace",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "emerald_necklace.png",
-  }
-},
-
-["emerald_earring"] = {
-  label = "Emerald Earring",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "",
-  client = {
-   image = "emerald_earring.png",
-  }
-},
-      
-
-
-  ["box_of_jewelry"] = {
-  label = "Box of jewelry",
-  weight = 2500,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "box_of_jewelry.png",
-  }
- },
-
-  
-   ["mxckey"] = {
-  label = "MXC Key",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "mxckey.png",
-  }
- },
- ["giant_gem_green"] = {
-  label = "Giant Green Gem",
-  weight = 2500,
-  stack = false,
-  close = false,
-  description = "",
-  client = {
-   image = "giant_gem_green.png",
-  }
-},
- ["gem_necklace"] = {
-  label = "Gem Necklace",
-  weight = 2500,
-  stack = false,
-  close = false,
-  description = "",
-  client = {
-   image = "gem_necklace.png",
-  }
-},
- ["x_panther_gem"] = {
-  label = "Panther Gem",
-  weight = 2500,
-  stack = false,
-  close = false,
-  description = "",
-  client = {
-   image = "x_panther_gem.png",
-  }
-},
-
-["traphousekey"] = {
-  label = "Traphouse Key",
-  weight = 300,
-  stack = false,
-  close = false,
-  description = "",
-  client = {
-   image = "traphousekey.png",
-  }
-},
-["x_document"] = {
-  label = "X Documents",
-  weight = 250,
-  stack = false,
-  close = false,
-  description = "",
-  client = {
-   image = "x_document.png",
-  }
-},
-  ["x_harddrive"] = {
-  label = "X Harddrive",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "x_harddrive.png",
-  }
- },
-  ["storekey"] = {
-  label = "Store Key",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "storekey.png",
-  }
- },
 
 	["rockfordkeycard"] = {
-  label = "Rockford Keycard",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "rockfordkeycard.png",
-  }
- },
-  ["rockfordkey"] = {
-  label = "Rockford Key",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "rockfordkey.png",
-  }
- },
+		label = "Rockford Keycard",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "rockfordkeycard.png",
+		}
+	},
+	["rockfordkey"] = {
+		label = "Rockford Key",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "rockfordkey.png",
+		}
+	},
 
-  ["x_goldenknife"] = {
-  label = "X Golden Knife",
-  weight = 300,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "x_goldenknife.png",
-  }
- },
-
-
- 
-  ["paletocardone"] = {
-  label = "Paleto Card A",
-  weight = 0,
-  stack = false,
-  close = false,
-  description = "A security card for Paleto Bank",
-  client = {
-   image = "paletocardone.png",
-  }
- },
-
- ["paletocardtwo"] = {
-  label = "Paleto Card B",
-  weight = 0,
-  stack = false,
-  close = false,
-  description = "A security card for Paleto Bank",
-  client = {
-   image = "paletocardtwo.png",
-  }
- },
+	["x_goldenknife"] = {
+		label = "X Golden Knife",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_goldenknife.png",
+		}
+	},
 
 
- 
+
+	["paletocardone"] = {
+		label = "Paleto Card A",
+		weight = 0,
+		stack = false,
+		close = false,
+		description = "A security card for Paleto Bank",
+		client = {
+			image = "paletocardone.png",
+		}
+	},
+
+	["paletocardtwo"] = {
+		label = "Paleto Card B",
+		weight = 0,
+		stack = false,
+		close = false,
+		description = "A security card for Paleto Bank",
+		client = {
+			image = "paletocardtwo.png",
+		}
+	},
 
 
- ["paleto_key"] = {
-  label = "Paleto Bank Key",
-  weight = 100,
-  stack = false,
-  close = false,
-  description = "Paleto Bank Key",
-  client = {
-   image = "paleto_key.png",
-  }
- },
-   
- ["hackcard"] = {
-  label = "Hackcard",
-  weight = 50,
-  stack = false,
-  close = false,
-  description = "Hack card",
-  client = {
-   image = "hackcard.png",
-  }
- },
-   
- ["decryptor"] = {
-  label = "Decrypt-o-matic",
-  weight = 300,
-  stack = false,
-  close = false,
-  description = "Decrypt PIN based encryptions",
-  client = {
-   image = "decryptomatic.png",
-  }
- },
-   
-
- ["pacific_key"] = {
-  label = "Pacific Key",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "Key!",
-  client = {
-   image = "pacific_key.png",
-  }
- },
-
- ["pacificcard"] = {
-  label = "Pacific Keycard",
-  weight = 50,
-  stack = false,
-  close = false,
-  description = "A Security card for Pacific Bank",
-  client = {
-   image = "pacificcard.png",
-  }
- },
 
 
+
+	["paleto_key"] = {
+		label = "Paleto Bank Key",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "Paleto Bank Key",
+		client = {
+			image = "paleto_key.png",
+		}
+	},
+
+	["hackcard"] = {
+		label = "Hackcard",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "Hack card",
+		client = {
+			image = "hackcard.png",
+		}
+	},
+
+	["decryptor"] = {
+		label = "Decrypt-o-matic",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "Decrypt PIN based encryptions",
+		client = {
+			image = "decryptomatic.png",
+		}
+	},
+
+
+	["pacific_key"] = {
+		label = "Pacific Key",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "Key!",
+		client = {
+			image = "pacific_key.png",
+		}
+	},
+
+	["pacificcard"] = {
+		label = "Pacific Keycard",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "A Security card for Pacific Bank",
+		client = {
+			image = "pacificcard.png",
+		}
+	},
 
 
 
 
 
 
-  ["oilrigcard"] = {
-  label = "Oilrig Keycard",
-  weight = 50,
-  stack = false,
-  close = false,
-  description = "A Security card for Oilrig",
-  client = {
-   image = "oilrigcard.png",
-  }
- },
-
-  ["fuse"] = {
-  label = "Fuse",
-  weight = 150,
-  stack = false,
-  close = false,
-  description = "Zaaap",
-  client = {
-   image = "fuse.png",
-  }
- },
 
 
+	["oilrigcard"] = {
+		label = "Oilrig Keycard",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "A Security card for Oilrig",
+		client = {
+			image = "oilrigcard.png",
+		}
+	},
 
- ["mazebankcard"] = {
-  label = "Maze Bank Card A",
-  weight = 300,
-  stack = false,
-  close = false,
-  description = "A Security card for the Maze Bank",
-  client = {
-   image = "mazebankcard.png",
-  }
- },
-
-  ["mazebankcard2"] = {
-  label = "Maze Bank Card B",
-  weight = 300,
-  stack = false,
-  close = false,
-  description = "A Security card for the Maze Bank",
-  client = {
-   image = "mazebankcard2.png",
-  }
- },
-
-  ["mazebankkey"] = {
-  label = "Maze Bank Key",
-  weight = 300,
-  stack = false,
-  close = false,
-  description = "A Key",
-  client = {
-   image = "mazebankkey.png",
-  }
- },
+	["fuse"] = {
+		label = "Fuse",
+		weight = 150,
+		stack = false,
+		close = false,
+		description = "Zaaap",
+		client = {
+			image = "fuse.png",
+		}
+	},
 
 
 
+	["mazebankcard"] = {
+		label = "Maze Bank Card A",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "A Security card for the Maze Bank",
+		client = {
+			image = "mazebankcard.png",
+		}
+	},
 
-['laundromatkey'] = {
-    label = "Laundromat Key",
-    weight = 400,
-    stack = false,
-    close = false,
-    description = "Laundromat Key",
-    client = {
-        image = "laundromatkey.png",
-    }
-},
-['x_shirt'] = {
-    label = "Shirt",
-    weight = 200,
-    stack = false,
-    close = false,
-    description = "A Shirt",
-    client = {
-        image = "x_shirt.png",
-    }
-},
-['x_shirt_pile'] = {
-    label = "Pile of shirts",
-    weight = 800,
-    stack = false,
-    close = false,
-    description = "Pile of shirts",
-    client = {
-        image = "x_shirt_pile.png",
-    }
-},
-['x_overalls'] = {
-    label = "Overalls",
-    weight = 200,
-    stack = false,
-    close = false,
-    description = "Overalls",
-    client = {
-        image = "x_overalls.png",
-    }
-},
-['x_towel'] = {
-    label = "A Towel",
-    weight = 200,
-    stack = false,
-    close = false,
-    description = "A Towel",
-    client = {
-        image = "x_towel.png",
-    }
-},
-['x_hat'] = {
-    label = "A Hat",
-    weight = 200,
-    stack = false,
-    close = false,
-    description = "A Towel",
-    client = {
-        image = "x_hat.png",
-    }
-},
+	["mazebankcard2"] = {
+		label = "Maze Bank Card B",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "A Security card for the Maze Bank",
+		client = {
+			image = "mazebankcard2.png",
+		}
+	},
+
+	["mazebankkey"] = {
+		label = "Maze Bank Key",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "A Key",
+		client = {
+			image = "mazebankkey.png",
+		}
+	},
 
 
 
 
-	 ["x_coffeemaker"] = {
-  label = "Coffee Maker",
-  weight = 500,
-  stack = true,
-  close = false,
-  description = "To make that perfect cup of Joe!",
-  client = {
-    image = "x_coffeemaker.png"
-  }
- },
+	['laundromatkey'] = {
+		label = "Laundromat Key",
+		weight = 400,
+		stack = false,
+		close = false,
+		description = "Laundromat Key",
+		client = {
+			image = "laundromatkey.png",
+		}
+	},
+	['x_shirt'] = {
+		label = "Shirt",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "A Shirt",
+		client = {
+			image = "x_shirt.png",
+		}
+	},
+	['x_shirt_pile'] = {
+		label = "Pile of shirts",
+		weight = 800,
+		stack = false,
+		close = false,
+		description = "Pile of shirts",
+		client = {
+			image = "x_shirt_pile.png",
+		}
+	},
+	['x_overalls'] = {
+		label = "Overalls",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "Overalls",
+		client = {
+			image = "x_overalls.png",
+		}
+	},
+	['x_towel'] = {
+		label = "A Towel",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "A Towel",
+		client = {
+			image = "x_towel.png",
+		}
+	},
+	['x_hat'] = {
+		label = "A Hat",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "A Towel",
+		client = {
+			image = "x_hat.png",
+		}
+	},
 
- ["x_artpiece"] = {
-  label = "Art Piece",
-  weight = 500,
-  stack = true,
-  close = false,
-  description = "A unique piece of art!",
-  client = {
-    image = "x_artpiece.png"
-  }
- },
-
- ["x_guitar"] = {
-  label = "Guitar",
-  weight = 300,
-  stack = true,
-  close = false,
-  description = "A guitar!",
-  client = {
-    image = "x_guitar.png"
-  }
- },
-
- ["x_microwave"] = {
-  label = "Microwave",
-  weight = 800,
-  stack = true,
-  close = false,
-  description = "A microwave - for heating things up!",
-  client = {
-    image = "x_microwave.png"
-  }
- },
-
- ["x_musicequipment"] = {
-  label = "Coffee Maker",
-  weight = 500,
-  stack = true,
-  close = false,
-  description = "The keys to success.. As some Dj's would say",
-  client = {
-    image = "x_musicequipment.png"
-  }
- },
 
 
 
- ["x_painting2"] = {
-  label = "Painting",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "A modern work of art!",
-  client = {
-    image = "x_painting2.png"
-  }
- },
+	["x_coffeemaker"] = {
+		label = "Coffee Maker",
+		weight = 500,
+		stack = true,
+		close = false,
+		description = "To make that perfect cup of Joe!",
+		client = {
+			image = "x_coffeemaker.png"
+		}
+	},
 
- ["x_pcequipment"] = {
-  label = "PC",
-  weight = 600,
-  stack = true,
-  close = false,
-  description = "A PC, for gaming?! Well of course it is!",
-  client = {
-    image = "x_pcequipment.png"
-  }
- },
+	["x_artpiece"] = {
+		label = "Art Piece",
+		weight = 500,
+		stack = true,
+		close = false,
+		description = "A unique piece of art!",
+		client = {
+			image = "x_artpiece.png"
+		}
+	},
 
- ["x_suitcase"] = {
-  label = "Suit Case",
-  weight = 200,
-  stack = true,
-  close = false,
-  description = "A leather suitcase, what the hell is inside of this?",
-  client = {
-    image = "x_suitcase.png"
-  }
- },
-  
+	["x_guitar"] = {
+		label = "Guitar",
+		weight = 300,
+		stack = true,
+		close = false,
+		description = "A guitar!",
+		client = {
+			image = "x_guitar.png"
+		}
+	},
+
+	["x_microwave"] = {
+		label = "Microwave",
+		weight = 800,
+		stack = true,
+		close = false,
+		description = "A microwave - for heating things up!",
+		client = {
+			image = "x_microwave.png"
+		}
+	},
+
+	["x_musicequipment"] = {
+		label = "Coffee Maker",
+		weight = 500,
+		stack = true,
+		close = false,
+		description = "The keys to success.. As some Dj's would say",
+		client = {
+			image = "x_musicequipment.png"
+		}
+	},
+
+
+
+	["x_painting2"] = {
+		label = "Painting",
+		weight = 200,
+		stack = true,
+		close = false,
+		description = "A modern work of art!",
+		client = {
+			image = "x_painting2.png"
+		}
+	},
+
+	["x_pcequipment"] = {
+		label = "PC",
+		weight = 600,
+		stack = true,
+		close = false,
+		description = "A PC, for gaming?! Well of course it is!",
+		client = {
+			image = "x_pcequipment.png"
+		}
+	},
+
+	["x_suitcase"] = {
+		label = "Suit Case",
+		weight = 200,
+		stack = true,
+		close = false,
+		description = "A leather suitcase, what the hell is inside of this?",
+		client = {
+			image = "x_suitcase.png"
+		}
+	},
+
 	["fleeca_key"] = {
-  label = "Fleeca Key",
-  weight = 50,
-  stack = false,
-  close = false,
-  description = "Key!",
-  client = {
-   image = "fleeca_key.png",
-  }
- },
+		label = "Fleeca Key",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "Key!",
+		client = {
+			image = "fleeca_key.png",
+		}
+	},
 
- ["employeepictures"] = {
-  label = "Employee Pictures",
-  weight = 25,
-  stack = false,
-  close = false,
-  description = "Faces of employees",
-  client = {
-   image = "employeepictures.png",
-  }
- },
-
-
-
- ["fleecacard"] = {
-  label = "Fleeca Card",
-  weight = 300,
-  stack = false,
-  close = false,
-  description = "A Security card for Fleeca Bank",
-  client = {
-   image = "fleecacard.png",
-  }
- },
+	["employeepictures"] = {
+		label = "Employee Pictures",
+		weight = 25,
+		stack = false,
+		close = false,
+		description = "Faces of employees",
+		client = {
+			image = "employeepictures.png",
+		}
+	},
 
 
 
-['x_wrench'] = {
-    label = "Wrench",
-    weight = 250,
-    stack = false,
-    close = false,
-    description = "Good for maintenance",
-    client = {
-        image = "x_wrench.png",
-    }
-},
-
-['x_moneysuitcase'] = {
-    label = "Money Suitcase",
-    weight = 2500,
-    stack = false,
-    close = false,
-    description = "This is holding a lot of cash..",
-    client = {
-        image = "x_moneysuitcase.png",
-    }
-},
-
-["x_cratejammer"] = {
-    label = "X Crate Jammer",
-    weight = 300,
-    stack = false,
-    close = false,
-    description = "?????????",
-    client = {
-        image = "x_cratejammer.png",
-    }
-},
-
-['casinomaintenancecard'] = {
-    label = "Casino Maintenance Keycard",
-    weight = 100,
-    stack = false,
-    close = false,
-    description = "I wonder what I can use this for..",
-    client = {
-        image = "casinomaintenancecard.png",
-    }
-},
-
-['casinosecuritycard'] = {
-    label = "Casino Security Keycard",
-    weight = 100,
-    stack = false,
-    close = false,
-    description = "I wonder what I can use this for..",
-    client = {
-        image = "casinosecuritycard.png",
-    }
-},
-
-['casinovaultcard'] = {
-    label = "Casino Vault Keycard",
-    weight = 100,
-    stack = false,
-    close = false,
-    description = "I wonder what I can use this for..",
-    client = {
-        image = "casinovaultcard.png",
-    }
-},
-
-['casinomanagercard'] = {
-    label = "Casino Manager Keycard",
-    weight = 100,
-    stack = false,
-    close = false,
-    description = "I wonder what I can use this for..",
-    client = {
-        image = "casinomanagercard.png",
-    }
-},
-
-['casinopenthousecard'] = {
-    label = "Casino Penthouse Keycard",
-    weight = 100,
-    stack = false,
-    close = false,
-    description = "Fancy keycard..",
-    client = {
-        image = "casinopenthousecard.png",
-    }
-},
-
-['managerlaptop'] = {
-    label = "Manager Laptop",
-    weight = 100,
-    stack = false,
-    close = false,
-    description = "I Wonder what I can do with this..",
-    client = {
-        image = "managerlaptop.png",
-    }
-},
-
-
-['x_fingerprinttape'] = {
-    label = "Fingerprint Tape",
-    weight = 200,
-    stack = false,
-    close = false,
-    description = "????",
-    client = {
-        image = "x_fingerprinttape.png",
-    }
-},
-
-['x_fingerprintbag'] = {
-    label = "Fingerprint Bag",
-    weight = 200,
-    stack = false,
-    close = false,
-    description = "????",
-    client = {
-        image = "x_fingerprintbag.png",
-    }
-},
+	["fleecacard"] = {
+		label = "Fleeca Card",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "A Security card for Fleeca Bank",
+		client = {
+			image = "fleecacard.png",
+		}
+	},
 
 
 
-['x_laptop'] = {
-    label = "X Laptop",
-    weight = 50,
-    stack = false,
-    close = false,
-    description = "?????????",
-    client = {
-        image = "x_laptop.png",
-    }
-},
+	['x_wrench'] = {
+		label = "Wrench",
+		weight = 250,
+		stack = false,
+		close = false,
+		description = "Good for maintenance",
+		client = {
+			image = "x_wrench.png",
+		}
+	},
+
+	['x_moneysuitcase'] = {
+		label = "Money Suitcase",
+		weight = 2500,
+		stack = false,
+		close = false,
+		description = "This is holding a lot of cash..",
+		client = {
+			image = "x_moneysuitcase.png",
+		}
+	},
+
+	["x_cratejammer"] = {
+		label = "X Crate Jammer",
+		weight = 300,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_cratejammer.png",
+		}
+	},
+
+	['casinomaintenancecard'] = {
+		label = "Casino Maintenance Keycard",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "I wonder what I can use this for..",
+		client = {
+			image = "casinomaintenancecard.png",
+		}
+	},
+
+	['casinosecuritycard'] = {
+		label = "Casino Security Keycard",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "I wonder what I can use this for..",
+		client = {
+			image = "casinosecuritycard.png",
+		}
+	},
+
+	['casinovaultcard'] = {
+		label = "Casino Vault Keycard",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "I wonder what I can use this for..",
+		client = {
+			image = "casinovaultcard.png",
+		}
+	},
+
+	['casinomanagercard'] = {
+		label = "Casino Manager Keycard",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "I wonder what I can use this for..",
+		client = {
+			image = "casinomanagercard.png",
+		}
+	},
+
+	['casinopenthousecard'] = {
+		label = "Casino Penthouse Keycard",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "Fancy keycard..",
+		client = {
+			image = "casinopenthousecard.png",
+		}
+	},
+
+	['managerlaptop'] = {
+		label = "Manager Laptop",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "I Wonder what I can do with this..",
+		client = {
+			image = "managerlaptop.png",
+		}
+	},
+
+
+	['x_fingerprinttape'] = {
+		label = "Fingerprint Tape",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "????",
+		client = {
+			image = "x_fingerprinttape.png",
+		}
+	},
+
+	['x_fingerprintbag'] = {
+		label = "Fingerprint Bag",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "????",
+		client = {
+			image = "x_fingerprintbag.png",
+		}
+	},
 
 
 
-['x_stethoscope'] = {
-    label = "X Stethoscope",
-    weight = 200,
-    stack = false,
-    close = false,
-    description = "click click",
-    client = {
-        image = "x_stethoscope.png",
-    }
-},
-["x_painting"] = {
-    label = "Painting",
-    weight = 200,
-    stack = true,
-    close = false,
-    description = "A modern work of art!",
-    client = {
-            image = "x_painting.png"
-    }
-},
-['casinoofficekey'] = {
-    label = "Casino Office Key",
-    weight = 100,
-    stack = false,
-    close = false,
-    description = "Office key",
-    client = {
-        image = "casinoofficekey.png",
-    }
-},
-["x_pliers"] = {
-    label = "Pliers",
-    weight = 125,
-    stack = false,
-    close = false,
-    description = "A pair of pliers",
-    client = {
-        image = "x_pliers.png",
-    }
-},
+	['x_laptop'] = {
+		label = "X Laptop",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_laptop.png",
+		}
+	},
 
 
 
-    ['gasmask'] = {
-  label = 'Gas Mask',
-  weight = 450,
-  stack = false,
-  close = true,
-  description = "Phewww..",
-  client = {
-   event = 'projectx-masks:client:UseGasMask',
-  }
- },
-
- ['nightvision'] = {
-  label = 'Nightvision Goggles',
-  weight = 450,
-  stack = false,
-  close = true,
-  description = "Phewww..",
-  client = {
-   event = 'projectx-masks:client:UseNightVision',
-  }
- },
-
-
-
-["x_device_pin"] = {
-  label = "Decrypted Device",
-  weight = 200,
-  stack = false,
-  close = false,
-  description = "",
-  client = {
-   image = "x_device.png",
-  }
-},
-
-['cashexchange2key'] = {
-    label = "Cash Exchange 2 Key",
-    weight = 400,
-    stack = false,
-    close = false,
-    description = "Cash Exchange 2 Key",
-    client = {
-        image = "cashexchange2key.png",
-    }
-},
-
-    
-
-
-  ["pliers"] = {
-  label = "Pliers",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "A pair of pliers",
-  client = {
-   image = "pliers.png",
-  }
- },
+	['x_stethoscope'] = {
+		label = "X Stethoscope",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "click click",
+		client = {
+			image = "x_stethoscope.png",
+		}
+	},
+	["x_painting"] = {
+		label = "Painting",
+		weight = 200,
+		stack = true,
+		close = false,
+		description = "A modern work of art!",
+		client = {
+			image = "x_painting.png"
+		}
+	},
+	['casinoofficekey'] = {
+		label = "Casino Office Key",
+		weight = 100,
+		stack = false,
+		close = false,
+		description = "Office key",
+		client = {
+			image = "casinoofficekey.png",
+		}
+	},
+	["x_pliers"] = {
+		label = "Pliers",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "A pair of pliers",
+		client = {
+			image = "x_pliers.png",
+		}
+	},
 
 
 
-  ["bobcatcard"] = {
-  label = "Bobcat Keycard A",
-  weight = 50,
-  stack = false,
-  close = false,
-  description = "A Security card for Bobcat",
-  client = {
-   image = "bobcatcard.png",
-  }
- },
+	['gasmask'] = {
+		label = 'Gas Mask',
+		weight = 450,
+		stack = false,
+		close = true,
+		description = "Phewww..",
+		client = {
+			event = 'projectx-masks:client:UseGasMask',
+		}
+	},
 
-  ["bobcatcard2"] = {
-  label = "Bobcat Keycard B",
-  weight = 50,
-  stack = false,
-  close = false,
-  description = "A Security card for Bobcat",
-  client = {
-   image = "bobcatcard2.png",
-  }
- },
+	['nightvision'] = {
+		label = 'Nightvision Goggles',
+		weight = 450,
+		stack = false,
+		close = true,
+		description = "Phewww..",
+		client = {
+			event = 'projectx-masks:client:UseNightVision',
+		}
+	},
+
+
+
+	["x_device_pin"] = {
+		label = "Decrypted Device",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "",
+		client = {
+			image = "x_device.png",
+		}
+	},
+
+	['cashexchange2key'] = {
+		label = "Cash Exchange 2 Key",
+		weight = 400,
+		stack = false,
+		close = false,
+		description = "Cash Exchange 2 Key",
+		client = {
+			image = "cashexchange2key.png",
+		}
+	},
+
+
+
+
+	["pliers"] = {
+		label = "Pliers",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "A pair of pliers",
+		client = {
+			image = "pliers.png",
+		}
+	},
+
+
+
+	["bobcatcard"] = {
+		label = "Bobcat Keycard A",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "A Security card for Bobcat",
+		client = {
+			image = "bobcatcard.png",
+		}
+	},
+
+	["bobcatcard2"] = {
+		label = "Bobcat Keycard B",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "A Security card for Bobcat",
+		client = {
+			image = "bobcatcard2.png",
+		}
+	},
 
 
 
 
 
 	["bag"] = {
-  label = "Duffel Bag",
-  weight = 250,
-  stack = false,
-  close = false,
-  description = "Duffel bag",
-  client = {
-    image = "bag.png",
-  }
- },
-  ["x_trojanusb"] = {
-  label = "X Trojan USB",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "x_trojanusb.png",
-    },
-  },
-  ["x_trojanusb2"] = {
-  label = "X Encrypted Trojan",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "x_trojanusb2.png",
-  }
- },
-  ["x_circuittester"] = {
-  label = "X Circuit Tester",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "x_circuittester.png",
-  }
- },
-  ["x_phone"] = {
-  label = "X Phone",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "x_phone.png",
-  }
- },
- 
-   ["ammunation_key"] = {
-  label = "Ammunation Key",
-  weight = 125,
-  stack = false,
-  close = false,
-  description = "?????????",
-  client = {
-   image = "ammunation_key.png",
-  }
- },
+		label = "Duffel Bag",
+		weight = 250,
+		stack = false,
+		close = false,
+		description = "Duffel bag",
+		client = {
+			image = "bag.png",
+		}
+	},
+	["x_trojanusb"] = {
+		label = "X Trojan USB",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_trojanusb.png",
+		},
+	},
+	["x_trojanusb2"] = {
+		label = "X Encrypted Trojan",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_trojanusb2.png",
+		}
+	},
+	["x_circuittester"] = {
+		label = "X Circuit Tester",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_circuittester.png",
+		}
+	},
+	["x_phone"] = {
+		label = "X Phone",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_phone.png",
+		}
+	},
+
+	["ammunation_key"] = {
+		label = "Ammunation Key",
+		weight = 125,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "ammunation_key.png",
+		}
+	},
 
 
 
 	['nylonrope'] = {
-        label = 'Nylon Rope',
-        description = 'The strongest rope material..',
-        weight = 125,
-        close = true,
-        stack = true,
-        client = {
-      image = "nylonrope.png",
-   event = 'projectx-atmrobbery:client:UseRope',
-    }
-    },
+		label = 'Nylon Rope',
+		description = 'The strongest rope material..',
+		weight = 125,
+		close = true,
+		stack = true,
+		client = {
+			image = "nylonrope.png",
+			event = 'projectx-atmrobbery:client:UseRope',
+		}
+	},
 
-    ['atmred'] = {
-        label = 'Red ATM',
-        description = 'A console of an automated teller.',
-        weight = 350,
-        close = true,
-        stack = false,
-        client = {
-      image = "atmred.png",
-   event = 'projectx-atmrobbery:client:UseAtm-Red',
-    }
-    },
+	['atmred'] = {
+		label = 'Red ATM',
+		description = 'A console of an automated teller.',
+		weight = 350,
+		close = true,
+		stack = false,
+		client = {
+			image = "atmred.png",
+			event = 'projectx-atmrobbery:client:UseAtm-Red',
+		}
+	},
 
-    ['atmblue'] = {
-        label = 'Blue ATM',
-        description = 'A console of an automated teller.',
-        weight = 350,
-        close = true,
-        stack = false,
-        client = {
-      image = "atmblue.png",
-   event = 'projectx-atmrobbery:client:UseAtm-Blue',
-    }
-    },
+	['atmblue'] = {
+		label = 'Blue ATM',
+		description = 'A console of an automated teller.',
+		weight = 350,
+		close = true,
+		stack = false,
+		client = {
+			image = "atmblue.png",
+			event = 'projectx-atmrobbery:client:UseAtm-Blue',
+		}
+	},
 
-    ['atmgreen'] = {
-        label = 'Green ATM',
-        description = 'A console of an automated teller.',
-        weight = 350,
-        close = true,
-        stack = false,
-        client = {
-      image = "atmgreen.png",
-   event = 'projectx-atmrobbery:client:UseAtm-Green',
-    }
-    },
+	['atmgreen'] = {
+		label = 'Green ATM',
+		description = 'A console of an automated teller.',
+		weight = 350,
+		close = true,
+		stack = false,
+		client = {
+			image = "atmgreen.png",
+			event = 'projectx-atmrobbery:client:UseAtm-Green',
+		}
+	},
 
-    ['atmpanel'] = {
-        label = 'ATM Panel',
-        description = 'A back panel from an automated teller.',
-        weight = 125,
-        close = true,
-        stack = false,
-        client = {
-      image = "atmpanel.png",
-    }
-    },
+	['atmpanel'] = {
+		label = 'ATM Panel',
+		description = 'A back panel from an automated teller.',
+		weight = 125,
+		close = true,
+		stack = false,
+		client = {
+			image = "atmpanel.png",
+		}
+	},
 
-    ['atmcables'] = {
-        label = 'ATM Cables',
-        description = 'Cables from an automated teller.',
-        weight = 125,
-        close = true,
-        stack = false,
-        client = {
-      image = "atmcables.png",
-    }
-    },
+	['atmcables'] = {
+		label = 'ATM Cables',
+		description = 'Cables from an automated teller.',
+		weight = 125,
+		close = true,
+		stack = false,
+		client = {
+			image = "atmcables.png",
+		}
+	},
 
-    ['atmmotherboard'] = {
-        label = 'ATM Motherboard',
-        description = 'A motherboard from an automated teller.',
-        weight = 125,
-        close = true,
-        stack = false,
-        client = {
-      image = "atmmotherboard.png",
-    }
-    },
+	['atmmotherboard'] = {
+		label = 'ATM Motherboard',
+		description = 'A motherboard from an automated teller.',
+		weight = 125,
+		close = true,
+		stack = false,
+		client = {
+			image = "atmmotherboard.png",
+		}
+	},
 
-    ['blowtorch'] = {
-        label = 'Blow Torch',
-        description = 'Ooo hot...',
-        weight = 125,
-        close = true,
-        stack = false,
-        client = {
-      image = "blowtorch.png",
-    }
-    },
+	['blowtorch'] = {
+		label = 'Blow Torch',
+		description = 'Ooo hot...',
+		weight = 125,
+		close = true,
+		stack = false,
+		client = {
+			image = "blowtorch.png",
+		}
+	},
 
-    ['laserdrill'] = {
-        label = 'Laser Drill',
-        description = 'I wonder what this does...',
-        weight = 125,
-        close = true,
-        stack = false,
-        client = {
-      image = "laserdrill.png",
-    }
-    },
-
-
-
-    ["x_gastank"] = {
-      label = "X Gas Tank",
-      weight = 200,
-      stack = true,
-      close = false,
-      description = "????",
-      client = {
-        image = "x_gastank.png",
-      }
-    },
-
-    ["x_fakecredit"] = {
-      label = "X Credit Card",
-      weight = 200,
-      stack = true,
-      close = false,
-      description = "????",
-      client = {
-        image = "x_fakecredit.png",
-      }
-    },
-    
-    ["x_device"] = {
-        label = "X Device",
-        weight = 50,
-        stack = false,
-        close = false,
-        description = "?????????",
-        client = {
-          image = "x_device.png",
-        }
-    },
+	['laserdrill'] = {
+		label = 'Laser Drill',
+		description = 'I wonder what this does...',
+		weight = 125,
+		close = true,
+		stack = false,
+		client = {
+			image = "laserdrill.png",
+		}
+	},
 
 
 
+	["x_gastank"] = {
+		label = "X Gas Tank",
+		weight = 200,
+		stack = true,
+		close = false,
+		description = "????",
+		client = {
+			image = "x_gastank.png",
+		}
+	},
+
+	["x_fakecredit"] = {
+		label = "X Credit Card",
+		weight = 200,
+		stack = true,
+		close = false,
+		description = "????",
+		client = {
+			image = "x_fakecredit.png",
+		}
+	},
+
+	["x_device"] = {
+		label = "X Device",
+		weight = 50,
+		stack = false,
+		close = false,
+		description = "?????????",
+		client = {
+			image = "x_device.png",
+		}
+	},
 
 
-------------------------   END all project x -------
+
+
+
+	------------------------   END all project x -------
 
 
 
 	["vision_pro"] = {
-        label = "Vision Pro",
-        weight = 400,
-        stack = true,
-        close = true,
-    },
-
-
--- COMMENTED OUT: These items require the kartik-mdt resource which is not installed
--- Uncomment and configure these items if you have the kartik-mdt resource
---[[
-	['mdt'] = {
-    label = 'Mobile Data Terminal',
-    weight = 250,
-    stack = true,
-    consume = 0,
-    close = true,
-    description = "",
-    client = {
-        export = 'kartik-mdt.openMDT'
-    }
-},
-
-['dispatch'] = {
-    label = 'Dispatch',
-    weight = 250,
-    stack = true,
-    consume = 0,
-    close = true,
-    description = "",
-    client = {
-        export = 'kartik-mdt.openDispatch'
-    }
-},
-
-['bodycam'] = {
-    label = 'Bodycam',
-    weight = 250,
-    stack = true,
-    consume = 0,
-    close = true,
-    description = "",
-    client = {
-        export = 'kartik-mdt.ToggleBodycam',
-         remove = function(total)
-	        if total < 1 then
-		    TriggerServerEvent('kartik-mdt:server:removeBodycam')
-		end
-	end
-    }
-},
-
-['tracker'] = {
-	label = 'Tracker',
-	description = "The app that lets you track the whereabouts of your fellow mates.",
-	weight = 100,
-	consume = 0,
-	client = {
-		remove = function(total)
-			if total < 1 then
-				TriggerServerEvent('kartik-mdt:server:removePlayerBlip')
-			end
-		end
+		label = "Vision Pro",
+		weight = 400,
+		stack = true,
+		close = true,
 	},
-	server = {
-		export = 'kartik-mdt.useTracker'
-	}
-},
---]]
 
 
 
 
 
 
-		['vehicle_manual'] = {
-    label = 'Vehicle manual',
-    weight = 50,
-    close = true,
-    consume = 0,
-    client = {},
-    server = {
-        export = 'rcore_fuel.vehicle_manual',
-    },
-},
 
-['window_cleaner'] = {
-    label = 'windows cleaner',
-    weight = 50,
-    close = true,
-    consume = 0,
-    client = {},
-    server = {
-        export = 'rcore_fuel.window_cleaner',
-    },
-},
+	['vehicle_manual'] = {
+		label = 'Vehicle manual',
+		weight = 50,
+		close = true,
+		consume = 0,
+		client = {},
+		server = {
+			export = 'rcore_fuel.vehicle_manual',
+		},
+	},
 
-['fuel_pump'] = {
-    label = 'Fuel pumper',
-    weight = 10000,
-    close = true,
-    consume = 0,
-    client = {},
-    server = {
-        export = 'rcore_fuel.fuel_pump',
-    },
-},
+	['window_cleaner'] = {
+		label = 'windows cleaner',
+		weight = 50,
+		close = true,
+		consume = 0,
+		client = {},
+		server = {
+			export = 'rcore_fuel.window_cleaner',
+		},
+	},
+
+	['fuel_pump'] = {
+		label = 'Fuel pumper',
+		weight = 10000,
+		close = true,
+		consume = 0,
+		client = {},
+		server = {
+			export = 'rcore_fuel.fuel_pump',
+		},
+	},
 	['kq_airdrop_flare'] = {
 		label = 'Airdrop flare',
 		weight = 175,
@@ -1561,7 +1161,7 @@ return {
 		close = true,
 	},
 
-	
+
 	['pina_colada'] = {
 		label = 'Pina colada',
 		weight = 175,
@@ -1708,8 +1308,13 @@ return {
 	},
 
 
+	['mdt_tablet'] = {
+		label = 'MDT Tablet',
+		weight = 50,
+		stack = true
+	},
 
-		["mask"] = {
+	["mask"] = {
 		label = "Mask",
 		weight = 100,
 		stack = false,
@@ -1763,7 +1368,7 @@ return {
 		stack = false,
 	},
 
-	
+
 
 	["pants"] = {
 		label = "Pants",
@@ -1786,966 +1391,966 @@ return {
 
 
 
-	
+
 	["jewels"] = {
-    label = "Jewels",
-    weight = 1,
-    stack = true,
-},
+		label = "Jewels",
+		weight = 1,
+		stack = true,
+	},
 
-["ruby"] = {
-    label = "Red Ruby",
-    weight = 1,
-},
-["panther"] = {
-    label = "Panther Statue",
-    weight = 1,
-},
-["ruby_necklace"] = {
-    label = "Ruby Necklace",
-    weight = 1,
-},
-["emerald"] = {
-    label = "Emerald",
-    weight = 1,
-},
-["golden_banana"] = {
-    label = "Golden Banana",
-    weight = 1,
-},
+	["ruby"] = {
+		label = "Red Ruby",
+		weight = 1,
+	},
+	["panther"] = {
+		label = "Panther Statue",
+		weight = 1,
+	},
+	["ruby_necklace"] = {
+		label = "Ruby Necklace",
+		weight = 1,
+	},
+	["emerald"] = {
+		label = "Emerald",
+		weight = 1,
+	},
+	["golden_banana"] = {
+		label = "Golden Banana",
+		weight = 1,
+	},
 
-["cable_cutter"] = {
-    label = "Cable cutter",
-    weight = 1,
-    stack = true,
-},
-["glass_cutter"] = {
-    label = "Glass cutter",
-    weight = 1,
-    stack = true,
-},
+	["cable_cutter"] = {
+		label = "Cable cutter",
+		weight = 1,
+		stack = true,
+	},
+	["glass_cutter"] = {
+		label = "Glass cutter",
+		weight = 1,
+		stack = true,
+	},
 
-["screwdriver"] = {
-    label = "Screwdriver",
-    weight = 1,
-    stack = true,
-},
+	["screwdriver"] = {
+		label = "Screwdriver",
+		weight = 1,
+		stack = true,
+	},
 
 
 
 
 
 	["coffee"] = {
-	label = "Coffee",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 200000 },
-		anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
-		prop = {
-			model = 'v_res_mcofcup',
-			bone = 18905,
-			pos = vec3(0.14, 0.0, 0.07),
-			rot = vec3(-119.7, -54.56, 7.22)
-		},
-		usetime = 6500,
-	}
-},
-["chips_cheese"] = {
-	label = "Chips Big Cheese",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_chips1',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 6500,
-	}
-},
-["chips_paprika"] = {
-	label = "Chips Paprika",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_chips2',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 6500,
-	}
-},
-["chips_ribs"] = {
-	label = "Chips Sticky Ribs",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_chips3',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 6500,
-	}
-},
-["chips_salt"] = {
-	label = "Chips: Salt & Sauce",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_chips4',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 6500,
-	}
-},
-["chips_supersalt"] = {
-	label = "Chips: Super Salt",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_chips5',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 6500,
-	}
-},
-["chips_habanero"] = {
-	label = "Chips: Habanero",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_chips6',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 6500,
-	}
-},
-["chocolate_meteorite"] = {
-	label = "Chocolate: Meteorite",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "mp_player_inteat@burger", clip = "mp_player_int_eat_burger_fp" },
-		prop = { 
-			model = `mxc_vend_prop_item_chocolate1`, 
-			bone = 18905,
-			pos = vec3(0.12, 0.04, 0.01), 
-			rot = vec3(51.55, -47.5, -4.65)
-		},
-		usetime = 2500,
-	}
-},
-["chocolate_captain"] = {
-	label = "Chocolate: Captain's Log",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "mp_player_inteat@burger", clip = "mp_player_int_eat_burger_fp" },
-		prop = { 
-			model = `mxc_vend_prop_item_chocolate2`, 
-			bone = 18905,
-			pos = vec3(0.12, 0.04, 0.01), 
-			rot = vec3(51.55, -47.5, -4.65)
-		},
-		usetime = 2500,
-	}
-},
-["condom"] = {
-	label = "Condom: Soth Lags",
-	weight = 1,
-	stack = true,
-},
-["candy_zebra"] = {
-	label = "Candy: Zebrabar",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "mp_player_inteat@burger", clip = "mp_player_int_eat_burger_fp" },
-		prop = { 
-			model = `mxc_vend_prop_item_candybar1`, 
-			bone = 18905,
-			pos = vec3(0.12, 0.04, 0.01), 
-			rot = vec3(51.55, -47.5, -4.65)
-		},
-		usetime = 2500,
-	}
-},
-["candy_psqs"] = {
-	label = "Candy: P's & Q's",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { hunger = 200000 },
-		anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
-		prop = { 
-			model = `mxc_vend_prop_item_candybar2`, 
-			bone = 18905,
-			pos = vec3(0.14, -0.02, 0.06), 
-			rot = vec3(65.76, -57.6, 2.8)
-		},
-		usetime = 2500,
-	}
-},
-["medicine_laxmax"] = {
-	label = "Medicine: Lax to the Max",
-	weight = 1,
-	stack = true,
-	client = {
-		anim =  { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_medical1',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.07),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 1500,
-	}
-},
-["medicine_alcopatch"] = {
-	label = "Medicine: AlcoPatch",
-	weight = 1,
-	stack = true,
-	client = {
-		anim =  { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_medical2',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.07),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 1500,
-	}
-},
-["medicine_mollis"] = {
-	label = "Medicine: Mollis",
-	weight = 1,
-	stack = true,
-	client = {
-		anim =  { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_medical3',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.07),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 1500,
-	}
-},
-["medicine_betta"] = {
-	label = "Medicine: Betta",
-	weight = 1,
-	stack = true,
-	client = {
-		anim =  { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
-		prop = {
-			model = 'mxc_vend_prop_item_medical4',
-			bone = 57005,
-			pos = vec3(0.16, 0.01, -0.07),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 1500,
-	}
-},
-["gum_peppermint"] = {
-	label = "Gum: Peppermint",
-	weight = 1,
-	stack = true,
-	client = {
-		anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
-		prop = { 
-			model = `mxc_vend_prop_item_gum1`, 
-			bone = 18905,
-			pos = vec3(0.14, -0.02, 0.06), 
-			rot = vec3(65.76, -57.6, 2.8)
-		},
-		usetime = 2500,
-	}
-},
-["gum_cinnamon"] = {
-	label = "Gum: Cinnamon",
-	weight = 1,
-	stack = true,
-	client = {
-		anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
-		prop = { 
-			model = `mxc_vend_prop_item_gum2`, 
-			bone = 18905,
-			pos = vec3(0.14, -0.02, 0.06), 
-			rot = vec3(65.76, -57.6, 2.8)
-		},
-		usetime = 2500,
-	}
-},
-["gum_spearmint"] = {
-	label = "Gum: Spearmint",
-	weight = 1,
-	stack = true,
-	client = {
-		anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
-		prop = { 
-			model = `mxc_vend_prop_item_gum3`, 
-			bone = 18905,
-			pos = vec3(0.14, -0.02, 0.06), 
-			rot = vec3(65.76, -57.6, 2.8)
-		},
-		usetime = 2500,
-	}
-},
-["bottle_cola"] = {
-	label = "Cola",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
-		prop = { 
-			model = `mxc_vend_prop_item_bottle1`, 
-			bone = 18905,
-			pos = vec3(0.12, -0.03, 0.03),
-			rot = vec3(-98.4, 0.0, -15.0),
-			bone = 18905
-		},
-		usetime = 2500,
-	}
-},
-["bottle_junk"] = {
-	label = "Junk",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
-		prop = { 
-			model = `mxc_vend_prop_item_bottle2`, 
-			bone = 18905,
-			pos = vec3(0.12, -0.03, 0.03),
-			rot = vec3(-98.4, 0.0, -15.0)
-		},
-		usetime = 2500,
-	}
-},
-["bottle_orang"] = {
-	label = "Orang Tang",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
-		prop = { 
-			model = `mxc_vend_prop_item_bottle3`, 
-			bone = 18905,
-			pos = vec3(0.12, -0.03, 0.03),
-			rot = vec3(-98.4, 0.0, -15.0)
-		},
-		usetime = 2500,
-	}
-},
-["bottle_tonic"] = {
-	label = "Tonic",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
-		prop = { 
-			model = `mxc_vend_prop_item_bottle4`, 
-			bone = 18905,
-			pos = vec3(0.12, -0.03, 0.03),
-			rot = vec3(-98.4, 0.0, -15.0)
-		},
-		usetime = 2500,
-	}
-},
-["bottle_water"] = {
-	label = "Water",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
-		prop = { 
-			model = `mxc_vend_prop_item_bottle5`, 
-			bone = 18905,
-			pos = vec3(0.12, -0.03, 0.03),
-			rot = vec3(-98.4, 0.0, -15.0)
-		},
-		usetime = 2500,
-	}
-},
-["bottle_sprunk"] = {
-	label = "Sprunk",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
-		prop = { 
-			model = `mxc_vend_prop_item_bottle6`, 
-			bone = 18905,
-			pos = vec3(0.12, -0.03, 0.03),
-			rot = vec3(-98.4, 0.0, -15.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_cola"] = {
-	label = "Cola Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_cansoda1`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_orang"] = {
-	label = "Orang Tang Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_cansoda2`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_junk"] = {
-	label = "Junk Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_cansoda3`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_sprunk"] = {
-	label = "Sprunk Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_cansoda4`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_logger"] = {
-	label = "Logger Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_canbeer1`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_blarneys"] = {
-	label = "Blarneys Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_canbeer2`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_hoplivion"] = {
-	label = "Hoplivion Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_canbeer3`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["can_cerbeza"] = {
-	label = "Cerbeza Can",
-	weight = 1,
-	stack = true,
-	client = {
-		status = { thirst = 300000 },
-		anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
-		prop = { 
-			model = `mxc_vend_prop_item_canbeer4`, 
-			bone = 57005,
-			pos = vec3(0.14, 0.01, -0.04),
-			rot = vec3(-64.96, 36.0, -3.0)
-		},
-		usetime = 2500,
-	}
-},
-["svapo_vaporglow1a"] = {
-	label = "Vaporglow 2",
-	weight = 1,
-	stack = true
-},
-["svapo_vaporglow1b"] = {
-	label = "Vaporglow 1",
-	weight = 1,
-	stack = true
-},
-["svapo_vaporglow1c"] = {
-	label = "Vaporglow 1",
-	weight = 1,
-	stack = true
-},
-["svapo_vaporglow1d"] = {
-	label = "Vaporglow 1",
-	weight = 1,
-	stack = true
-},
-["svapo_vaporglow1e"] = {
-	label = "Vaporglow 1",
-	weight = 1,
-	stack = true
-},
-["svapo_vaporglow1f"] = {
-	label = "Vaporglow 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape1a"] = {
-	label = "E-Vape 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape1b"] = {
-	label = "E-Vape 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape1c"] = {
-	label = "E-Vape 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape1d"] = {
-	label = "E-Vape 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape1e"] = {
-	label = "E-Vape 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape1f"] = {
-	label = "E-Vape 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape2a"] = {
-	label = "E-Vape 2",
-	weight = 1,
-	stack = true
-},
-["svapo_evape2b"] = {
-	label = "E-Vape 2",
-	weight = 1,
-	stack = true
-},
-["svapo_evape2c"] = {
-	label = "E-Vape 2",
-	weight = 1,
-	stack = true
-},
-["svapo_evape2d"] = {
-	label = "E-Vape 2",
-	weight = 1,
-	stack = true
-},
-["svapo_evape2e"] = {
-	label = "E-Vape 2",
-	weight = 1,
-	stack = true
-},
-["svapo_evape2f"] = {
-	label = "E-Vape 2",
-	weight = 1,
-	stack = true
-},
-["svapo_smoke1a"] = {
-	label = "Smoke 1",
-	weight = 1,
-	stack = true
-},
-["svapo_smoke1b"] = {
-	label = "Smoke 1",
-	weight = 1,
-	stack = true
-},
-["svapo_smoke1c"] = {
-	label = "Smoke 1",
-	weight = 1,
-	stack = true
-},
-["svapo_smoke1d"] = {
-	label = "Smoke 1",
-	weight = 1,
-	stack = true
-},
-["svapo_smoke1e"] = {
-	label = "Smoke 1",
-	weight = 1,
-	stack = true
-},
-["svapo_smoke1f"] = {
-	label = "Smoke 1",
-	weight = 1,
-	stack = true
-},
-["svapo_evape_box"] = {
-	label = "E-Vape Box",
-	weight = 1,
-	stack = true
-},
-["svapo_evape2_box"] = {
-	label = "E-Vape 2 Box",
-	weight = 1,
-	stack = true
-},
-["svapo_smoke_box"] = {
-	label = "Smoke Box",
-	weight = 1,
-	stack = true
-},
-["svapo_sumo_box"] = {
-	label = "Sumo Box",
-	weight = 1,
-	stack = true
-},
-["svapo_vaporglow_box"] = {
-	label = "Vaporglow Box",
-	weight = 1,
-	stack = true
-},
-["cigs_redwood"] = {
-	label = "Cigarettes: Redwood",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
-["cigs_redwood2"] = {
-	label = "Cigarettes: Redwood2",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
-["cigs_debonaireb"] = {
-	label = "Cigarettes: Debonaire Blue",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
-["cigs_debonaireg"] = {
-	label = "Cigarettes: Debonaire Green",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
-["cigs_cardiaque"] = {
-	label = "Cigarettes: Cardiaque",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
-["cigs_69brand"] = {
-	label = "Cigarettes: 69Brand",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
-["cigs_cok"] = {
-	label = "Cigarettes: CoK",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
-["cigs_estancia"] = {
-	label = "Cigars: Estancia",
-	weight = 1,
-	stack = true,
-	client = {
-		--status = {},
-		anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
-		prop = { 
-			model = 'prop_cs_ciggy_01b',
-			bone = 57005,
-			pos = vec3(0.18, 0.02, 0.02), 
-			rot = vec3(0, 103.42, 0)
-		},
-		usetime = 10000,
-	}
-},
+		label = "Coffee",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 200000 },
+			anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
+			prop = {
+				model = 'v_res_mcofcup',
+				bone = 18905,
+				pos = vec3(0.14, 0.0, 0.07),
+				rot = vec3(-119.7, -54.56, 7.22)
+			},
+			usetime = 6500,
+		}
+	},
+	["chips_cheese"] = {
+		label = "Chips Big Cheese",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_chips1',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 6500,
+		}
+	},
+	["chips_paprika"] = {
+		label = "Chips Paprika",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_chips2',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 6500,
+		}
+	},
+	["chips_ribs"] = {
+		label = "Chips Sticky Ribs",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_chips3',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 6500,
+		}
+	},
+	["chips_salt"] = {
+		label = "Chips: Salt & Sauce",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_chips4',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 6500,
+		}
+	},
+	["chips_supersalt"] = {
+		label = "Chips: Super Salt",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_chips5',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 6500,
+		}
+	},
+	["chips_habanero"] = {
+		label = "Chips: Habanero",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_chips6',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 6500,
+		}
+	},
+	["chocolate_meteorite"] = {
+		label = "Chocolate: Meteorite",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "mp_player_inteat@burger", clip = "mp_player_int_eat_burger_fp" },
+			prop = {
+				model = `mxc_vend_prop_item_chocolate1`,
+				bone = 18905,
+				pos = vec3(0.12, 0.04, 0.01),
+				rot = vec3(51.55, -47.5, -4.65)
+			},
+			usetime = 2500,
+		}
+	},
+	["chocolate_captain"] = {
+		label = "Chocolate: Captain's Log",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "mp_player_inteat@burger", clip = "mp_player_int_eat_burger_fp" },
+			prop = {
+				model = `mxc_vend_prop_item_chocolate2`,
+				bone = 18905,
+				pos = vec3(0.12, 0.04, 0.01),
+				rot = vec3(51.55, -47.5, -4.65)
+			},
+			usetime = 2500,
+		}
+	},
+	["condom"] = {
+		label = "Condom: Soth Lags",
+		weight = 1,
+		stack = true,
+	},
+	["candy_zebra"] = {
+		label = "Candy: Zebrabar",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "mp_player_inteat@burger", clip = "mp_player_int_eat_burger_fp" },
+			prop = {
+				model = `mxc_vend_prop_item_candybar1`,
+				bone = 18905,
+				pos = vec3(0.12, 0.04, 0.01),
+				rot = vec3(51.55, -47.5, -4.65)
+			},
+			usetime = 2500,
+		}
+	},
+	["candy_psqs"] = {
+		label = "Candy: P's & Q's",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { hunger = 200000 },
+			anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
+			prop = {
+				model = `mxc_vend_prop_item_candybar2`,
+				bone = 18905,
+				pos = vec3(0.14, -0.02, 0.06),
+				rot = vec3(65.76, -57.6, 2.8)
+			},
+			usetime = 2500,
+		}
+	},
+	["medicine_laxmax"] = {
+		label = "Medicine: Lax to the Max",
+		weight = 1,
+		stack = true,
+		client = {
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_medical1',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.07),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 1500,
+		}
+	},
+	["medicine_alcopatch"] = {
+		label = "Medicine: AlcoPatch",
+		weight = 1,
+		stack = true,
+		client = {
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_medical2',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.07),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 1500,
+		}
+	},
+	["medicine_mollis"] = {
+		label = "Medicine: Mollis",
+		weight = 1,
+		stack = true,
+		client = {
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_medical3',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.07),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 1500,
+		}
+	},
+	["medicine_betta"] = {
+		label = "Medicine: Betta",
+		weight = 1,
+		stack = true,
+		client = {
+			anim = { dict = "amb@world_human_drinking@coffee@male@idle_a", clip = "idle_a" },
+			prop = {
+				model = 'mxc_vend_prop_item_medical4',
+				bone = 57005,
+				pos = vec3(0.16, 0.01, -0.07),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 1500,
+		}
+	},
+	["gum_peppermint"] = {
+		label = "Gum: Peppermint",
+		weight = 1,
+		stack = true,
+		client = {
+			anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
+			prop = {
+				model = `mxc_vend_prop_item_gum1`,
+				bone = 18905,
+				pos = vec3(0.14, -0.02, 0.06),
+				rot = vec3(65.76, -57.6, 2.8)
+			},
+			usetime = 2500,
+		}
+	},
+	["gum_cinnamon"] = {
+		label = "Gum: Cinnamon",
+		weight = 1,
+		stack = true,
+		client = {
+			anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
+			prop = {
+				model = `mxc_vend_prop_item_gum2`,
+				bone = 18905,
+				pos = vec3(0.14, -0.02, 0.06),
+				rot = vec3(65.76, -57.6, 2.8)
+			},
+			usetime = 2500,
+		}
+	},
+	["gum_spearmint"] = {
+		label = "Gum: Spearmint",
+		weight = 1,
+		stack = true,
+		client = {
+			anim = { dict = "mp_player_inteat@pnq", clip = "loop" },
+			prop = {
+				model = `mxc_vend_prop_item_gum3`,
+				bone = 18905,
+				pos = vec3(0.14, -0.02, 0.06),
+				rot = vec3(65.76, -57.6, 2.8)
+			},
+			usetime = 2500,
+		}
+	},
+	["bottle_cola"] = {
+		label = "Cola",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
+			prop = {
+				model = `mxc_vend_prop_item_bottle1`,
+				bone = 18905,
+				pos = vec3(0.12, -0.03, 0.03),
+				rot = vec3(-98.4, 0.0, -15.0),
+				bone = 18905
+			},
+			usetime = 2500,
+		}
+	},
+	["bottle_junk"] = {
+		label = "Junk",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
+			prop = {
+				model = `mxc_vend_prop_item_bottle2`,
+				bone = 18905,
+				pos = vec3(0.12, -0.03, 0.03),
+				rot = vec3(-98.4, 0.0, -15.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["bottle_orang"] = {
+		label = "Orang Tang",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
+			prop = {
+				model = `mxc_vend_prop_item_bottle3`,
+				bone = 18905,
+				pos = vec3(0.12, -0.03, 0.03),
+				rot = vec3(-98.4, 0.0, -15.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["bottle_tonic"] = {
+		label = "Tonic",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
+			prop = {
+				model = `mxc_vend_prop_item_bottle4`,
+				bone = 18905,
+				pos = vec3(0.12, -0.03, 0.03),
+				rot = vec3(-98.4, 0.0, -15.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["bottle_water"] = {
+		label = "Water",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
+			prop = {
+				model = `mxc_vend_prop_item_bottle5`,
+				bone = 18905,
+				pos = vec3(0.12, -0.03, 0.03),
+				rot = vec3(-98.4, 0.0, -15.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["bottle_sprunk"] = {
+		label = "Sprunk",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = "mp_player_intdrink", clip = "loop_bottle" },
+			prop = {
+				model = `mxc_vend_prop_item_bottle6`,
+				bone = 18905,
+				pos = vec3(0.12, -0.03, 0.03),
+				rot = vec3(-98.4, 0.0, -15.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_cola"] = {
+		label = "Cola Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_cansoda1`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_orang"] = {
+		label = "Orang Tang Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_cansoda2`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_junk"] = {
+		label = "Junk Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_cansoda3`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_sprunk"] = {
+		label = "Sprunk Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_cansoda4`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_logger"] = {
+		label = "Logger Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_canbeer1`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_blarneys"] = {
+		label = "Blarneys Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_canbeer2`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_hoplivion"] = {
+		label = "Hoplivion Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_canbeer3`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["can_cerbeza"] = {
+		label = "Cerbeza Can",
+		weight = 1,
+		stack = true,
+		client = {
+			status = { thirst = 300000 },
+			anim = { dict = 'amb@world_human_drinking@coffee@male@idle_a', clip = 'idle_a' },
+			prop = {
+				model = `mxc_vend_prop_item_canbeer4`,
+				bone = 57005,
+				pos = vec3(0.14, 0.01, -0.04),
+				rot = vec3(-64.96, 36.0, -3.0)
+			},
+			usetime = 2500,
+		}
+	},
+	["svapo_vaporglow1a"] = {
+		label = "Vaporglow 2",
+		weight = 1,
+		stack = true
+	},
+	["svapo_vaporglow1b"] = {
+		label = "Vaporglow 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_vaporglow1c"] = {
+		label = "Vaporglow 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_vaporglow1d"] = {
+		label = "Vaporglow 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_vaporglow1e"] = {
+		label = "Vaporglow 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_vaporglow1f"] = {
+		label = "Vaporglow 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape1a"] = {
+		label = "E-Vape 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape1b"] = {
+		label = "E-Vape 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape1c"] = {
+		label = "E-Vape 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape1d"] = {
+		label = "E-Vape 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape1e"] = {
+		label = "E-Vape 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape1f"] = {
+		label = "E-Vape 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape2a"] = {
+		label = "E-Vape 2",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape2b"] = {
+		label = "E-Vape 2",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape2c"] = {
+		label = "E-Vape 2",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape2d"] = {
+		label = "E-Vape 2",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape2e"] = {
+		label = "E-Vape 2",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape2f"] = {
+		label = "E-Vape 2",
+		weight = 1,
+		stack = true
+	},
+	["svapo_smoke1a"] = {
+		label = "Smoke 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_smoke1b"] = {
+		label = "Smoke 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_smoke1c"] = {
+		label = "Smoke 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_smoke1d"] = {
+		label = "Smoke 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_smoke1e"] = {
+		label = "Smoke 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_smoke1f"] = {
+		label = "Smoke 1",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape_box"] = {
+		label = "E-Vape Box",
+		weight = 1,
+		stack = true
+	},
+	["svapo_evape2_box"] = {
+		label = "E-Vape 2 Box",
+		weight = 1,
+		stack = true
+	},
+	["svapo_smoke_box"] = {
+		label = "Smoke Box",
+		weight = 1,
+		stack = true
+	},
+	["svapo_sumo_box"] = {
+		label = "Sumo Box",
+		weight = 1,
+		stack = true
+	},
+	["svapo_vaporglow_box"] = {
+		label = "Vaporglow Box",
+		weight = 1,
+		stack = true
+	},
+	["cigs_redwood"] = {
+		label = "Cigarettes: Redwood",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
+	["cigs_redwood2"] = {
+		label = "Cigarettes: Redwood2",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
+	["cigs_debonaireb"] = {
+		label = "Cigarettes: Debonaire Blue",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
+	["cigs_debonaireg"] = {
+		label = "Cigarettes: Debonaire Green",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
+	["cigs_cardiaque"] = {
+		label = "Cigarettes: Cardiaque",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
+	["cigs_69brand"] = {
+		label = "Cigarettes: 69Brand",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
+	["cigs_cok"] = {
+		label = "Cigarettes: CoK",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
+	["cigs_estancia"] = {
+		label = "Cigars: Estancia",
+		weight = 1,
+		stack = true,
+		client = {
+			--status = {},
+			anim = { dict = 'amb@world_human_aa_smoke@male@idle_a', clip = 'idle_c' },
+			prop = {
+				model = 'prop_cs_ciggy_01b',
+				bone = 57005,
+				pos = vec3(0.18, 0.02, 0.02),
+				rot = vec3(0, 103.42, 0)
+			},
+			usetime = 10000,
+		}
+	},
 
 
 
 
 	['casino_beer'] = {
-    label = 'Casino Beer',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+		label = 'Casino Beer',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_burger'] = {
-    label = 'casino burger',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_burger'] = {
+		label = 'casino burger',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_chips'] = {
-    label = 'casino chips',
-    weight = 0,
-    close = true,
-    consume = 0,
-    stack = true,
-},
+	['casino_chips'] = {
+		label = 'casino chips',
+		weight = 0,
+		close = true,
+		consume = 0,
+		stack = true,
+	},
 
-['casino_coffee'] = {
-    label = 'casino coffee',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_coffee'] = {
+		label = 'casino coffee',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_coke'] = {
-    label = 'casino coke',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_coke'] = {
+		label = 'casino coke',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_donut'] = {
-    label = 'casino donut',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_donut'] = {
+		label = 'casino donut',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_ego_chaser'] = {
-    label = 'casino ego chaser',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_ego_chaser'] = {
+		label = 'casino ego chaser',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_luckypotion'] = {
-    label = 'casino luckypotion',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_luckypotion'] = {
+		label = 'casino luckypotion',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_psqs'] = {
-    label = 'Casino Ps & Qs',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_psqs'] = {
+		label = 'Casino Ps & Qs',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_sandwitch'] = {
-    label = 'casino sandwitch',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_sandwitch'] = {
+		label = 'casino sandwitch',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
-['casino_sprite'] = {
-    label = 'casino sprite',
-    weight = 0,
-    close = true,
-    consume = 0,
-},
+	['casino_sprite'] = {
+		label = 'casino sprite',
+		weight = 0,
+		close = true,
+		consume = 0,
+	},
 
 	['blue_keycard'] = {
-    label = 'Blue Keycard',
-    weight = 100,
-    stack = false
-},
+		label = 'Blue Keycard',
+		weight = 100,
+		stack = false
+	},
 
-['purple_keycard'] = {
-    label = 'Purple Keycard',
-    weight = 100,
-    stack = false
-},
+	['purple_keycard'] = {
+		label = 'Purple Keycard',
+		weight = 100,
+		stack = false
+	},
 
-['hack_usb'] = {
-    label = 'Phantom USB',
-    weight = 100,
-    stack = false
-},
+	['hack_usb'] = {
+		label = 'Phantom USB',
+		weight = 100,
+		stack = false
+	},
 
-['hack_card'] = {
-    label = 'Spoofing Card',
-    weight = 100,
-    stack = false
-},
+	['hack_card'] = {
+		label = 'Spoofing Card',
+		weight = 100,
+		stack = false
+	},
 
-['coins'] = {
-    label = 'Coins',
-    weight = 10,
-},
+	['coins'] = {
+		label = 'Coins',
+		weight = 10,
+	},
 
-['painting'] = {
-    label = 'Painting',
-    weight = 100,
-},
+	['painting'] = {
+		label = 'Painting',
+		weight = 100,
+	},
 
-['bomb_c4'] = {
-    label = 'C4 Explosive',
-    weight = 3000,
-},
+	['bomb_c4'] = {
+		label = 'C4 Explosive',
+		weight = 3000,
+	},
 
-['angle_grinder'] = {
-    label = 'Angle Grinder',
-    weight = 1500,
-},
+	['angle_grinder'] = {
+		label = 'Angle Grinder',
+		weight = 1500,
+	},
 
-["gruppesechstablet"] = {
+	["gruppesechstablet"] = {
 		label = "Gruppe Sechs Tablet",
 		weight = 500,
 		stack = false,
@@ -2755,177 +2360,187 @@ return {
 			image = "gruppesechstablet.png",
 		}
 	},
-['contracts_tablet'] = {
-    label = 'Contract Tablet',
-    stack = false,
-    weight = 400,
-},
+	['contracts_tablet'] = {
+		label = 'Contract Tablet',
+		stack = false,
+		weight = 400,
+	},
 
-['classified_docs'] = {
-    label = 'Classified Documents',
-    weight = 100,
-},
+	['classified_docs'] = {
+		label = 'Classified Documents',
+		weight = 100,
+	},
 
-['diamond_necklace'] = {
-    label = 'Diamond Necklace',
-    weight = 100,
-},
+	['diamond_necklace'] = {
+		label = 'Diamond Necklace',
+		weight = 100,
+	},
 
-['diamonds_box'] = {
-    label = 'Diamonds Box',
-    weight = 200,
-},
+	['diamonds_box'] = {
+		label = 'Diamonds Box',
+		weight = 200,
+	},
 
-['luxurious_watch'] = {
-    label = 'Luxurious Watch',
-    weight = 200,
-},
+	['luxurious_watch'] = {
+		label = 'Luxurious Watch',
+		weight = 200,
+	},
 
-['rare_coins'] = {
-    label = 'Rare Coins',
-    weight = 500,
-},
+	['rare_coins'] = {
+		label = 'Rare Coins',
+		weight = 500,
+	},
 
-['diamond_ring'] = {
-    label = 'Diamond Ring',
-    weight = 50,
-},
+	['diamond_ring'] = {
+		label = 'Diamond Ring',
+		weight = 50,
+	},
+	['diamond'] = {
+		label = 'Diamond',
+		weight = 50,
+	},
+	['thermite'] = {
+		label = 'Thermite',
+		weight = 350,
+	},
 
-['thermite'] = {
-    label = 'Thermite',
-    weight = 350,
-},
+	['gold_bar'] = {
+		label = 'Gold Bar',
+		weight = 500,
+	},
 
-['gold_bar'] = {
-    label = 'Gold Bar',
-    weight = 500,
-},
+	["large_drill"] = {
+		label = "Large Drill",
+		weight = 12500,
+		stack = true,
+		close = true,
+	},
 
-["large_drill"] = {
-    label = "Large Drill",
-    weight = 12500,
-    stack = true,
-    close = true,
-},
+	['casino_keycard'] = {
+		label = 'Casino Keycard',
+		weight = 100,
+		stack = false
+	},
 
-['casino_keycard'] = {
-    label = 'Casino Keycard',
-    weight = 100,
-    stack = false
-},
+	["small_drill"] = {
+		label = "Small Drill",
+		weight = 2000,
+		stack = true,
+		close = true,
+	},
 
-["small_drill"] = {
-    label = "Small Drill",
-    weight = 2000,
-    stack = true,
-    close = true,
-},
+	['explosives'] = {
+		label = 'Explosives',
+		weight = 3000,
+	},
 
-['explosives'] = {
-    label = 'Explosives',
-    weight = 3000,
-},
+	['tv'] = {
+		label = 'Television',
+		weight = 12500,
+		stack = true,
+	},
 
-['tv'] = {
-    label = 'Television',
-    weight = 12500,
-    stack = true,
-},
+	['microwave'] = {
+		label = 'Microwave',
+		weight = 7500,
+		stack = true,
+	},
 
-['microwave'] = {
-    label = 'Microwave',
-    weight = 7500,
-    stack = true,
-},
+	['monitor'] = {
+		label = 'Computer Monitor',
+		weight = 5000,
+		stack = true,
+	},
 
-['monitor'] = {
-    label = 'Computer Monitor',
-    weight = 5000,
-    stack = true,
-},
+	['printer'] = {
+		label = 'Printer',
+		weight = 10000,
+		stack = true,
+	},
 
-['printer'] = {
-    label = 'Printer',
-    weight = 10000,
-    stack = true,
-},
+	['flat_tv'] = {
+		label = 'Flat Screen TV',
+		weight = 12500,
+		stack = true,
+	},
 
-['flat_tv'] = {
-    label = 'Flat Screen TV',
-    weight = 12500,
-    stack = true,
-},
+	['old_tv'] = {
+		label = 'Old TV',
+		weight = 12500,
+		stack = true,
+	},
 
-['old_tv'] = {
-    label = 'Old TV',
-    weight = 12500,
-    stack = true,
-},
+	['dj_deck'] = {
+		label = 'DJ Deck',
+		weight = 7500,
+		stack = true,
+	},
 
-['dj_deck'] = {
-    label = 'DJ Deck',
-    weight = 7500,
-    stack = true,
-},
+	['console'] = {
+		label = 'Gaming Console',
+		weight = 3000,
+		stack = true,
+	},
 
-['console'] = {
-    label = 'Gaming Console',
-    weight = 3000,
-    stack = true,
-},
+	['keyboard'] = {
+		label = 'Keyboard',
+		weight = 500,
+		stack = true,
+	},
 
-['keyboard'] = {
-    label = 'Keyboard',
-    weight = 500,
-    stack = true,
-},
+	['laptop'] = {
+		label = 'Laptop',
+		weight = 2500,
+		stack = true,
+	},
 
-['laptop'] = {
-    label = 'Laptop',
-    weight = 2500,
-    stack = true,
-},
+	['bong'] = {
+		label = 'Bong',
+		weight = 1000,
+		stack = true,
+	},
 
-['bong'] = {
-    label = 'Bong',
-    weight = 1000,
-    stack = true,
-},
+	['meth_bag'] = {
+		label = 'Meth Bag',
+		weight = 50,
+		stack = true,
+	},
 
-['meth_bag'] = {
-    label = 'Meth Bag',
-    weight = 50,
-    stack = true,
-},
+	['coke_brick'] = {
+		label = 'Coke Brick',
+		weight = 200,
+		stack = true,
+	},
 
-['coke_brick'] = {
-    label = 'Coke Brick',
-    weight = 200,
-    stack = true,
-},
+	['weed_brick'] = {
+		label = 'Weed Brick',
+		weight = 200,
+		stack = true,
+	},
 
-['weed_brick'] = {
-    label = 'Weed Brick',
-    weight = 200,
-    stack = true,
-},
+	['pink_diamond'] = {
+		label = 'Pink Diamond',
+		weight = 100,
+	},
 
-['pink_diamond'] = {
-    label = 'Pink Diamond',
-    weight = 100,
-},
+	['rare_tequila'] = {
+		label = 'Rare Tequila',
+		weight = 300,
+	},
 
-['rare_tequila'] = {
-    label = 'Rare Tequila',
-    weight = 300,
-},
+	['plasma_cutter'] = {
+		label = 'Plasma cutter',
+		weight = 1000,
+		stack = true,
+	},
 
-['plasma_cutter'] = {
-    label = 'Plasma cutter',
-    weight = 1000,
-    stack = true,
-},
-
+	['carkeys'] = {
+		label = 'Vehicle Keys',
+		weight = 120,
+		stack = false,
+		close = true,
+		description = "Keys To A Car",
+	},
 	['vehiclekeys'] = {
 		label = 'Vehicle Keys',
 		weight = 220,
@@ -3309,390 +2924,6 @@ return {
 
 
 
-
-
-	['trowel'] = {
-		label = 'Trowel',
-		description = "Perfect for your garden or for Coca plant",
-		weight = 250,
-		stack = true
-	},
-
-	['coke_leaf'] = {
-		label = 'Coca Leaf',
-		description = "Leaf from amazing plant",
-		weight = 15,
-		stack = true
-	},
-
-	['coke_access'] = {
-		label = 'Access card',
-		description = "Access Card for Coke Lab",
-		weight = 50,
-		stack = true
-	},
-
-	['coke_box'] = {
-		label = 'Box with Coke',
-		description = "Be careful not to spill it on the ground",
-		weight = 2000,
-		stack = true
-	},
-
-	['coke_raw'] = {
-		label = 'Raw Coke',
-		description = "Coke with some dirty particles",
-		weight = 50,
-		stack = true
-	},
-
-	['coke_pure'] = {
-		label = 'Pure Coke',
-		description = "Coke without any dirty particles",
-		weight = 70,
-		stack = true,
-		close = true
-	},
-
-	['coke_figure'] = {
-		label = 'Action Figure',
-		description = "Action Figure of the cartoon superhero Impotent Rage",
-		weight = 150,
-		stack = true
-	},
-
-	['coke_figureempty'] = {
-		label = 'EmptyAction Figure',
-		description = "Action Figure of the cartoon superhero Impotent Rage",
-		weight = 15,
-		stack = true
-	},
-
-	['coke_figurebroken'] = {
-		label = 'Pieces of Action Figure',
-		description = "You can throw this away or try to repair with glue",
-		weight = 100,
-		stack = true
-	},
-
-	['meth_amoniak'] = {
-		label = 'Ammonia',
-		description = "Warning! Dangerous Chemicals!",
-		weight = 1000,
-		stack = true
-	},
-
-	['meth_pipe'] = {
-		label = 'Meth Pipe',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 880,
-		stack = true
-	},
-
-	['crack_pipe'] = {
-		label = 'Crack Pipe',
-		description = "Enjoy your Crack!",
-		weight = 550,
-		stack = true
-	},
-
-	['meth_syringe'] = {
-		label = 'Syringe Meth',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 300,
-		stack = true
-	},
-
-	['heroin_syringe'] = {
-		label = 'Syringe Heroin',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 300,
-		stack = true
-	},
-
-	['syringe'] = {
-		label = 'Syringe',
-		description = "Enjoy your new crystal clear stuff!",
-		weight = 300,
-		stack = true
-	},
-
-	['meth_sacid'] = {
-		label = 'Sodium Benzoate Canister',
-		description = "Warning! Dangerous Chemicals!",
-		weight = 5000,
-		stack = true
-	},
-
-	['meth_emptysacid'] = {
-		label = 'Empty Canister',
-		description = "Material: Plastic, Good for Sodium Benzoate",
-		weight = 2000,
-		stack = true
-	},
-
-	['meth_access'] = {
-		label = 'Access card',
-		description = "Access Card for Meth Lab",
-		weight = 100,
-		stack = true,
-		close = true
-	},
-
-	['meth_glass'] = {
-		label = 'Tray with meth',
-		description = "Needs to be smashed with hammer",
-		weight = 1000,
-		stack = true
-	},
-
-	['meth_sharp'] = {
-		label = 'Tray with smashed meth',
-		description = "Can be packed",
-		weight = 1000,
-		stack = true
-	},
-
-	['meth_bag'] = {
-		label = 'Meth bag',
-		description = "Plastic bag with magic stuff!",
-		weight = 1000,
-		stack = true
-	},
-
-	['weed_package'] = {
-		label = 'Weed Bag',
-		description = "Plastic bag with magic stuff!",
-		weight = 500,
-		stack = true
-	},
-
-	['weed_access'] = {
-		label = 'Access card',
-		description = "Access Card for Weed Lab",
-		weight = 100,
-		stack = true
-	},
-
-	['weed_bud'] = {
-		label = 'Weed Bud',
-		description = "Needs to be clean at the table",
-		weight = 40,
-		stack = true
-	},
-
-	['weed_blunt'] = {
-		label = 'Blunt',
-		description = "Enjoy your weed!",
-		weight = 90,
-		stack = true,
-		close = true
-	},
-
-	['weed_wrap'] = {
-		label = 'Blunt wraps',
-		description = "Get Weed Bag and roll blunt!",
-		weight = 75,
-		stack = true,
-		close = true
-	},
-
-	['weed_papers'] = {
-		label = 'Weed papers',
-		description = "Get Weed Bag and roll joint!",
-		weight = 15,
-		stack = true,
-		close = true
-	},
-
-	['weed_joint'] = {
-		label = 'Joint',
-		description = "Enjoy your weed!",
-		weight = 50,
-		stack = true,
-		close = true
-	},
-
-	['weed_budclean'] = {
-		label = 'Weed Bud',
-		description = "You can pack this at the table",
-		weight = 35,
-		stack = true
-	},
-
-	['plastic_bag'] = {
-		label = 'Plastic bag',
-		description = "You can pack a lot of stuff here!",
-		weight = 8,
-		stack = true
-	},
-
-	['scissors'] = {
-		label = 'Scissors',
-		description = "To help you with collecting",
-		weight = 40,
-		stack = true
-	},
-
-	['ecstasy1'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['ecstasy2'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['ecstasy3'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['ecstasy4'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['ecstasy5'] = {
-		label = 'Ecstasy',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['lsd1'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['lsd2'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['lsd3'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['lsd4'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['lsd5'] = {
-		label = 'LSD',
-		description = "Explore a new universe!",
-		weight = 10,
-		stack = true,
-		close = true
-	},
-
-	['magicmushroom'] = {
-		label = 'Mushroom',
-		description = "Explore a new universe!",
-		weight = 30,
-		stack = true,
-		close = true
-	},
-
-	['peyote'] = {
-		label = 'Peyote',
-		description = "Explore a new universe!",
-		weight = 30,
-		stack = true,
-		close = true
-	},
-
-	['xanaxpack'] = {
-		label = 'Pack of Xanax',
-		description = "Needs to be open",
-		weight = 130,
-		stack = true,
-		close = true
-	},
-
-	['xanaxplate'] = {
-		label = 'Plate of Xanax',
-		description = "Needs to be open",
-		weight = 30,
-		stack = true,
-		close = true
-	},
-
-	['xanaxpill'] = {
-		label = 'Xanax pill',
-		description = "Explore a new universe!",
-		weight = 2,
-		stack = true,
-		close = true
-	},
-
-	['glue'] = {
-		label = 'Glue',
-		description = "Good for repairing things!",
-		weight = 30,
-		stack = true
-	},
-
-	['hammer'] = {
-		label = 'Hammer',
-		description = "Good for smashing things!",
-		weight = 500,
-		stack = true
-	},
-
-	['poppyplant'] = {
-		label = 'Poppy Plant',
-		description = "Very nice plant!",
-		weight = 30,
-		stack = true
-	},
-
-	['heroin'] = {
-		label = 'Heroin',
-		description = "Explore a new universe!",
-		weight = 30,
-		stack = true
-	},
-	['crack'] = {
-		label = 'Crack',
-		description = "Explore a new universe!",
-		weight = 30,
-		stack = true
-	},
-	['baking_soda'] = {
-		label = 'Baking Soda',
-		description = "Baking Bad!",
-		weight = 30,
-		stack = true
-	},
 	['cd'] = {
 		label = 'CD',
 		weight = 1,
@@ -6077,6 +5308,18 @@ return {
 		stack = true,
 		close = true,
 	},
+	['uvlight'] = {
+		label = 'UV Light',
+		weight = 2,
+		stack = true,
+		close = true,
+	},
+	['bleachwipes'] = {
+		label = 'Bleach Wipes',
+		weight = 2,
+		stack = true,
+		close = true,
+	},
 
 	['tracking_bracelet '] = {
 		label = 'Tracking Bracelet',
@@ -6333,29 +5576,29 @@ return {
 
 	},
 	['tunertablet'] = {
-    label = 'Tuner Tablet',
-    description = 'desc',
-    weight = 390,
-    stack = false,
-    consume = 0,
+		label = 'Tuner Tablet',
+		description = 'desc',
+		weight = 390,
+		stack = false,
+		consume = 0,
 
-    client = {
-        usetime = 150,
-        export = 'm-tuning.tunerTablet'
-    }
-},
-['tunerchecker'] = {
-    label = 'Tuner Tablet',
-    description = 'desc',
-    weight = 390,
-    stack = false,
-    consume = 0,
+		client = {
+			usetime = 150,
+			export = 'm-tuning.tunerTablet'
+		}
+	},
+	['tunerchecker'] = {
+		label = 'Tuner Tablet',
+		description = 'desc',
+		weight = 390,
+		stack = false,
+		consume = 0,
 
-    client = {
-        usetime = 150,
-        export = 'm-tuning.tunerCheckTablet'
-    }
-},
+		client = {
+			usetime = 150,
+			export = 'm-tuning.tunerCheckTablet'
+		}
+	},
 
 	['mustard'] = {
 		label = 'Mustard',
@@ -6609,7 +5852,10 @@ return {
 		label = 'Copper',
 		weight = 100,
 	},
-
+	['pickaxe'] = {
+		label = 'Pickaxe',
+		weight = 100,
+	},
 	['aluminium'] = {
 		label = 'Aluminium',
 		weight = 100,
@@ -6714,39 +5960,39 @@ return {
 		label = 'Grape Juice',
 		weight = 200,
 	},
--- OX Inventory Items
+	-- OX Inventory Items
 
-['twerks_candy'] = {
-    label = 'Twerks Candy',
-    weight = 100,
-    stack = true,
-    close = true,
-    description = 'A sweet candy treat.'
-},
+	['twerks_candy'] = {
+		label = 'Twerks Candy',
+		weight = 100,
+		stack = true,
+		close = true,
+		description = 'A sweet candy treat.'
+	},
 
-['snikkel_candy'] = {
-    label = 'Snikkel Candy',
-    weight = 100,
-    stack = true,
-    close = true,
-    description = 'A tasty candy snack.'
-},
+	['snikkel_candy'] = {
+		label = 'Snikkel Candy',
+		weight = 100,
+		stack = true,
+		close = true,
+		description = 'A tasty candy snack.'
+	},
 
-['kurkakola'] = {
-    label = 'Kurka Kola',
-    weight = 250,
-    stack = true,
-    close = true,
-    description = 'A refreshing cola drink.'
-},
+	['kurkakola'] = {
+		label = 'Kurka Kola',
+		weight = 250,
+		stack = true,
+		close = true,
+		description = 'A refreshing cola drink.'
+	},
 
-['tosti'] = {
-    label = 'Tosti',
-    weight = 300,
-    stack = true,
-    close = true,
-    description = 'A warm and delicious toasted sandwich.'
-},
+	['tosti'] = {
+		label = 'Tosti',
+		weight = 300,
+		stack = true,
+		close = true,
+		description = 'A warm and delicious toasted sandwich.'
+	},
 
 
 
@@ -6808,387 +6054,696 @@ return {
 
 	-- Jim-Mechanic --
 
-["mechanic_tools"] = {
-    label = "Mechanic tools", weight = 0, stack = false, close = true, description = "Needed for vehicle repairs",
-    client = { image = "mechanic_tools.png", event = "jim-mechanic:client:Repair:Check" }
-},
-["toolbox"] = {
-    label = "Toolbox", weight = 0, stack = false, close = true, description = "Needed for Performance part removal",
-    client = { image = "toolbox.png", event = "jim-mechanic:client:Menu" }
-},
-["ducttape"] = {
-    label = "Duct Tape", weight = 0, stack = false, close = true, description = "Good for quick fixes",
-    client = { image = "bodyrepair.png", event = "jim-mechanic:quickrepair" }
-},
-['mechboard'] = { label = 'Mechanic Sheet', weight = 0, stack = false, close = true,
-    buttons = {
-        { 	label = 'View List',
-            action = function(slot)
-                local items = exports.ox_inventory:Search('slots', 'mechboard')
-                for _, v in pairs(items) do
-                    if (v.slot == slot) then
-                        local item = v
-                        item.info = item.metadata["info"] or {}
-                        TriggerEvent("jim-mechanic:client:giveList", item)
-                        exports.ox_inventory:closeInventory()
-                        break
-                    end
-                end
-            end
-        },
-        { 	label = 'Copy Parts List',
-            action = function(slot)
-                local items = exports.ox_inventory:Search('slots', 'mechboard')
-                for _, v in pairs(items) do
-                    if (v.slot == slot) then
-                        lib.setClipboard(v.metadata.info.vehlist)
-                        break
-                    end
-                end
-            end
-        },
-        { 	label = 'Copy Platedsdf Number',
-            action = function(slot)
-                local items = exports.ox_inventory:Search('slots', 'mechboard')
-                for _, v in pairs(items) do
-                    if (v.slot == slot) then
-                        lib.setClipboard(v.metadata.info.vehplate)
-                        break
-                    end
-                end
-            end
-        },
-        {	label = 'Copy Vehicle Model',
-            action = function(slot)
-                local items = exports.ox_inventory:Search('slots', 'mechboard')
-                for _, v in pairs(items) do
-                    if (v.slot == slot) then
-                        lib.setClipboard(v.metadata.info.veh) break
-                    end
-                end
-            end
-        },
-    },
-    client = {
-        event = "jim-mechanic:client:giveList"
-    }
-},
---Performance
-["turbo"] = {
-    label = "Supercharger Turbo", weight = 0, stack = false, close = true, description = "Who doesn't need a 65mm Turbo??",
-    client = { image = "turbo.png", event = "jim-mechanic:client:applyTurbo", remove = false },
-},
-["car_armor"] = {
-    label = "Vehicle Armor", weight = 0, stack = false, close = true, description = "",
-    client = { image = "armour.png", event = "jim-mechanic:client:applyArmour", remove = false },
-},
-["nos"] = {
-    label = "NOS Bottle", weight = 0, stack = false, close = true, description = "A full bottle of NOS",
-    client = { image = "nos.png", event = "jim-mechanic:client:applyNOS", },
-},
-["noscan"] = {
-    label = "Empty NOS Bottle", weight = 0, stack = true, close = true, description = "An Empty bottle of NOS",
-    client = { image = "noscan.png", }
-},
-["noscolour"] = {
-    label = "NOS Colour Injector", weight = 0, stack = true, close = true, description = "Make that purge spray",
-    client = { image = "noscolour.png", event = "jim-mechanic:client:NOS:rgbORhex", },
-},
+	["mechanic_tools"] = {
+		label = "Mechanic tools",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "Needed for vehicle repairs",
+		client = { image = "mechanic_tools.png", event = "jim-mechanic:client:Repair:Check" }
+	},
+	["toolbox"] = {
+		label = "Toolbox",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "Needed for Performance part removal",
+		client = { image = "toolbox.png", event = "jim-mechanic:client:Menu" }
+	},
+	["ducttape"] = {
+		label = "Duct Tape",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "Good for quick fixes",
+		client = { image = "bodyrepair.png", event = "jim-mechanic:quickrepair" }
+	},
+	['mechboard'] = {
+		label = 'Mechanic Sheet',
+		weight = 0,
+		stack = false,
+		close = true,
+		buttons = {
+			{
+				label = 'View List',
+				action = function(slot)
+					local items = exports.ox_inventory:Search('slots', 'mechboard')
+					for _, v in pairs(items) do
+						if (v.slot == slot) then
+							local item = v
+							item.info = item.metadata["info"] or {}
+							TriggerEvent("jim-mechanic:client:giveList", item)
+							exports.ox_inventory:closeInventory()
+							break
+						end
+					end
+				end
+			},
+			{
+				label = 'Copy Parts List',
+				action = function(slot)
+					local items = exports.ox_inventory:Search('slots', 'mechboard')
+					for _, v in pairs(items) do
+						if (v.slot == slot) then
+							lib.setClipboard(v.metadata.info.vehlist)
+							break
+						end
+					end
+				end
+			},
+			{
+				label = 'Copy Platedsdf Number',
+				action = function(slot)
+					local items = exports.ox_inventory:Search('slots', 'mechboard')
+					for _, v in pairs(items) do
+						if (v.slot == slot) then
+							lib.setClipboard(v.metadata.info.vehplate)
+							break
+						end
+					end
+				end
+			},
+			{
+				label = 'Copy Vehicle Model',
+				action = function(slot)
+					local items = exports.ox_inventory:Search('slots', 'mechboard')
+					for _, v in pairs(items) do
+						if (v.slot == slot) then
+							lib.setClipboard(v.metadata.info.veh)
+							break
+						end
+					end
+				end
+			},
+		},
+		client = {
+			event = "jim-mechanic:client:giveList"
+		}
+	},
+	--Performance
+	["turbo"] = {
+		label = "Supercharger Turbo",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "Who doesn't need a 65mm Turbo??",
+		client = { image = "turbo.png", event = "jim-mechanic:client:applyTurbo", remove = false },
+	},
+	["car_armor"] = {
+		label = "Vehicle Armor",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "armour.png", event = "jim-mechanic:client:applyArmour", remove = false },
+	},
+	["nos"] = {
+		label = "NOS Bottle",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "A full bottle of NOS",
+		client = { image = "nos.png", event = "jim-mechanic:client:applyNOS", },
+	},
+	["noscan"] = {
+		label = "Empty NOS Bottle",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "An Empty bottle of NOS",
+		client = { image = "noscan.png", }
+	},
+	["noscolour"] = {
+		label = "NOS Colour Injector",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "Make that purge spray",
+		client = { image = "noscolour.png", event = "jim-mechanic:client:NOS:rgbORhex", },
+	},
 
-["engine1"] = {
-    label = "Tier 1 Engine", weight = 0, stack = false, close = true, description = "",
-    client = { image = "engine1.png",  event = "jim-mechanic:client:applyEngine", level = 0, remove = false },
-},
-["engine2"] = {
-    label = "Tier 2 Engine", weight = 0, stack = false, close = true, description = "",
-    client = { image = "engine2.png",  event = "jim-mechanic:client:applyEngine", level = 1, remove = false },
-},
-["engine3"] = {
-    label = "Tier 3 Engine", weight = 0, stack = false, close = true, description = "",
-    client = { image = "engine3.png",  event = "jim-mechanic:client:applyEngine", level = 2, remove = false },
-},
-["engine4"] = {
-    label = "Tier 4 Engine", weight = 0, stack = false, close = true, description = "",
-    client = { image = "engine4.png",  event = "jim-mechanic:client:applyEngine", level = 3, remove = false },
-},
-["engine5"] = {
-    label = "Tier 5 Engine", weight = 0, stack = false, close = true, description = "",
-    client = { image = "engine5.png",  event = "jim-mechanic:client:applyEngine", level = 4, remove = false },
-},
+	["engine1"] = {
+		label = "Tier 1 Engine",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "engine1.png", event = "jim-mechanic:client:applyEngine", level = 0, remove = false },
+	},
+	["engine2"] = {
+		label = "Tier 2 Engine",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "engine2.png", event = "jim-mechanic:client:applyEngine", level = 1, remove = false },
+	},
+	["engine3"] = {
+		label = "Tier 3 Engine",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "engine3.png", event = "jim-mechanic:client:applyEngine", level = 2, remove = false },
+	},
+	["engine4"] = {
+		label = "Tier 4 Engine",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "engine4.png", event = "jim-mechanic:client:applyEngine", level = 3, remove = false },
+	},
+	["engine5"] = {
+		label = "Tier 5 Engine",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "engine5.png", event = "jim-mechanic:client:applyEngine", level = 4, remove = false },
+	},
 
-["transmission1"] = {
-    label = "Tier 1 Transmission", weight = 0, stack = false, close = true, description = "",
-    client = { image = "transmission1.png",  event = "jim-mechanic:client:applyTransmission", level = 0, remove = false },
-},
-["transmission2"] = {
-    label = "Tier 2 Transmission", weight = 0, stack = false, close = true, description = "",
-    client = { image = "transmission2.png",  event = "jim-mechanic:client:applyTransmission", level = 1, remove = false },
-},
-["transmission3"] = {
-    label = "Tier 3 Transmission", weight = 0, stack = false, close = true, description = "",
-    client = { image = "transmission3.png",  event = "jim-mechanic:client:applyTransmission", level = 2, remove = false },
-},
-["transmission4"] = {
-    label = "Tier 4 Transmission", weight = 0, stack = false, close = true, description = "",
-    client = { image = "transmission4.png",  event = "jim-mechanic:client:applyTransmission", level = 3, remove = false },
-},
+	["transmission1"] = {
+		label = "Tier 1 Transmission",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "transmission1.png", event = "jim-mechanic:client:applyTransmission", level = 0, remove = false },
+	},
+	["transmission2"] = {
+		label = "Tier 2 Transmission",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "transmission2.png", event = "jim-mechanic:client:applyTransmission", level = 1, remove = false },
+	},
+	["transmission3"] = {
+		label = "Tier 3 Transmission",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "transmission3.png", event = "jim-mechanic:client:applyTransmission", level = 2, remove = false },
+	},
+	["transmission4"] = {
+		label = "Tier 4 Transmission",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "transmission4.png", event = "jim-mechanic:client:applyTransmission", level = 3, remove = false },
+	},
 
-["brakes1"] = {
-    label = "Tier 1 Brakes", weight = 0, stack = false, close = true, description = "",
-    client = { image = "brakes1.png",  event = "jim-mechanic:client:applyBrakes", level = 0, remove = false },
-},
-["brakes2"] = {
-    label = "Tier 2 Brakes", weight = 0, stack = false, close = true, description = "",
-    client = { image = "brakes2.png",  event = "jim-mechanic:client:applyBrakes", level = 1, remove = false },
-},
-["brakes3"] = {
-    label = "Tier 3 Brakes", weight = 0, stack = false, close = true, description = "",
-    client = { image = "brakes3.png",  event = "jim-mechanic:client:applyBrakes", level = 2, remove = false },
-},
+	["brakes1"] = {
+		label = "Tier 1 Brakes",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "brakes1.png", event = "jim-mechanic:client:applyBrakes", level = 0, remove = false },
+	},
+	["brakes2"] = {
+		label = "Tier 2 Brakes",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "brakes2.png", event = "jim-mechanic:client:applyBrakes", level = 1, remove = false },
+	},
+	["brakes3"] = {
+		label = "Tier 3 Brakes",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "brakes3.png", event = "jim-mechanic:client:applyBrakes", level = 2, remove = false },
+	},
 
-["suspension1"] = {
-    label = "Tier 1 Suspension", weight = 0, stack = false, close = true, description = "",
-    client = { image = "suspension1.png", event = "jim-mechanic:client:applySuspension",  level = 0, remove = false },
-},
-["suspension2"] = {
-    label = "Tier 2 Suspension", weight = 0, stack = false, close = true, description = "",
-    client = { image = "suspension2.png", event = "jim-mechanic:client:applySuspension", level = 1, remove = false },
-},
-["suspension3"] = {
-    label = "Tier 3 Suspension", weight = 0, stack = false, close = true, description = "",
-    client = { image = "suspension3.png", event = "jim-mechanic:client:applySuspension", level = 2, remove = false },
-},
-["suspension4"] = {
-    label = "Tier 4 Suspension", weight = 0, stack = false, close = true, description = "",
-    client = { image = "suspension4.png", event = "jim-mechanic:client:applySuspension", level = 3, remove = false },
-},
-["suspension5"] = {
-    label = "Tier 5 Suspension", weight = 0, stack = false, close = true, description = "",
-    client = { image = "suspension5.png", event = "jim-mechanic:client:applySuspension", level = 4, remove = false },
-},
+	["suspension1"] = {
+		label = "Tier 1 Suspension",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "suspension1.png", event = "jim-mechanic:client:applySuspension", level = 0, remove = false },
+	},
+	["suspension2"] = {
+		label = "Tier 2 Suspension",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "suspension2.png", event = "jim-mechanic:client:applySuspension", level = 1, remove = false },
+	},
+	["suspension3"] = {
+		label = "Tier 3 Suspension",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "suspension3.png", event = "jim-mechanic:client:applySuspension", level = 2, remove = false },
+	},
+	["suspension4"] = {
+		label = "Tier 4 Suspension",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "suspension4.png", event = "jim-mechanic:client:applySuspension", level = 3, remove = false },
+	},
+	["suspension5"] = {
+		label = "Tier 5 Suspension",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "suspension5.png", event = "jim-mechanic:client:applySuspension", level = 4, remove = false },
+	},
 
-["bprooftires"] = {
-    label = "Bulletproof Tires", weight = 0, stack = false, close = true, description = "",
-    client = { image = "bprooftires.png", event = "jim-mechanic:client:applyBulletProof", remove = false },
-},
-["drifttires"] = {
-    label = "Drift Tires", weight = 0, stack = false, close = true, description = "",
-    client = { image = "drifttires.png", event = "jim-mechanic:client:applyDrift", remove = false },
-},
+	["bprooftires"] = {
+		label = "Bulletproof Tires",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "bprooftires.png", event = "jim-mechanic:client:applyBulletProof", remove = false },
+	},
+	["drifttires"] = {
+		label = "Drift Tires",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "drifttires.png", event = "jim-mechanic:client:applyDrift", remove = false },
+	},
 
-["oilp1"] = {
-    label = "Tier 1 Oil Pump", weight = 0, stack = false, close = true, description = "",
-    client = { image = "oilp1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "oilp", remove = false },
-},
-["oilp2"] = {
-    label = "Tier 2 Oil Pump", weight = 0, stack = false, close = true, description = "",
-    client = { image = "oilp2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "oilp", remove = false },
-},
-["oilp3"] = {
-    label = "Tier 3 Oil Pump", weight = 0, stack = false, close = true, description = "",
-    client = { image = "oilp3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "oilp", remove = false },
-},
+	["oilp1"] = {
+		label = "Tier 1 Oil Pump",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "oilp1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "oilp", remove = false },
+	},
+	["oilp2"] = {
+		label = "Tier 2 Oil Pump",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "oilp2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "oilp", remove = false },
+	},
+	["oilp3"] = {
+		label = "Tier 3 Oil Pump",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "oilp3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "oilp", remove = false },
+	},
 
-["drives1"] = {
-    label = "Tier 1 Drive Shaft", weight = 0, stack = false, close = true, description = "",
-    client = { image = "drives1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "drives", remove = false },
-},
-["drives2"] = {
-    label = "Tier 2 Drive Shaft", weight = 0, stack = false, close = true, description = "",
-    client = { image = "drives2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "drives", remove = false },
-},
-["drives3"] = {
-    label = "Tier 3 Drive Shaft", weight = 0, stack = false, close = true, description = "",
-    client = { image = "drives3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "drives", remove = false },
-},
+	["drives1"] = {
+		label = "Tier 1 Drive Shaft",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "drives1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "drives", remove = false },
+	},
+	["drives2"] = {
+		label = "Tier 2 Drive Shaft",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "drives2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "drives", remove = false },
+	},
+	["drives3"] = {
+		label = "Tier 3 Drive Shaft",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "drives3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "drives", remove = false },
+	},
 
-["cylind1"] = {
-    label = "Tier 1 Cylinder Head", weight = 0, stack = false, close = true, description = "",
-    client = { image = "cylind1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "cylind", remove = false },
-},
-["cylind2"] = {
-    label = "Tier 2 Cylinder Head", weight = 0, stack = false, close = true, description = "",
-    client = { image = "cylind2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "cylind", remove = false },
-},
-["cylind3"] = {
-    label = "Tier 3 Cylinder Head", weight = 0, stack = false, close = true, description = "",
-    client = { image = "cylind3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "cylind", remove = false },
-},
+	["cylind1"] = {
+		label = "Tier 1 Cylinder Head",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "cylind1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "cylind", remove = false },
+	},
+	["cylind2"] = {
+		label = "Tier 2 Cylinder Head",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "cylind2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "cylind", remove = false },
+	},
+	["cylind3"] = {
+		label = "Tier 3 Cylinder Head",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "cylind3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "cylind", remove = false },
+	},
 
-["cables1"] = {
-    label = "Tier 1 Battery Cables", weight = 0, stack = false, close = true, description = "",
-    client = { image = "cables1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "cables", remove = false },
-},
-["cables2"] = {
-    label = "Tier 2 Battery Cables", weight = 0, stack = false, close = true, description = "",
-    client = { image = "cables2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "cables", remove = false },
-},
-["cables3"] = {
-    label = "Tier 3 Battery Cables", weight = 0, stack = false, close = true, description = "",
-    client = { image = "cables3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "cables", remove = false },
-},
+	["cables1"] = {
+		label = "Tier 1 Battery Cables",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "cables1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "cables", remove = false },
+	},
+	["cables2"] = {
+		label = "Tier 2 Battery Cables",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "cables2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "cables", remove = false },
+	},
+	["cables3"] = {
+		label = "Tier 3 Battery Cables",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "cables3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "cables", remove = false },
+	},
 
-["fueltank1"] = {
-    label = "Tier 1 Fuel Tank", weight = 0, stack = false, close = true, description = "",
-    client = { image = "fueltank1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "fueltank", remove = false },
-},
-["fueltank2"] = {
-    label = "Tier 2 Fuel Tank", weight = 0, stack = false, close = true, description = "",
-    client = { image = "fueltank2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "fueltank", remove = false },
-},
-["fueltank3"] = {
-    label = "Tier 3 Fuel Tank", weight = 0, stack = false, close = true, description = "",
-    client = { image = "fueltank3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "fueltank", remove = false },
-},
+	["fueltank1"] = {
+		label = "Tier 1 Fuel Tank",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "fueltank1.png", event = "jim-mechanic:client:applyExtraPart", level = 1, mod = "fueltank", remove = false },
+	},
+	["fueltank2"] = {
+		label = "Tier 2 Fuel Tank",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "fueltank2.png", event = "jim-mechanic:client:applyExtraPart", level = 2, mod = "fueltank", remove = false },
+	},
+	["fueltank3"] = {
+		label = "Tier 3 Fuel Tank",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "fueltank3.png", event = "jim-mechanic:client:applyExtraPart", level = 3, mod = "fueltank", remove = false },
+	},
 
-["antilag"] = {
-    label = "AntiLag", weight = 0, stack = false, close = true, description = "",
-    client = { image = "antiLag.png", event = "jim-mechanic:client:applyAntiLag", remove = false },
-},
+	["antilag"] = {
+		label = "AntiLag",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "antiLag.png", event = "jim-mechanic:client:applyAntiLag", remove = false },
+	},
 
-["underglow_controller"] = {
-    label = "Neon Controller", weight = 0, stack = false, close = true, description = "",
-    client = { image = "underglow_controller.png", event = "jim-mechanic:client:neonMenu", },
-},
-["headlights"] = {
-    label = "Xenon Headlights", weight = 0, stack = false, close = true, description = "",
-    client = { image = "headlights.png", event = "jim-mechanic:client:applyXenons", },
-},
+	["underglow_controller"] = {
+		label = "Neon Controller",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "underglow_controller.png", event = "jim-mechanic:client:neonMenu", },
+	},
+	["headlights"] = {
+		label = "Xenon Headlights",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "headlights.png", event = "jim-mechanic:client:applyXenons", },
+	},
 
-["tint_supplies"] = {
-    label = "Window Tint Kit", weight = 0, stack = false, close = true, description = "",
-    client = { image = "tint_supplies.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
+	["tint_supplies"] = {
+		label = "Window Tint Kit",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "tint_supplies.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
 
-["customplate"] = {
-    label = "Customized Plates", weight = 0, stack = false, close = true, description = "",
-    client = { image = "plate.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["hood"] = {
-    label = "Vehicle Hood", weight = 0, stack = false, close = true, description = "",
-    client = { image = "hood.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["roof"] = {
-    label = "Vehicle Roof", weight = 0, stack = false, close = true, description = "",
-    client = { image = "roof.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["spoiler"] = {
-    label = "Vehicle Spoiler", weight = 0, stack = false, close = true, description = "",
-    client = { image = "spoiler.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["bumper"] = {
-    label = "Vehicle Bumper", weight = 0, stack = false, close = true, description = "",
-    client = { image = "bumper.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["skirts"] = {
-    label = "Vehicle Skirts", weight = 0, stack = false, close = true, description = "",
-    client = { image = "skirts.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["exhaust"] = {
-    label = "Vehicle Exhaust", weight = 0, stack = false, close = true, description = "",
-    client = { image = "exhaust.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["seat"] = {
-    label = "Seat Cosmetics", weight = 0, stack = false, close = true, description = "",
-    client = { image = "seat.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["rollcage"] = {
-    label = "Roll Cage", weight = 0, stack = false, close = true, description = "",
-    client = { image = "rollcage.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
+	["customplate"] = {
+		label = "Customized Plates",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "plate.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["hood"] = {
+		label = "Vehicle Hood",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "hood.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["roof"] = {
+		label = "Vehicle Roof",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "roof.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["spoiler"] = {
+		label = "Vehicle Spoiler",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "spoiler.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["bumper"] = {
+		label = "Vehicle Bumper",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "bumper.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["skirts"] = {
+		label = "Vehicle Skirts",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "skirts.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["exhaust"] = {
+		label = "Vehicle Exhaust",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "exhaust.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["seat"] = {
+		label = "Seat Cosmetics",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "seat.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["rollcage"] = {
+		label = "Roll Cage",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "rollcage.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
 
-["rims"] = {
-    label = "Custom Wheel Rims", weight = 0, stack = false, close = true, description = "",
-    client = { image = "rims.png", event = "jim-mechanic:client:Rims:Check", },
-},
+	["rims"] = {
+		label = "Custom Wheel Rims",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "rims.png", event = "jim-mechanic:client:Rims:Check", },
+	},
 
-["livery"] = {
-    label = "Livery Roll", weight = 0, stack = false, close = true, description = "",
-    client = { image = "livery.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["paintcan"] = {
-    label = "Vehicle Spray Can", weight = 0, stack = false, close = true, description = "",
-    client = { image = "spraycan.png", event = "jim-mechanic:client:Paints:Check", },
-},
-["tires"] = {
-    label = "Drift Smoke Tires", weight = 0, stack = false, close = true, description = "",
-    client = { image = "tires.png", event = "jim-mechanic:client:Tires:Check", },
-},
+	["livery"] = {
+		label = "Livery Roll",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "livery.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["paintcan"] = {
+		label = "Vehicle Spray Can",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "spraycan.png", event = "jim-mechanic:client:Paints:Check", },
+	},
+	["tires"] = {
+		label = "Drift Smoke Tires",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "tires.png", event = "jim-mechanic:client:Tires:Check", },
+	},
 
-["horn"] = {
-    label = "Custom Vehicle Horn", weight = 0, stack = false, close = true, description = "",
-    client = { image = "horn.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
+	["horn"] = {
+		label = "Custom Vehicle Horn",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "horn.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
 
-["internals"] = {
-    label = "Internal Cosmetics", weight = 0, stack = false, close = true, description = "",
-    client = { image = "internals.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
-["externals"] = {
-    label = "Exterior Cosmetics", weight = 0, stack = false, close = true, description = "",
-    client = { image = "mirror.png", event = "jim-mechanic:client:Cosmetic:Check", },
-},
+	["internals"] = {
+		label = "Internal Cosmetics",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "internals.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
+	["externals"] = {
+		label = "Exterior Cosmetics",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "mirror.png", event = "jim-mechanic:client:Cosmetic:Check", },
+	},
 
-["newoil"] = {
-    label = "Car Oil", weight = 0, stack = false, close = true, description = "",
-    client = { image = "caroil.png", },
-},
-["sparkplugs"] = {
-    label = "Spark Plugs", weight = 0, stack = false, close = true, description = "",
-    client = { image = "sparkplugs.png", },
-},
-["carbattery"] = {
-    label = "Car Battery", weight = 0, stack = false, close = true, description = "",
-    client = { image = "carbattery.png", },
-},
-["axleparts"] = {
-    label = "Axle Parts", weight = 0, stack = false, close = true, description = "",
-    client = { image = "axleparts.png", },
-},
-["sparetire"] = {
-    label = "Spare Tire", weight = 0, stack = false, close = true, description = "",
-    client = { image = "sparetire.png", event = "jim-mechanic:client:wheelRepair" },
-},
+	["newoil"] = {
+		label = "Car Oil",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "caroil.png", },
+	},
+	["sparkplugs"] = {
+		label = "Spark Plugs",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "sparkplugs.png", },
+	},
+	["carbattery"] = {
+		label = "Car Battery",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "carbattery.png", },
+	},
+	["axleparts"] = {
+		label = "Axle Parts",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "axleparts.png", },
+	},
+	["sparetire"] = {
+		label = "Spare Tire",
+		weight = 0,
+		stack = false,
+		close = true,
+		description = "",
+		client = { image = "sparetire.png", event = "jim-mechanic:client:wheelRepair" },
+	},
 
-["harness"] = {
-    label = "Race Harness", weight = 0, stack = true, close = true, description = "Racing Harness so no matter what you stay in the car",
-    client = { image = "harness.png", event = "jim-mechanic:client:applyHarness", remove = false },
-},
+	["harness"] = {
+		label = "Race Harness",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "Racing Harness so no matter what you stay in the car",
+		client = { image = "harness.png", event = "jim-mechanic:client:applyHarness", remove = false },
+	},
 
-["manual"] = {
-    label = "Manual Transmission", weight = 0, stack = true, close = true, description = "Manual Transmission change for vehicles",
-    client = { image = "manual.png", event = "jim-mechanic:client:applyManual", remove = false },
-},
+	["manual"] = {
+		label = "Manual Transmission",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "Manual Transmission change for vehicles",
+		client = { image = "manual.png", event = "jim-mechanic:client:applyManual", remove = false },
+	},
 
-["underglow"] = {
-    label = "Underglow LEDS", weight = 0, stack = true, close = true, description = "Underglow addition for vehicles",
-    client = { image = "underglow.png", event = "jim-mechanic:client:applyUnderglow", remove = false },
-},
+	["underglow"] = {
+		label = "Underglow LEDS",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "Underglow addition for vehicles",
+		client = { image = "underglow.png", event = "jim-mechanic:client:applyUnderglow", remove = false },
+	},
 
-["stancerkit"] = {
-    label = "Stancer Kit", weight = 0, stack = true, close = true, description = "Stancer Kit for vehicles",
-    client = { image = "stancerkit.png", event = "jim-mechanic:client:stancerMenu", remove = false },
-},
+	["stancerkit"] = {
+		label = "Stancer Kit",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "Stancer Kit for vehicles",
+		client = { image = "stancerkit.png", event = "jim-mechanic:client:stancerMenu", remove = false },
+	},
 
-["newplate"] = {
-    label = "New Plate", weight = 250, stack = false, close = true, description = "A Customizable licence plate.",
-    client = { image = "newplate.png", event = "jim-mechanic:client:setplate:Menu" }
-},
+	["newplate"] = {
+		label = "New Plate",
+		weight = 250,
+		stack = false,
+		close = true,
+		description = "A Customizable licence plate.",
+		client = { image = "newplate.png", event = "jim-mechanic:client:setplate:Menu" }
+	},
 
--- Replace these if these are already installed
+	-- Replace these if these are already installed
 
-["cleaningkit"] = {
-   label = "Cleaning Kit", weight = 0, stack = true, close = true, description = "A microfiber cloth with some soap will let your car sparkle again!",
-   client = { image = "cleaningkit.png", event = "jim-mechanic:client:cleanVehicle"},
-},
-["repairkit"] = {
-   label = "Repairkit", weight = 0, stack = true, close = true, description = "A nice toolbox with stuff to repair your vehicle",
-   client = { image = "repairkit.png", event = "jim-mechanic:vehFailure:RepairVehicle", item = "repairkit", full = false },
-},
-["advancedrepairkit"] = {
-   label = "Advanced Repairkit", weight = 0, stack = true, close = true, description = "A nice toolbox with stuff to repair your vehicle",
-   client = { image = "advancedkit.png", event = "jim-mechanic:vehFailure:RepairVehicle", item = "advancedrepairkit", full = true },
-},
+	["cleaningkit"] = {
+		label = "Cleaning Kit",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "A microfiber cloth with some soap will let your car sparkle again!",
+		client = { image = "cleaningkit.png", event = "jim-mechanic:client:cleanVehicle" },
+	},
+	["repairkit"] = {
+		label = "Repairkit",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "A nice toolbox with stuff to repair your vehicle",
+		client = { image = "repairkit.png", event = "jim-mechanic:vehFailure:RepairVehicle", item = "repairkit", full = false },
+	},
+	["advancedrepairkit"] = {
+		label = "Advanced Repairkit",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "A nice toolbox with stuff to repair your vehicle",
+		client = { image = "advancedkit.png", event = "jim-mechanic:vehFailure:RepairVehicle", item = "advancedrepairkit", full = true },
+	},
 
 
 
@@ -9978,7 +9533,7 @@ return {
 
 	['icecream_chc'] = { -- brain cold go brrrrr
 		label = 'Ice cream chocolate',
-		degrade = 1440,  -- 24 stunden
+		degrade = 1440, -- 24 stunden
 		weight = 250,
 		stack = true,
 		close = true,
@@ -9999,7 +9554,7 @@ return {
 
 	['icecream_lmn'] = { -- brain cold go brrrrr
 		label = 'Ice cream lemon',
-		degrade = 1440,  -- 24 stunden
+		degrade = 1440, -- 24 stunden
 		weight = 250,
 		stack = true,
 		close = true,
@@ -10020,7 +9575,7 @@ return {
 
 	['icecream_pso'] = { -- brain cold go brrrrr
 		label = 'Ice cream pistachio',
-		degrade = 1440,  -- 24 stunden
+		degrade = 1440, -- 24 stunden
 		weight = 250,
 		stack = true,
 		close = true,
@@ -10041,7 +9596,7 @@ return {
 
 	['icecream_rpy'] = { -- brain cold go brrrrr
 		label = 'Ice cream raspberry',
-		degrade = 1440,  -- 24 stunden
+		degrade = 1440, -- 24 stunden
 		weight = 250,
 		stack = true,
 		close = true,
@@ -10062,7 +9617,7 @@ return {
 
 	['icecream_ckd'] = { -- brain cold go brrrrr
 		label = 'Ice cream stracciatella',
-		degrade = 1440,  -- 24 stunden
+		degrade = 1440, -- 24 stunden
 		weight = 250,
 		stack = true,
 		close = true,
@@ -10083,7 +9638,7 @@ return {
 
 	['icecream_sby'] = { -- brain cold go brrrrr
 		label = 'Ice cream strawberry',
-		degrade = 1440,  -- 24 stunden
+		degrade = 1440, -- 24 stunden
 		weight = 250,
 		stack = true,
 		close = true,
@@ -10104,7 +9659,7 @@ return {
 
 	['icecream_vna'] = { -- brain cold go brrrrr
 		label = 'Ice cream walnut',
-		degrade = 1440,  -- 24 stunden
+		degrade = 1440, -- 24 stunden
 		weight = 250,
 		stack = true,
 		close = true,
@@ -13457,4 +13012,587 @@ return {
 
 
 
+
+	-- Servicing Items
+	["engine_oil"] = {
+		label = "Engine Oil",
+		weight = 1000,
+	},
+	["tyre_replacement"] = {
+		label = "Tyre Replacement",
+		weight = 1000,
+	},
+	["clutch_replacement"] = {
+		label = "Clutch Replacement",
+		weight = 1000,
+	},
+	["air_filter"] = {
+		label = "Air Filter",
+		weight = 100,
+	},
+	["spark_plug"] = {
+		label = "Spark Plug",
+		weight = 1000,
+	},
+	["brakepad_replacement"] = {
+		label = "Brakepad Replacement",
+		weight = 1000,
+	},
+	["suspension_parts"] = {
+		label = "Suspension Parts",
+		weight = 1000,
+	},
+	-- Engine Items
+	["i4_engine"] = {
+		label = "I4 Engine",
+		weight = 1000,
+	},
+	["v6_engine"] = {
+		label = "V6 Engine",
+		weight = 1000,
+	},
+	["v8_engine"] = {
+		label = "V8 Engine",
+		weight = 1000,
+	},
+	["v12_engine"] = {
+		label = "V12 Engine",
+		weight = 1000,
+	},
+	["turbocharger"] = {
+		label = "Turbocharger",
+		weight = 1000,
+	},
+	-- Electric Engines
+	["ev_motor"] = {
+		label = "EV Motor",
+		weight = 1000,
+	},
+	["ev_battery"] = {
+		label = "EV Battery",
+		weight = 1000,
+	},
+	["ev_coolant"] = {
+		label = "EV Coolant",
+		weight = 1000,
+	},
+	-- Drivetrain Items
+	["awd_drivetrain"] = {
+		label = "AWD Drivetrain",
+		weight = 1000,
+	},
+	["rwd_drivetrain"] = {
+		label = "RWD Drivetrain",
+		weight = 1000,
+	},
+	["fwd_drivetrain"] = {
+		label = "FWD Drivetrain",
+		weight = 1000,
+	},
+	-- Tuning Items
+	["slick_tyres"] = {
+		label = "Slick Tyres",
+		weight = 1000,
+	},
+	["semi_slick_tyres"] = {
+		label = "Semi Slick Tyres",
+		weight = 1000,
+	},
+	["offroad_tyres"] = {
+		label = "Offroad Tyres",
+		weight = 1000,
+	},
+	["drift_tuning_kit"] = {
+		label = "Drift Tuning Kit",
+		weight = 1000,
+	},
+	["ceramic_brakes"] = {
+		label = "Ceramic Brakes",
+		weight = 1000,
+	},
+	-- Cosmetic Items
+	["lighting_controller"] = {
+		label = "Lighting Controller",
+		weight = 100,
+		client = {
+			event = "jg-mechanic:client:show-lighting-controller",
+		}
+	},
+	["stancing_kit"] = {
+		label = "Stancer Kit",
+		weight = 100,
+		client = {
+			event = "jg-mechanic:client:show-stancer-kit",
+		}
+	},
+	["cosmetic_part"] = {
+		label = "Cosmetic Parts",
+		weight = 100,
+	},
+	["respray_kit"] = {
+		label = "Respray Kit",
+		weight = 1000,
+	},
+	["vehicle_wheels"] = {
+		label = "Vehicle Wheels Set",
+		weight = 1000,
+	},
+	["tyre_smoke_kit"] = {
+		label = "Tyre Smoke Kit",
+		weight = 1000,
+	},
+	["bulletproof_tyres"] = {
+		label = "Bulletproof Tyres",
+		weight = 1000,
+	},
+	["extras_kit"] = {
+		label = "Extras Kit",
+		weight = 1000,
+	},
+	-- Nitrous & Cleaning Items
+	["nitrous_bottle"] = {
+		label = "Nitrous Bottle",
+		weight = 1000,
+		client = {
+			event = "jg-mechanic:client:use-nitrous-bottle",
+		}
+	},
+	["empty_nitrous_bottle"] = {
+		label = "Empty Nitrous Bottle",
+		weight = 1000,
+	},
+	["nitrous_install_kit"] = {
+		label = "Nitrous Install Kit",
+		weight = 1000,
+	},
+	["cleaning_kit"] = {
+		label = "Cleaning Kit",
+		weight = 1000,
+		client = {
+			event = "jg-mechanic:client:clean-vehicle",
+		}
+	},
+	["repair_kit"] = {
+		label = "Repair Kit",
+		weight = 1000,
+		client = {
+			event = "jg-mechanic:client:repair-vehicle",
+		}
+	},
+	["duct_tape"] = {
+		label = "Duct Tape",
+		weight = 1000,
+		client = {
+			event = "jg-mechanic:client:use-duct-tape",
+		}
+	},
+	-- Performance Item
+	["performance_part"] = {
+		label = "Performance Parts",
+		weight = 1000,
+	},
+	-- Mechanic Tablet Item
+	["mechanic_tablet"] = {
+		label = "Mechanic Tablet",
+		weight = 1000,
+		client = {
+			event = "jg-mechanic:client:use-tablet",
+		}
+	},
+	-- Gearbox
+	["manual_gearbox"] = {
+		label = "Manual Gearbox",
+		weight = 1000,
+	},
+
+
+
+
+
+	-------------------------------- END ------------------------------------
+	---
+	---
+
+	['trowel'] = {
+		label = 'Trowel',
+		description = "Perfect for your garden or for Coca plant",
+		weight = 250,
+		stack = true
+	},
+
+	['coke_leaf'] = {
+		label = 'Coca Leaf',
+		description = "Leaf from amazing plant",
+		weight = 15,
+		stack = true
+	},
+
+	['coke_access'] = {
+		label = 'Access card',
+		description = "Access Card for Coke Lab",
+		weight = 50,
+		stack = true
+	},
+
+	['coke_box'] = {
+		label = 'Box with Coke',
+		description = "Be careful not to spill it on the ground",
+		weight = 2000,
+		stack = true
+	},
+
+	['coke_raw'] = {
+		label = 'Raw Coke',
+		description = "Coke with some dirty particles",
+		weight = 50,
+		stack = true
+	},
+
+	['coke_pure'] = {
+		label = 'Pure Coke',
+		description = "Coke without any dirty particles",
+		weight = 70,
+		stack = true,
+		close = true
+	},
+
+	['coke_figure'] = {
+		label = 'Action Figure',
+		description = "Action Figure of the cartoon superhero Impotent Rage",
+		weight = 150,
+		stack = true
+	},
+
+	['coke_figureempty'] = {
+		label = 'Action Figure',
+		description = "Action Figure of the cartoon superhero Impotent Rage",
+		weight = 150,
+		stack = true
+	},
+
+	['coke_figurebroken'] = {
+		label = 'Pieces of Action Figure',
+		description = "You can throw this away or try to repair with glue",
+		weight = 100,
+		stack = true
+	},
+
+	['meth_amoniak'] = {
+		label = 'Ammonia',
+		description = "Warning! Dangerous Chemicals!",
+		weight = 1000,
+		stack = true
+	},
+
+	['meth_pipe'] = {
+		label = 'Meth Pipe',
+		description = "Enjoy your new crystal clear stuff!",
+		weight = 880,
+		stack = true
+	},
+
+	['crack_pipe'] = {
+		label = 'Crack Pipe',
+		description = "Enjoy your Crack!",
+		weight = 550,
+		stack = true
+	},
+
+	['meth_syringe'] = {
+		label = 'Syringe Meth',
+		description = "Enjoy your new crystal clear stuff!",
+		weight = 300,
+		stack = true
+	},
+
+	['heroin_syringe'] = {
+		label = 'Syringe Heroin',
+		description = "Enjoy your new crystal clear stuff!",
+		weight = 300,
+		stack = true
+	},
+
+	['syringe'] = {
+		label = 'Syringe',
+		description = "Enjoy your new crystal clear stuff!",
+		weight = 300,
+		stack = true
+	},
+
+	['meth_sacid'] = {
+		label = 'Sodium Benzoate Canister',
+		description = "Warning! Dangerous Chemicals!",
+		weight = 5000,
+		stack = true
+	},
+
+	['meth_emptysacid'] = {
+		label = 'Empty Canister',
+		description = "Material: Plastic, Good for Sodium Benzoate",
+		weight = 2000,
+		stack = true
+	},
+
+	['meth_access'] = {
+		label = 'Access card',
+		description = "Access Card for Meth Lab",
+		weight = 100,
+		stack = true,
+		close = true
+	},
+
+	['meth_glass'] = {
+		label = 'Tray with meth',
+		description = "Needs to be smashed with hammer",
+		weight = 1000,
+		stack = true
+	},
+
+	['meth_sharp'] = {
+		label = 'Tray with smashed meth',
+		description = "Can be packed",
+		weight = 1000,
+		stack = true
+	},
+
+	['meth_bag'] = {
+		label = 'Meth bag',
+		description = "Plastic bag with magic stuff!",
+		weight = 1000,
+		stack = true
+	},
+
+	['weed_package'] = {
+		label = 'Weed Bag',
+		description = "Plastic bag with magic stuff!",
+		weight = 500,
+		stack = true
+	},
+
+	['weed_access'] = {
+		label = 'Access card',
+		description = "Access Card for Weed Lab",
+		weight = 100,
+		stack = true
+	},
+
+	['weed_bud'] = {
+		label = 'Weed Bud',
+		description = "Needs to be clean at the table",
+		weight = 40,
+		stack = true
+	},
+
+	['weed_blunt'] = {
+		label = 'Blunt',
+		description = "Enjoy your weed!",
+		weight = 90,
+		stack = true,
+		close = true
+	},
+
+	['weed_wrap'] = {
+		label = 'Blunt wraps',
+		description = "Get Weed Bag and roll blunt!",
+		weight = 75,
+		stack = true,
+		close = true
+	},
+
+	['weed_papers'] = {
+		label = 'Weed papers',
+		description = "Get Weed Bag and roll joint!",
+		weight = 15,
+		stack = true,
+		close = true
+	},
+
+	['weed_joint'] = {
+		label = 'Joint',
+		description = "Enjoy your weed!",
+		weight = 50,
+		stack = true,
+		close = true
+	},
+
+	['weed_budclean'] = {
+		label = 'Weed Bud',
+		description = "You can pack this at the table",
+		weight = 35,
+		stack = true
+	},
+
+	['plastic_bag'] = {
+		label = 'Plastic bag',
+		description = "You can pack a lot of stuff here!",
+		weight = 8,
+		stack = true
+	},
+
+	['scissors'] = {
+		label = 'Scissors',
+		description = "To help you with collecting",
+		weight = 40,
+		stack = true
+	},
+
+	['ecstasy1'] = {
+		label = 'Ecstasy',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['ecstasy2'] = {
+		label = 'Ecstasy',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['ecstasy3'] = {
+		label = 'Ecstasy',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['ecstasy4'] = {
+		label = 'Ecstasy',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['ecstasy5'] = {
+		label = 'Ecstasy',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['lsd1'] = {
+		label = 'LSD',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['lsd2'] = {
+		label = 'LSD',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['lsd3'] = {
+		label = 'LSD',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['lsd4'] = {
+		label = 'LSD',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['lsd5'] = {
+		label = 'LSD',
+		description = "Explore a new universe!",
+		weight = 10,
+		stack = true,
+		close = true
+	},
+
+	['magicmushroom'] = {
+		label = 'Mushroom',
+		description = "Explore a new universe!",
+		weight = 30,
+		stack = true,
+		close = true
+	},
+
+	['peyote'] = {
+		label = 'Peyote',
+		description = "Explore a new universe!",
+		weight = 30,
+		stack = true,
+		close = true
+	},
+
+	['xanaxpack'] = {
+		label = 'Pack of Xanax',
+		description = "Needs to be open",
+		weight = 130,
+		stack = true,
+		close = true
+	},
+
+	['xanaxplate'] = {
+		label = 'Plate of Xanax',
+		description = "Needs to be open",
+		weight = 30,
+		stack = true,
+		close = true
+	},
+
+	['xanaxpill'] = {
+		label = 'Xanax pill',
+		description = "Explore a new universe!",
+		weight = 2,
+		stack = true,
+		close = true
+	},
+
+	['glue'] = {
+		label = 'Glue',
+		description = "Good for repairing things!",
+		weight = 30,
+		stack = true
+	},
+
+	['hammer'] = {
+		label = 'Hammer',
+		description = "Good for smashing things!",
+		weight = 500,
+		stack = true
+	},
+
+	['poppyplant'] = {
+		label = 'Poppy Plant',
+		description = "Very nice plant!",
+		weight = 30,
+		stack = true
+	},
+
+	['heroin'] = {
+		label = 'Heroin',
+		description = "Explore a new universe!",
+		weight = 30,
+		stack = true
+	},
+	['crack'] = {
+		label = 'Crack',
+		description = "Explore a new universe!",
+		weight = 30,
+		stack = true
+	},
+	['baking_soda'] = {
+		label = 'Baking Soda',
+		description = "Baking Bad!",
+		weight = 30,
+		stack = true
+	},
 }
