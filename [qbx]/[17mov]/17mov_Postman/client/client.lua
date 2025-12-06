@@ -524,7 +524,6 @@ function L12_1(A0_2)
             goto lbl_216
           end
         end
-        ::lbl_216::
         if L3_2 then
           L9_2 = LastStation
           if L9_2 == L6_2 then
@@ -536,6 +535,7 @@ function L12_1(A0_2)
               end
             end
           end
+          ::lbl_216::
           L9_2 = LastStation
           if L9_2 then
             L9_2 = LastPart
@@ -771,7 +771,6 @@ function L12_1(A0_2)
             goto lbl_457
           end
         end
-        ::lbl_457::
         if L2_2 then
           L8_2 = LastStation
           if L8_2 == L5_2 then
@@ -783,6 +782,7 @@ function L12_1(A0_2)
               end
             end
           end
+          ::lbl_457::
           L8_2 = LastStation
           if L8_2 then
             L8_2 = LastPart

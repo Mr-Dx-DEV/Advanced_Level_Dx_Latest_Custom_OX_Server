@@ -6085,8 +6085,6 @@ function L14_1(A0_2, A1_2, A2_2)
       L13_2 = L10_2.key
       L12_2 = L12_2[L13_2]
       L4_2[L11_2] = L12_2
-      ::lbl_324::
-      ::lbl_320::
     end
     L5_2 = pairs
     L6_2 = A2_2
@@ -6337,10 +6335,12 @@ function L14_1(A0_2, A1_2, A2_2)
       L14_2 = A2_2.chipsOffset
       L14_2 = L14_2.z
       L15_2 = 0.0
+      ::lbl_320::
       L16_2 = 0.0
       L17_2 = 0.0
       L18_2 = false
       L19_2 = false
+      ::lbl_324::
       L20_2 = false
       L21_2 = false
       L22_2 = 2
