@@ -57,8 +57,8 @@ Config.IndicatorRightKeybind = "RIGHT"
 Config.IndicatorHazardsKeybind = "UP"
 
 -- Commands
-Config.OpenSettingsCommand = "settings"
-Config.ToggleHudCommand = "togglehud"
+Config.OpenSettingsCommand = "hudsettings"
+Config.ToggleHudCommand = "hudtoggle"
 
 -- Nearest postal
 -- Credit to https://github.com/DevBlocky/nearest-postal - see license in data/nearest-postal/LICENSE
