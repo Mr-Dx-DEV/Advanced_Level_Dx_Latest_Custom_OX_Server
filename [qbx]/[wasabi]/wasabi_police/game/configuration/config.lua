@@ -517,43 +517,43 @@ Config.Locations = {
         clockInAndOut = {
             enabled = true,                        -- Enable clocking in and out at a set location? (If using ESX you must have a off duty job for each e.x. offpolice for police offsheriff for sheriff AND have grades for each pd grade - QBCORE REQUIRES NOTHING)
             jobLock = 'police',                    -- This must be set to which job will be utilizing (ESX MUST HAVE OFF DUTY JOB / GRADES FOR THIS - ex. offpolice or offsheriff)
-            coords = vec3(442.77, -982.16, 31.78), -- Location of where to go on and off duty(If not using target)
+            coords = vec3(443.26, -982.3, 30.96), -- Location of where to go on and off duty(If not using target)
             label = '[E] - Go On/Off Duty',        -- Text to display(If not using target)
             distance = 3.0,                        -- Distance to display text UI(If not using target)
             target = {
-                enabled = false,                   -- If enabled, the location and distance above will be obsolete
+                enabled = true,                   -- If enabled, the location and distance above will be obsolete
                 label = 'Go On/Off Duty',
-                coords = vec3(464.87, -977.37, 30.69),
-                heading = 91.06,
+                coords = vec3(443.26, -982.3, 30.96),
+                heading = 105.15,
                 distance = 2.5,
                 width = 2.0,
                 length = 1.0,
-                minZ = 30.69 - 0.9,
-                maxZ = 30.69 + 0.9
+                minZ = 30.96 - 0.9,
+                maxZ = 30.96 + 0.9
             }
         },
 
         bossMenu = {
             enabled = true,                        -- Enable boss menu?
             jobLock = 'police',                    -- Lock to specific police job? Set to false if not desired
-            coords = vec3(460.64, -985.64, 30.73), -- Location of boss menu (If not using target)
+            coords = vec3(469.15, -976.14, 34.78), -- Location of boss menu (If not using target)
             label = '[E] - Access Boss Menu',      -- Text UI label string (If not using target)
             distance = 3.0,                        -- Distance to allow access/prompt with text UI (If not using target)
             target = {
-                enabled = false,                   -- If enabled, the location and distance above will be obsolete
+                enabled = true,                   -- If enabled, the location and distance above will be obsolete
                 label = 'Access Boss Menu',
-                coords = vec3(460.64, -985.64, 30.73),
-                heading = 269.85,
+                coords = vec3(469.15, -976.14, 34.78),
+                heading = 92.55,
                 distance = 2.0,
                 width = 2.0,
                 length = 1.0,
-                minZ = 30.73 - 0.9,
-                maxZ = 30.73 + 0.9
+                minZ = 34.78 - 0.9,
+                maxZ = 34.78 + 0.9
             }
         },
 
         armoury = {
-            enabled = true,                                                                              -- Set to false if you don't want to use
+            enabled = false,                                                                              -- Set to false if you don't want to use
             coords = vec3(480.32, -996.67, 30.69 - 0.9),                                                 -- Coords of armoury
             heading = 86.95,                                                                             -- Heading of armoury NPC
             ped = 's_f_y_cop_01',                                                                        -- Ped model or false for no ped
@@ -604,7 +604,7 @@ Config.Locations = {
         },
 
         cloakroom = {
-            enabled = true,                        -- WILL NOT SHOW IN QBCORE INSTEAD USE QB-CLOTHING CONFIG! Set to false if you don't want to use (Compatible with esx_skin & wasabi fivem-appearance fork)
+            enabled = false,                        -- WILL NOT SHOW IN QBCORE INSTEAD USE QB-CLOTHING CONFIG! Set to false if you don't want to use (Compatible with esx_skin & wasabi fivem-appearance fork)
             jobLock = 'police',                    -- Allow only one of Config.policeJob listings / Set to false if allow all Config.policeJobs
             coords = vec3(462.36, -999.62, 30.69), -- Coords of cloakroom
             label = '[E] - Change Clothes',        -- String of text ui of cloakroom
@@ -769,7 +769,7 @@ Config.Locations = {
 
 
         vehicles = {                                   -- Vehicle Garage
-            enabled = true,                            -- Enable? False if you have you're own way for medics to obtain vehicles.
+            enabled = false,                            -- Enable? False if you have you're own way for medics to obtain vehicles.
             jobLock = 'police',                        -- Job lock? or access to all police jobs by using false
             zone = {
                 coords = vec3(463.69, -1019.72, 28.1), -- Area to prompt vehicle garage
