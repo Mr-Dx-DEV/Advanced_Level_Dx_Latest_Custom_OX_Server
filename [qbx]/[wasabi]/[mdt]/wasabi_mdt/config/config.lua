@@ -29,7 +29,7 @@ Config.ImgDirectory = 'ox_inventory/web/images/' -- The directory where the imag
 
 Config.OpenMDT = {
     item = {
-        enabled = false,
+        enabled = true,
         name = 'mdt_tablet', -- Name of the item to use to open the panel
     },
     command = {
