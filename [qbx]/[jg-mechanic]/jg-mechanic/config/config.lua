@@ -7,7 +7,7 @@ Config.Notifications = "ox_lib" -- or "default", "ox_lib", "lation_ui", "ps-ui",
 Config.ProgressBar = "ox-circle" -- or "ox-circle", "ox-bar", "lation_ui", "qb"
 Config.SkillCheck = "ox" -- or "ox", "qb", "lation_ui"
 Config.DrawText = "jg-textui" -- or "jg-textui", "ox_lib", "okokTextUI", "ps-ui", "lation_ui", "qb"
-Config.SocietyBanking = "fd_banking" -- or "okokBanking", "fd_banking", "Renewed-Banking", "tgg-banking", "qb-banking", "qb-management", "esx_addonaccount"
+Config.SocietyBanking = "Renewed-Banking" -- or "okokBanking", "fd_banking", "Renewed-Banking", "tgg-banking", "qb-banking", "qb-management", "esx_addonaccount"
 Config.Menus = "ox" -- or "ox", "lation_ui"
 
 -- Localisation
@@ -16,15 +16,15 @@ Config.NumberAndDateFormat = "en-US"
 Config.Currency = "USD"
 
 -- Set to false to use built-in job system
-Config.UseFrameworkJobs = false
+Config.UseFrameworkJobs = true
 
 -- Mechanic Tablet
-Config.UseTabletCommand = "mechtablet" -- set to false to disable command
+Config.UseTabletCommand = false -- set to false to disable command
 Config.TabletConnectionMaxDistance = 4.0
 
 -- Shops
 Config.Target = "ox_target" -- (shops/stashes only) "qb-target" or "ox_target"
-Config.UseSocietyFund = true -- set to false to use player balance
+Config.UseSocietyFund = false -- set to false to use player balance
 Config.PlayerBalance = "bank" -- or "bank" or "cash"
 
 -- Skill Bars
@@ -105,41 +105,12 @@ Config.DisableNoPaymentOptionForEmployees = false
 
 -- Mechanic Locations
 Config.MechanicLocations = {
-  bennys = {
-    type = "owned",
+  AutoRepair = {
+    type = "self-service",
     logo = "bennys.png", -- logos go in /logos
     locations = {
       {
-        coords = vector3(-211.6, -1324.73, 30.23),
-        size = 8.0,
-        showBlip = true,
-      }
-    },
-    blip = {
-      id = 446,
-      color = 47,
-      scale = 0.7
-    },
-    mods = {
-      repair           = { enabled = true, price = 500, percentVehVal = 0.01 },
-      performance      = { enabled = true, price = 500, percentVehVal = 0.01, priceMult = 0.1 },
-      cosmetics        = { enabled = true, price = 500, percentVehVal = 0.01, priceMult = 0.1 },
-      stance           = { enabled = true, price = 500, percentVehVal = 0.01 },
-      respray          = { enabled = true, price = 500, percentVehVal = 0.01 },
-      wheels           = { enabled = true, price = 500, percentVehVal = 0.01, priceMult = 0.1 },
-      neonLights       = { enabled = true, price = 500, percentVehVal = 0.01 },
-      headlights       = { enabled = true, price = 500, percentVehVal = 0.01 },
-      tyreSmoke        = { enabled = true, price = 500, percentVehVal = 0.01 },
-      bulletproofTyres = { enabled = true, price = 500, percentVehVal = 0.01 },
-      extras           = { enabled = true, price = 500, percentVehVal = 0.01 }
-    },
-  },
-  grove = {
-    type = "owned",
-    logo = "bennys.png", -- logos go in /logos
-    locations = {
-      {
-        coords = vector3(-86.9488, -1808.3201, 26.5102),
+        coords = vector3(536.7, -181.84, 54.4),
         size = 8.0,
         showBlip = true,
       }
@@ -172,7 +143,7 @@ Config.MechanicLocations = {
       gearboxes        = { enabled = true, requiresItem = true },
     },
   },
-  lscustoms = {
+  Benny = {
     type = "owned",
     job = "mechanic",
     jobManagementRanks = {4},
@@ -180,15 +151,33 @@ Config.MechanicLocations = {
     commission = 0, -- %, 10 = 10%
     locations = {
       {
-        coords = vector3(-337.25, -137.2, 38.35),
-        size = 6.5,
+        coords = vector3(-218.96, -1336.87, 30.6),
+        size = 3.0,
         showBlip = true,
       },
       {
-        coords = vector3(-324.2, -132.0, 38.54),
+        coords = vector3(-218.98, -1343.12, 30.39),
         size = 3.0,
         showBlip = false,
-        employeeOnly = true,
+        employeeOnly = false,
+      },
+      {
+        coords = vector3(-192.57, -1315.22, 30.98),
+        size = 3.0,
+        showBlip = false,
+        employeeOnly = false,
+      },
+      {
+        coords = vector3(-204.19, -1340.87, 30.79),
+        size = 3.0,
+        showBlip = false,
+        employeeOnly = false,
+      },
+      {
+        coords = vector3(-203.61, -1336.57, 30.64),
+        size = 3.0,
+        showBlip = false,
+        employeeOnly = false,
       }
     },
     blip = {
@@ -209,13 +198,22 @@ Config.MechanicLocations = {
       bulletproofTyres = { enabled = true, price = 500, percentVehVal = 0.01 },
       extras           = { enabled = true, price = 500, percentVehVal = 0.01 }
     },
+    tuning = {
+      engineSwaps      = { enabled = true, requiresItem = true },
+      drivetrains      = { enabled = true, requiresItem = true },
+      turbocharging    = { enabled = true, requiresItem = true },
+      tyres            = { enabled = true, requiresItem = true },
+      brakes           = { enabled = true, requiresItem = true },
+      driftTuning      = { enabled = true, requiresItem = true },
+      gearboxes        = { enabled = true, requiresItem = true },
+    },
     carLifts = { -- only usable by employees
-      vector4(-357.45, -114.17, 38.7, 339.89)
+      -- vector4(-227.46, -1336.57, 31.3, 359.98)
     },
     shops = {
       {
         name = "Servicing Supplies",
-        coords = vector3(-79.5129, -1807.4344, 26.9435),
+        coords = vector3(-213.59, -1344.57, 31.4),
         size = 2.0,
         usePed = false,
         pedModel = "s_m_m_lathandy_01",
@@ -232,7 +230,7 @@ Config.MechanicLocations = {
       },
       {
         name = "Advanced Upgrades",
-        coords = vector3(-200.5524, -1319.6343, 31.0893),
+        coords = vector3(-211.15, -1344.58, 31.4),
         size = 2.0,
         usePed = false,
         pedModel = "s_m_m_lathandy_01",
@@ -247,7 +245,7 @@ Config.MechanicLocations = {
     stashes = {
       {
         name = "Parts Bin",
-        coords = vector3(-339.24, -132.2, 39.01),
+        coords = vector3(-204.89, -1344.52, 31.4),
         size = 2.0,
         usePed = false,
         pedModel = "s_m_m_lathandy_01",
@@ -277,5 +275,5 @@ Config.ElectricVehicles = {
 
 -- Nerd options
 Config.DisableSound = false
-Config.AutoRunSQL = false
+Config.AutoRunSQL = true
 Config.Debug = false
