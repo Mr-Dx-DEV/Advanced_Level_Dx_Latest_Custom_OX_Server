@@ -12,7 +12,7 @@ Config.PoliceJobs = { -- Police jobs/grades able to use evidence system
 --  ['sheriff'] = 2 -- Example
 }
 Config.CriminalsCanCleanEvidence = {
-    enabled = false, -- Criminals are able to clean up bullets/blood when enabled
+    enabled = true, -- Criminals are able to clean up bullets/blood when enabled
     requiredBloodCleanItem = 'bleachwipes', -- Item name required in inventory for criminals to wipe blood evidence
     removeBloodCleanItemOnUse = true, -- Remove item when clean blood
 }
@@ -166,52 +166,52 @@ Config.EvidenceLabs = { -- Locations where Config.PoliceJobs can analyze evidenc
         label = 'LSPD', -- Label to display during certain situations/notifications
 
         analyze = {
-            coords = vec3(483.63, -987.9, 30.68), -- Coords for location(If target is not enabled)
+            coords = vec3(469.66, -999.78, 30.79), -- Coords for location(If target is not enabled)
             range = 1.8, -- Range to show TextUI (If target is not enabled)
             label = '[E] - Analyze Evidence', -- TextUI string(If target is not enabled)
             target = {
-                enabled = false, -- Enable Target? (Can be customized in cl_customize.lua the target system)
+                enabled = true, -- Enable Target? (Can be customized in cl_customize.lua the target system)
                 label = 'Analyze Evidence',
-                coords = vec3(483.63, -987.9, 30.68),
-                heading = 181.42,
+                coords = vec3(469.66, -999.78, 30.79),
+                heading = 357.94,
                 width = 2.0,
                 length = 1.0,
-                minZ = 30.68-0.9,
-                maxZ = 30.68+0.9
+                minZ = 30.79-0.9,
+                maxZ = 30.79+0.9
             }
         },
 
         fingerprinting = {
             enabled = true, -- Enable a finger printing station. By default this will be used to reveal any 'unknown' fingerprints that are ran through the system.
-            coords = vec3(473.24, -1007.58, 26.26), -- Coords for location(If target is not enabled)
+            coords = vec3(468.04, -995.8, 30.75), -- Coords for location(If target is not enabled)
             range = 1.8, -- Range to show TextUI (If target is not enabled)
             label = '[E] - Take Suspect\'s Fingerprints', -- TextUI string(If target is not enabled)
             target = {
-                enabled = false, -- Enable Target? (Can be customized in cl_customize.lua the target system)
+                enabled = true, -- Enable Target? (Can be customized in cl_customize.lua the target system)
                 label = 'Take Suspect\'s Fingerprints',
-                coords = vec3(473.24, -1007.58, 26.26),
-                heading = 357.17,
+                coords = vec3(468.04, -995.8, 30.75),
+                heading = 215.18,
                 width = 2.0,
                 length = 1.0,
-                minZ = 26.26-0.9,
-                maxZ = 26.26+0.9
+                minZ = 30.75-0.9,
+                maxZ = 30.75+0.9
             }
         },
 
         storage = {
             enabled = true, -- Enable archive access in-game via storage location?
-            coords = vec3(480.84, -984.55, 30.68), -- Coords for location(If target is not enabled)
+            coords = vec3(472.95, -995.08, 30.9), -- Coords for location(If target is not enabled)
             range = 1.8, -- Range to show TextUI (If target is not enabled)
             label = '[E] - Access Evidence Storage', -- TextUI string(If target is not enabled)
             target = {
-                enabled = false, -- Enable Target? (Can be customized in cl_customize.lua the target system)
+                enabled = true, -- Enable Target? (Can be customized in cl_customize.lua the target system)
                 label = 'Access Evidence Storage',
-                coords = vec3(480.84, -984.55, 30.68),
-                heading = 87.87,
+                coords = vec3(472.95, -995.08, 30.9),
+                heading = 92.03,
                 width = 2.0,
                 length = 1.0,
-                minZ = 30.68-0.9,
-                maxZ = 30.68+0.9
+                minZ = 30.9-0.9,
+                maxZ = 30.9+0.9
             }
         },
                          ---------------------------------------------------------------------------------------------------------------------
