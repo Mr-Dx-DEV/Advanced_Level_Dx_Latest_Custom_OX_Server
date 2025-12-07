@@ -1,5 +1,83 @@
 return {
 
+	['casino_beer'] = {
+    label = 'Casino Beer',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_burger'] = {
+    label = 'casino burger',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_chips'] = {
+    label = 'casino chips',
+    weight = 0,
+    close = true,
+    consume = 0,
+    stack = true,
+},
+
+['casino_coffee'] = {
+    label = 'casino coffee',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_coke'] = {
+    label = 'casino coke',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_donut'] = {
+    label = 'casino donut',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_ego_chaser'] = {
+    label = 'casino ego chaser',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_luckypotion'] = {
+    label = 'casino luckypotion',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_psqs'] = {
+    label = 'Casino Ps & Qs',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_sandwitch'] = {
+    label = 'casino sandwitch',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
+['casino_sprite'] = {
+    label = 'casino sprite',
+    weight = 0,
+    close = true,
+    consume = 0,
+},
+
 	-- Place in ox_inventory/data/items.lua
 	['tuna'] = {
 		label = 'Tuna',
