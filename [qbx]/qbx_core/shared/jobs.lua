@@ -349,4 +349,14 @@ return {
             },
         },
     },
+
+    ['casino'] = {
+        label = 'Casino',
+        defaultDuty = true,
+        grades = {
+            ['0'] = { name = 'Novice', payment = 50 },
+            ['1'] = { name = 'Experienced', payment = 100 },
+            ['2'] = { name = 'Boss', isboss = true, payment = 200 },
+        },
+    },
 }
