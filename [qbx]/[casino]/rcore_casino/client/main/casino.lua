@@ -1719,7 +1719,9 @@ function OnEnterCasino()
     Roulette_Load()
 
     -- load Poker
-    Poker_Load()
+    if Poker_Load then
+        Poker_Load()
+    end
 
     -- load blackjack
     Blackjack_Load()
