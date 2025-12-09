@@ -275,5 +275,5 @@ Config.ElectricVehicles = {
 
 -- Nerd options
 Config.DisableSound = false
-Config.AutoRunSQL = true
+Config.AutoRunSQL = false
 Config.Debug = false
