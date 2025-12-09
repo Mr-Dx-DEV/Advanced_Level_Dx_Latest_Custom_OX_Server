@@ -1,4 +1,5 @@
 return {
+	
 
     ['frenchfries'] = {
         label = 'French Fries',
