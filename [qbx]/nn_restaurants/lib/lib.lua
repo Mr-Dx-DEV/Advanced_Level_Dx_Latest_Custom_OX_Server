@@ -1,6 +1,22 @@
 -- Lib initialisation
 local isReady = false
-local Lib = exports.nn_lib:GetLibObject()
+
+-- Create Lib wrapper for ox_lib callbacks (server-side)
+Lib = {}
+
+-- Register server callback - wraps nn_lib style to ox_lib style
+function Lib.registerCallback(name, callback)
+    lib.callback.register(name, function(source, ...)
+        local result
+        -- Wrapper function that captures the callback result
+        local function cb(data)
+            result = data
+        end
+        -- Call the original callback with source, cb, and any additional args
+        callback(source, cb, ...)
+        return result
+    end)
+end
 
 -- State des restaurants
 State = {
@@ -60,6 +76,10 @@ end
 -- Spawn les props des restaurants
 function SpawnRestaurantProps()
     Citizen.CreateThread(function()
+        -- Wait for all server files to load
+        while not SetupBaskets do
+            Wait(100)
+        end
         Wait(3000)
         for restaurantName, restaurant in pairs(Config.Restaurants) do
             if restaurant.Enabled then
@@ -187,7 +207,7 @@ function SpawnRestaurantProps()
 end
 
 -- Callback pour signaler que le restaurant est prêt
-Lib:registerCallback("nn_resto:ready", function(_, cb)
+Lib.registerCallback("nn_resto:ready", function(_, cb)
     while not isReady do Wait(100) end
     cb(true)
 end)

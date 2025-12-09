@@ -1,4 +1,4 @@
-Lib = exports["nn_lib"]:GetLibObject()
+-- Lib is already defined in lib/lib.lua which loads before this file
 local attachedBaskets = {}
 local attachedSpatulas = {}
 

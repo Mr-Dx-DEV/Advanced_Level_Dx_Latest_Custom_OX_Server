@@ -1,4 +1,23 @@
-Lib = exports["nn_lib"]:GetLibObject()
+-- Create Lib wrapper for ox_lib callbacks (already defined in lib/lib.lua)
+-- This is just a placeholder to avoid errors if this file loads first
+Lib = Lib or {}
+
+if not Lib.registerCallback then
+    -- Register server callback - wraps nn_lib style to ox_lib style
+    function Lib.registerCallback(name, callback)
+        lib.callback.register(name, function(source, ...)
+            local result
+            -- Wrapper function that captures the callback result
+            local function cb(data)
+                result = data
+            end
+            -- Call the original callback with source, cb, and any additional args
+            callback(source, cb, ...)
+            return result
+        end)
+    end
+end
+
 Restaurants = {}
 local waitingNPCs = {}
 local restaurantNPCEnabled = {}
