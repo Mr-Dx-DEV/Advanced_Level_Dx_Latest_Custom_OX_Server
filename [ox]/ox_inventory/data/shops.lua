@@ -5,18 +5,18 @@ return {
 			id = 59, colour = 69, scale = 0.5
 		},
 		inventory = {
-			{ name = 'burger', price = 10 },
-			{ name = 'water',  price = 10 },
-			
-			{ name = 'twerks_candy',  price = 10 },
-			{ name = 'snikkel_candy',  price = 10 },
-			{ name = 'coffee',  price = 10 },
-			{ name = 'kurkakola',  price = 10 },
-			{ name = 'tosti',  price = 10 },
+			{ name = 'burger',        price = 10 },
+			{ name = 'water',         price = 10 },
 
-			{ name = 'whiskey',  price = 10 },
-			{ name = 'beer',  price = 10 },
-			{ name = 'vodka',  price = 10 },
+			{ name = 'twerks_candy',  price = 10 },
+			{ name = 'snikkel_candy', price = 10 },
+			{ name = 'coffee',        price = 10 },
+			{ name = 'kurkakola',     price = 10 },
+			{ name = 'tosti',         price = 10 },
+
+			{ name = 'whiskey',       price = 10 },
+			{ name = 'beer',          price = 10 },
+			{ name = 'vodka',         price = 10 },
 		},
 		locations = {
 			vec3(25.7, -1347.3, 29.49),
@@ -50,12 +50,12 @@ return {
 			id = 93, colour = 69, scale = 0.5
 		},
 		inventory = {
-			{ name = 'water',  price = 10 },
-			
+			{ name = 'water',   price = 10 },
+
 			--{ name = 'burger', price = 15 },
-			{ name = 'whiskey',  price = 10 },
-			{ name = 'beer',  price = 10 },
-			{ name = 'vodka',  price = 10 },
+			{ name = 'whiskey', price = 10 },
+			{ name = 'beer',    price = 10 },
+			{ name = 'vodka',   price = 10 },
 		},
 		locations = {
 			vec3(1135.808, -982.281, 46.415),
@@ -83,7 +83,7 @@ return {
 		},
 		inventory = {
 			{ name = 'lockpick', price = 10 },
-			{ name = 'phone', price = 10 }
+			{ name = 'phone',    price = 10 }
 		},
 		locations = {
 			vec3(2748.0, 3473.0, 55.67),
@@ -100,10 +100,101 @@ return {
 			id = 110, colour = 69, scale = 0.5
 		},
 		inventory = {
-			{ name = 'ammo-9',        price = 5, },
-			{ name = 'WEAPON_KNIFE',  price = 200 },
-			{ name = 'WEAPON_BAT',    price = 100 },
-			{ name = 'WEAPON_PISTOL', price = 1000, metadata = { registered = true }, license = 'weapon' }
+			{ name = 'ammo-9',              price = 5, },
+			{ name = 'ammo-smokegrenade',   price = 5 },
+			{ name = 'ammo-22',             price = 5 },
+			{ name = 'ammo-38',             price = 5 },
+			{ name = 'ammo-44',             price = 5 },
+			{ name = 'ammo-45',             price = 5 },
+			{ name = 'ammo-50',             price = 5 },
+			{ name = 'ammo-9',              price = 5 },
+			{ name = 'ammo-10',             price = 5 },
+
+			{ name = 'ammo-rifle',          price = 5 },
+			{ name = 'ammo-rifle2',         price = 5 },
+			{ name = 'ammo-rocket',         price = 5 },
+			{ name = 'ammo-shotgun',        price = 5 },
+			{ name = 'ammo-sniper',         price = 5 },
+
+
+
+
+			{ name = 'at_clip_drum_pistol', price = 5 },
+			{ name = 'at_clip_100_pistol',  price = 5 },
+			{ name = 'at_clip_clear',       price = 5 },
+
+
+
+
+
+			{ name = 'WEAPON_KNIFE',        price = 200 },
+			{ name = 'WEAPON_BAT',          price = 100 },
+			{ name = 'WEAPON_PISTOL',       price = 1000, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK19X',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK19',      price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK40',      price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK40S',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_DDM4V5',       price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_MPX',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_PD509',        price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_APS',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_PPK',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_PITVIPER',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_BARP',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_RDP',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_LOK',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_PLR',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_XDS9',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_PPS',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_XDME',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_SP',           price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK17S',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK18C',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK19S',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_ARPISTOL',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK26S',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GRENADES',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_M32S',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_MICRODRACO',   price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_RUGER57',      price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_MK18',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_680',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_ZIPTIE',       price = 1200, metadata = { registered = true } },
+
+
+			{ name = 'WEAPON_ILLGLOCK17',   price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_MIDASGLOCK',   price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_BLUEGLOCKS',   price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK21',      price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_P210',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCKBEAMS',   price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_SR40',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_T1911',        price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_MGGLOCK',      price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_TGLOCK19',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_GLOCK41',      price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_FN57',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_P30L',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_CHAIR',        price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_AXE',          price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_TEC9S',        price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_KRISSVECTOR',  price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_REDM4A1',      price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_R590',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_M500',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_LBTARP',       price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_BLACKARP',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_REDARP',       price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_TARP',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_WOARP',        price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_RAM7',         price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_THOMPSON',     price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_BAR15',        price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_BSCAR',        price = 1200, metadata = { registered = true } },
+			{ name = 'WEAPON_DMK18',        price = 1200, metadata = { registered = true } }
+
+
+
 		},
 		locations = {
 			vec3(-662.180, -934.961, 21.829),
@@ -147,17 +238,53 @@ return {
 
 			{ name = 'uvlight',             price = 5, },
 			{ name = 'bleachwipes',         price = 5, },
-			{ name = 'radio',             price = 5, },
+			{ name = 'radio',               price = 5, },
 			{ name = 'ammo-9',              price = 5, },
 			{ name = 'ammo-rifle',          price = 5, },
+			{ name = 'ammo-smokegrenade',   price = 5 },
+
+			{ name = 'ammo-rifle2',         price = 5 },
+			{ name = 'ammo-rocket',         price = 5 },
+			{ name = 'ammo-shotgun',        price = 5 },
+			{ name = 'ammo-sniper',         price = 5 },
+
+			{ name = 'ammo-22',             price = 5 },
+			{ name = 'ammo-38',             price = 5 },
+			{ name = 'ammo-44',             price = 5 },
+			{ name = 'ammo-45',             price = 5 },
+			{ name = 'ammo-50',             price = 5 },
+			{ name = 'ammo-9',              price = 5 },
+			{ name = 'ammo-10',             price = 5 },
+
+
+
+
 			{ name = 'WEAPON_FLASHLIGHT',   price = 200 },
 			{ name = 'WEAPON_NIGHTSTICK',   price = 100 },
-			{ name = 'WEAPON_PISTOL',       price = 500,  metadata = { registered = true, serial = 'POL' }, license = 'weapon' },
-			{ name = 'WEAPON_CARBINERIFLE', price = 1000, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
-			{ name = 'WEAPON_STUNGUN',      price = 500,  metadata = { registered = true, serial = 'POL' } }
+			{ name = 'WEAPON_PISTOL',       price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_CARBINERIFLE', price = 1000, metadata = { registered = true, serial = 'POL' }, grade = 3 },
+			{ name = 'WEAPON_STUNGUN',      price = 500,  metadata = { registered = true, serial = 'POL' } },
+
+
+			{ name = 'WEAPON_PDBATON',      price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_BTASER',       price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_YTASER',       price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDG19',        price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PD870',        price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDM700',       price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_HK417',        price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDCM607',      price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDC7',         price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDG22',        price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDBM3',        price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDP88',        price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDHK45',       price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDHK33',       price = 500,  metadata = { registered = true, serial = 'POL' } },
+			{ name = 'WEAPON_PDHKUSP',      price = 500,  metadata = { registered = true, serial = 'POL' } }
+
 		},
 		locations = {
-					vector3(463.95, -998.05, 31.74),
+			vector3(463.95, -998.05, 31.74),
 		},
 		targets = {
 			{
@@ -166,7 +293,7 @@ return {
 				loc = vec3(463.95, -998.05, 30.74),
 				heading = 83.17
 			},
-			
+
 		}
 
 	},
