@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XVision Mods - Premium Roleplay Experience</title>
+<style>
+    /* System font stack to avoid external font dependencies */
+    :root{
+        --primary-color:#00d4ff; --secondary-color:#0099cc; --accent-color:#ff6b35; --logo-color:#00ff44;
+        --background-dark:#0a0a0a; --surface-dark:#1a1a1a; --surface-light:#2a2a2a;
+        --text-primary:#ffffff; --text-secondary:#b0b0b0; --text-muted:#808080;
+        --success-color:#00ff88; --warning-color:#ffaa00; --error-color:#ff4444;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%}
+    body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'JetBrains Mono', sans-serif; overflow:hidden; background:var(--background-dark); color:var(--text-primary)}
+
+    /* Background slideshow fallback (instead of YouTube iframe) */
+    .bg-stage{position:fixed; inset:0; z-index:1; overflow:hidden; filter:contrast(1.15) brightness(0.9)}
+    .bg{position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.8s ease; transform:scale(1.05); animation: slowzoom 40s linear infinite;}
+    .bg.show{opacity:1}
+    .b1{background-image:url('assets/images/bg1.png')}
+    .b2{background-image:url('assets/images/bg2.png')}
+    .b3{background-image:url('assets/images/bg3.png')}
+    @keyframes slowzoom{0%{transform:scale(1.05)}100%{transform:scale(1.12)}}
+
+    .video-overlay{position:fixed; inset:0; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,10,20,0.7) 50%, rgba(0,0,0,0.9) 100%); z-index:2}
+    .grid-overlay{position:fixed; inset:0; z-index:3; opacity:0.1;
+        background-image: linear-gradient(var(--primary-color) 1px, transparent 1px),
+                         linear-gradient(90deg, var(--primary-color) 1px, transparent 1px);
+        background-size:50px 50px; animation:gridMove 20s linear infinite;
+    }
+    @keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(50px,50px)}}
+
+    .loading-container{position:relative; z-index:10; height:100vh; display:grid;
+        grid-template-columns:300px 1fr 350px; grid-template-rows:80px 1fr 100px; gap:20px; padding:20px;
+        background:rgba(0,0,0,0.2); backdrop-filter: blur(2px);
+    }
+    .header{grid-column:1/-1; display:flex; justify-content:space-between; align-items:center; padding:0 20px;
+        background:rgba(26,26,26,0.9); border:1px solid rgba(255,255,255,.1); border-radius:12px; backdrop-filter:blur(20px); animation:slideDown .8s ease-out;
+    }
+    .logo-section{display:flex; align-items:center; gap:15px}
+    .logo-icon{width:50px; height:50px; background:linear-gradient(135deg,var(--logo-color),#00cc33); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:900; color:#000; animation:pulse 2s ease-in-out infinite; box-shadow:0 0 20px rgba(0,255,68,0.4)}
+    .server-name{font-size:1.8rem; font-weight:800; background:linear-gradient(45deg,var(--logo-color),#fff,var(--logo-color)); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+    .server-tagline{font-size:.9rem; color:var(--text-secondary)}
+
+    .header-stats{display:flex; gap:30px; align-items:center}
+    .stat-item{display:flex; flex-direction:column; align-items:center; gap:5px}
+    .stat-value{font-size:1.2rem; font-weight:700; color:var(--primary-color)}
+    .stat-label{font-size:.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px}
+    .social-icons{display:flex; gap:15px}
+    .social-icon{width:40px; height:40px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.1); color:var(--text-secondary); text-decoration:none; transition:.25s; backdrop-filter: blur(10px)}
+    .social-icon:hover{background:var(--primary-color); color:var(--background-dark); transform: translateY(-2px)}
+
+    .left-sidebar,.right-sidebar{background:rgba(26,26,26,.95); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:25px; backdrop-filter: blur(20px)}
+    .left-sidebar{animation:slideRight .8s ease-out .2s both}
+    .sidebar-title{display:flex; align-items:center; gap:12px; margin-bottom:25px; padding-bottom:15px; border-bottom:1px solid rgba(255,255,255,.1)}
+    .sidebar-icon{width:24px; height:24px; background:var(--primary-color); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:.8rem; color:#000; font-weight:700}
+    .sidebar-text{font-size:1.1rem; font-weight:600}
+    .staff-list{display:flex; flex-direction:column; gap:12px}
+    .staff-member{display:flex; align-items:center; gap:12px; padding:15px; background:rgba(255,255,255,.05); border-radius:12px; border:1px solid rgba(255,255,255,.1); transition:.25s; cursor:pointer}
+    .staff-member:hover{background:rgba(0,212,255,.1); border-color:var(--primary-color); transform: translateX(5px)}
+    .staff-avatar{width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,var(--primary-color),var(--secondary-color)); display:flex; align-items:center; justify-content:center; font-weight:700; color:#000}
+    .staff-name{font-size:.95rem; font-weight:600}
+    .staff-role{font-size:.8rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.5px}
+    .staff-status{width:8px; height:8px; border-radius:50%; background:var(--success-color); box-shadow:0 0 8px var(--success-color)}
+
+    .center-content{display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:40px; animation:fadeIn 1s ease-out .4s both}
+    .welcome-title{font-size:3.5rem; font-weight:800; margin-bottom:20px; background:linear-gradient(45deg,var(--logo-color),#fff,var(--logo-color)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 40px rgba(0,255,68,.3)}
+    .welcome-subtitle{font-size:1.3rem; color:var(--text-secondary); line-height:1.6; margin-bottom:40px}
+
+    .progress-section{width:100%; max-width:500px}
+    .loading-status{display:flex; justify-content:space-between; align-items:center; margin-bottom:15px}
+    .loading-text{font-size:1.1rem; color:var(--primary-color); font-weight:600}
+    .loading-percentage{font-family:'JetBrains Mono', monospace; font-size:1rem; color:var(--text-primary); font-weight:600}
+    .progress-container{width:100%; height:6px; background:rgba(255,255,255,.1); border-radius:10px; overflow:hidden; position:relative; margin-bottom:30px}
+    .progress-bar{height:100%; background:linear-gradient(90deg,var(--primary-color),var(--secondary-color),var(--primary-color)); border-radius:10px; width:0%; transition:width .4s cubic-bezier(.4,0,.2,1); position:relative; overflow:hidden}
+    .progress-bar::before{content:''; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); animation:progressShimmer 2s infinite}
+    @keyframes progressShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+    .loading-details{display:flex; justify-content:space-between; font-size:.85rem; color:var(--text-muted); font-family:'JetBrains Mono', monospace}
+
+    .right-sidebar{animation:slideLeft .8s ease-out .3s both; overflow-y:auto; max-height:calc(100vh - 220px)}
+    .news-item{margin-bottom:25px; padding:20px; background:rgba(255,255,255,.05); border-radius:12px; border-left:4px solid var(--primary-color); transition:.25s; cursor:pointer}
+    .news-item:hover{background:rgba(0,212,255,.1); transform: translateX(-5px)}
+    .news-date{font-size:.75rem; color:var(--primary-color); font-weight:600; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px}
+    .news-title{font-size:1.1rem; font-weight:700}
+    .news-content{font-size:.9rem; color:var(--text-secondary); line-height:1.5}
+
+    .footer{grid-column:1/-1; display:flex; justify-content:space-between; align-items:center; padding:0 30px;
+        background:rgba(26,26,26,.9); border:1px solid rgba(255,255,255,.1); border-radius:12px; backdrop-filter: blur(20px); animation:slideUp .8s ease-out .5s both;
+    }
+    .footer-left{display:flex; align-items:center; gap:30px}
+    .music-player{display:flex; align-items:center; gap:15px; padding:10px 20px; background:rgba(255,255,255,.1); border-radius:25px; border:1px solid rgba(255,255,255,.2)}
+    .music-controls{display:flex; gap:10px}
+    .music-btn{width:35px; height:35px; border:none; background:rgba(255,255,255,.1); color:var(--primary-color); border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.25s}
+    .music-btn:hover{background:var(--primary-color); color:#000}
+    .music-info{display:flex; flex-direction:column}
+    .track-name{font-size:.9rem; font-weight:600}
+    .artist-name{font-size:.75rem; color:var(--text-secondary)}
+
+    .server-info{display:flex; gap:40px; align-items:center}
+    .info-group{display:flex; flex-direction:column; align-items:center}
+    .info-value{font-size:1.1rem; font-weight:700; color:var(--primary-color)}
+    .info-label{font-size:.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px}
+
+    @keyframes slideDown{from{opacity:0; transform:translateY(-50px)}to{opacity:1; transform:translateY(0)}}
+    @keyframes slideUp{from{opacity:0; transform:translateY(50px)}to{opacity:1; transform:translateY(0)}}
+    @keyframes slideRight{from{opacity:0; transform:translateX(-50px)}to{opacity:1; transform:translateX(0)}}
+    @keyframes slideLeft{from{opacity:0; transform:translateX(50px)}to{opacity:1; transform:translateX(0)}}
+    @keyframes fadeIn{from{opacity:0; transform:scale(.95)}to{opacity:1; transform:scale(1)}}
+
+    @media (max-width:1200px){
+        .loading-container{grid-template-columns:1fr; grid-template-rows:auto auto 1fr auto auto; gap:15px}
+        .left-sidebar,.right-sidebar{display:none}
+        .welcome-title{font-size:2.5rem}
+    }
+    @media (max-width:768px){
+        .loading-container{padding:15px}
+        .header{flex-direction:column; gap:15px; padding:20px}
+        .header-stats{gap:20px}
+        .welcome-title{font-size:2rem}
+        .footer{flex-direction:column; gap:15px; padding:20px}
+    }
+</style>
+</head>
+<body>
+    
+    <!-- YouTube Background -->
+    <div class="video-background" style="position:fixed;inset:0;z-index:1;overflow:hidden">
+        <iframe id="ytplayer"
+            src="https://www.youtube.com/embed/iWC8gEZ_l4s?autoplay=1&mute=0&loop=1&playlist=iWC8gEZ_l4s&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            style="position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100vh;min-width:177.77vh;transform:translate(-50%,-50%);pointer-events:none;filter:brightness(0.7) contrast(1.2);">
+        </iframe>
+    </div>
+    <div class="video-overlay"></div>
+    <div class="grid-overlay"></div>
+</div>
+
+    <!-- Controls to mimic the original video buttons -->
+    <div class="video-controls" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:20;background:rgba(0,0,0,.8);padding:10px 20px;border-radius:25px;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(20px)">
+        <button class="video-btn" id="muteToggle" style="background:none;border:1px solid rgba(255,255,255,.3);color:#bbb;padding:8px 16px;border-radius:15px;cursor:pointer;font-size:.85rem;transition:.25s">🔇 Unmute Audio</button>
+        <button class="video-btn" id="videoToggle" style="background:none;border:1px solid rgba(255,255,255,.3);color:#bbb;padding:8px 16px;border-radius:15px;cursor:pointer;font-size:.85rem;transition:.25s">📺 Hide Background</button>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="loading-container">
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-icon">✗</div>
+                <div class="logo-text">
+                    <div class="server-name">XVision Mods</div>
+                    <div class="server-tagline">Premium Roleplay Experience</div>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="playerCount">127</div>
+                    <div class="stat-label">Players</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">250</div>
+                    <div class="stat-label">Max Slots</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Discord">💬</a>
+                <a href="#" class="social-icon" title="Twitter">🐦</a>
+                <a href="#" class="social-icon" title="YouTube">📺</a>
+                <a href="#" class="social-icon" title="Instagram">📷</a>
+            </div>
+        </header>
+
+        <aside class="left-sidebar">
+            <div class="sidebar-title"><div class="sidebar-icon">👑</div><div class="sidebar-text">Staff Team</div></div>
+            <div class="staff-list">
+                <div class="staff-member"><div class="staff-avatar">JD</div><div><div class="staff-name">John Doe</div><div class="staff-role">Owner</div></div><div class="staff-status"></div></div>
+                <div class="staff-member"><div class="staff-avatar">JS</div><div><div class="staff-name">Jane Smith</div><div class="staff-role">Head Admin</div></div><div class="staff-status"></div></div>
+                <div class="staff-member"><div class="staff-avatar">MJ</div><div><div class="staff-name">Mike Johnson</div><div class="staff-role">Developer</div></div><div class="staff-status"></div></div>
+                <div class="staff-member"><div class="staff-avatar">BR</div><div><div class="staff-name">Brandon</div><div class="staff-role">Helper</div></div><div class="staff-status"></div></div>
+            </div>
+        </aside>
+
+        <main class="center-content">
+            <div class="welcome-section">
+                <h1 class="welcome-title">Welcome to XVision Mods</h1>
+                <p class="welcome-subtitle">Experience the ultimate roleplay adventure with our dedicated community and professional staff team.</p>
+            </div>
+            <div class="progress-section">
+                <div class="loading-status">
+                    <div class="loading-text" id="loadingText">Initializing Connection...</div>
+                    <div class="loading-percentage" id="loadingPercentage">0%</div>
+                </div>
+                <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+                <div class="loading-details"><span id="loadingStep">Step 1 of 7</span><span id="loadingTime">Estimated: 15s</span></div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="sidebar-title"><div class="sidebar-icon">📰</div><div class="sidebar-text">Latest Updates</div></div>
+            <div class="news-item"><div class="news-date">Jan 15, 2025</div><div class="news-title">Major Server Update Released!</div><div class="news-content">New features, bug fixes, and performance improvements are now live. Check out the changelog for details.</div></div>
+            <div class="news-item"><div class="news-date">Jan 10, 2025</div><div class="news-title">New Vehicle Pack Added</div><div class="news-content">50+ new vehicles have been added to the server. Visit the dealership to check them out!</div></div>
+            <div class="news-item"><div class="news-date">Jan 5, 2025</div><div class="news-title">Staff Applications Open</div><div class="news-content">We're looking for dedicated members to join our staff team. Applications are now open on our Discord.</div></div>
+        </aside>
+
+        <footer class="footer">
+            <div class="footer-left">
+                <div class="music-player">
+                    <div class="music-controls">
+                        <button class="music-btn" id="prevBtn">⏮</button>
+                        <button class="music-btn" id="playBtn">▶</button>
+                        <button class="music-btn" id="nextBtn">⏭</button>
+                    </div>
+                    <div class="music-info">
+                        <div class="track-name" id="trackName">Ambient Sounds</div>
+                        <div class="artist-name">XVision Radio</div>
+                    </div>
+                </div>
+                <audio id="player" src="assets/music/ambient.wav" loop autoplay></audio>
+            </div>
+            <div class="server-info">
+                <div class="info-group"><div class="info-value" id="ver">v1.4.2</div><div class="info-label">Version</div></div>
+                <div class="info-group"><div class="info-value">XV-01</div><div class="info-label">Server ID</div></div>
+                <div class="info-group"><div class="info-value">128</div><div class="info-label">Tick Rate</div></div>
+            </div>
+        </footer>
+    </div>
+
+<script>
+class AdvancedLoadingScreen{
+    constructor(){
+        this.progress=0; this.currentStep=0; this.isPlaying=false; this.isMuted=true; this.isBgVisible=true;
+        this.loadingSteps=[
+            {text:"Initializing Connection...",duration:1600},
+            {text:"Authenticating Player...",duration:1200},
+            {text:"Loading Player Data...",duration:1800},
+            {text:"Synchronizing Assets...",duration:2200},
+            {text:"Connecting to Server...",duration:1500},
+            {text:"Loading Game World...",duration:2400},
+            {text:"Finalizing Setup...",duration:1000}
+        ];
+        this.init();
+    }
+    init(){
+        this.cacheEls();
+        this.initSlideshow();
+        this.initMusic();
+        this.initButtons();
+        this.updatePlayerCount();
+        this.startLoading();
+        window.addEventListener('message', (e)=>{ if(e.data?.type==='setPlayers') this.playerCount.textContent = e.data.count; });
+    }
+    cacheEls(){
+        this.progressBar=document.getElementById('progressBar');
+        this.loadingText=document.getElementById('loadingText');
+        this.loadingPercentage=document.getElementById('loadingPercentage');
+        this.loadingStep=document.getElementById('loadingStep');
+        this.loadingTime=document.getElementById('loadingTime');
+        this.playerCount=document.getElementById('playerCount');
+        this.trackName=document.getElementById('trackName');
+        this.audio=document.getElementById('player');
+        this.btnPlay=document.getElementById('playBtn');
+        this.btnPrev=document.getElementById('prevBtn');
+        this.btnNext=document.getElementById('nextBtn');
+        this.btnMute=document.getElementById('muteToggle');
+        this.btnBg=document.getElementById('videoToggle');
+        this.bgs=[...document.querySelectorAll('.bg')];
+    }
+    initSlideshow(){
+        let i=0; setInterval(()=>{ this.bgs.forEach((b,idx)=>b.classList.toggle('show', idx===i)); i=(i+1)%this.bgs.length; }, 8000);
+    }
+    initMusic(){
+        this.audio.volume = 0.35; this.audio.muted = false; try{ this.audio.play(); }catch(e){}
+        const setIcon=()=>{ this.btnPlay.textContent = this.audio.paused ? "▶" : "⏸"; this.btnMute.textContent = this.audio.muted ? "🔇 Unmute Audio" : "🔊 Mute Audio"; };
+        this.btnPlay.addEventListener('click',()=>{ if(this.audio.paused){ this.audio.play().catch(()=>{});} else { this.audio.pause(); } setIcon(); });
+        this.btnPrev.addEventListener('click',()=>{ this.audio.currentTime=0; });
+        this.btnNext.addEventListener('click',()=>{ this.audio.currentTime=Math.max(0,this.audio.currentTime+15); });
+        this.btnMute.addEventListener('click',()=>{ this.audio.muted=!this.audio.muted; setIcon(); if(!this.audio.muted) this.audio.play().catch(()=>{}); });
+        setIcon();
+        document.addEventListener('keydown',(e)=>{ if(e.key.toLowerCase()==='m'){ this.btnMute.click(); } });
+    }
+    initButtons(){
+        this.btnBg.addEventListener('click',()=>{
+            this.isBgVisible=!this.isBgVisible;
+            document.querySelectorAll('.loading-container,.footer,.left-sidebar,.right-sidebar,.center-content,.header').forEach(el=>el.style.display = this.isBgVisible ? '' : 'none');
+            this.btnBg.textContent = this.isBgVisible ? "📺 Hide Background" : "📺 Show Background";
+        });
+    }
+    updatePlayerCount(){ this.playerCount.textContent = String(110 + Math.floor(Math.random()*40)); }
+    startLoading(){
+        let total = this.loadingSteps.reduce((a,s)=>a+s.duration,0);
+        let elapsed=0, stepIdx=0;
+        const tick=()=>{
+            const step=this.loadingSteps[stepIdx];
+            if(!step){ this.progress=100; this.progressBar.style.width="100%"; this.loadingText.textContent="Welcome to XVision Mods!"; this.loadingPercentage.textContent="100%"; this.loadingStep.textContent="Done"; return; }
+            this.loadingText.textContent = step.text;
+            this.loadingStep.textContent = `Step ${stepIdx+1} of ${this.loadingSteps.length}`;
+            this.progress = Math.min(99, Math.round((elapsed/total)*100));
+            this.loadingPercentage.textContent = this.progress+"%";
+            this.progressBar.style.width = this.progress+"%";
+            this.loadingTime.textContent = "Estimated: " + Math.max(1, Math.ceil((total - elapsed)/1000)) + "s";
+            const slice = 100;
+            step._acc = (step._acc||0) + slice;
+            elapsed += slice;
+            if(step._acc >= step.duration){ stepIdx++; }
+        };
+        const id = setInterval(()=>{
+            tick();
+            if(this.progress>=99){ clearInterval(id); }
+        }, 100);
+    }
+}
+const app=new AdvancedLoadingScreen();
+
+// FiveM manual shutdown handling: close when session is active OR QBCore signals player loaded (handled on client.lua)
+
+// YouTube API hook
+var tag=document.createElement('script');tag.src="https://www.youtube.com/iframe_api";var first=document.getElementsByTagName('script')[0];first.parentNode.insertBefore(tag,first);
+var ytPlayer;
+function onYouTubeIframeAPIReady(){ ytPlayer=new YT.Player('ytplayer',{events:{'onReady':(e)=>{ e.target.setVolume(50); }}}); }
+
+
+// === YouTube Background Player ===
+var ytPlayer; var ytReady=false;
+function onYouTubeIframeAPIReady(){
+    ytPlayer = new YT.Player('ytbg', {
+        videoId: 'iWC8gEZ_l4s',
+        playerVars: {
+            autoplay: 1, controls: 0, mute: 1, loop: 1, playlist: 'iWC8gEZ_l4s',
+            modestbranding: 1, rel: 0, iv_load_policy: 3, playsinline: 1
+        },
+        events: {
+            'onReady': (e)=>{ ytReady=true; try{ e.target.playVideo(); }catch(_){} },
+            'onStateChange': (e)=>{
+                if(e.data === YT.PlayerState.ENDED){ try{ ytPlayer.seekTo(0,true); ytPlayer.playVideo(); }catch(_){} }
+            }
+        }
+    });
+}
+(function(){ var tag=document.createElement('script'); tag.src='https://www.youtube.com/iframe_api';
+var first=document.getElementsByTagName('script')[0]; first.parentNode.insertBefore(tag, first); })();
+
+// Hook our existing buttons to YouTube instead of <audio>
+(function(){
+  const btnPlay = document.getElementById('playBtn');
+  const btnPrev = document.getElementById('prevBtn');
+  const btnNext = document.getElementById('nextBtn');
+  const btnMute = document.getElementById('muteToggle');
+  const btnBg = document.getElementById('videoToggle');
+
+  function setPlayIcon(){
+      if(!ytReady) return;
+      const paused = ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING;
+      btnPlay.textContent = paused ? "▶" : "⏸";
+  }
+  function setMuteLabel(){
+      if(!ytReady) { btnMute.textContent = "🔇 Unmute Audio"; return; }
+      const muted = ytPlayer.isMuted();
+      btnMute.textContent = muted ? "🔇 Unmute Audio" : "🔊 Mute Audio";
+  }
+
+  btnPlay.addEventListener('click', ()=>{
+      if(!ytReady) return;
+      const state = ytPlayer.getPlayerState();
+      if(state === YT.PlayerState.PLAYING) ytPlayer.pauseVideo(); else ytPlayer.playVideo();
+      setPlayIcon();
+  });
+
+  btnPrev.addEventListener('click', ()=>{ if(ytReady){ ytPlayer.seekTo(0,true); ytPlayer.playVideo(); setPlayIcon(); }});
+  btnNext.addEventListener('click', ()=>{ if(ytReady){ ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime()+15), true); ytPlayer.playVideo(); setPlayIcon(); }});
+
+  btnMute.addEventListener('click', ()=>{
+      if(!ytReady) return;
+      if(ytPlayer.isMuted()){ ytPlayer.unMute(); ytPlayer.setVolume(60); ytPlayer.playVideo(); } else { ytPlayer.mute(); }
+      setMuteLabel();
+  });
+
+  // Press M to toggle mute
+  document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='m'){ btnMute.click(); }});
+
+  // Try to start audio on first user interaction (gesture requirement)
+  const gestureStart = ()=>{
+      if(ytReady){
+          try{ ytPlayer.playVideo(); }catch(_){}
+      }
+      document.removeEventListener('click', gestureStart);
+      document.removeEventListener('keydown', gestureStart);
+  };
+  document.addEventListener('click', gestureStart);
+  document.addEventListener('keydown', gestureStart);
+
+  // Make "Hide Background" also hide ALL UI (menus/panels/overlays)
+  let uiHidden = false;
+  btnBg.textContent = "📺 Hide UI";
+  btnBg.addEventListener('click', ()=>{
+      uiHidden = !uiHidden;
+      const uiEls = [
+        document.querySelector('.loading-container'),
+        document.querySelector('.video-overlay'),
+        document.querySelector('.grid-overlay'),
+        document.querySelector('.footer'),
+        document.querySelector('.header')
+      ];
+      uiEls.forEach(el=>{ if(el) el.style.display = uiHidden ? 'none' : ''; });
+      btnBg.textContent = uiHidden ? "📺 Show UI" : "📺 Hide UI";
+  });
+
+  // Keep button labels in sync when player becomes ready
+  const sync = setInterval(()=>{
+      if(ytReady){ setPlayIcon(); setMuteLabel(); clearInterval(sync); }
+  }, 200);
+})();
+</script>
+</body>
+
+</html>
