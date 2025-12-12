@@ -18,7 +18,7 @@ client_scripts {
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
-    '@qb-apartments/config.lua',
+    --'@qb-apartments/config.lua',
     'server/main.lua'
 }
 
@@ -36,7 +36,3 @@ files {
     'html/app.js'
 }
 
-dependencies {
-    'qb-core',
-    'qb-spawn'
-}
