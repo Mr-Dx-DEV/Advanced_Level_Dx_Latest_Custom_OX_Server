@@ -1,8 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'XVision Mods'
-description 'XVision Loading Screen (design per user HTML, offline-safe)'
+author 'Dx Development'
+description 'Dx Latest Most Optimized Future Proof Server - Loading Screen'
 version '1.0.0'
 
 loadscreen 'html/index.html'
