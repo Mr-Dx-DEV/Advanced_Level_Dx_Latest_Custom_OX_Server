@@ -1,9 +1,8 @@
--- Decrypted by Türkiye :)
 fx_version "cerulean"
 game "gta5"
 lua54 "yes"
 
-version "2.3.7"
+version "4.3.7"
 
 shared_script {
     "config/*.lua",
