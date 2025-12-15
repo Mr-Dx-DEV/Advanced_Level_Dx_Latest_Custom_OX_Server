@@ -9,22 +9,21 @@ return {
 
     decemberSnow = false, -- if turned on means that only snow will happen in december
 
-    useStaticWeather = true,
+    useStaticWeather = false,
     staticWeather = {
         ['BLIZZARD'] = 0.0, --0% chance
-        ['CLEAR'] = 0.1, -- 10% chance
-        ['CLEARING'] = 0.1, -- 10% chance
-        ['CLOUDS'] = 0.1, -- 10% chance
+        ['CLEAR'] = 0.4, -- 10% chance
+        ['CLEARING'] = 0.3, -- 10% chance
+        ['CLOUDS'] = 0.2, -- 10% chance
         ['EXTRASUNNY'] = 0.4, -- 40% chance
-        ['FOGGY'] = 0.1,
-        ['NEUTRAL'] = 0.0,
+        ['FOGGY'] = 0.05,
         ['OVERCAST'] = 0.1,
-        ['RAIN'] = 0.1,
+        ['RAIN'] = 0.02,
         ['SMOG'] = 0.1,
-        -- ['SNOW'] = 0.0,
+        ['SNOW'] = 0.0,
         ['SNOWLIGHT'] = 0.0,
-        -- ['THUNDER'] = 0.1
-        -- ['XMAS'] = 0.0
+        ['THUNDER'] = 0.01
+       -- ['XMAS'] = 0.0
     },
 
     useWeatherSequences = true,
@@ -32,7 +31,7 @@ return {
     weatherSequences = {
 
         { -- Sunny
-            probability = 0.1, -- 10%
+            probability = 0.5, -- 50%
             events = {
                 {
                     weather = 'SMOG',
@@ -52,8 +51,39 @@ return {
             },
         },
 
+        { -- Sunny
+            probability = 0.4, -- 40%
+            events = {
+                {
+                    weather = 'EXTRASUNNY',
+                    time = math.random(15, 20), -- Minutes
+                    windSpeed = 0.05,
+                },
+                {
+                    weather = 'CLEARING',
+                    time = math.random(10, 20), -- Minutes
+                    windSpeed = 0.05,
+                },
+                {
+                    weather = 'CLEAR',
+                    time = math.random(10, 20), -- Minutes
+                    windSpeed = 0.1,
+                },
+                {
+                    weather = 'EXTRASUNNY',
+                    time = math.random(10, 20), -- Minutes
+                    windSpeed = 0.05,
+                },
+                {
+                    weather = 'EXTRASUNNY',
+                    time = math.random(15, 20), -- Minutes
+                    windSpeed = 0.05,
+                },
+            },
+        },
+
         { -- cloudy
-            probability = 0.10, -- 10%
+            probability = 0.08, -- 8%
             events = {
                 {
                     weather = 'OVERCAST',
@@ -69,7 +99,7 @@ return {
         },
 
         { -- snowing
-            probability = 0.3, -- 30%
+            probability = 0.01, -- 1%
             month = 12, -- What month can there be snow?
             events = {
                 {
@@ -105,78 +135,8 @@ return {
             },
         },
 
-        { -- snowstorm
-            probability = 0.30, -- 30%
-            windDirection = 120.0, -- Storms come from the south
-            month = 12, -- What month can there be snow?
-            events = {
-                {
-                    weather = 'OVERCAST',
-                    time = math.random(5, 10), -- Minutes
-                    windSpeed = 0.5,
-                },
-                {
-                    weather = 'SNOWLIGHT',
-                    time = math.random(3, 7), -- Minutes
-                    windSpeed = 1.0,
-                },
-                {
-                    weather = 'SNOW',
-                    time = math.random(3, 7), -- Minutes
-                    windSpeed = 1.0,
-                },
-                {
-                    weather = 'SNOW',
-                    time = math.random(5, 10), -- Minutes
-                    windSpeed = 1.0,
-                    hasSnow = true,
-                },
-                {
-                    weather = 'BLIZZARD',
-                    time = 14, -- Minutes
-                    windSpeed = 3.0,
-                    hasSnow = true,
-                },
-                {
-                    weather = 'SNOW',
-                    time = 15, -- Minutes
-                    windSpeed = 2.0,
-                    hasSnow = true,
-                },
-                {
-                    weather = 'SNOWLIGHT',
-                    time = 20, -- Minutes
-                    windSpeed = 1.0,
-                    hasSnow = true,
-                },
-                {
-                    weather = 'OVERCAST',
-                    windSpeed = 0.5,
-                    time = 15, -- Minutes
-                    hasSnow = true,
-                },
-                {
-                    weather = 'CLOUDS',
-                    windSpeed = 0.5,
-                    time = 15, -- Minutes
-                    hasSnow = true,
-                },
-                {
-                    weather = 'CLEAR',
-                    windSpeed = 0.5,
-                    time = 15, -- Minutes
-                    hasSnow = true,
-                },
-                {
-                    weather = 'EXTRASUNNY',
-                    time = 15, -- minutes
-                    windSpeed = 0.5,
-                },
-            },
-        },
-
         { -- rainshower
-            probability = 0.1, -- 10%
+            probability = 0.01, -- 3%
             windDirection = 240.0, -- Storms come from the south
             events = {
                 {
@@ -186,12 +146,12 @@ return {
                 },
                 {
                     weather = 'OVERCAST',
-                    time = math.random(3, 7), -- Minutes
+                    time = math.random(1, 2), -- Minutes
                     windSpeed = 1.0,
                 },
                 {
                     weather = 'RAIN',
-                    time = math.random(5, 10), -- Minutes
+                    time = math.random(1, 5), -- Minutes
                     windSpeed = 2.0,
                 },
                 {
@@ -212,102 +172,33 @@ return {
             },
         },
 
-        { -- rainstorm
-            probability = 0.10, -- 10%
-            windDirection = 280.0, -- Storms come from the south
-            events = {
-                {
-                    weather = 'CLOUDS',
-                    time = math.random(3, 7), -- Minutes
-                    windSpeed = 0.5,
-                },
-                {
-                    weather = 'OVERCAST',
-                    time = math.random(3, 7), -- Minutes
-                    windSpeed = 1.0,
-                },
-                {
-                    weather = 'RAIN',
-                    time = math.random(5, 10), -- Minutes
-                    windSpeed = 3.5,
-                },
-                {
-                    weather = 'CLEARING',
-                    time = math.random(3, 7), -- Minutes
-                    windSpeed = 1.5,
-                },
-                {
-                    weather = 'CLOUDS',
-                    time = math.random(3, 7),
-                    windSpeed = 0.5,
-                },
-            },
-        },
-
-        { -- smallstorm
-            probability = 0.10, -- 10%
-            windDirection = 120.0, -- Storms come from the south
-            events = {
-                {
-                    weather = 'CLOUDS',
-                    time = math.random(3, 7),
-                    windSpeed = 0.5,
-                },
-                {
-                    weather = 'RAIN',
-                    time = math.random(3, 7),
-                    windSpeed = 1.0,
-                },
-                {
-                    weather = 'THUNDER',
-                    time = math.random(3, 7),
-                    windSpeed = 3.0,
-                },
-                {
-                    weather = 'RAIN',
-                    time = math.random(5, 10), -- Minutes
-                    windSpeed = 2.0,
-                },
-                {
-                    weather = 'CLEARING',
-                    time = math.random(3, 7),
-                    windSpeed = 1.0,
-                },
-                {
-                    weather = 'EXTRASUNNY',
-                    time = math.random(5, 10),
-                    windSpeed = 0.5,
-                },
-            },
-        },
-
         { -- bigstorm
             windDirection = 180.0, -- Storms come from the south
-            probability = 0.10, -- 10%
+            probability = 0.01, -- 1%
             events = {
                 {
                     weather = 'OVERCAST',
-                    time = math.random(3, 7),
+                    time = math.random(1, 2),
                     windSpeed = 4.0,
                 },
                 {
                     weather = 'RAIN',
-                    time = math.random(3, 7),
+                    time = math.random(1, 5),
                     windSpeed = 8.0,
                 },
                 {
                     weather = 'THUNDER',
-                    time = math.random(3, 7),
+                    time = math.random(1, 3),
                     windSpeed = 12.0,
                 },
                 {
                     weather = 'RAIN',
-                    time = math.random(3, 7),
+                    time = math.random(1, 3),
                     windSpeed = 12.0,
                 },
                 {
                     weather = 'THUNDER',
-                    time = math.random(3, 7),
+                    time = math.random(1, 3),
                     windSpeed = 12.0,
                 },
                 {
