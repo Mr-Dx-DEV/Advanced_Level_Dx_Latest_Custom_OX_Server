@@ -69,16 +69,16 @@ Config = {
 	},
 
 	ATMs = {
-		enable = true,			-- Enable this if wanting to use jim-payments atm systems
-		showBlips = true,
+		enable = false,			-- Enable this if wanting to use jim-payments atm systems
+		showBlips = false,
 
 		ATMModels = { `prop_atm_01`, `prop_atm_02`, `prop_atm_03`, `prop_fleeca_atm`, `gabz_sm_pb_atmframe` },
 
 	},
 
 	Banks = {
-		enable = true,			-- Enable this if wanting to use jim-payments banking systems
-		showBlips = true,
+		enable = false,			-- Enable this if wanting to use jim-payments banking systems
+		showBlips = false,
 
 	},
 
