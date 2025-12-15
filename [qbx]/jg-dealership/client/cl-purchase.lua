@@ -17,8 +17,7 @@ local function purchaseVehicle(dealershipId, model, colour, purchaseType, paymen
 
   ExitShowroom()
 
-  local success, netId, vehicleId, plate, price = lib.callback.await("jg-dealerships:server:purchase-vehicle", false, dealershipId, coords, purchaseType, society, societyType, model, colour, paymentMethod, finance, directSaleUuid)
-  local vehicle = netId and NetToVeh(netId) or nil --[[@as integer|false]]
+  local success, vehicle, vehicleId, plate, price = lib.callback.await("jg-dealerships:server:purchase-vehicle", false, dealershipId, coords, purchaseType, society, societyType, model, colour, paymentMethod, finance, directSaleUuid)
   if not success then return false end
 
   -- TODO WIP: new spawning logic
@@ -35,14 +34,13 @@ local function purchaseVehicle(dealershipId, model, colour, purchaseType, paymen
       plate = plate,
       colour = colour
     }
-    
     vehicle = SpawnVehicleClient(vehicleId or 0, model, plate, coords, warp, properties, "purchase")
     if not vehicle then return false end
-    
-    netId = VehToNet(vehicle)
   end
 
-  if not vehicle then return false end
+  -- TODO WIP: END
+
+  local netId = VehToNet(vehicle)
 
   -- TODO: refactor this maybe? it's also a vulnerable event for people that know what they are doing
   local props = Framework.Client.GetVehicleProperties(vehicle)

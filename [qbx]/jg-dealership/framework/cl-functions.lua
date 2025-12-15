@@ -167,6 +167,10 @@ function Framework.Client.VehicleGiveKeys(plate, vehicleEntity, origin)
     exports["qs-vehiclekeys"]:GiveKeys(plate, model)
   elseif Config.VehicleKeys == "wasabi_carlock" then
     exports.wasabi_carlock:GiveKey(plate)
+  elseif Config.VehicleKeys == "msk_vehiclekeys" then
+    exports.msk_vehiclekeys:AddPrimaryKey(vehicleEntity)	
+  elseif Config.VehicleKeys == "ak47_vehiclekeys" then
+    exports['ak47_vehiclekeys']:GiveKey(plate, true)
   elseif Config.VehicleKeys == "cd_garage" then
     TriggerEvent("cd_garage:AddKeys", plate)
   elseif Config.VehicleKeys == "okokGarage" then
@@ -205,6 +209,10 @@ function Framework.Client.VehicleRemoveKeys(plate, vehicleEntity, origin)
     exports["qs-vehiclekeys"]:RemoveKeys(plate, model)
   elseif Config.VehicleKeys == "wasabi_carlock" then
     exports.wasabi_carlock:RemoveKey(plate)
+  elseif Config.VehicleKeys == "msk_vehiclekeys" then
+    exports.msk_vehiclekeys:RemovePrimaryKey(vehicleEntity)	
+  elseif Config.VehicleKeys == "ak47_vehiclekeys" then
+    exports['ak47_vehiclekeys']:RemoveKey(plate, true)
   elseif Config.VehicleKeys == "t1ger_keys" then
     TriggerServerEvent("t1ger_keys:updateOwnedKeys", plate, false)
   elseif Config.VehicleKeys == "MrNewbVehicleKeys" then
