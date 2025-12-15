@@ -21,9 +21,9 @@ return {
         ['OVERCAST'] = 0.1,
         ['RAIN'] = 0.1,
         ['SMOG'] = 0.1,
-        ['SNOW'] = 0.0,
+        -- ['SNOW'] = 0.0,
         ['SNOWLIGHT'] = 0.0,
-        ['THUNDER'] = 0.1
+        -- ['THUNDER'] = 0.1
         -- ['XMAS'] = 0.0
     },
 
