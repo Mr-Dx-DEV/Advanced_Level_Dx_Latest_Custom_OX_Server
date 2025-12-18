@@ -37,7 +37,7 @@ Config = {
 			zoneEnable = true,
 			job = "police",
 			garage = {
-				spawn = vector4(462.51, -980.2, 23.94, 93.22),
+				spawn = vector4(458.41, -985.22, 23.95, 93.61),
 				out = vector4(462.51, -980.2, 23.94, 93.22),
 				list = {
 
