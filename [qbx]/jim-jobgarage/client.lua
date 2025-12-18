@@ -2,7 +2,26 @@ local QBCore = exports[Config.Core]:GetCoreObject()
 
 local Targets, Parking, PlayerJob, Locations = {}, {}, {}, {}
 
-local function removeTargets() for k in pairs(Targets) do exports['qb-target']:RemoveZone(k) end Targets = {} for i = 1, #Parking do DeleteEntity(Parking[i]) Wait(10) end Parking = {}  end
+-- Detect which targeting system is available
+local TargetResource = nil
+if GetResourceState("ox_target") == "started" then
+	TargetResource = "ox_target"
+elseif GetResourceState("qb-target") == "started" then
+	TargetResource = "qb-target"
+else
+	print("^3[jim-jobgarage]^7 Warning: No compatible targeting resource found! Please install ox_target or qb-target.")
+end
+
+local function removeTargets()
+	if TargetResource == "ox_target" then
+		for k in pairs(Targets) do exports.ox_target:removeZone(k) end
+	elseif TargetResource == "qb-target" then
+		for k in pairs(Targets) do exports['qb-target']:RemoveZone(k) end
+	end
+	Targets = {}
+	for i = 1, #Parking do DeleteEntity(Parking[i]) Wait(10) end
+	Parking = {}
+end
 local function makeTargets()
 	removeTargets()
 	for i = 1, #Locations do
@@ -31,10 +50,33 @@ local function makeTargets()
 			local out = Locations[i].garage.out
 			if Locations[i].garage.ped then Parking[#Parking+1] = makePed(Locations[i].garage.ped.model, out, 1, 1, Locations[i].garage.ped.scenario)
 			else Parking[#Parking+1] = makeProp({prop = "prop_parkingpay", coords = vec4(out.x, out.y, out.z, out.w-180.0)}, true, false) end
-			Targets["JobGarage: "..i] =
-				exports['qb-target']:AddBoxZone("JobGarage: "..i, vec3(out.x, out.y, out.z-1.03), 0.8, 0.5, { name="JobGarage: "..i, heading = out.w+180.0, debugPoly=Config.Debug, minZ=out.z-1.05, maxZ=out.z+0.80 },
-					{ options = { { event = "jim-jobgarage:client:Garage:Menu", icon = "fas fa-clipboard", label = Loc[Config.Lan].target["label"], job = Locations[i].job, spawncoords = Locations[i].garage.spawn, list = Locations[i].garage.list, prop = Parking[#Parking] }, },
-					distance = 2.0 })
+
+			if TargetResource == "ox_target" then
+				Targets["JobGarage: "..i] = exports.ox_target:addBoxZone({
+					coords = vec3(out.x, out.y, out.z-1.03),
+					size = vec3(0.8, 0.5, 1.85),
+					rotation = out.w+180.0,
+					debug = Config.Debug,
+					options = {
+						{
+							name = "JobGarage: "..i,
+							event = "jim-jobgarage:client:Garage:Menu",
+							icon = "fas fa-clipboard",
+							label = Loc[Config.Lan].target["label"],
+							job = Locations[i].job,
+							spawncoords = Locations[i].garage.spawn,
+							list = Locations[i].garage.list,
+							prop = Parking[#Parking],
+							distance = 2.0
+						}
+					}
+				})
+			elseif TargetResource == "qb-target" then
+				Targets["JobGarage: "..i] =
+					exports['qb-target']:AddBoxZone("JobGarage: "..i, vec3(out.x, out.y, out.z-1.03), 0.8, 0.5, { name="JobGarage: "..i, heading = out.w+180.0, debugPoly=Config.Debug, minZ=out.z-1.05, maxZ=out.z+0.80 },
+						{ options = { { event = "jim-jobgarage:client:Garage:Menu", icon = "fas fa-clipboard", label = Loc[Config.Lan].target["label"], job = Locations[i].job, spawncoords = Locations[i].garage.spawn, list = Locations[i].garage.list, prop = Parking[#Parking] }, },
+						distance = 2.0 })
+			end
 		end
 	end
 end
@@ -222,8 +264,10 @@ RegisterNetEvent("jim-jobgarage:client:Garage:Blip", function(data)
 end)
 
 AddEventHandler('onResourceStop', function(r) if r ~= GetCurrentResourceName() then return end
-	if GetResourceState("qb-target") == "started" or GetResourceState("ox_target") == "started" then
+	if TargetResource == "ox_target" then
+		for k in pairs(Targets) do exports.ox_target:removeZone(k) end
+	elseif TargetResource == "qb-target" then
 		for k in pairs(Targets) do exports['qb-target']:RemoveZone(k) end
-		for i = 1, #Parking do unloadModel(GetEntityModel(Parking[i])) DeleteEntity(Parking[i]) end
 	end
+	for i = 1, #Parking do unloadModel(GetEntityModel(Parking[i])) DeleteEntity(Parking[i]) end
 end)
