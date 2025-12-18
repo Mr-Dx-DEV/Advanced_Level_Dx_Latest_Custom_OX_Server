@@ -274,7 +274,7 @@ Config.PrivGarageBlip = {
 }
 
 -- Job Garages
-Config.JobGarageShowBlips = true
+Config.JobGarageShowBlips = false
 Config.JobGarageSetVehicleCommand = "setjobvehicle" -- admin only
 Config.JobGarageRemoveVehicleCommand = "removejobvehicle" -- admin only
 Config.JobGarageUniqueBlips = false
