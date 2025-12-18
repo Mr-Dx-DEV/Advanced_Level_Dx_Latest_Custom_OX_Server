@@ -210,13 +210,13 @@ Config = {
 				},
 			},
 		},
-		
+
 		{
 			zoneEnable = true, -- disable if you want to hide this temporarily
 			job = "police", -- set this to required job grade
 			garage = {
-				spawn = vector4(440.47, -989.48, 44.95, 91.31),
-				out = vector4(444.73, -981.74, 44.95, 182.84), -- Where you select the vehicles from
+				spawn = vector4(441.84, -986.47, 43.69, 92.7),
+				out = vector4(440.22, -978.94, 43.69, 278.34), -- Where you select the vehicles from
 				list = {                           -- The list of cars that will spawn
 					["polheli"] = {
 						CustomName = "PD Heli",
@@ -240,135 +240,91 @@ Config = {
 			},
 		},
 		{
-			zoneEnable = true,                        -- disable if you want to hide this temporarily
-			job = "ambulance",                        -- set this to required job grade
+			zoneEnable = true,                       -- disable if you want to hide this temporarily
+			job = "ambulance",                       -- set this to required job grade
 			garage = {
-				spawn = vector4(-492.03, -336.22, 34.37, 170.88), -- Where the vehicle will spawn
-				out = vector4(-487.71, -337.34, 34.5, 81.57), -- Where you select the vehicles from
-				list = {                              -- The list of cars that will spawn
+				spawn = vector4(-283.25, -636.09, 32.77, 18.25), -- Where the vehicle will spawn
+				out = vector4(-282.89, -638.74, 32.77, 13.43), -- Where you select the vehicles from
+				list = {                             -- The list of cars that will spawn
 
-					["emsnspeedo"] = {
-						CustomName = "EMT",
+					["dlambulance"] = {
+						CustomName = "EMS Ambulance",
 						livery = 0,
-						--	----grade = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
-					["emscar2"] = {
-						CustomName = "EMT Advance",
-						livery = 4,
-						----grade = 1,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
-					["npolchar"] = {
-						CustomName = "EMS Sargent",
-						livery = 8,
-						--grade = 2,
-						colors = { 74, 74 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
-					["poltorencep"] = {
-						CustomName = "EMS Lead-Paramedic",
-						livery = 1,
-						--grade = 3,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
-					["polscoutp"] = {
-						CustomName = "EMS Specialist",
-						livery = 1,
-						--grade = 4,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
-					["polgauntletp"] = {
-						CustomName = "EMS Lieutenant",
-						livery = 1,
-						--grade = 5,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
-					["polvigerop"] = {
-						CustomName = "EMS Captain",
-						livery = 1,
-						--grade = 6,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
-					["mbu3bb"] = {
-						CustomName = "EMS bike",
-						livery = 1,
-						--grade = 6,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
 
-					["npolexp"] = {
-						CustomName = "Deputy Chief",
-						livery = 1,
-						--grade = 8,
-						colors = { 255, 255 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					["dlambulance2"] = {
+						CustomName = "EMS Ambulance 2",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
-					["npolexp"] = {
-						CustomName = "Chief of EMS",
-						livery = 1,
-						--grade = 9,
-						colors = { 0, 0 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+
+					["dlambulance3"] = {
+						CustomName = "EMS Ambulance 3",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
-					["18srt"] = {
-						CustomName = "EMS New 1",
-						livery = 1,
-						--grade = 7,
-						colors = { 74, 74 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+
+					["dlyamahaems"] = {
+						CustomName = "EMS Yamaha Bike",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
-					["fbi"] = {
-						CustomName = "EMS New 2",
-						livery = 1,
-						--grade = 7,
-						colors = { 74, 74 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+
+					["dlm5ems"] = {
+						CustomName = "EMS BMW M5",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
-					["police2"] = {
-						CustomName = "EMS New 3",
-						livery = 1,
-						--grade = 7,
-						colors = { 74, 74 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+
+					["dlm7ems"] = {
+						CustomName = "EMS BMW M7",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
-					["police3"] = {
-						CustomName = "EMS New 4",
-						livery = 1,
-						--grade = 7,
-						colors = { 74, 74 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+
+					["dlramems"] = {
+						CustomName = "EMS RAM",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
-					["polvstr"] = {
-						CustomName = "EMS New 5",
-						livery = 1,
-						--grade = 7,
-						colors = { 74, 74 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+
+					["dlrs6ems"] = {
+						CustomName = "EMS Audi RS6",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
-					["sheriff"] = {
-						CustomName = "EMS New 6",
-						livery = 1,
-						--grade = 7,
-						colors = { 74, 74 },
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+
+					["dlrs7ems"] = {
+						CustomName = "EMS Audi RS7",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						performance = "max",
 					},
+
+					["dlrsq8ems"] = {
+						CustomName = "EMS Audi RSQ8",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
+						performance = "max",
+					},
+
+					["dlx5ems"] = {
+						CustomName = "EMS BMW X5",
+						livery = 0,
+						extras = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
+						performance = "max",
+					},
+
+
 
 				},
 			},
@@ -389,15 +345,15 @@ Config = {
 			zoneEnable = true,                      -- disable if you want to hide this temporarily
 			job = "ambulance",                      -- set this to required job grade
 			garage = {
-				spawn = vector4(-448.8, -310.65, 78.17, 22.24), -- Where the vehicle will spawn
-				out = vector4(-438.69, -316.21, 78.17, 112.6), -- Where you select the vehicles from
+				spawn = vector4(-343.33, -623.88, 51.25, 2.0), -- Where the vehicle will spawn
+				out = vector4(-343.33, -623.88, 51.25, 2.0), -- Where you select the vehicles from
 				list = {                            -- The list of cars that will spawn
-					["emsaw139"] = {
-						CustomName = "emsaw139 Super",
-						livery = 1,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["emsaw139"] = {
+					-- 	CustomName = "emsaw139 Super",
+					-- 	livery = 1,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					["polmav"] = {
 						CustomName = "Heli",
 						livery = 2,
@@ -409,7 +365,7 @@ Config = {
 			},
 		},
 		{
-			zoneEnable = true,                       -- disable if you want to hide this temporarily
+			zoneEnable = false,                       -- disable if you want to hide this temporarily
 			job = "beanmachine",                     -- set this to required job grade
 			garage = {
 				spawn = vector4(129.36, -1036.4, 29.43, 338.77), -- Where the vehicle will spawn
@@ -437,7 +393,7 @@ Config = {
 			},
 		},
 		{
-			zoneEnable = true,                     -- disable if you want to hide this temporarily
+			zoneEnable = false,                     -- disable if you want to hide this temporarily
 			job = "atoms",                         -- set this to required job grade
 			garage = {
 				spawn = vector4(89.43, 304.86, 110.01, 67.02), -- Where the vehicle will spawn
@@ -453,7 +409,7 @@ Config = {
 			},
 		},
 		{
-			zoneEnable = true,                         -- disable if you want to hide this temporarily
+			zoneEnable = false,                         -- disable if you want to hide this temporarily
 			job = "catcafe",                           -- set this to required job grade
 			garage = {
 				spawn = vector4(-594.47, -1087.68, 22.18, 225.31), -- Where the vehicle will spawn
@@ -475,7 +431,7 @@ Config = {
 			},
 		},
 		{
-			zoneEnable = true,                        -- disable if you want to hide this temporarily
+			zoneEnable = false,                        -- disable if you want to hide this temporarily
 			job = "burgershot",                       -- set this to required job grade
 			garage = {
 				spawn = vector4(-1179.77, -903.0, 13.54, 295.23), -- Where the vehicle will spawn
@@ -497,7 +453,7 @@ Config = {
 			},
 		},
 		{
-			zoneEnable = true,                       -- disable if you want to hide this temporarily
+			zoneEnable = false,                       -- disable if you want to hide this temporarily
 			job = "koi",                             -- set this to required job grade
 			garage = {
 				spawn = vector4(-1019.72, -1464.0, 5.05, 26.37), -- Where the vehicle will spawn
