@@ -1,13 +1,5 @@
---[[
-    https://github.com/overextended/ox_lib
-
-    This file is licensed under LGPL-3.0 or higher <https://www.gnu.org/licenses/lgpl-3.0.en.html>
-
-    Copyright © 2025 Linden <https://github.com/thelindat>
-]]
-
----@type promise?
-local skillcheck
+---@type boolean?
+local skillCheckActive = false
 
 ---@alias SkillCheckDifficulity 'easy' | 'medium' | 'hard' | { areaSize: number, speedMultiplier: number }
 
@@ -16,26 +8,25 @@ local skillcheck
 ---@return boolean?
 function lib.skillCheck(difficulty, inputs)
     if skillcheck then return end
-    skillcheck = promise:new()
+    skillCheckActive = true
 
-    lib.setNuiFocus(false, true)
-    SendNUIMessage({
-        action = 'startSkillCheck',
-        data = {
-            difficulty = difficulty,
-            inputs = inputs
-        }
+    local rounds = type(difficulty) == 'table' and #difficulty or 1
+    local diff = type(difficulty) == 'table' and difficulty[1] or difficulty
+
+    local success = exports.wasabi_uikit:SkillCircle({
+        difficulty = type(diff) == 'string' and diff or 'medium',
+        keys = inputs or { 'W', 'A', 'S', 'D' }
+        rounds = rounds
     })
 
-    return Citizen.Await(skillcheck)
+    skillCheckActive = false
+    return success
+
 end
 
 function lib.cancelSkillCheck()
-    if not skillcheck then
-        error('No skillCheck is active')
-    end
-
-    SendNUIMessage({action = 'skillCheckCancel'})
+    if not skillCheckActive then return end
+    skillCheckActive = false
 end
 
 ---@return boolean
@@ -44,12 +35,5 @@ function lib.skillCheckActive()
 end
 
 RegisterNUICallback('skillCheckOver', function(success, cb)
-    cb(1)
-
-    if skillcheck then
-        lib.resetNuiFocus()
-
-        skillcheck:resolve(success)
-        skillcheck = nil
-    end
+    return skillCheckActive
 end)

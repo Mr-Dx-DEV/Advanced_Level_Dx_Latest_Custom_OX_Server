@@ -1,8 +1,6 @@
---[[
+--[[ 
     https://github.com/overextended/ox_lib
-
     This file is licensed under LGPL-3.0 or higher <https://www.gnu.org/licenses/lgpl-3.0.en.html>
-
     Copyright © 2025 Linden <https://github.com/thelindat>
 ]]
 
@@ -11,7 +9,6 @@ local DisableControlAction = DisableControlAction
 local DisablePlayerFiring = DisablePlayerFiring
 local playerState = LocalPlayer.state
 local createdProps = {}
-local maxProps = GetConvarInt('ox:progressPropLimit', 2)
 
 ---@class ProgressPropProps
 ---@field model string
@@ -35,17 +32,16 @@ local maxProps = GetConvarInt('ox:progressPropLimit', 2)
 ---@field disable? { move?: boolean, sprint?: boolean, car?: boolean, combat?: boolean, mouse?: boolean }
 
 local function createProp(ped, prop)
-    local ok, result = pcall(lib.requestModel, prop.model)
-
-    if not ok then return lib.print.error(result) end
-
+    lib.requestModel(prop.model)
     local coords = GetEntityCoords(ped)
-    local object = CreateObject(result, coords.x, coords.y, coords.z, false, false, false)
+    local object = CreateObject(prop.model, coords.x, coords.y, coords.z, false, false, false)
 
-    AttachEntityToEntity(object, ped, GetPedBoneIndex(ped, prop.bone or 60309), prop.pos.x, prop.pos.y, prop.pos.z, prop.rot.x, prop.rot.y, prop.rot.z, true,
-        true, false, true, prop.rotOrder or 0, true)
-    SetModelAsNoLongerNeeded(result)
+    AttachEntityToEntity(object, ped, GetPedBoneIndex(ped, prop.bone or 60309),
+        prop.pos.x, prop.pos.y, prop.pos.z,
+        prop.rot.x, prop.rot.y, prop.rot.z,
+        true, true, false, true, prop.rotOrder or 0, true)
 
+    SetModelAsNoLongerNeeded(prop.model)
     return object
 end
 
@@ -75,137 +71,115 @@ local controls = {
     INPUT_VEH_MOUSE_CONTROL_OVERRIDE = isFivem and 106 or 0x39CCABD5
 }
 
----@param data ProgressProps
-local function startProgress(data)
-    playerState.invBusy = true
-    progress = data
-    local anim = data.anim
+--- Automatically choose an icon based on label keywords
+local function detectIcon(label, default)
+    label = label:lower()
 
-    if anim then
-        if anim.dict then
-            lib.requestAnimDict(anim.dict)
-
-            TaskPlayAnim(cache.ped, anim.dict, anim.clip, anim.blendIn or 3.0, anim.blendOut or 1.0, anim.duration or -1, anim.flag or 49, anim.playbackRate or 0,
-                anim.lockX, anim.lockY, anim.lockZ)
-            RemoveAnimDict(anim.dict)
-        elseif anim.scenario then
-            TaskStartScenarioInPlace(cache.ped, anim.scenario, 0, anim.playEnter == nil or anim.playEnter --[[@as boolean]])
-        end
+    if label:find('eat') or label:find('burger') or label:find('food') then
+        return 'fa-solid fa-burger'
+    elseif label:find('drink') or label:find('coffee') or label:find('water') then
+        return 'fa-solid fa-mug-hot'
+    elseif label:find('repair') or label:find('fix') then
+        return 'fa-solid fa-wrench'
+    elseif label:find('search') or label:find('inspect') then
+        return 'fa-solid fa-magnifying-glass'
+    elseif label:find('use') then
+        return 'fa-solid fa-gear'
+    elseif label:find('craft') or label:find('make') then
+        return 'fa-solid fa-hammer'
     end
 
-    if data.prop then
-        TriggerServerEvent('ox_lib:progressProps', data.prop)
-    end
-
-    local disable = data.disable
-    local startTime = GetGameTimer()
-
-    while progress do
-        if disable then
-            if disable.mouse then
-                DisableControlAction(0, controls.INPUT_LOOK_LR, true)
-                DisableControlAction(0, controls.INPUT_LOOK_UD, true)
-                DisableControlAction(0, controls.INPUT_VEH_MOUSE_CONTROL_OVERRIDE, true)
-            end
-
-            if disable.move then
-                DisableControlAction(0, controls.INPUT_SPRINT, true)
-                DisableControlAction(0, controls.INPUT_MOVE_LR, true)
-                DisableControlAction(0, controls.INPUT_MOVE_UD, true)
-                DisableControlAction(0, controls.INPUT_DUCK, true)
-            end
-
-            if disable.sprint and not disable.move then
-                DisableControlAction(0, controls.INPUT_SPRINT, true)
-            end
-
-            if disable.car then
-                DisableControlAction(0, controls.INPUT_VEH_MOVE_LEFT_ONLY, true)
-                DisableControlAction(0, controls.INPUT_VEH_MOVE_RIGHT_ONLY, true)
-                DisableControlAction(0, controls.INPUT_VEH_ACCELERATE, true)
-                DisableControlAction(0, controls.INPUT_VEH_BRAKE, true)
-                DisableControlAction(0, controls.INPUT_VEH_EXIT, true)
-            end
-
-            if disable.combat then
-                DisableControlAction(0, controls.INPUT_AIM, true)
-                DisablePlayerFiring(cache.playerId, true)
-            end
-        end
-
-        if interruptProgress(progress) then
-            progress = false
-        end
-
-        Wait(0)
-    end
-
-    if data.prop then
-        TriggerServerEvent('ox_lib:progressProps', nil)
-    end
-
-    if anim then
-        if anim.dict then
-            StopAnimTask(cache.ped, anim.dict, anim.clip, 1.0)
-            Wait(0) -- This is needed here otherwise the StopAnimTask is cancelled
-        else
-            ClearPedTasks(cache.ped)
-        end
-    end
-
-    playerState.invBusy = false
-    local duration = progress ~= false and GetGameTimer() - startTime + 100 -- give slight leeway
-
-    if progress == false or duration <= data.duration then
-        SendNUIMessage({ action = 'progressCancel' })
-        return false
-    end
-
-    return true
+    return default or 'fa-solid fa-cog'
 end
 
 ---@param data ProgressProps
 ---@return boolean?
 function lib.progressBar(data)
     while progress ~= nil do Wait(0) end
+    if interruptProgress(data) then return false end
 
-    if not interruptProgress(data) then
-        SendNUIMessage({
-            action = 'progress',
-            data = {
-                label = data.label,
-                duration = data.duration
-            }
-        })
+    -- props
+    if data.prop then playerState:set('lib:progressProps', data.prop, true) end
 
-        return startProgress(data)
+    -- detect action-based icon
+    local label = data.label or 'Processing...'
+    local icon = detectIcon(label, data.icon)
+
+    -- anim
+    if data.anim then
+        if data.anim.dict then
+            lib.requestAnimDict(data.anim.dict)
+            TaskPlayAnim(cache.ped, data.anim.dict, data.anim.clip, data.anim.blendIn or 3.0,
+                data.anim.blendOut or 1.0, data.anim.duration or -1, data.anim.flag or 49,
+                data.anim.playbackRate or 0, data.anim.lockX, data.anim.lockY, data.anim.lockZ)
+            RemoveAnimDict(data.anim.dict)
+        elseif data.anim.scenario then
+            TaskStartScenarioInPlace(cache.ped, data.anim.scenario, 0,
+                data.anim.playEnter == nil or data.anim.playEnter)
+        end
     end
+
+    local result = exports.wasabi_uikit:ProgressBar({
+        label = label,
+        duration = data.duration or 3000,
+        icon = icon,
+        useWhileDead = data.useWhileDead,
+        allowCuffed = data.allowCuffed,
+        allowRagdoll = data.allowRagdoll,
+        allowFalling = data.allowFalling,
+        disable = data.disable,
+    }, 'bar')
+
+    -- cleanup
+    if data.prop then playerState:set('lib:progressProps', nil, true) end
+    if data.anim then ClearPedTasks(cache.ped) end
+
+    return result
 end
 
 ---@param data ProgressProps
 ---@return boolean?
 function lib.progressCircle(data)
     while progress ~= nil do Wait(0) end
+    if interruptProgress(data) then return false end
 
-    if not interruptProgress(data) then
-        SendNUIMessage({
-            action = 'circleProgress',
-            data = {
-                duration = data.duration,
-                position = data.position,
-                label = data.label
-            }
-        })
+    if data.prop then playerState:set('lib:progressProps', data.prop, true) end
 
-        return startProgress(data)
+    local label = data.label or 'Processing...'
+    local icon = detectIcon(label, data.icon)
+
+    if data.anim then
+        if data.anim.dict then
+            lib.requestAnimDict(data.anim.dict)
+            TaskPlayAnim(cache.ped, data.anim.dict, data.anim.clip, data.anim.blendIn or 3.0,
+                data.anim.blendOut or 1.0, data.anim.duration or -1, data.anim.flag or 49,
+                data.anim.playbackRate or 0, data.anim.lockX, data.anim.lockY, data.anim.lockZ)
+            RemoveAnimDict(data.anim.dict)
+        elseif data.anim.scenario then
+            TaskStartScenarioInPlace(cache.ped, data.anim.scenario, 0,
+                data.anim.playEnter == nil or data.anim.playEnter)
+        end
     end
+
+    local result = exports.wasabi_uikit:ProgressBar({
+        label = label,
+        duration = data.duration or 3000,
+        icon = icon,
+        useWhileDead = data.useWhileDead,
+        allowCuffed = data.allowCuffed,
+        allowRagdoll = data.allowRagdoll,
+        allowFalling = data.allowFalling,
+        disable = data.disable,
+    }, 'circle')
+
+    if data.prop then playerState:set('lib:progressProps', nil, true) end
+    if data.anim then ClearPedTasks(cache.ped) end
+
+    return result
 end
 
 function lib.cancelProgress()
-    if not progress then
-        error('No progress bar is active')
-    end
-
+    if not progress then error('No progress bar is active') end
     progress = false
 end
 
@@ -229,18 +203,12 @@ end
 
 local function deleteProgressProps(serverId)
     local playerProps = createdProps[serverId]
-
     if not playerProps then return end
-
-    createdProps[serverId] = nil
-
     for i = 1, #playerProps do
         local prop = playerProps[i]
-
-        if DoesEntityExist(prop) then
-            DeleteEntity(prop)
-        end
+        if DoesEntityExist(prop) then DeleteEntity(prop) end
     end
+    createdProps[serverId] = nil
 end
 
 RegisterNetEvent('onPlayerDropped', function(serverId)
@@ -252,33 +220,24 @@ AddStateBagChangeHandler('lib:progressProps', nil, function(bagName, key, value,
 
     local ply = GetPlayerFromStateBagName(bagName)
     if ply == 0 then return end
-
     local ped = GetPlayerPed(ply)
     local serverId = GetPlayerServerId(ply)
 
-    if not value or createdProps[serverId] then
+    if not value then
         return deleteProgressProps(serverId)
     end
 
-    local playerProps = {}
+    createdProps[serverId] = {}
+    local playerProps = createdProps[serverId]
 
     if value.model then
-        local prop = createProp(ped, value)
-
-        if prop then
-            playerProps[#playerProps + 1] = prop
-        end
+        playerProps[#playerProps + 1] = createProp(ped, value)
     else
-        local propCount = math.min(maxProps, #value)
-
-        for i = 1, propCount do
-            local prop = createProp(ped, value[i])
-
+        for i = 1, #value do
+            local prop = value[i]
             if prop then
-                playerProps[#playerProps + 1] = prop
+                playerProps[#playerProps + 1] = createProp(ped, prop)
             end
         end
     end
-
-    createdProps[serverId] = playerProps
 end)
