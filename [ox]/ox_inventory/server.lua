@@ -6,13 +6,21 @@ require 'modules.shops.server'
 require 'modules.pefcl.server'
 
 if GetConvar('inventory:versioncheck', 'true') == 'true' then
-	lib.versionCheck('communityox/ox_inventory')
+	lib.versionCheck('overextended/ox_inventory')
 end
 
 local TriggerEventHooks = require 'modules.hooks.server'
 local db = require 'modules.mysql.server'
 local Items = require 'modules.items.server'
 local Inventory = require 'modules.inventory.server'
+
+local function assertMetadata(metadata)
+	if metadata and type(metadata) ~= 'table' then
+		metadata = metadata and { type = metadata or nil }
+	end
+
+	return metadata
+end
 
 ---@param player table
 ---@param data table?
@@ -111,6 +119,61 @@ local function getClosestStashCoords(playerPed, stash)
 	return #(coordinates - playerCoords) < distance and coordinates or nil
 end
 
+---Gets backpack properties from item definition
+---@param itemName string The backpack item name
+---@return number slots, number maxWeight
+local function getBackpackProperties(itemName)
+    local itemData = exports.ox_inventory:Items(itemName)
+    
+    if not itemData then
+        return Config.Backpack.slots, Config.Backpack.maxWeight
+    end
+    
+    local slots = itemData.bp_slot or Config.Backpack.slots
+    local maxWeight = (itemData.bp_weight or Config.Backpack.maxWeight) * 1000 -- Convert kg to grams
+    
+    return slots, maxWeight
+end
+
+
+---Checks if item is a backpack
+---@param itemName string Item name to check
+---@return boolean isBackpack
+local function isBackpackItem(itemName)
+    local itemData = exports.ox_inventory:Items(itemName)
+    return itemData and itemData.backpack == true
+end
+
+---Server-side function to check if player has backpack in slot 1
+---@param source number Player source ID
+---@return table|nil backpackItem The backpack item or nil if not found
+local function getPlayerBackpackItem(source)
+    local playerInventory = Inventory(source)
+    if not playerInventory or not playerInventory.items then
+        return nil
+    end
+    
+    local slot = 1
+    local data = playerInventory.items[slot]
+    
+    return data and isBackpackItem(data.name) and data or nil
+end
+
+---Simple check if player has a backpack equipped
+---@param source number Player source ID  
+---@return boolean hasBackpack
+local function hasBackpackEquipped(source)
+    return getPlayerBackpackItem(source) ~= nil
+end
+
+---Registers a backpack stash with properties from item definition
+---@param stashId string The stash identifier
+---@param itemName string The backpack item name
+local function registerBackpackStash(stashId, itemName)
+    local slots, maxWeight = getBackpackProperties(itemName)
+    exports.ox_inventory:RegisterStash(stashId, 'Backpack', slots, maxWeight, false)
+end
+
 ---@param source number
 ---@param invType string
 ---@param data? string|number|table
@@ -119,10 +182,38 @@ end
 local function openInventory(source, invType, data, ignoreSecurityChecks)
 	if Inventory.Lock then return false end
 
+	local PlayerState = Player(source).state
+	local BackpackState = PlayerState.backpack
 	local left = Inventory(source)
-	local right, closestCoords
-
+	local right, closestCoords, leftBottom
     if not left then return end
+    
+    -- Corrected server-side backpack check
+    local function getBackpackData()
+        local playerInventory = Inventory(source)
+        if not playerInventory or not playerInventory.items then
+            return nil
+        end
+        
+        local slot = 1
+        local data = playerInventory.items[slot]
+        
+        return data and isBackpackItem(data.name) and data or nil
+    end
+    
+	local databackpack = {}
+    local backpackItem = nil
+    
+    if Config["Backpack"].owner then
+        if BackpackState ~= nil then
+            databackpack = {id = 'backpack-'..BackpackState.id, owner = false}
+            backpackItem = getBackpackData()
+        else
+            databackpack = source
+        end
+    else
+        databackpack = {id = 'backpack', owner = PlayerState.license}
+    end
 
     left:closeInventory(true)
 	Inventory.CloseAll(left, source)
@@ -133,6 +224,23 @@ local function openInventory(source, invType, data, ignoreSecurityChecks)
 
     local playerPed = left.player.ped
 
+	leftBottom = Inventory(databackpack)
+	if leftBottom == false then
+		if Config["Backpack"].owner then
+            -- Register dynamic stash with item definition properties
+            if backpackItem then
+                registerBackpackStash('backpack-'..BackpackState.id, backpackItem.name)
+            else
+                -- Fallback to default values
+                exports.ox_inventory:RegisterStash('backpack-'..BackpackState.id, 'Backpack', Config["Backpack"].slots, Config["Backpack"].maxWeight, false)
+            end
+		else
+			exports.ox_inventory:RegisterStash('backpack', 'Backpack', Config["Backpack"].slots, Config["Backpack"].maxWeight, true)
+		end
+		Wait(150)
+		leftBottom = Inventory(databackpack)
+		if leftBottom == false then return false end
+	end
 	if data then
         local isDataTable = type(data) == 'table'
 
@@ -177,44 +285,64 @@ local function openInventory(source, invType, data, ignoreSecurityChecks)
 				data.type = invType
 				right = Inventory(data)
 
-				if right and data.netid ~= right.netid then
-					local invEntity = NetworkGetEntityFromNetworkId(right.netid)
+                if right and data.netid ~= right.netid then
+                    local invEntity = NetworkGetEntityFromNetworkId(right.netid)
 
-					if not (invEntity > 0 and DoesEntityExist(invEntity)) or (plate and not string.match(GetVehicleNumberPlateText(invEntity) or '', plate)) then
-						Inventory.Remove(right)
-						right = Inventory(data)
-					end
-				end
+                    if invEntity > 0 and DoesEntityExist(invEntity) or plate and not string.match(GetVehicleNumberPlateText(invEntity) or '', plate) then
+                        return
+                    end
+
+                    Inventory.Remove(right)
+                    right = Inventory(data)
+                end
 			elseif invType == 'drop' then
 				right = Inventory(data.id)
 			else
 				return
 			end
+		elseif invType == 'showbpk' then
+			local targetPlayerId = tonumber(data)
+			if not targetPlayerId then return end
+
+			-- Security: Check if target player can be stolen from
+			if not ignoreSecurityChecks then
+				if not server.canRobPlayer(targetPlayerId) then
+					return
+				end
+
+				-- Verify distance to target
+				local targetInv = Inventory(targetPlayerId)
+				if targetInv and targetInv.player then
+					if #(GetEntityCoords(playerPed) - GetEntityCoords(targetInv.player.ped)) > 16 then
+						return
+					end
+				end
+			end
+
+			local PlayerState = Player(targetPlayerId).state
+			local BackpackState = PlayerState.backpack
+			local data2 = {}
+			if Config["Backpack"].owner then
+				if BackpackState ~= nil then
+					data2 = {id = 'backpack-'..BackpackState.id, owner = false}
+				end
+			else
+				data2 = {id = 'backpack', owner = PlayerState.license}
+			end
+			right = Inventory(data2)
 		elseif invType == 'policeevidence' then
 			if ignoreSecurityChecks or server.hasGroup(left, shared.police) then
 				right = Inventory(('evidence-%s'):format(data))
 			end
 		elseif invType == 'dumpster' then
-			if shared.networkdumpsters then
-				local dumpsterId = getDumpsterFromCoords(data)
-				right = dumpsterId and Inventory(('dumpster-%s'):format(dumpsterId))
+			-- Always use coordinate-based dumpsters (handles non-networked entities)
+			local dumpsterId = getDumpsterFromCoords(data)
+			right = dumpsterId and Inventory(('dumpster-%s'):format(dumpsterId))
 
-				if not right then
-					dumpsterId = #registeredDumpsters + 1
-					right = Inventory.Create(('dumpster-%s'):format(dumpsterId), locale('dumpster'), invType, 15, 0, 100000, false)
-					registeredDumpsters[dumpsterId] = data
-				end
-			else
-				---@cast data string
-				right = Inventory(data)
-
-				if not right then
-					local netid = tonumber(data:sub(9))
-
-					if netid and NetworkGetEntityFromNetworkId(netid) > 0 then
-						right = Inventory.Create(data, locale('dumpster'), invType, 15, 0, 100000, false)
-					end
-				end
+			if not right then
+				dumpsterId = #registeredDumpsters + 1
+				right = Inventory.Create(('dumpster-%s'):format(dumpsterId), locale('dumpster'), invType, 15, 0, 100000, false)
+				registeredDumpsters[dumpsterId] = data
 			end
 		elseif invType == 'container' then
 			left.containerSlot = data --[[@as number]]
@@ -230,6 +358,37 @@ local function openInventory(source, invType, data, ignoreSecurityChecks)
 		else right = Inventory(data) end
 
 		if not right then return end
+
+		-- Security: Check if trying to access another player's inventory without permission
+		if not ignoreSecurityChecks and right.player and right ~= left then
+			print(string.format('[DEBUG] Checking rob permissions: source=%s, target=%s', source, right.id))
+
+			if not server.canRobPlayer(right.id) then
+				print('[DEBUG] Rob permission denied - player cannot be robbed')
+				return
+			end
+
+			-- Verify distance to target player
+			local distance = #(GetEntityCoords(playerPed) - GetEntityCoords(right.player.ped))
+			print(string.format('[DEBUG] Distance check: %.2f meters (max 16)', distance))
+
+			if distance > 16 then
+				print('[DEBUG] Distance check failed - too far away')
+				return
+			end
+
+			print('[DEBUG] Rob permission granted - opening inventory')
+		end
+
+		-- Security: Validate invType matches actual inventory type (PR #53, PR #55)
+		-- Exclude temp inventories and showbpk/backpack mismatch (legitimate case)
+		if not ignoreSecurityChecks and right.type ~= invType and right.type ~= 'temp' then
+			-- Allow showbpk invType to open backpack stash inventories
+			if not (invType == 'showbpk' and right.type == 'stash') then
+				DropPlayer(source, ('invType mismatch: expected %s, got %s for inventory %s'):format(invType, right.type, right.id))
+				return
+			end
+		end
 
 		if not ignoreSecurityChecks and right.groups and not server.hasGroup(left, right.groups) then return end
 
@@ -280,19 +439,24 @@ local function openInventory(source, invType, data, ignoreSecurityChecks)
 		items = right.items,
 		coords = closestCoords or right.coords,
 		distance = right.distance
+	}, leftBottom and {
+		id = leftBottom.id,
+		label = leftBottom.player and '' or leftBottom.label,
+		type = 'backpack',
+		slots = leftBottom.slots,
+		weight = leftBottom.weight,
+		maxWeight = leftBottom.maxWeight,
+		items = leftBottom.items,
+		coords = closestCoords or leftBottom.coords,
+		distance = leftBottom.distance
 	}
 end
 
 ---@param source number
 ---@param invType string
 ---@param data string|number|table
+
 lib.callback.register('ox_inventory:openInventory', function(source, invType, data)
-    if invType == 'player' and source ~= data then
-        local serverId = type(data) == 'table' and data.id or data
-
-        if source == serverId or type(serverId) ~= 'number' or not Player(serverId).state.canSteal then return end
-    end
-
 	return openInventory(source, invType, data)
 end)
 
@@ -316,6 +480,59 @@ function server.forceOpenInventory(playerId, invType, data)
 end
 
 exports('forceOpenInventory', server.forceOpenInventory)
+
+lib.callback.register('ox_inventory:openShop2', function(source)
+	local PlayerState = Player(source).state
+	local BackpackState = PlayerState.backpack
+    
+    -- Corrected server-side backpack check
+    local function getBackpackData()
+        local playerInventory = Inventory(source)
+        if not playerInventory or not playerInventory.items then
+            return nil
+        end
+        
+        local slot = 1
+        local data = playerInventory.items[slot]
+        
+        return data and isBackpackItem(data.name) and data or nil
+    end
+    
+	local databackpack = {}
+    local backpackItem = nil
+    
+    if Config["Backpack"].owner then
+        if BackpackState ~= nil then
+            databackpack = {id = 'backpack-'..BackpackState.id, owner = false}
+            backpackItem = getBackpackData()
+        else
+            databackpack = source
+        end
+    else
+        databackpack = {id = 'backpack', owner = PlayerState.license}
+    end
+    
+	local leftBottom = Inventory(databackpack)
+	if leftBottom == false then return false end
+    
+    -- Get dynamic backpack properties from item definition
+    local slots, maxWeight = Config["Backpack"].slots, Config["Backpack"].maxWeight
+    if backpackItem then
+        slots, maxWeight = getBackpackProperties(backpackItem.name)
+    end
+    
+	return {
+		id = leftBottom.id,
+		label = leftBottom.player and '' or leftBottom.label,
+		type = 'backpack',
+		slots = slots, -- Use dynamic slots
+		weight = leftBottom.weight,
+		maxWeight = maxWeight, -- Use dynamic maxWeight
+		items = leftBottom.items,
+		coords = closestCoords or leftBottom.coords,
+		distance = leftBottom.distance
+	}
+end)
 
 local Licenses = lib.load('data.licenses')
 
@@ -347,6 +564,7 @@ lib.callback.register('ox_inventory:getInventory', function(source, id)
 		items = inventory.items
 	}
 end)
+
 
 RegisterNetEvent('ox_inventory:usedItemInternal', function(slot)
     local inventory = Inventory(source)
@@ -440,7 +658,7 @@ lib.callback.register('ox_inventory:useItem', function(source, itemName, slot, m
 				end
 			elseif not item.weapon and server.UseItem then
                 inventory.usingItem = data
-				-- This is used to call an external useItem function, i.e. ESX.UseItem
+				-- This is used to call an external useItem function, i.e. ESX.UseItem / QBCore.Functions.CanUseItem
 				-- If an error is being thrown on item use there is no internal solution. We previously kept a list
 				-- of usable items which led to issues when restarting resources (for obvious reasons), but config
 				-- developers complained the inventory broke their items. Safely invoking registered item callbacks
@@ -449,13 +667,6 @@ lib.callback.register('ox_inventory:useItem', function(source, itemName, slot, m
 			end
 
 			data.consume = consume
-
-            if not TriggerEventHooks('usingItem', {
-				source = source,
-                inventoryId = inventory and inventory.id,
-                item = inventory.items[slot],
-                consume = consume
-			}) then return false end
 
             ---@type boolean
 			local success = lib.callback.await('ox_inventory:usingItem', source, data, noAnim)
@@ -505,6 +716,7 @@ lib.callback.register('ox_inventory:useItem', function(source, itemName, slot, m
 				end
 
 				if not durability then
+					local meta = assertMetadata(metadata, false)
 					Inventory.RemoveItem(inventory.id, data.name, consume < 1 and 1 or consume, nil, data.slot)
 				else
 					inventory.changed = true
@@ -698,3 +910,4 @@ lib.addCommand('viewinv', {
 }, function(source, args)
 	Inventory.InspectInventory(source, tonumber(args.invId) or args.invId)
 end)
+

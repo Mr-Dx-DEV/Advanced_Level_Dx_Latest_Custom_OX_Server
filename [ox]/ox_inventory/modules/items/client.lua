@@ -99,16 +99,16 @@ Item('bandage', function(data, slot)
 	end)
 end)
 
-Item('armour', function(data, slot)
-	if GetPedArmour(cache.ped) < 100 then
-		ox_inventory:useItem(data, function(data)
-			if data then
-				SetPlayerMaxArmour(PlayerData.id, 100)
-				SetPedArmour(cache.ped, 100)
-			end
-		end)
-	end
-end)
+-- Item('armour', function(data, slot)
+-- 	if GetPedArmour(cache.ped) < 100 then
+-- 		ox_inventory:useItem(data, function(data)
+-- 			if data then
+-- 				SetPlayerMaxArmour(PlayerData.id, 100)
+-- 				SetPedArmour(cache.ped, 100)
+-- 			end
+-- 		end)
+-- 	end
+-- end)
 
 client.parachute = false
 Item('parachute', function(data, slot)
@@ -127,6 +127,49 @@ Item('parachute', function(data, slot)
 			end
 		end)
 	end
+end)
+
+Item('armor_plate', function(data, slot) 
+    -- Check if any armor type is equipped in slot 2
+    local playerItems = exports.ox_inventory:GetPlayerItems()
+    local slot2Item = playerItems and playerItems[2]
+    local hasArmor = false
+    
+    if slot2Item then
+        -- Check if it's one of the armor types
+        local armorTypes = {'armour', 'light_armor', 'heavy_armor', 'pd_armor'}
+        for _, armorType in ipairs(armorTypes) do
+            if slot2Item.name == armorType then
+                hasArmor = true
+                break
+            end
+        end
+    end
+    
+    if hasArmor then
+        local success = lib.progressBar({
+            duration = 3000,
+            label = 'Inserting armor plate...',
+            useWhileDead = false,
+            canCancel = true,
+            disable = {
+                car = true,
+                move = true,
+                combat = true,
+                mouse = false
+            },
+            anim = {
+                dict = 'clothingtie',
+                clip = 'try_tie_positive_a'
+            }
+        })
+
+        if success then
+            TriggerServerEvent('armor:insertPlate')
+        end
+    else
+        lib.notify({ type = "error", description = "No armor vest equipped in armor slot" })
+    end
 end)
 
 Item('phone', function(data, slot)

@@ -28,7 +28,10 @@ AddStateBagChangeHandler('loadInventory', nil, function(bagName, _, value)
     if not value then return end
     local plySrc = GetPlayerFromStateBagName(bagName)
     if not plySrc then return end
-    setupPlayer(QBX:GetPlayer(plySrc).PlayerData)
+    local player = QBX:GetPlayer(plySrc)
+    if player and player.PlayerData then
+        setupPlayer(player.PlayerData)
+    end
 end)
 
 SetTimeout(500, function()
@@ -60,12 +63,39 @@ function server.syncInventory(inv)
     if not accounts then return end
 
     local player = QBX:GetPlayer(inv.id)
-    player.Functions.SetPlayerData('items', inv.items)
+    if not player then return end
+    
+    -- Try direct methods first (newer QBX), fallback to Functions wrapper if available
+    if player.SetPlayerData then
+        player.SetPlayerData('items', inv.items)
+    elseif player.Functions and player.Functions.SetPlayerData then
+        player.Functions.SetPlayerData('items', inv.items)
+    else
+        -- Fallback: directly modify PlayerData
+        player.PlayerData.items = inv.items
+    end
 
     for account, amount in pairs(accounts) do
         account = account == 'money' and 'cash' or account
-        if player.Functions.GetMoney(account) ~= amount then
-            player.Functions.SetMoney(account, amount, ('Sync %s with inventory'):format(account))
+        
+        local currentMoney
+        if player.GetMoney then
+            currentMoney = player.GetMoney(account)
+        elseif player.Functions and player.Functions.GetMoney then
+            currentMoney = player.Functions.GetMoney(account)
+        else
+            currentMoney = player.PlayerData.money[account] or 0
+        end
+        
+        if currentMoney ~= amount then
+            if player.SetMoney then
+                player.SetMoney(account, amount, ('Sync %s with inventory'):format(account))
+            elseif player.Functions and player.Functions.SetMoney then
+                player.Functions.SetMoney(account, amount, ('Sync %s with inventory'):format(account))
+            else
+                -- Fallback: directly modify money
+                player.PlayerData.money[account] = amount
+            end
         end
     end
 end
@@ -89,7 +119,16 @@ function server.buyLicense(inv, license)
 
     Inventory.RemoveItem(inv, 'money', license.price)
     player.PlayerData.metadata.licences[license.name] = true
-    player.Functions.SetMetaData('licences', player.PlayerData.metadata.licences)
+    
+    -- Try different methods for setting metadata
+    if player.SetMetaData then
+        player.SetMetaData('licences', player.PlayerData.metadata.licences)
+    elseif player.Functions and player.Functions.SetMetaData then
+        player.Functions.SetMetaData('licences', player.PlayerData.metadata.licences)
+    else
+        -- Fallback: trigger an update event if available
+        TriggerEvent('qbx_core:server:updatePlayerData', inv.id, 'metadata', player.PlayerData.metadata)
+    end
 
     return true, 'have_purchased'
 end
@@ -104,4 +143,30 @@ end
 ---@diagnostic disable-next-line: duplicate-set-field
 function server.getOwnedVehicleId(entityId)
     return Entity(entityId).state.vehicleid or exports.qbx_vehicles:GetVehicleIdByPlate(GetVehicleNumberPlateText(entityId))
+end
+
+---Check if target player can be robbed (dead, in last stand, or cuffed)
+---@param targetSource number Target player server ID
+---@return boolean canRob
+---@diagnostic disable-next-line: duplicate-set-field
+function server.canRobPlayer(targetSource)
+	local player = QBX:GetPlayer(targetSource)
+	if not player then
+		print('[DEBUG] canRobPlayer: Player not found for source', targetSource)
+		return false
+	end
+
+	-- Check if player is dead, in last stand, or cuffed
+	local metadata = player.PlayerData.metadata or {}
+	local isDead = metadata.isdead or metadata.inlaststand
+	local isCuffed = player.PlayerData.metadata.ishandcuffed or false
+
+	-- Also check state as fallback
+	local targetState = Player(targetSource).state
+	local canSteal = targetState.canSteal == true
+
+	print(string.format('[DEBUG] canRobPlayer check for %s: isDead=%s, isCuffed=%s, canSteal=%s',
+		targetSource, tostring(isDead), tostring(isCuffed), tostring(canSteal)))
+
+	return isDead or isCuffed or canSteal
 end
