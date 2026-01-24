@@ -79,8 +79,18 @@ end
 RegisterNetEvent('ox_inventory:notify', Utils.Notify)
 exports('notify', Utils.Notify)
 
+local notifySuppressed = false
+
+---@param value boolean
+local function setNotifySuppressed(value)
+    notifySuppressed = value
+end
+
+RegisterNetEvent('ox_inventory:suppressItemNotifications', setNotifySuppressed)
+exports('suppressItemNotifications', setNotifySuppressed)
+
 function Utils.ItemNotify(data)
-    if not client.itemnotify then
+    if notifySuppressed or not client.itemnotify then
         return
     end
 
@@ -173,14 +183,14 @@ local hasTextUi
 
 ---@param point CPoint
 function Utils.nearbyMarker(point)
-    DrawMarker(2, point.coords.x, point.coords.y, point.coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15,
+    DrawMarker(point.marker.type, point.coords.x, point.coords.y, point.coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, point.marker.scale[1], point.marker.scale[2], point.marker.scale[3],
         ---@diagnostic disable-next-line: param-type-mismatch
-        point.marker[1], point.marker[2], point.marker[3], 222, false, false, 0, true, false, false, false)
+        point.marker.colour[1], point.marker.colour[2], point.marker.colour[3], 222, false, false, 0, true, false, false, false)
 
     if point.isClosest and point.currentDistance < 1.2 then
         if not hasTextUi then
             hasTextUi = point
-            lib.showTextUI(point.prompt and point.prompt.message or point.message or "[E] Interact", {position = "bottom-center"})
+            lib.showTextUI(point.prompt.message, point.prompt.options)
         end
 
         if IsControlJustReleased(0, 38) then
@@ -198,7 +208,6 @@ function Utils.nearbyMarker(point)
         hasTextUi = nil
         lib.hideTextUI()
     end
- end
-
+end
 
 return Utils

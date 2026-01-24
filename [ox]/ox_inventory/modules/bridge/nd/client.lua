@@ -43,13 +43,3 @@ function client.setPlayerStatus(values)
         status:changeStatus(name, value)
     end
 end
-
--- ND Core death state handler
-AddStateBagChangeHandler('isDead', ('player:%s'):format(cache.serverId), function(_, _, value)
-    LocalPlayer.state:set('canSteal', value, true)
-end)
-
--- ND Core cuff state handler
-AddStateBagChangeHandler('isCuffed', ('player:%s'):format(cache.serverId), function(_, _, value)
-    LocalPlayer.state:set('canSteal', value, true)
-end)

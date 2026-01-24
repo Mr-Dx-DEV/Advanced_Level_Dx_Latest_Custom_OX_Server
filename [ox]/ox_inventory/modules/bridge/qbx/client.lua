@@ -28,13 +28,3 @@ function client.setPlayerStatus(values)
         playerState:set(name, playerState[name] + value, true)
     end
 end
-
--- QBox death state handler
-AddStateBagChangeHandler('isDead', ('player:%s'):format(cache.serverId), function(_, _, value)
-    LocalPlayer.state:set('canSteal', value, true)
-end)
-
--- QBox cuff state handler
-AddStateBagChangeHandler('isHandcuffed', ('player:%s'):format(cache.serverId), function(_, _, value)
-    LocalPlayer.state:set('canSteal', value, true)
-end)

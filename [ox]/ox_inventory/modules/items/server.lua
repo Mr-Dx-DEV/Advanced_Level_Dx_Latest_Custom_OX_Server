@@ -160,93 +160,64 @@ end
 
 local TriggerEventHooks = require 'modules.hooks.server'
 
---@param inv inventory
+---@param inv inventory
 ---@param item OxServerItem
 ---@param metadata any
 ---@param count number
 ---@return table, number
 ---Generates metadata for new items being created through AddItem, buyItem, etc.
 function Items.Metadata(inv, item, metadata, count)
-    if type(inv) ~= 'table' then inv = Inventory(inv) end
-    if not item.weapon then metadata = not metadata and {} or type(metadata) == 'string' and {type=metadata} or metadata end
-    if not count then count = 1 end
+	if type(inv) ~= 'table' then inv = Inventory(inv) end
+	if not item.weapon then metadata = not metadata and {} or type(metadata) == 'string' and {type=metadata} or metadata end
+	if not count then count = 1 end
 
-    ---@cast metadata table<string, any>
+	---@cast metadata table<string, any>
 
-    if item.weapon then
-        if type(metadata) ~= 'table' then metadata = {} end
-        if not metadata.durability then metadata.durability = 100 end
-        if not metadata.ammo and item.ammoname then metadata.ammo = 0 end
-        if not metadata.components then metadata.components = {} end
+	if item.weapon then
+		if type(metadata) ~= 'table' then metadata = {} end
+		if not metadata.durability then metadata.durability = 100 end
+		if not metadata.ammo and item.ammoname then metadata.ammo = 0 end
+		if not metadata.components then metadata.components = {} end
 
-        if metadata.registered ~= false and (metadata.ammo or item.name == 'WEAPON_STUNGUN') then
-            local registered = type(metadata.registered) == 'string' and metadata.registered or inv?.player?.name
-            metadata.registered = registered
-            metadata.serial = GenerateSerial(metadata.serial)
-            metadata.type = 'weapon'
-            if item.rarity then
-                metadata.rarity = item.rarity
-            end
-            if not metadata.rarity then
-                metadata.rarity = 'common'
-            end
-        end
+		if metadata.registered ~= false and (metadata.ammo or item.name == 'WEAPON_STUNGUN') then
+			local registered = type(metadata.registered) == 'string' and metadata.registered or inv?.player?.name
+			metadata.registered = registered
+			metadata.serial = GenerateSerial(metadata.serial)
+		end
 
-        if item.hash == `WEAPON_PETROLCAN` or item.hash == `WEAPON_HAZARDCAN` or item.hash == `WEAPON_FERTILIZERCAN` or item.hash == `WEAPON_FIREEXTINGUISHER` then
-            metadata.ammo = metadata.durability
-        end
-    else
-        local container = Items.containers[item.name]
+		if item.hash == `WEAPON_PETROLCAN` or item.hash == `WEAPON_HAZARDCAN` or item.hash == `WEAPON_FERTILIZERCAN` or item.hash == `WEAPON_FIREEXTINGUISHER` then
+			metadata.ammo = metadata.durability
+		end
+	else
+		local container = Items.containers[item.name]
 
-        if container then
-            count = 1
-            metadata.container = metadata.container or GenerateText(3)..os.time()
-            metadata.size = container.size
-        elseif not next(metadata) then
-            if item.name == 'identification' then
-                count = 1
-                metadata = {
-                    type = inv.player.name,
-                    description = locale('identification', (inv.player.sex) and locale('male') or locale('female'), inv.player.dateofbirth)
-                }
-            elseif item.name == 'garbage' then
-                local trashType = trash[math.random(1, #trash)]
-                metadata.image = trashType.image
-                metadata.weight = trashType.weight
-                metadata.description = trashType.description
-            end
-        end
+		if container then
+			count = 1
+			metadata.container = metadata.container or GenerateText(3)..os.time()
+			metadata.size = container.size
+		elseif not next(metadata) then
+			if item.name == 'identification' then
+				count = 1
+				metadata = {
+					type = inv.player.name,
+					description = locale('identification', (inv.player.sex) and locale('male') or locale('female'), inv.player.dateofbirth)
+				}
+			elseif item.name == 'garbage' then
+				local trashType = trash[math.random(1, #trash)]
+				metadata.image = trashType.image
+				metadata.weight = trashType.weight
+				metadata.description = trashType.description
+			end
+		end
 
-        if item.backpack then
-            metadata.id = GenerateSerial(metadata.id)
-        end
+		if not metadata.durability then
+			metadata = setItemDurability(ItemList[item.name], metadata)
+		end
+	end
 
-        if item.name == 'armor' then
-           metadata.plates = metadata.plates
-           metadata.id = GenerateSerial(metadata.id)
-        end
-
-        -- Check if item is NOT in the CustomMetadata exclusion list
-        local isExcluded = false
-        for _, excludedItem in pairs(Config["Items"]["CustomMetadata"]) do
-            if item.name == excludedItem then
-                isExcluded = true
-                break
-            end
-        end
-
-        -- Only set rarity if not excluded and not already set
-        if not isExcluded and not metadata.rarity then
-            metadata.rarity = item.rarity or 'common'
-        end
-        if not metadata.durability then
-            metadata = setItemDurability(ItemList[item.name], metadata)
-        end
-    end
-
-    if count > 1 and not item.stack then
-        count = 1
-    end
+	if count > 1 and not item.stack then
+		count = 1
+	end
 
 	local response = TriggerEventHooks('createItem', {
 		inventoryId = inv and inv.id,
@@ -347,7 +318,7 @@ function Items.UpdateDurability(inv, slot, item, value, ostime)
     end
 
     if item.decay and durability == 0 then
-        return Inventory.RemoveItem(inv, slot.name, 1, slot.metadata, slot.slot)
+        return Inventory.RemoveItem(inv, slot.name, slot.count, nil, slot.slot)
     end
 
     if slot.metadata.durability == durability then return end

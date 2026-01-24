@@ -39,8 +39,6 @@ local Weapon = require 'modules.weapon.client'
 RegisterNetEvent('esx_policejob:handcuff', function()
 	PlayerData.cuffed = not PlayerData.cuffed
 	LocalPlayer.state:set('invBusy', PlayerData.cuffed, true)
-	-- Set canSteal state when player is cuffed
-	LocalPlayer.state:set('canSteal', PlayerData.cuffed, true)
 
 	if not PlayerData.cuffed then return end
 
@@ -50,12 +48,4 @@ end)
 RegisterNetEvent('esx_policejob:unrestrain', function()
 	PlayerData.cuffed = false
 	LocalPlayer.state:set('invBusy', PlayerData.cuffed, true)
-	-- Remove canSteal state when uncuffed
-	LocalPlayer.state:set('canSteal', false, true)
-end)
-
--- ESX ambulancejob death events
-RegisterNetEvent('esx_ambulancejob:setDeathStatus', function(isDead)
-	PlayerData.dead = isDead
-	LocalPlayer.state:set('canSteal', isDead, true)
 end)

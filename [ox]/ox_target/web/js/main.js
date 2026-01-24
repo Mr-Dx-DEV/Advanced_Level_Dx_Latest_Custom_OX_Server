@@ -10,47 +10,44 @@ window.addEventListener("message", (event) => {
   switch (event.data.event) {
     case "visible": {
       body.style.visibility = event.data.state ? "visible" : "hidden";
-      eye.style.transform = 'translateY(0px)';
-      document.querySelectorAll('.iconClass').forEach(el => el.classList.remove('fa-check'));
-      eye.style.color = 'white';
-      document.querySelector('.center').textContent = '';
-      document.querySelectorAll('.iconClass').forEach(el => el.classList.add('fa-question'));
       return eye.classList.remove("eye-hover");
     }
 
     case "leftTarget": {
-      document.querySelector('.center').textContent = '';
-      eye.style.transform = 'translateY(0px)';
-      document.querySelectorAll('.iconClass').forEach(el => el.classList.remove('fa-check'));
-      eye.style.color = 'white';
-      document.querySelectorAll('.iconClass').forEach(el => el.classList.add('fa-question'));
       return eye.classList.remove("eye-hover");
     }
 
     case "setTarget": {
-      document.querySelector('.center').textContent = '';
-      eye.style.fill = '#cfd2da';
-      eye.style.transform = 'translateY(30px)';
-      eye.style.color = 'rgb(0,247,181)';
-      document.querySelectorAll('.iconClass').forEach(el => el.classList.remove('fa-question'));
-      document.querySelectorAll('.iconClass').forEach(el => el.classList.add('fa-check'));
       eye.classList.add("eye-hover");
-
+    
+      // LIMPIAR opciones anteriores
+      optionsWrapper.innerHTML = "";
+    
+      const container = document.createElement("div");
+      container.style.position = "fixed";
+      container.style.top = "50%";
+      container.style.left = "calc(50% + 30px)"; // Al lado de la mano
+      container.style.transform = "translateY(-50%)";
+      container.style.zIndex = "9999";
+      container.id = "options-container";
+    
+      optionsWrapper.appendChild(container);
+    
       if (event.data.options) {
         for (const type in event.data.options) {
           event.data.options[type].forEach((data, id) => {
-            createOptions(type, data, id + 1);
+            createOptions(type, data, id + 1, null, container);
           });
         }
       }
-
+    
       if (event.data.zones) {
         for (let i = 0; i < event.data.zones.length; i++) {
           event.data.zones[i].forEach((data, id) => {
-            createOptions("zones", data, id + 1, i + 1);
+            createOptions("zones", data, id + 1, i + 1, container);
           });
         }
       }
-    }
+    }    
   }
 });

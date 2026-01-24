@@ -48,16 +48,6 @@ function server.playerDropped(source)
 	end
 end
 
----Check if target player can be robbed (dead or cuffed)
----@param targetSource number Target player server ID
----@return boolean canRob
-function server.canRobPlayer(targetSource)
-	-- Will be overridden by framework-specific implementations
-	-- Default: check canSteal state
-	local targetState = Player(targetSource).state
-	return targetState.canSteal == true
-end
-
 local success, result = pcall(lib.load, ('modules.bridge.%s.server'):format(shared.framework))
 
 if not success then

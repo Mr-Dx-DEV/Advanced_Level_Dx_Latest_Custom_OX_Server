@@ -212,6 +212,8 @@ end
 
 setmetatable(Inventory, {
 	__call = function(self, inv, player, ignoreSecurityChecks)
+        if Inventory.Lock then return false end
+
 		if not inv then
 			return self
 		elseif type(inv) == 'table' then
@@ -612,30 +614,30 @@ end
 function Inventory.Remove(inv)
 	inv = Inventory(inv) --[[@as OxInventory]]
 
-	if inv then
-		if inv.type == 'drop' then
-			TriggerClientEvent('ox_inventory:removeDrop', -1, inv.id)
-			Inventory.Drops[inv.id] = nil
-		elseif inv.player then
-			activeIdentifiers[inv.owner] = nil
-		end
+	if not inv then return end
 
-        for playerId in pairs(inv.openedBy) do
-            if inv.id ~= playerId then
-                local target = Inventories[playerId]
+    if inv.type == 'drop' then
+        TriggerClientEvent('ox_inventory:removeDrop', -1, inv.id)
+        Inventory.Drops[inv.id] = nil
+    elseif inv.player then
+        activeIdentifiers[inv.owner] = nil
+    end
 
-                if target then
-                    target:closeInventory()
-                end
+    for playerId in pairs(inv.openedBy) do
+        if inv.id ~= playerId then
+            local target = Inventories[playerId]
+
+            if target then
+                target:closeInventory()
             end
         end
+    end
 
-        if not inv.datastore and inv.changed then
-            Inventory.Save(inv)
-        end
+    if not inv.datastore and inv.changed then
+        Inventory.Save(inv)
+    end
 
-		Inventories[inv.id] = nil
-	end
+    Inventories[inv.id] = nil
 end
 
 exports('RemoveInventory', Inventory.Remove)
@@ -840,7 +842,7 @@ function Inventory.Load(id, invType, owner)
 				v.metadata = Items.CheckMetadata(v.metadata or {}, item, v.name, ostime)
 				local slotWeight = Inventory.SlotWeight(item, v)
 				weight += slotWeight
-				returnData[v.slot] = {name = item.name, label = item.label, weight = slotWeight, slot = v.slot, count = v.count, description = item.description, metadata = v.metadata, stack = item.stack, close = item.close, type = item.type or 'item', rarity = item.rarity or 'common'}
+				returnData[v.slot] = {name = item.name, label = item.label, weight = slotWeight, slot = v.slot, count = v.count, description = item.description, metadata = v.metadata, stack = item.stack, close = item.close}
 			end
 		end
 	end
@@ -848,22 +850,13 @@ function Inventory.Load(id, invType, owner)
 	return returnData, weight
 end
 
-local function assertMetadata(metadata, setDefaults)
-    if metadata == nil then return nil end
-    if type(metadata) ~= 'table' then
-        return { type = metadata }
-    end
-    -- Treat {} as “no filter” during lookups/removals
-    if next(metadata) == nil and not setDefaults then
-        return nil
-    end
-    -- Only set defaults when *creating* new items (not when matching/removing)
-    if metadata.rarity == nil then
-        metadata.rarity = "common"
-    end
-    return metadata
-end
+local function assertMetadata(metadata)
+	if metadata and type(metadata) ~= 'table' then
+		metadata = metadata and { type = metadata or nil }
+	end
 
+	return metadata
+end
 
 ---@param inv inventory
 ---@param item table | string
@@ -1124,7 +1117,7 @@ function Inventory.AddItem(inv, item, count, metadata, slot, cb)
 		local items = inv.items
 		slotMetadata, slotCount = Items.Metadata(inv.id, item, metadata and table.clone(metadata) or {}, count)
 
-		for i = 10, inv.slots do
+		for i = 1, inv.slots do
 			local slotData = items[i]
 
 			if item.stack and slotData ~= nil and slotData.name == item.name and table.matches(slotData.metadata, slotMetadata) then
@@ -1519,7 +1512,7 @@ AddEventHandler('ox_inventory:customDrop', CustomDrop)
 exports('CustomDrop', CustomDrop)
 
 exports('CreateDropFromPlayer', function(playerId)
-	local playerInventory = Inventories[playerId]
+	local playerInventory = Inventory(playerId)
 
 	if not playerInventory or not next(playerInventory.items) then return end
 
@@ -1630,29 +1623,14 @@ local activeSlots = {}
 ---@param source number
 ---@param data SwapSlotData
 lib.callback.register('ox_inventory:swapItems', function(source, data)
-	if not data or data.count == nil then return end
 	if data.count < 1 then return end
 
-	local PlayerState = Player(source).state
-	local BackpackState = PlayerState.backpack
 	local playerInventory = Inventory(source)
-	local databackpack = {}
-	if Config["Backpack"].owner then
-        if BackpackState ~= nil then
-            databackpack = 'backpack-'..BackpackState.id
-        else
-            databackpack = source
-        end
-    else
-        databackpack = 'backpack:'..license
-    end
-	local backpackinv = Inventory(databackpack)
 
 	if not playerInventory then return end
-	if not backpackinv then return print('ERROR: 0x001') end
 
-	local toInventory = (data.toType == 'player' and playerInventory) or (data.toType == 'backpack' and backpackinv) or Inventory(playerInventory.open)
-	local fromInventory = (data.fromType == 'player' and playerInventory) or (data.fromType == 'backpack' and backpackinv) or Inventory(playerInventory.open)
+	local toInventory = (data.toType == 'player' and playerInventory) or Inventory(playerInventory.open)
+	local fromInventory = (data.fromType == 'player' and playerInventory) or Inventory(playerInventory.open)
 
 	if not fromInventory or not toInventory then
 		playerInventory:closeInventory()
@@ -1719,12 +1697,7 @@ lib.callback.register('ox_inventory:swapItems', function(source, data)
         end
 
         if data.toType == 'newdrop' then
-			if data.fromType == 'backpack' then
-				playerInventory:closeInventory()
-            	return dropItem(source, backpackinv, fromData, data)
-			else
-				return dropItem(source, playerInventory, fromData, data)
-			end
+            return dropItem(source, playerInventory, fromData, data)
         end
 
 		if fromData then
@@ -1991,8 +1964,18 @@ lib.callback.register('ox_inventory:swapItems', function(source, data)
 	end
 end)
 
+exports('RegisteredStashes', function()
+	return RegisteredStashes
+end)
+
+exports('RemoveRegisteredStash', function(stash)
+	exports.ox_inventory:ClearInventory(stash)
+	MySQL.update.await('DELETE FROM ox_inventory WHERE name = ?', { stash })
+	RegisteredStashes[stash] = nil
+end)
+
 function Inventory.Confiscate(source)
-	local inv = Inventories[source]
+	local inv = Inventory(source)
 
 	if inv?.player then
 		db.saveStash(inv.owner, inv.owner, json.encode(minimal(inv)))
@@ -2008,7 +1991,7 @@ end
 exports('ConfiscateInventory', Inventory.Confiscate)
 
 function Inventory.Return(source)
-	local inv = Inventories[source]
+	local inv = Inventory(source)
 
 	if not inv?.player then return end
 
@@ -2437,8 +2420,8 @@ RegisterServerEvent('ox_inventory:closeInventory', function()
 end)
 
 local function giveItem(playerId, slot, target, count)
-	local fromInventory = Inventories[playerId]
-	local toInventory = Inventories[target]
+	local fromInventory = Inventory(playerId)
+	local toInventory = Inventory(target)
 
 	if count <= 0 then count = 1 end
 
@@ -2493,9 +2476,6 @@ local function giveItem(playerId, slot, target, count)
 					end
 
 					return
-				else
-					-- Fix: Remove item from target inventory if source removal failed to prevent dupe
-					Inventory.RemoveItem(toInventory, item, count, data.metadata, toSlot)
 				end
 			end
 		end
@@ -2504,124 +2484,11 @@ local function giveItem(playerId, slot, target, count)
 	end
 end
 
----Finds available slot in main inventory (skipping utility slots for player)
----@param inventory table Player inventory
----@param item table Item data
----@return number|nil slotId Available slot number or nil if none found
-local function findAvailableMainSlot(inventory, item)
-    if not inventory or not inventory.items then return nil end
-    
-    local itemData = exports.ox_inventory:Items(item.name)
-    if not itemData then return nil end
-    
-    -- For player inventory, skip utility slots (1-9) and only use main inventory (10+)
-    for i = 10, inventory.slots do
-        local slot = inventory.items[i]
-        
-        if not slot or not slot.name then
-            -- Empty slot found
-            return i
-        elseif itemData.stack and slot.name == item.name then
-            -- Check if items can stack (same metadata)
-            local canStack = true
-            if item.metadata and slot.metadata then
-                for k, v in pairs(item.metadata) do
-                    if slot.metadata[k] ~= v then
-                        canStack = false
-                        break
-                    end
-                end
-                if canStack then
-                    for k, v in pairs(slot.metadata) do
-                        if item.metadata[k] ~= v then
-                            canStack = false
-                            break
-                        end
-                    end
-                end
-            elseif (item.metadata and not slot.metadata) or (not item.metadata and slot.metadata) then
-                canStack = false
-            end
-            
-            if canStack then
-                return i
-            end
-        end
-    end
-    
-    return nil
-end
-
--- Override the giveItem callback to properly handle slot restrictions
-lib.callback.register('ox_inventory:giveItem', function(source, slotId, targetId, count)
-    local sourceInventory = Inventory(source)
-    local targetInventory = Inventory(targetId)
-    
-    if not sourceInventory or not targetInventory then
-        return {'no_access'}
-    end
-    
-    local sourceItem = sourceInventory.items[slotId]
-    if not sourceItem or not sourceItem.name then
-        return {'item_not_found'}
-    end
-    
-    count = count and count > 0 and count or sourceItem.count
-    count = math.min(count, sourceItem.count)
-    
-    -- Check if target player has space in main inventory (not utility slots)
-    local targetSlot = findAvailableMainSlot(targetInventory, sourceItem)
-    
-    if not targetSlot then
-        return {'target_inventory_full'} -- This will show "Target player's pockets are full"
-    end
-    
-    -- Create item data for the target
-    local itemData = {
-        name = sourceItem.name,
-        count = count,
-        metadata = sourceItem.metadata or {}
-    }
-    
-    -- Try to add item to target inventory
-    local success, response = Inventory.AddItem(targetInventory, sourceItem.name, count, sourceItem.metadata, targetSlot)
-    
-    if not success then
-        return {'cannot_give_item'}
-    end
-    
-    -- Remove item from source inventory
-    local removeSuccess = Inventory.RemoveItem(sourceInventory, sourceItem.name, count, sourceItem.metadata, slotId)
-    
-    if not removeSuccess then
-        -- If removal fails, also remove the added item from target
-        Inventory.RemoveItem(targetInventory, sourceItem.name, count, sourceItem.metadata, targetSlot)
-        return {'cannot_give_item'}
-    end
-    
-    -- Notify both players
-    local itemLabel = sourceItem.metadata?.label or exports.ox_inventory:Items(sourceItem.name)?.label or sourceItem.name
-    
-    TriggerClientEvent('ox_lib:notify', source, {
-        type = 'success',
-        description = string.format('Gave %dx %s to %s', count, itemLabel, GetPlayerName(targetId))
-    })
-    
-    TriggerClientEvent('ox_lib:notify', targetId, {
-        type = 'success', 
-        description = string.format('Received %dx %s from %s', count, itemLabel, GetPlayerName(source))
-    })
-    
-    -- Log the transaction if logging is enabled
-    if server.loglevel and server.loglevel > 0 then
-        lib.logger(sourceInventory.owner, 'item_give', string.format('Gave %dx %s to %s', count, sourceItem.name, targetInventory.owner))
-    end
-    
-    return nil -- No error
-end)
+lib.callback.register('ox_inventory:giveItem', giveItem)
+RegisterServerEvent('ox_inventory:giveItem', function(...) giveItem(source, ...) end)
 
 local function updateWeapon(source, action, value, slot, specialAmmo)
-	local inventory = Inventories[source]
+	local inventory = Inventory(source)
 
 	if not inventory then return end
 
