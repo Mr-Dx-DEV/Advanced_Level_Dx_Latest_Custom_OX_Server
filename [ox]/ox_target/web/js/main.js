@@ -19,35 +19,22 @@ window.addEventListener("message", (event) => {
 
     case "setTarget": {
       eye.classList.add("eye-hover");
-    
-      // LIMPIAR opciones anteriores
-      optionsWrapper.innerHTML = "";
-    
-      const container = document.createElement("div");
-      container.style.position = "fixed";
-      container.style.top = "50%";
-      container.style.left = "calc(50% + 30px)"; // Al lado de la mano
-      container.style.transform = "translateY(-50%)";
-      container.style.zIndex = "9999";
-      container.id = "options-container";
-    
-      optionsWrapper.appendChild(container);
-    
+
       if (event.data.options) {
         for (const type in event.data.options) {
           event.data.options[type].forEach((data, id) => {
-            createOptions(type, data, id + 1, null, container);
+            createOptions(type, data, id + 1);
           });
         }
       }
-    
+
       if (event.data.zones) {
         for (let i = 0; i < event.data.zones.length; i++) {
           event.data.zones[i].forEach((data, id) => {
-            createOptions("zones", data, id + 1, i + 1, container);
+            createOptions("zones", data, id + 1, i + 1);
           });
         }
       }
-    }    
+    }
   }
 });

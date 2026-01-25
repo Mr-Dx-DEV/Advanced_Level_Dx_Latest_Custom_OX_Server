@@ -120,6 +120,25 @@ return {
         }
     },
 
+    playJailSound     = function()
+        if GetResourceState('qbx_core') == 'started' then
+            lib.load('@qbx_core.modules.lib')
+
+            qbx.loadAudioBank('audiodirectory/jail_sounds')
+            qbx.playAudio({
+                audioName = 'jail',
+                audioRef = 'jail_soundset',
+                source = cache.ped
+            })
+            ReleaseNamedScriptAudioBank('audiodirectory/jail_sounds')
+        else
+            RequestScriptAudioBank('audiodirectory/jail_sounds', false)
+            PlaySoundFromEntity(GetSoundId(), 'jail', cache.ped, 'jail_soundset', false, false)
+            ReleaseNamedScriptAudioBank('audiodirectory/jail_sounds')
+        end
+    end,
+
+
     -- Reloads Player's Last Skin When Freed --
     ResetClothing = function()
         -- TriggerEvent('illenium-appearance:client:reloadSkin', true)
@@ -127,6 +146,7 @@ return {
 
     -- Triggered on Player Heal --
     PlayerHealed = function()
+        -- TriggerEvent('qbx_medical:client:playerRevived')
         -- TriggerEvent('hospital:client:Revive')
         -- TriggerEvent('osp_ambulance:partialRevive')
     end,
@@ -141,7 +161,7 @@ return {
     Dispatch = function(coords)
         -- exports['ps-dispatch']:PrisonBreak()
         -- TriggerEvent('police:client:policeAlert', coords, 'Prison Break')
-        
+
        -- ND Core
         -- exports["ND_MDT"]:createDispatch({
         --             caller = "Boilingbroke Penitentiary",

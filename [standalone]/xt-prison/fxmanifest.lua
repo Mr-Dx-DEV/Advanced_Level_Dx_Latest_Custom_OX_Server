@@ -6,7 +6,7 @@ lua54 'yes'
 author 'xT Development'
 description 'Prison for QB, QBX, OX, ND, & ESX'
 repository 'https://github.com/xT-Development/xt-prison'
-version '1.4.5'
+version '1.4.8'
 
 shared_scripts { '@ox_lib/init.lua' }
 
@@ -23,12 +23,17 @@ server_scripts {
 }
 
 files {
+    'data/audioexample_sounds.dat54.rel',
+    'audiodirectory/jail_sounds.awc',
     'locales/*.json',
     'configs/client.lua',
     'configs/prisonbreak.lua',
     'modules/client/*.lua',
     'bridge/compat/client.lua',
-    'bridge/compat/resources.lua'
+    'bridge/compat/resources.lua',
 }
+
+data_file 'AUDIO_WAVEPACK' 'audiodirectory'
+data_file 'AUDIO_SOUNDDATA' 'data/audioexample_sounds.dat'
 
 ox_libs { 'locale' }

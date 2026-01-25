@@ -102,28 +102,28 @@ Config.Blips = {
         Show = true,
         Sprite = 366,
         Color = 47,
-        Scale = 0.5,
+        Scale = 0.7,
         Name = "Clothing Store",
     },
     ["barber"] = {
         Show = true,
         Sprite = 71,
         Color = 0,
-        Scale = 0.5,
+        Scale = 0.7,
         Name = "Barber",
     },
     ["tattoo"] = {
         Show = true,
         Sprite = 75,
         Color = 4,
-        Scale = 0.5,
+        Scale = 0.7,
         Name = "Tattoo Shop",
     },
     ["surgeon"] = {
         Show = true,
         Sprite = 102,
         Color = 4,
-        Scale = 0.5,
+        Scale = 0.7,
         Name = "Plastic Surgeon",
     }
 }
@@ -540,20 +540,20 @@ Config.Stores = {
             vector3(-298.23013305664, 6199.2451171875, 31.49),
             vector3(-294.1501159668, 6203.2700195312, 31.49)
         }
+    },
+    {
+        type = "surgeon",
+        coords = vector4(298.78, -572.81, 43.26, 114.27),
+        size = vector3(4, 4, 4),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(298.84417724609, -572.92205810547, 43.26),
+            vector3(296.39556884766, -575.65942382812, 43.26),
+            vector3(293.56317138672, -572.60675048828, 43.26),
+            vector3(296.28656005859, -570.330078125, 43.26)
+        }
     }
-    -- {
-    --     type = "surgeon",
-    --     coords = vector4(298.78, -572.81, 43.26, 114.27),
-    --     size = vector3(4, 4, 4),
-    --     rotation = 45,
-    --     usePoly = false,
-    --     points = {
-    --         vector3(298.84417724609, -572.92205810547, 43.26),
-    --         vector3(296.39556884766, -575.65942382812, 43.26),
-    --         vector3(293.56317138672, -572.60675048828, 43.26),
-    --         vector3(296.28656005859, -570.330078125, 43.26)
-    --     }
-    -- }
 }
 
 

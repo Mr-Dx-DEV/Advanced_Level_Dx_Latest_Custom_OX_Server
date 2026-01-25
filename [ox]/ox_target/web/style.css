@@ -1,13 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
 
-@font-face {
-  font-family: 'Teko-Bold';
-  src: url('./Teko-Bold.ttf');
-  font-weight: normal;
-  font-style: normal;
-  font-size: 100px !important;
-}
-
 :root {
   --color-default: #cfd2da;
   --color-hover: white;
@@ -31,73 +23,60 @@ p {
 }
 
 #eye {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 12pt;
-  fill: #191919;
+  font-size: 22pt;
+  fill: black;
 }
 
 .eye-hover {
-  width: 34px;
-  height: 34px;
-  top: calc(50% - 8px);
-  left: calc(50% - 8px);
-  fill: rgb(65, 211, 216);
-  /*border: 2px solid rgb(68 68 68 / 40%);
-  border-width: 0.15rem;
-  border-color: rgba(0, 0, 0, 0.925);
-  box-shadow: 0 5px 2px rgba(20, 20, 20, 0.753);
-  */
-  margin:auto;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  will-change: transform;
+  fill: var(--color-default);
 }
 
-.option-wrapper {
-  background: #191919;
-  padding: 1px 5px;
-  border-radius: 0.4em;
-  box-shadow: rgb(0 0 0 / 60%) 0px 0px 1px 1px;
-  margin-top: 5px; /* ESPACIADO ENTRE OPCIONES */
-  white-space: nowrap;
-  position: relative; /* CAMBIO IMPORTANTE */
+#options-wrapper {
+  position: absolute;
+  top: calc(48.4%);
+  left: calc(50% + 18pt);
 }
 
 .option-container {
-  font-size: 20px;
-  font-weight: 1000;
-  text-transform:uppercase;
-  background: #242424;
-  text-shadow: 2px 2px 5px rgb(0, 0, 0);
-  box-shadow: rgb(0 0 0 / 60%) 0px 0px 1px 1px;
-  letter-spacing: 0.05vw;
-  color: rgb(255, 255, 255);
-  border-radius: 0.4em;
-  padding: 10px 10px 10px 10px;
-  margin: 5px 5px;
-  transition: all 0.1s ease-in-out;
-  will-change: transform;
+  color: var(--color-default);
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  font-family: 'Teko-Bold';
+  font-family: "Nunito";
+  background: linear-gradient(
+    90deg,
+    rgba(20, 20, 20, 0.7) 0%,
+    rgba(20, 20, 20, 0.6) 66%,
+    rgba(47, 48, 53, 0) 100%
+  );
+  font-size: 11pt;
+  line-height: 22pt;
   vertical-align: middle;
+  margin: 2pt;
+  transition: 300ms;
   transform-origin: left top;
   scale: 1;
-  height: 15pt;
-  width: auto + 10pt;
+  height: 22pt;
+  width: 150pt;
+  top: 0;
 }
 
 .option-container:hover {
-  background: linear-gradient(to bottom,rgb(1, 80, 117),rgb(65, 211, 216));
-  color: white;
-  margin-left: 10pt;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 30, 0.7) 0%,
+    rgba(30, 30, 30, 0.6) 66%,
+    rgba(57, 58, 63, 0) 100%
+  );
+  transform-origin: left top;
+  color: var(--color-hover);
+  margin-left: 4pt;
 }
-
 
 .option-icon {
   font-size: 12pt;

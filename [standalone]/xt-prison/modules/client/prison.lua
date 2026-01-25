@@ -70,7 +70,7 @@ function prisonModules.createCheckoutLocation()
                     icon = 'fas fa-hourglass-start',
                     onSelect = function()
                         local timeLeft = lib.callback.await('xt-prison:server:checkJailTime', false)
-                        if timeLeft <= 0 then
+                        if timeLeft and timeLeft <= 0 then
                             prisonModules.exitPrison(true)
                         end
                     end
@@ -178,7 +178,7 @@ function prisonModules.enterPrison(setTime)
 
         FreezeEntityPosition(cache.ped, false)
 
-        TriggerServerEvent("InteractSound_SV:PlayOnSource", "jail", 0.5)
+        config.playJailSound()
 
         config.Emote(RandomSpawn.emote)
         prisonModules.createCheckoutLocation()
@@ -232,6 +232,7 @@ function prisonModules.exitPrison(isUnjailed)
             end
 
             prisonModules.setPlayerCoords(config.Freedom)
+            prisonModules.removeCheckoutLocation()
 
             Wait(500)
             DoScreenFadeIn(2000)
