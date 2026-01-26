@@ -1,25 +1,31 @@
 import { createOptions } from "./createOptions.js";
-
+import { fetchNui } from "./fetchNui.js";
 const optionsWrapper = document.getElementById("options-wrapper");
 const body = document.body;
 const eye = document.getElementById("eyeSvg");
-
 window.addEventListener("message", (event) => {
   optionsWrapper.innerHTML = "";
-
   switch (event.data.event) {
     case "visible": {
-      body.style.visibility = event.data.state ? "visible" : "hidden";
-      return eye.classList.remove("eye-hover");
+      if (event.data.state) {
+        body.style.visibility = "visible";
+        body.style.opacity = "1";
+      } else {
+        body.style.opacity = "0";
+        body.addEventListener(
+          "transitionend",
+          () => {
+            if (body.style.opacity === "0") {
+              body.style.visibility = "hidden";
+            }
+          },
+          { once: true }
+        );
+      }
+      break;
     }
-
-    case "leftTarget": {
-      return eye.classList.remove("eye-hover");
-    }
-
     case "setTarget": {
       eye.classList.add("eye-hover");
-
       if (event.data.options) {
         for (const type in event.data.options) {
           event.data.options[type].forEach((data, id) => {
@@ -27,7 +33,6 @@ window.addEventListener("message", (event) => {
           });
         }
       }
-
       if (event.data.zones) {
         for (let i = 0; i < event.data.zones.length; i++) {
           event.data.zones[i].forEach((data, id) => {
@@ -37,4 +42,11 @@ window.addEventListener("message", (event) => {
       }
     }
   }
+});
+window.addEventListener('DOMContentLoaded', async () => {
+  let primaryColor = await fetchNui('getConfigValue', 'primaryColor');
+  if (primaryColor === null || primaryColor === undefined || primaryColor.trim() === '') {
+    primaryColor = '#BEEE11';
+  }
+  document.documentElement.style.setProperty('--color-primary', primaryColor);
 });

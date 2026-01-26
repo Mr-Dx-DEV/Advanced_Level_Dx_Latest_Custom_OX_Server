@@ -1,17 +1,17 @@
+
+
+
+
 AddEventHandler('ox_target:debug', function(data)
     if data.entity and GetEntityType(data.entity) > 0 then
         data.archetype = GetEntityArchetypeName(data.entity)
         data.model = GetEntityModel(data.entity)
     end
-
 	print(json.encode(data, {indent=true}))
 end)
-
 if GetConvarInt('ox_target:debug', 0) ~= 1 then return end
-
 local ox_target = exports.ox_target
 local drawZones = true
-
 ox_target:addBoxZone({
     coords = vec3(442.5363, -1017.666, 28.85637),
     size = vec3(3, 3, 3),
@@ -27,7 +27,6 @@ ox_target:addBoxZone({
         }
     }
 })
-
 ox_target:addSphereZone({
     coords = vec3(440.5363, -1015.666, 28.85637),
     radius = 3,
@@ -42,7 +41,6 @@ ox_target:addSphereZone({
         }
     }
 })
-
 ox_target:addModel(`police`, {
     {
         name = 'debug_model',
@@ -51,7 +49,6 @@ ox_target:addModel(`police`, {
         label = locale('debug_police_car'),
     }
 })
-
 ox_target:addGlobalPed({
     {
         name = 'debug_ped',
@@ -60,7 +57,6 @@ ox_target:addGlobalPed({
         label = locale('debug_ped'),
     }
 })
-
 ox_target:addGlobalVehicle({
     {
         name = 'debug_vehicle',
@@ -69,7 +65,6 @@ ox_target:addGlobalVehicle({
         label = locale('debug_vehicle'),
     }
 })
-
 ox_target:addGlobalObject({
     {
         name = 'debug_object',
@@ -78,7 +73,6 @@ ox_target:addGlobalObject({
         label = locale('debug_object'),
     }
 })
-
 ox_target:addGlobalOption({
     {
         name = 'debug_global',
@@ -87,7 +81,6 @@ ox_target:addGlobalOption({
         openMenu = 'debug_global'
     }
 })
-
 ox_target:addGlobalOption({
     {
         name = 'debug_global2',

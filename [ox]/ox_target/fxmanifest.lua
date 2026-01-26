@@ -1,31 +1,27 @@
--- FX Information
+
+
+
+
 fx_version 'cerulean'
 use_experimental_fxv2_oal 'yes'
 lua54 'yes'
 game 'gta5'
-
--- Resource Information
 name 'ox_target'
 author 'Overextended'
 version '1.17.3'
 repository 'https://github.com/communityox/ox_target'
 description ''
-
--- Manifest
 ui_page 'web/index.html'
-
 shared_scripts {
-	'@ox_lib/init.lua',
+	'@ox_lib/init.lua'
 }
-
+client_script '@prism_uipack/config_init.lua'
 client_scripts {
 	'client/main.lua',
 }
-
 server_scripts {
 	'server/main.lua'
 }
-
 files {
 	'web/**',
 	'locales/*.json',
@@ -40,7 +36,11 @@ files {
 	'client/framework/qbx.lua',
 	'client/compat/qtarget.lua',
 }
-
+escrow_ignore {
+    'client/**',
+	'server/**',
+	'locales/**'
+}
 provide 'qtarget'
-
 dependency 'ox_lib'
+dependency '/assetpacks'
