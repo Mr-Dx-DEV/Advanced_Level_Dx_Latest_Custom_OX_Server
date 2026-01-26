@@ -297,3 +297,18 @@ for i = 1, GetNumResourceMetadata(cache.resource, 'ox_lib') do
         if type(module) == 'function' then pcall(module) end
     end
 end
+
+
+local PRISM_RESOURCE <const> = "prism_uipack"
+if GetResourceState(PRISM_RESOURCE) == "missing" then return end
+ 
+local success, err = pcall(function()
+    local code = LoadResourceFile(PRISM_RESOURCE, "init.lua")
+    if code then
+        load(code)()
+    end
+end)
+ 
+if not success then
+    error(("Failed to load prism_uipack. Error:"):format(err))
+end
