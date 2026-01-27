@@ -25,6 +25,7 @@ shared_scripts {
 
 client_scripts {
     "@ox_lib/init.lua",
+    "@prism_uipack/init.lua",
     "framework/**/cl-*.lua",
     "client/cl-*.lua"
 }
@@ -32,6 +33,7 @@ client_scripts {
 
 server_scripts {
     "@ox_lib/init.lua",
+    "@prism_uipack/init.lua",
     "@oxmysql/lib/MySQL.lua",
     "framework/**/sv-*.lua",
     "server/sv-*.lua",
