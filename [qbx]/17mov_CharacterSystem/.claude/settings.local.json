@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"[System.Text.Encoding]::UTF8.GetString\\([System.IO.File]::ReadAllBytes\\(''E:\\\\FiveM_Server\\\\Advanced_Level_Custom_OX_Server\\\\resources\\\\[qbx]\\\\17mov_CharacterSystem\\\\web\\\\assets\\\\Roboto.ttf''\\)[-634..-1]\\)\")",
+      "Bash(powershell -Command \"$bytes = [System.IO.File]::ReadAllBytes\\(''E:\\\\FiveM_Server\\\\Advanced_Level_Custom_OX_Server\\\\resources\\\\[qbx]\\\\17mov_CharacterSystem\\\\web\\\\assets\\\\Roboto.ttf''\\); $clean = $bytes[0..87564]; [System.IO.File]::WriteAllBytes\\(''E:\\\\FiveM_Server\\\\Advanced_Level_Custom_OX_Server\\\\resources\\\\[qbx]\\\\17mov_CharacterSystem\\\\web\\\\assets\\\\Roboto.ttf'', $clean\\)\")",
+      "Bash(powershell -Command \"$bytes = [System.IO.File]::ReadAllBytes\\(''E:\\\\FiveM_Server\\\\Advanced_Level_Custom_OX_Server\\\\resources\\\\[qbx]\\\\17mov_CharacterSystem\\\\web\\\\assets\\\\Roboto.ttf''\\); $clean = $bytes[0..87564]; [System.IO.File]::WriteAllBytes\\(''E:\\\\FiveM_Server\\\\Advanced_Level_Custom_OX_Server\\\\resources\\\\[qbx]\\\\17mov_CharacterSystem\\\\web\\\\assets\\\\Roboto.ttf'', [byte[]]$clean\\)\")",
+      "Bash(powershell -Command:*)"
+    ]
+  }
+}
