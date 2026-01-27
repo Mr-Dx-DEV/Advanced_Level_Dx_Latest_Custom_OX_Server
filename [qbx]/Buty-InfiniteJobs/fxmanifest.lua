@@ -28,7 +28,6 @@ client_scripts {
 }
 
 server_scripts {
-	'html/web.js',
 	'server/framework/*.lua',
 	'server/main.lua',
 	'locales/*.lua',
