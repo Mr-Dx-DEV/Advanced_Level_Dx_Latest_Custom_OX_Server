@@ -13,10 +13,6 @@ shared_scripts {
     'config/*.lua',
 }
 
-server_scripts {
-    'client/modules/vite_plugin.js'
-}
-
 client_scripts{
     'client/*.lua',
 }

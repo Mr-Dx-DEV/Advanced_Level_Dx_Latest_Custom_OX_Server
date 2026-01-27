@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /b \"E:\\\\FiveM_Server\\\\Advanced_Level_Custom_OX_Server\\\\resources\\\\[qbx]\\\\cloud-shop\\\\server\")"
+    ]
+  }
+}
