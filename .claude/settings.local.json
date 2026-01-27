@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs -0 -I {} bash -c 'line=$\\(sed -n \"\"28p\"\" \"\"{}\"\" 2>/dev/null\\); if [[ $line == *\"\"\\\\`\"\"* ]]; then echo \"\"{}\"\"; fi')"
+    ]
+  }
+}
