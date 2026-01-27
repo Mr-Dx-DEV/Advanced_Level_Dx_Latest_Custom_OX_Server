@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(del \"E:\\\\FiveM_Server\\\\Advanced_Level_Custom_OX_Server\\\\resources\\\\[qbx]\\\\[mechanic]\\\\jg-mechanic\\\\data\\\\.env.local.js\")",
+      "Bash(find:*)"
+    ]
+  }
+}
