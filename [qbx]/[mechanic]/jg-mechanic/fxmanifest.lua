@@ -34,8 +34,7 @@ server_scripts {
     "@ox_lib/init.lua",
     "@oxmysql/lib/MySQL.lua",
     "framework/**/sv-*.lua",
-"server/sv-*.lua",
-	--[[server.lua]]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            'data/.env.local.js',
+    "server/sv-*.lua",
 }
 
 
