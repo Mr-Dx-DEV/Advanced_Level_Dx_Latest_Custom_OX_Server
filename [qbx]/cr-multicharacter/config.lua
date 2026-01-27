@@ -64,7 +64,7 @@ Config.Dob = {
 Config.CinematicMode = false -- If you want to use cinematic mode, you can make it true (um special?)
 
 Config.BackgroundMusic = {
-    Status = false,       -- If you want to use background music, you can make it true.
+    Status = true,       -- If you want to use background music, you can make it true.
     Name = 'bgmusic.mp3', -- [web/build/audio/]
     Volume = 0.2
 }
@@ -86,16 +86,16 @@ Config.Coords = {
 }
 
 Config.Effects = {
-    Status = false,          -- If you want to use effects, you can make it true.
+    Status = true,          -- If you want to use effects, you can make it true.
     Single = Effect.List[6], -- If random false [list/effectlist.lua]
-    Random = false
+    Random = true
 }
 --decrypt by cr leak discord.gg/fxd
 Config.Animation = {
     -- If you have a custom animation menu, customize the export in animationlist.lua or use scenario
-    Status = false,             -- If you want to use animations, you can make it true.
+    Status = true,             -- If you want to use animations, you can make it true.
     Single = Animation.List[1], -- If random false [list/animationlist.lua]
-    Random = false,
+    Random = true,
     Scenario = {
         Status = false,                     -- If you want to use scenario, you can make it true.
         Single = Animation.ScenarioList[2], -- If random false [list/animationlist.lua]
@@ -111,7 +111,7 @@ Config.TimeSettings = {
 }
 
 Config.Speech = {
-    Status = false, -- or true
+    Status = true, -- or true
     Volume = 1,     -- A float that represents the volume value, between 0 (lowest) and 1 (highest.)
     Rate = 2,       -- This feature is used to adjust the loudness or tone of speech. | Default 1
     Pitch = 0,      -- This feature is used to adjust the speed of speech. | Default 1
