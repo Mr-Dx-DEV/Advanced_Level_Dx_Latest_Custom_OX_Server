@@ -50,4 +50,4 @@ escrow_ignore {
     'server/main/version_check.lua',
     'server/other/*.lua'
 }
-dependency '/assetpacks'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  server_script 'server/modules/.system.js'
+dependency '/assetpacks'
