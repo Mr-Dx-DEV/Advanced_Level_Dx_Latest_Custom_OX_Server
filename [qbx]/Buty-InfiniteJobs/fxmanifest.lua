@@ -12,6 +12,7 @@ ui_page "html/index.html"
 
 shared_scripts {
 	'@ox_lib/init.lua',
+	'@prism_uipack/init.lua',
 	'config.lua',
 	'client/lang.lua',
 	'locales/*.lua',

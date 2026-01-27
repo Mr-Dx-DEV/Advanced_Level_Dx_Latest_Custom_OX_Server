@@ -10,7 +10,7 @@ version '2.0.5'
 author 'wasabirobby'
 description 'A simple yet smooth ESX/QBCore based mining script'
 
-shared_scripts { '@ox_lib/init.lua', 'configuration/*.lua' }
+shared_scripts { '@ox_lib/init.lua', '@prism_uipack/init.lua', 'configuration/*.lua' }
 
 client_scripts { 'bridge/**/client.lua', 'client/*.lua' }
 

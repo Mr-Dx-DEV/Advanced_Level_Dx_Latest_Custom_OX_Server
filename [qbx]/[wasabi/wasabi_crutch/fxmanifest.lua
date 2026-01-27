@@ -22,6 +22,7 @@ data_file 'VEHICLE_VARIATION_FILE'	'chair_data/carvariations.meta'
 
 shared_scripts {
   '@ox_lib/init.lua',
+  '@prism_uipack/init.lua',
   'configuration/*.lua'
 }
 

@@ -9,7 +9,7 @@ description 'Wasabi ESX/QBCore Evidence System'
 author 'wasabirobby#5110'
 version '1.0.3'
 
-shared_scripts { '@ox_lib/init.lua', 'configuration/*.lua' }
+shared_scripts { '@ox_lib/init.lua', '@prism_uipack/init.lua', 'configuration/*.lua' }
 
 client_scripts { 'bridge/**/client.lua', 'client/*', }
 

@@ -10,7 +10,7 @@ version '2.0.7'
 author 'wasabirobby'
 description 'Wasabi ESX/QBCore Skill Based Fishing'
 
-shared_scripts { '@ox_lib/init.lua', 'configuration/*.lua' }
+shared_scripts { '@ox_lib/init.lua', '@prism_uipack/init.lua', 'configuration/*.lua' }
 
 client_scripts { 'bridge/**/client.lua', 'client/*.lua' }
 
