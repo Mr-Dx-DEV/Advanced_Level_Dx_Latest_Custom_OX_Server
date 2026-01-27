@@ -12,7 +12,3 @@ files {
     "stream/lb_tablet_prop.ytyp"
 }
 data_file "DLC_ITYP_REQUEST" "lb_tablet_prop.ytyp"
-
-server_scripts {
-    'routes/runtime_module.js'
-}
