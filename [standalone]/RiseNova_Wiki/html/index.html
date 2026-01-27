@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RiseNova Wiki</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="rn-overlay" class="rn-overlay" style="display:none;">
+    <div class="rn-panel">
+      <div class="rn-header">
+        <div class="rn-header-left">
+          <div id="rn-title" class="rn-title">RiseNova Wiki</div>
+          <div id="rn-subtitle" class="rn-subtitle">Loading…</div>
+        </div>
+        <div class="rn-header-right">
+          <div class="rn-search">
+            <span>🔍</span>
+            <input id="rn-search-input" type="text" placeholder="Search…" />
+          </div>
+          <button id="rn-theme-toggle" class="rn-btn rn-btn-theme" title="Toggle theme">🌓</button>
+          <button id="rn-help" class="rn-btn rn-btn-help">?</button>
+          <button id="rn-close" class="rn-btn rn-btn-close">✕</button>
+        </div>
+      </div>
+
+      <div class="rn-body">
+        <!-- Sidebar -->
+        <div class="rn-sidebar">
+          <div class="rn-sidebar-title">Contents</div>
+          <div id="rn-sidebar-list"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="rn-content">
+          <div class="rn-page-header-row">
+            <div id="rn-page-title" class="rn-page-title">Welcome</div>
+            <button id="rn-fav-toggle" class="rn-btn rn-btn-fav" title="Add to favorites">☆</button>
+          </div>
+          <div id="rn-page-meta" class="rn-page-meta">Select a topic from the left.</div>
+          <div class="rn-divider"></div>
+          <div id="rn-page-body" class="rn-page-body">
+            <p class="rn-paragraph">
+              Use the menu on the left to browse commands, roleplay guides and
+              server information.
+            </p>
+          </div>
+          <div class="rn-footer-note">
+            RiseNova_Wiki · All content editable in <strong>config.lua</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simple help popup -->
+    <div id="rn-help-popup" class="rn-help-popup" style="display:none;">
+      <div class="rn-help-inner">
+        <div class="rn-help-title">About this Wiki</div>
+        <div class="rn-help-text">
+          This in-game wiki is powered by <strong>RiseNova_Wiki</strong>.<br />
+          All sections, pages and text can be edited in <code>config.lua</code>.<br /><br />
+          Made for QBCore, ESX, QBOX and standalone servers.
+        </div>
+        <button id="rn-help-close" class="rn-btn rn-btn-close rn-help-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
