@@ -284,39 +284,45 @@ return {
 
 		},
 		locations = {
-			vector3(463.95, -998.05, 31.74),
+			vector3(452.62, -974.65, 30.25),
 		},
 		targets = {
 			{
 				ped = `u_m_m_doa_01`,
 				scenario = 'WORLD_HUMAN_AA_COFFEE',
-				loc = vec3(463.95, -998.05, 30.74),
-				heading = 83.17
+				loc = vec3(452.62, -974.65, 30.25),
+				heading = 280.97
 			},
 
 		}
 
 	},
 
-	Medicine = {
-		name = 'Medicine Cabinet',
-		groups = {
-			['ambulance'] = 0
-		},
-		-- blip = {
-		-- 	id = 403, colour = 69, scale = 0.5
-		-- },
-		inventory = {
-			{ name = 'medikit', price = 26 },
-			{ name = 'bandage', price = 5 }
-		},
-		locations = {
-			vec3(306.3687, -601.5139, 43.28406)
-		},
-		targets = {
+	-- Medicine = {
+	-- 	name = 'Medicine Cabinet',
+	-- 	groups = {
+	-- 		['ambulance'] = 0
+	-- 	},
+	-- 	-- blip = {
+	-- 	-- 	id = 403, colour = 69, scale = 0.5
+	-- 	-- },
+	-- 	inventory = {
+	-- 		{ name = 'medikit', price = 26 },
+	-- 		{ name = 'bandage', price = 5 }
+	-- 	},
+	-- 	locations = {
+	-- 		vec3(306.3687, -601.5139, 43.28406)
+	-- 	},
+	-- 	targets = {
+	-- 		{
+	-- 			ped = `u_m_m_doa_01`,
+	-- 			scenario = 'WORLD_HUMAN_AA_COFFEE',
+	-- 			loc = vec3(452.62, -974.65, 30.25),
+	-- 			heading = 280.97
+	-- 		},
 
-		}
-	},
+	-- 	}
+	-- },
 
 	BlackMarketArms = {
 		name = 'Black Market (Arms)',
