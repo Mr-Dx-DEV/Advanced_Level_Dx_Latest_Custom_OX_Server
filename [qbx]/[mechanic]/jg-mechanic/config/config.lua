@@ -4,10 +4,10 @@ Config = {}
 Config.Framework = "auto" -- or "QBCore", "Qbox", "ESX"
 Config.Inventory = "ox_inventory" -- or "ox_inventory", "qb-inventory", "esx_inventory", "codem-inventory", "qs-inventory"
 Config.Notifications = "ox_lib" -- or "default", "ox_lib", "lation_ui", "ps-ui", "okokNotify", "nox_notify"
-Config.ProgressBar = "auto" -- or "ox-circle", "ox-bar", "lation_ui", "qb"
-Config.SkillCheck = "auto" -- or "ox", "qb", "lation_ui"
-Config.DrawText = "jg-textui" -- or "jg-textui", "ox_lib", "okokTextUI", "ps-ui", "lation_ui", "qb"
-Config.SocietyBanking = "Renewed-Banking" -- or "okokBanking", "fd_banking", "Renewed-Banking", "tgg-banking", "qb-banking", "qb-management", "esx_addonaccount"
+Config.ProgressBar = "ox-circle" -- or "ox-circle", "ox-bar", "lation_ui", "qb"
+Config.SkillCheck = "ox" -- or "ox", "qb", "lation_ui"
+Config.DrawText = "ox_lib" -- or "jg-textui", "ox_lib", "okokTextUI", "ps-ui", "lation_ui", "qb"
+Config.SocietyBanking = "fd_banking" -- or "okokBanking", "fd_banking", "Renewed-Banking", "tgg-banking", "qb-banking", "qb-management", "esx_addonaccount"
 Config.Menus = "ox" -- or "ox", "lation_ui"
 
 -- Localisation
@@ -154,17 +154,17 @@ Config.MechanicLocations = {
   
   },
 
-  lspd_garage = {
-    type = "owned",
+  police = {
+    type = "self-service",
     job = "police", -- LSPD job
     jobManagementRanks = {5,6,7,8,9,10}, -- Higher ranks can manage
     commission = 0, -- No commission for police
     logo = "bennys.png", -- You can create a custom LSPD logo
     locations = {
       {
-        coords = vector3(452.34, -996.56, 24.75),
-        size = 8.0,
-        showBlip = true,
+        coords = vector3(439.39, -971.08, 22.40),
+        size = 2.0,
+        showBlip = false,
       }
     },
     blip = {
@@ -195,7 +195,7 @@ Config.MechanicLocations = {
       gearboxes        = { enabled = true, requiresItem = false }, -- No items required
     },
     carLifts = { -- only usable by employees
-      vec4(454.48, -1017.67, 28.44, 90.0) -- Car lift at the same location
+      --vec4(454.48, -1017.67, 28.44, 90.0) -- Car lift at the same location
     },
     shops = {
       {
@@ -219,22 +219,22 @@ Config.MechanicLocations = {
         },
       }
     },
-    stashes = {
-      {
-        name = "LSPD Storage",
-        coords = vector3(445.14, -996.62, 25.75),
-        size = 2.0,
-        usePed = false,
-        pedModel = "s_m_m_lathandy_01",
-        marker = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 0, b = 0, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
-        slots = 20,
-        weight = 100000,
-      }
-    }
+    -- stashes = {
+    --   {
+    --     name = "LSPD Storage",
+    --     coords = vector3(445.14, -996.62, 25.75),
+    --     size = 2.0,
+    --     usePed = false,
+    --     pedModel = "s_m_m_lathandy_01",
+    --     marker = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 0, b = 0, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
+    --     slots = 20,
+    --     weight = 100000,
+    --   }
+    -- }
   },
   
     ambulance_garage = {
-    type = "owned",
+    type = "self-service",
     job = "ambulance", -- LSPD job
     jobManagementRanks = {7,8}, -- Higher ranks can manage
     commission = 0, -- No commission for police
@@ -242,8 +242,8 @@ Config.MechanicLocations = {
     locations = {
       {
         coords = vector3(330.27, -573.35, 27.26),
-        size = 8.0,
-        showBlip = true,
+        size = 5.0,
+        showBlip = false,
       }
     },
     blip = {
@@ -274,7 +274,7 @@ Config.MechanicLocations = {
       gearboxes        = { enabled = true, requiresItem = false }, -- No items required
     },
     carLifts = { -- only usable by employees
-      vec4(325.96, -556.16, 28.75, 159.68) -- Car lift at the same location
+      --vec4(325.96, -556.16, 28.75, 159.68) -- Car lift at the same location
     },
     shops = {
       {
@@ -298,18 +298,18 @@ Config.MechanicLocations = {
         },
       }
     },
-    stashes = {
-      {
-        name = "Ambulance Storage",
-        coords = vector3(337.28, -588.14, 28.74),
-        size = 2.0,
-        usePed = false,
-        pedModel = "s_m_m_lathandy_01",
-        marker = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 0, b = 0, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
-        slots = 20,
-        weight = 100000,
-      }
-    }
+    -- stashes = {
+    --   {
+    --     name = "Ambulance Storage",
+    --     coords = vector3(337.28, -588.14, 28.74),
+    --     size = 2.0,
+    --     usePed = false,
+    --     pedModel = "s_m_m_lathandy_01",
+    --     marker = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 0, b = 0, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
+    --     slots = 20,
+    --     weight = 100000,
+    --   }
+    -- }
   },
 }
 
