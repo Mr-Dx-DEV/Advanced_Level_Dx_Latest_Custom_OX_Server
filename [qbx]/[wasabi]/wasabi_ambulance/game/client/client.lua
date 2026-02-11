@@ -372,6 +372,7 @@ local originalDeath
 local originalLocation
 AddEventHandler('wasabi_bridge:onPlayerDeath', function(data)
     if not isPlayerLoaded then return end
+    if not data then return end
     if NassPaintball then
         if exports.nass_paintball:inGame() then return end
     end

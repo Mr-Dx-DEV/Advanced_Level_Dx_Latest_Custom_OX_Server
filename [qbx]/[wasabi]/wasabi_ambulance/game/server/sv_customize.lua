@@ -32,8 +32,7 @@ function ChargePlayer(src, account, cost, PayHospital)
     if Config.ChargeForRevive and Config.ChargeForRevive.enabled and Config.ChargeForRevive.allowNegativeBalance and wsb.framework == 'qb' then
         wsb.removeMoney(src, account, newCost)
         if PayHospital then
-            local management = Config.OldQBManagement and 'qb-management' or 'qb-banking'
-            exports[management]:AddMoney(PayHospital, newCost)
+            exports.fd_banking:AddMoney(PayHospital, newCost, 'Hospital check-in payment')
         end
         return true --Force revive_patient
     elseif funds < newCost then
@@ -42,26 +41,7 @@ function ChargePlayer(src, account, cost, PayHospital)
     else
         wsb.removeMoney(src, account, newCost)
         if PayHospital then
-            if wsb.framework == 'qb' then
-                local management = Config.OldQBManagement and 'qb-management' or 'qb-banking'
-                exports[management]:AddMoney(PayHospital, newCost)
-            else --wsb.framework == 'esx'
-                TriggerEvent('esx_addonaccount:getSharedAccount', PayHospital, function(account)
-                    if account then
-                        account.addMoney(newCost)
-                        return true
-                    end
-                    -- if account doesn't exist, try adding society_ prefix
-                    TriggerEvent('esx_addonaccount:getSharedAccount', 'society_'..PayHospital, function(societyAccount)
-                        if not societyAccount then
-                            print(Strings.no_society_account:format(PayHospital))
-                            return false
-                        end
-                        societyAccount.addMoney(newCost)
-                    end)
-                end)
-
-            end
+            exports.fd_banking:AddMoney(PayHospital, newCost, 'Hospital check-in payment')
         end
         return true
     end
@@ -75,22 +55,11 @@ RegisterNetEvent('wasabi_ambulance:qbBill', function(target, amount, job)
         'success')
     TriggerClientEvent('wasabi_bridge:notify', target, Strings.fine_received,
         (Strings.fine_received_desc):format(addCommas(amount)), 'error')
-    local qbManagement = Config.OldQBManagement and 'qb-management' or 'qb-banking'
-    exports[qbManagement]:AddMoney(job, amount)
+    exports.fd_banking:AddMoney(job, amount, 'Ambulance bill payment')
 end)
 
 if wsb.framework == 'esx' then
-    if not Config.ambulanceJob and type(Config.ambulanceJobs) == 'table' then
-        for i = 1, #Config.ambulanceJobs do
-            local ambulanceJob = Config.ambulanceJobs[i]
-            TriggerEvent('esx_society:registerSociety', ambulanceJob, ambulanceJob, 'society_' .. ambulanceJob,
-                'society_' .. ambulanceJob, 'society_' .. ambulanceJob, { type = 'public' })
-        end
-        goto continue
-    end
-    TriggerEvent('esx_society:registerSociety', Config.ambulanceJob, Config.ambulanceJob, 'society_' ..
-        Config.ambulanceJob, 'society_' .. Config.ambulanceJob, 'society_' .. Config.ambulanceJob, { type = 'public' })
-    ::continue::
+    -- fd_banking handles society accounts automatically
     ESX.RegisterServerCallback('esx_ambulancejob:getDeathStatus', function(source, cb)
         if deadPlayers[source] then
             cb(true)

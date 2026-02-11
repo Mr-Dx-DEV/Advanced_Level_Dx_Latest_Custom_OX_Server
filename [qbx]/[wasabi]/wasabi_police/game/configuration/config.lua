@@ -504,10 +504,10 @@ Config.Props = { -- What props are avaliable in the "Place Objects" section of t
 }
 
 Config.Locations = {
-    LSPD = {
+    MRPD = {
         blip = {
             enabled = true,
-            coords = vec3(464.57, -992.0, 30.69),
+            coords = vec3(439.78, -988.23, 30.23),
             sprite = 60,
             color = 29,
             scale = 1.0,
@@ -517,38 +517,38 @@ Config.Locations = {
         clockInAndOut = {
             enabled = true,                        -- Enable clocking in and out at a set location? (If using ESX you must have a off duty job for each e.x. offpolice for police offsheriff for sheriff AND have grades for each pd grade - QBCORE REQUIRES NOTHING)
             jobLock = 'police',                    -- This must be set to which job will be utilizing (ESX MUST HAVE OFF DUTY JOB / GRADES FOR THIS - ex. offpolice or offsheriff)
-            coords = vec3(443.26, -982.3, 30.96), -- Location of where to go on and off duty(If not using target)
+            coords = vec3(441.01, -987.92, 30.35), -- Location of where to go on and off duty(If not using target)
             label = '[E] - Go On/Off Duty',        -- Text to display(If not using target)
             distance = 3.0,                        -- Distance to display text UI(If not using target)
             target = {
                 enabled = true,                   -- If enabled, the location and distance above will be obsolete
                 label = 'Go On/Off Duty',
-                coords = vec3(443.26, -982.3, 30.96),
-                heading = 105.15,
+                coords = vec3(441.01, -987.92, 30.35),
+                heading = 111.41,
                 distance = 2.5,
                 width = 2.0,
                 length = 1.0,
-                minZ = 30.96 - 0.9,
-                maxZ = 30.96 + 0.9
+                minZ = 30.35 - 0.9,
+                maxZ = 30.35 + 0.9
             }
         },
 
         bossMenu = {
             enabled = true,                        -- Enable boss menu?
             jobLock = 'police',                    -- Lock to specific police job? Set to false if not desired
-            coords = vec3(469.15, -976.14, 34.78), -- Location of boss menu (If not using target)
+            coords = vec3(454.27, -973.22, 36.81), -- Location of boss menu (If not using target)
             label = '[E] - Access Boss Menu',      -- Text UI label string (If not using target)
             distance = 3.0,                        -- Distance to allow access/prompt with text UI (If not using target)
             target = {
                 enabled = true,                   -- If enabled, the location and distance above will be obsolete
                 label = 'Access Boss Menu',
-                coords = vec3(469.15, -976.14, 34.78),
-                heading = 92.55,
+                coords = vec3(454.27, -973.22, 36.81),
+                heading = 97.40,
                 distance = 2.0,
                 width = 2.0,
                 length = 1.0,
-                minZ = 34.78 - 0.9,
-                maxZ = 34.78 + 0.9
+                minZ = 36.81 - 0.9,
+                maxZ = 36.81 + 0.9
             }
         },
 
@@ -749,21 +749,21 @@ Config.Locations = {
         },
 
         evidenceLocker = {
-            enabled = false,                      -- Enable evidence locker for this station?
+            enabled = true,                      -- Enable evidence locker for this station?
             jobLock = 'police',                   -- Job lock?
-            coords = vec3(472.5, -991.21, 26.27), -- Area to prompt personal locker
+            coords = vec3(471.31, -992.48, 23.86), -- Area to prompt personal locker
             range = 2.0,                          -- Range it will prompt from coords above
             label = '[E] - Access Evidence Locker',
             target = {
-                enabled = false, -- If enabled, the location above will be obsolete
+                enabled = true, -- If enabled, the location above will be obsolete
                 label = 'Access Evidence Locker',
-                coords = vec3(472.5, -991.21, 26.27),
-                heading = 266.23,
+                coords = vec3(471.31, -992.48, 23.86),
+                heading = 123.07,
                 distance = 2.5,
                 width = 2.0,
                 length = 1.0,
-                minZ = 26.27 - 0.9,
-                maxZ = 26.27 + 0.9
+                minZ = 23.86 - 0.9,
+                maxZ = 23.86 + 0.9
             }
         },
 
